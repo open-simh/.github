@@ -33,4 +33,4 @@ The Steering Group has ultimate responsibility for the project.  We work with th
  - [Administrative and/or technical issues](mailto:admin@opensimh.org)
  - [Website issues](mailto:webmaster@openssh.org)
 
-The Steering Group membership consists of: Clem Cole, Richard Cornwell, Paul Koning, Timothe Litt, Seth Morabito, and Bob Supnik
+The Steering Group consists of: Clem Cole, Richard Cornwell, Paul Koning, Timothe Litt, Seth Morabito, and Bob Supnik
