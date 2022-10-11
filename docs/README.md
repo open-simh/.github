@@ -2,7 +2,7 @@
 
 # The Open SIMH project
 
-**Draft by tl 10-Oct-22 - not approved**
+**Draft by TL 11-Oct-22 - not approved**
 
 SIMH is a framework and family of computer simulators, initiated by Bob Supnik and continued with contributions (large and small) from many others, with the primary goal of enabling the preservation of knowledge contained in, and providing the ability to execute/experience, old/historic software via simulation of the hardware on which it ran. This goal has been successfully achieved and has for these years created a diverse community of users and developers.
 
@@ -13,9 +13,10 @@ Note the "dmr" directory and home directory ("/usr/dmr") for Dennis Ritchie, one
 
 
 ## Project Resources
- *  [Full description of the project](https://github.com/open-simh/.github/tree/main/profile/README.md)
- * [About Contributions](contributions.md)
- * [Code repository](https://github.com/open-simh/simh)
+ * [About the project](about)
+ * [About Contributions](contributions)
+ * [Simulator Code repository](https://github.com/open-simh/simh)
+ * [Simulation tools repository](https://github.com/open-simh/simtools)
 
 ## External resources
  * [bitsavers.org](http://bitsavers.org/) - documentation & software archive

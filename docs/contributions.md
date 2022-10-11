@@ -1,6 +1,6 @@
-# Open SIMH
+# [Open SIMH](/)
 
-**Draft by tl 10-Oct-22 - not approved**
+**Draft by TL 11-Oct-22 - not approved**
 
 ## About contributions
 

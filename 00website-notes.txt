@@ -1,0 +1,20 @@
+This site is built with Jekell
+
+All files in docs/ become part of the website.
+The subdirectories are (mostly) automagically built by Jekell.
+
+For a local debug copy:
+ you need to install jekell and bundler - see https://jekyllrb.com/docs/installation/
+ and https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll
+
+ use  LANG=en_US.UTF-8 bundle exec jekyll serve
+ The site can be browsed on http://localhost:4000
+
+To create a page, just add an .md file.
+
+Make all links relative.
+
+The site uses the time-machine theme.  GitHub variables are superseded in _config.yml
+
+I create favicons with https://favicon.io/favicon-converter/
+
