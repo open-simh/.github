@@ -4,10 +4,7 @@ title: Contacting Open SIMH
 permalink: /contacts/
 ---
 
-# Communicating with the project
-
-**Draft by TL 11-Oct-22 - not approved**
-
+# Communicating with the [Open SIMH](/) project
 The Open SIMH project is based on the work of a large community.  There are several ways to communicate with the community at large, as well as with the leadership.
 
 ## Community e-mail list

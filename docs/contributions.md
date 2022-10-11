@@ -1,20 +1,23 @@
+---
+layout: default
+title: Contributing to Open SIMH
+permalink: /contributions/
+---
 # [Open SIMH](/)
 
-**Draft by TL 11-Oct-22 - not approved**
-
 ## About contributions
-
-### Core principles
-
+All contributions must support the core project principles:
 1. Preserve the ability to run old/historically significant software. This means functionally accurate, sometimes bug-compatible, but not cycle-accurate, simulation.
 2. Make it reasonably easy to add new simulators for other hardware while leveraging common functions between the simulators.
 3. Exploit the software nature of simulation and make SIMH convenient for debugging a simulated system, by adding non-historical features to the environment.
 4. Make it convenient for users to explore old system environments, with as close to historical interfaces, by mapping them to new features that modern host operating systems provide.
 5. Be inclusive of people and new technology. It's serious work, but it should be fun.
 
-### Contributions
+**Non-coders are welcome:** Contributions may be in the form of code, documentation, testing, debugging, historical software, expertise in historic systems or software, advice, help with licensing, and other forms.
 
-All contributions are licensed under an MIT or BSD style licens
+### Tangible Contributions
+
+All tangible contributions must be licensed under an MIT or BSD style licens
 
 Contributions must be by pull requests, approved by a Steering Group member,
 or for subprojects, a delegee authorized by the Steering Group.
