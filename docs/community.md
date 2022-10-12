@@ -7,7 +7,7 @@ permalink: /community/
 
 ---
 
-In addition to what we provide, there are many e-mail discussion lists and websites relating to computing history, emulation,  and software preservation.  Here are a few - **contributions welcome.**
+In addition to what we provide, there are many e-mail discussion lists and websites relating to computing history, emulation,  and software preservation.  Here are a few:
 
 Type|Name/link|Content
 ----|---------|-------

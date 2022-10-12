@@ -10,17 +10,15 @@ permalink: /software/
 Emulators aren't very interesting without the software to run on them.
 Historical software can be hard to find, and when found the rights to use it  vary considerably.
 Some was never copyrighted or has been released to the  public domain; other software is licensed for educational or non-commerical use; while the status of much software is uncertain or unknown.
-Many of the originating companies have changed hands - some many time - or are defunct.  Some don't know what they have.
+Many of the originating companies have changed hands - some many times - or are defunct.  Some don't know what they have.
 
 The Open SIMH project does not distribute software that runs on our emulators.
 But when a current owner can be identified, we do advocate for software to be released - at least for educational/non-commercial use.
 
-**contributions welcome below:**
-
 ## Licenses permitting use with Open SIMH
 Explicit licenses that organizations have generously granted for use of "Ancient" (formerly proprietary) software include:
  * [Early UNIX (Caldera)](https://www.tuhs.org/Archive/Caldera-license.pdf)
- * TOPS-10/20 Hobbyist (DEC)
+ * [TOPS-10/20 Hobbyist (DEC)](../dec_36bit_license)
  * VAX/VMS Hobbyist (DEC), discontinued
  * [PDP-11 RT-11, RSX-11, RSTS-11 Mentec - Hobbyist](../mentec_license)
 
