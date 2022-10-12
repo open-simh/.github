@@ -42,7 +42,7 @@ Users are responsible for conforming with applicable license terms.
 
 Title|HowTo|Origin|Current Owner|Status
 -----|-----|------|-------------|------
-[Burrough5500](https://sky-visions.com/burroughs)|[MarkXIII](https://sky-visions.com/burroughs/quick/files.shtml)|Burroughs|Unisys|Edu-Hobby
+[Burrough5500](https://sky-visions.com/burroughs)|[MarkXIII](../B5500_quick_start.pdf)|Burroughs|Unisys|Edu-Hobby
 [TOPS-10](http://pdp-10.trailing-edge.com)||DEC|HP|Hobby license
 [TOPS-20]((http://pdp-10.trailing-edge.com))||DEC|HP|Hobby license
 [VMS](https://drive.google.com/drive/folders/1Pon-KHWM2oq0iZx2mtfeR2N1hi-KJsXu)|[V1.0](https://gunkies.org/wiki/Installing_VMS_V1.0_on_SIMH)|DEC|HP/VMS Software|hobby-expired
