@@ -21,19 +21,16 @@ Explicit licenses that organizations have generously granted for use of "Ancient
  * [TOPS-10/20 Hobbyist (DEC)](../dec_36bit_license)
  * VAX/VMS Hobbyist (DEC), discontinued
  * [PDP-11 RT-11, RSX-11, RSTS-11 Mentec - Hobbyist](../mentec_license)
+ * [HP1000 (HP)](../HP1000-21XX_CHM_Source_Code_License_final.pdf)
 
 ## Curated repositories
- * [bitsavers software archive](http://bitsavers.org/bits/)
+ * [bitsavers software archive (complete)](http://bitsavers.org/bits/): [DEC](http://bitsavers.org/bits/DEC/) [DG](http://bitsavers.org/bits/DataGeneral/) [HP](http://bitsavers.org/bits/HP/) [IBM](http://bitsavers.org/bits/IBM/)
  * [Bob Supnik's runable kits](http://simh.trailing-edge.com/software.html)
  * [ibiblio - PDP-8, -10, -11](http://www.ibiblio.org/pub/academic/computer-science/history/)
  * [Paul Pierce collection](http://www.piercefuller.com/library/index.html)
  * [Brian Knittle's 1130 collection](http://ibm1130.org/sw/)
  * [Peter Schorn's Z80 collection](https://schorn.ch/altair.html)
- * [Lars Brinkhoff - PDP-6](https://github.com/PDP-6)
- * [Lars Brinkhoff - PDP-10](https://github.com/PDP-10)
- * [Lars Brinkhoff - PDP-11](https://github.com/PDP-11)
- * [Lars Brinkhoff - CLU (language)](https://github.com/get-a-clu)
- * [Lars Brinkhoff - Imlac](https://github.com/larsbrinkhoff/imlac-software)
+ * **Lars Brinkhoff:** [PDP-6](https://github.com/PDP-6) [PDP-10](https://github.com/PDP-10) [PDP-11](https://github.com/PDP-11) [CLU(language)](https://github.com/get-a-clu) [Imlac](https://github.com/larsbrinkhoff/imlac-software)
  * [HP Computer Museum software collection](https://www.hpmuseum.net/collection_document.php#CS)
 
 ## Specific (historic) software
@@ -48,12 +45,13 @@ Title|HowTo|Origin|Current Owner|Status
 [TOPS-10](http://pdp-10.trailing-edge.com)||DEC|HP|Hobby license
 [TOPS-20]((http://pdp-10.trailing-edge.com))||DEC|HP|Hobby license
 [VMS](https://drive.google.com/drive/folders/1Pon-KHWM2oq0iZx2mtfeR2N1hi-KJsXu)|[V1.0](https://gunkies.org/wiki/Installing_VMS_V1.0_on_SIMH)|DEC|HP/VMS Software|hobby-expired
+[VMS](https://www.dropbox.com/sh/jo34j07avco3dtt/AAAjA2ftGt9Sl7mPS9zXOqDEa?dl=0)|V4.4-V4.7|DEC|HP|Hobby license
 [RT-11](https://gunkies.org/wiki/Installing_RT-11_5.3_on_SIMH)|[V5.3](http://simh.trailing-edge.com/kits/rtv53swre.tar.Z)|DEC|XXX2247|Hobby license
 [RSTS-11](http://iamvirtual.ca/PDP-11/RSTS-11/Install.htm)|[V4B](http://iamvirtual.ca/PDP-11/RSTS-11/Install.htm)|DEC|XXX2247|Hobby license
 [RSX-11](http://retrocmp.com/projects/blinkenbone/index.php?option=com_content&view=category&id=56&Itemid=324)|[V4.6](ftp://anonymous:anonymous@trailing-edge.com/rsxdists/rsx11mplus_4_6_bl87_dsk.zip)|DEC|XXX2247|Hobby license
 [OS-8](https://www.pdp8online.com/pdp8cgi/os8_html?act=dir;fn=images/misc_dectapes/AL-4711C-BA.tu56;sort=name)|[V3Q](https://archives.loomcom.com/retrocomputing/os8_notes.html)|DEC|HP|Unknown
-[HP1000](http://www.bitsavers.org/bits/HP/HP_1000_software_collection/)|various|HP|HP|Unknown
-[HP2000](http://www.xyfyx.com/files/clean%20Access.zip)|[Details](https://bigdanzblog.files.wordpress.com/2014/06/hp2000-access-installation-and-operation.pdf)|HP|HP|Unknown
+[HP1000](http://www.bitsavers.org/bits/HP/HP_1000_software_collection/)|various|HP|HP|Edu-Hobby
+[HP2000](http://www.xyfyx.com/files/clean%20Access.zip)|[Details](https://bigdanzblog.files.wordpress.com/2014/06/hp2000-access-installation-and-operation.pdf)|HP|HP|Edu-Hobby
 [IBSYS](https://sky-visions.com/ibm/ibsys_tabes.shtml)|[various](https://sky-visions.com/ibm)|IBM|IBM|Unknown
 [IBM704-SHARE](https://sky-visions.com/ibm/ibm704_soft.shtml)|[various](https://sky-visions.com/ibm/ibm704.shtml)|IBM|IBM|Unknown
 [IBM705](https://sky-visions.com/ibm/ibm705_soft.shtml)|[various](https://sky-visions.com/ibm/ibm705.shtml)|IBM|IBM|Unknown
