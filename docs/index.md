@@ -19,7 +19,8 @@ Note the "dmr" directory and home directory ("/usr/dmr") for Dennis Ritchie, one
  * [Project Contacts](contacts)
  * [Simulator Code repository](https://github.com/open-simh/simh)
  * [Simulation tools repository](https://github.com/open-simh/simtools)
- * [Where to find sofware](software)
+ * [Where to find sofware and how to use it](software)
+ * [Open SIMH Tutorials](tutorials)
 
 ## External resources
  * [Discussion lists and websites](community)
