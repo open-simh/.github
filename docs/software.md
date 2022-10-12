@@ -34,6 +34,7 @@ Explicit licenses that organizations have generously granted for use of "Ancient
  * [Lars Brinkhoff - PDP-11](https://github.com/PDP-11)
  * [Lars Brinkhoff - CLU (language)](https://github.com/get-a-clu)
  * [Lars Brinkhoff - Imlac](https://github.com/larsbrinkhoff/imlac-software)
+ * [HP Computer Museum software collection](https://www.hpmuseum.net/collection_document.php#CS)
 
 ## Specific (historic) software
 The following table lists software that runs on SIMH and is available from other sources.
