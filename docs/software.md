@@ -31,6 +31,11 @@ Explicit licenses that organizations have generously granted for use of "Ancient
  * [Paul Pierce collection](http://www.piercefuller.com/library/index.html)
  * [Brian Knittle's 1130 collection](http://ibm1130.org/sw/)
  * [Peter Schorn's Z80 collection](https://schorn.ch/altair.html)
+ * [Lars Brinkhoff - PDP-6](https://github.com/PDP-6)
+ * [Lars Brinkhoff - PDP-10](https://github.com/PDP-10)
+ * [Lars Brinkhoff - PDP-11](https://github.com/PDP-11)
+ * [Lars Brinkhoff - CLU (language)](https://github.com/get-a-clu)
+ * [Lars Brinkhoff - Imlac](https://github.com/larsbrinkhoff/imlac-software)
 
 ## Specific (historic) software
 The following table lists software that runs on SIMH and is available from other sources.
@@ -48,7 +53,7 @@ Title|HowTo|Origin|Current Owner|Status
 [RSTS-11](http://iamvirtual.ca/PDP-11/RSTS-11/Install.htm)|[V4B](http://iamvirtual.ca/PDP-11/RSTS-11/Install.htm)|DEC|XXX2247|Hobby license
 [RSX-11](http://retrocmp.com/projects/blinkenbone/index.php?option=com_content&view=category&id=56&Itemid=324)|[V4.6](ftp://anonymous:anonymous@trailing-edge.com/rsxdists/rsx11mplus_4_6_bl87_dsk.zip)|DEC|XXX2247|Hobby license
 [OS-8](https://www.pdp8online.com/pdp8cgi/os8_html?act=dir;fn=images/misc_dectapes/AL-4711C-BA.tu56;sort=name)|[V3Q](https://archives.loomcom.com/retrocomputing/os8_notes.html)|DEC|HP|Unknown
-[HP200](http://www.xyfyx.com/files/clean%20Access.zip)|[Details](https://bigdanzblog.files.wordpress.com/2014/06/hp2000-access-installation-and-operation.pdf)|HP|HP|Unknown
+[HP2000](http://www.xyfyx.com/files/clean%20Access.zip)|[Details](https://bigdanzblog.files.wordpress.com/2014/06/hp2000-access-installation-and-operation.pdf)|HP|HP|Unknown
 [IBSYS](https://sky-visions.com/ibm/ibsys_tabes.shtml)|[various](https://sky-visions.com/ibm)|IBM|IBM|Unknown
 [IBM704-SHARE](https://sky-visions.com/ibm/ibm704_soft.shtml)|[various](https://sky-visions.com/ibm/ibm704.shtml)|IBM|IBM|Unknown
 [IBM705](https://sky-visions.com/ibm/ibm705_soft.shtml)|[various](https://sky-visions.com/ibm/ibm705.shtml)|IBM|IBM|Unknown
