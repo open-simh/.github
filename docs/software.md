@@ -23,15 +23,15 @@ But when a current owner can be identified, we do advocate for software to be re
 ## Specific (historic) software
 The following table lists software that runs on SIMH and is available from other sources.  When available, the names link to an onl-line source.  The license status, to the best of our knowledge, is indicated but not guaranteed
 
-Software|Originator|Current Owner|Status
---------|----------|-------------|------
-[TOPS-10](http://pdp-10.trailing-edge.com)|DEC|HP|Hobby license
-[TOPS-20]((http://pdp-10.trailing-edge.com))|DEC|HP|Hobby license
-VMS| DEC|HP/VMS Software|hobby-expired
-RT-11|DEC|MENTEC|Unknown
-RSTS-11|DEC|MENTEC|Unknown
-RSX-11|DEC|MENTEC|Unknown
-OS-8|DEC|HP|Unknown
+Software|HowTo|Originator|Current Owner|Status
+--------|-----|----------|-------------|------
+[TOPS-10](http://pdp-10.trailing-edge.com)||DEC|HP|Hobby license
+[TOPS-20]((http://pdp-10.trailing-edge.com))||DEC|HP|Hobby license
+VMS||DEC|HP/VMS Software|hobby-expired
+RT-11||DEC|MENTEC|Unknown
+RSTS-11||DEC|MENTEC|Unknown
+RSX-11||DEC|MENTEC|Unknown
+OS-8||DEC|HP|Unknown
 
 ## Other tools
 We'd be happy to host these if the license/owner allows...
