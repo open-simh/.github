@@ -31,6 +31,6 @@ If you want to discuss a potential contribution before it's coded (which is wise
 The Steering Group has ultimate responsibility for the project.  We work with the community for a concensus resolution of most issues.  In general, we prefer to discuss matters in one of the public formum.  However, for sensitive issues, the following e-mail addresses are available:
  - [The Steering Group Members](mailto:sg@opensimh.org)
  - [Administrative and/or technical issues](mailto:admin@opensimh.org)
- - [Website issues](mailto:webmaster@openssh.org)
+ - [Website issues](mailto:webmaster@opensimh.org)
 
 The Steering Group consists of: Clem Cole, Richard Cornwell, Paul Koning, Timothe Litt, Seth Morabito, and Bob Supnik
