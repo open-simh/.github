@@ -22,7 +22,7 @@ Explicit licenses that organizations have generously granted for use of "Ancient
  * [Early UNIX (Caldera)](https://www.tuhs.org/Archive/Caldera-license.pdf)
  * TOPS-10/20 Hobbyist (DEC)
  * VAX/VMS Hobbyist (DEC), discontinued
- * PDP-11 RT-11, RSX-11, RSTS-11 Hobbyist (Mentec)
+ * [PDP-11 RT-11, RSX-11, RSTS-11 Mentec - Hobbyist](../mentec_license)
 
 ## Curated repositories
  * [bitsavers software archive](http://bitsavers.org/bits/)
