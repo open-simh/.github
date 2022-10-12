@@ -18,7 +18,12 @@ But when a current owner can be identified, we do advocate for software to be re
 **contributions welcome below:**
 
 ## Curated repositories
- * [bitsavers.org](http://bitsavers.org/)
+ * [bitsavers software archive](http://bitsavers.org/bits/)
+ * [Bob Supnik's runable kits](http://simh.trailing-edge.com/software.html)
+ * [ibiblio - PDP-8, -10, -11](http://www.ibiblio.org/pub/academic/computer-science/history/)
+ * [Paul Pierce collection](http://www.piercefuller.com/library/index.html)
+ * [Brian Knittle's 1130 collection](http://ibm1130.org/sw/)
+ * [Peter Schorn's Z80 collection](https://schorn.ch/altair.html)
 
 ## Specific (historic) software
 The following table lists software that runs on SIMH and is available from other sources.
