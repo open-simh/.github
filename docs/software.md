@@ -33,6 +33,14 @@ Software|HowTo|Originator|Current Owner|Status
 [RSX-11](http://retrocmp.com/projects/blinkenbone/index.php?option=com_content&view=category&id=56&Itemid=324)|[V4.6](ftp://anonymous:anonymous@trailing-edge.com/rsxdists/rsx11mplus_4_6_bl87_dsk.zip)|DEC|MENTEC|Unknown
 [OS-8](https://www.pdp8online.com/pdp8cgi/os8_html?act=dir;fn=images/misc_dectapes/AL-4711C-BA.tu56;sort=name)|[V3Q](https://archives.loomcom.com/retrocomputing/os8_notes.html)|DEC|HP|Unknown
 [HP200](http://www.xyfyx.com/files/clean%20Access.zip)|[Details](https://bigdanzblog.files.wordpress.com/2014/06/hp2000-access-installation-and-operation.pdf)|HP|HP|Unknown
+[Burrough5500](https://sky-visions.com/burroughs)|[MarkXIII](https://sky-visions.com/burroughs/quick/files.shtml)|Burroughs|Unisys|Edu-Hobby
+[IBSYS](https://sky-visions.com/ibm/ibsys_tabes.shtml)|[various](https://sky-visions.com/ibm)|IBM|IBM|Unknown
+[IBM704-SHARE](https://sky-visions.com/ibm/ibm704_soft.shtml)|[various](https://sky-visions.com/ibm/ibm704.shtml)|IBM|IBM|Unknown
+[IBM705](https://sky-visions.com/ibm/ibm705_soft.shtml)|[various](https://sky-visions.com/ibm/ibm705.shtml)|IBM|IBM|Unknown
+[IBM709](https://sky-visions.com/ibm/ibm709_soft.shtml)|[various](https://sky-visions.com/ibm/ibm709.shtml)|IBM|IBM|Unknown
+[IBM14/70](https://sky-visions.com/ibm/ibm7010_soft.shtml)|[various](https://sky-visions.com/ibm/ibm1410.shtml)|IBM|IBM|Unknown
+[IBM7094](https://sky-visions.com/ibm/ibm7094_soft.shtml)|[various](https://sky-visions.com/ibm/ibm1410.shtml)|IBM|IBM|Unknown
+
 
 ## Other tools
 We'd be happy to host these if the license/owner allows...
