@@ -35,9 +35,10 @@ Explicit licenses that organizations have generously granted for use of "Ancient
 
 ## Specific (historic) software
 The following table lists software that runs on SIMH and is available from other sources.
-When available, the names link to an onl-line source.  The license status, to the best of
-our knowledge, is indicated but not guaranteed.  Users are responsible for conforming with
-applicable license terms.
+
+When available, the names link to an onl-line source.  The HowTo links provide tutorials and additional information.
+The license status, which is to the best of our knowledge, is indicated but not guaranteed.
+Users are responsible for conforming with applicable license terms.
 
 Title|HowTo|Origin|Current Owner|Status
 -----|-----|------|-------------|------

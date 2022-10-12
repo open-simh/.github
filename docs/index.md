@@ -28,5 +28,7 @@ Note the "dmr" directory and home directory ("/usr/dmr") for Dennis Ritchie, one
  * [IEEE history of computing](https://www.computer.org/csdl/magazine/an)
  * [ACM computing history resources](https://history.acm.org/acm-history/computing-history-resources-and-guides/computing-history-resources-and-guides-2/)
 
-
-<small>Credit: The image is creative commons-licensed from Wikipedia.</small>
+<small>**Terms of use:** This project is run by dedicated volunteers.
+While the information provided on this website is believed to be accurate, we make no guarantees.
+You rely on it at your own risk. </small><br />
+<small>**Credit:** The image is creative commons-licensed from Wikipedia.</small>
