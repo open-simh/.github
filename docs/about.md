@@ -41,7 +41,7 @@ Although evolving, we have in place the following resources:
 
  * The conventional git-style process is used for code contributions, via pull requests to the project repository. The Steering Group members have approval authority, although we expect others to be added over time.
 
-We foresee other resources being added in the future as we identify the project and its needs evolve.
+We foresee other resources being added in the future as we identify the project's needs and they evolve.
 
 By formalizing the underlying structure, our operational principles and guidance can best benefit the community. While these are evolving, the current drafts are on this website.
 
