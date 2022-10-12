@@ -32,7 +32,7 @@ the following criteria - which may evolve, and aren't absolute.
   * External dependencies must be generally available, and appropriately licensed.  Note that while LGPL licensed code may be used, GPL is inconsitent with SimH and is absolutely prohibited.
   * Embedded firmware/microcode and the like from the emulated system must be compatibly licensed, acquired by the end user, or by some other means avoid encumbering the SimH project.
 * Documentation - people other than the author need to be able to understand and use it.
- * We don't currently require formal Certificates of Origin for contributions, but we expect contributors to ensure that they have the rights to grant the project to use them under the MIT/BSD style license.
+ * We don't currently require formal Certificates of Origin for contributions, but we expect contributors to ensure that they have the right and authority to allow the project to use them under the MIT/BSD style license.
 * Supportability
   * Ideally, the contributor plans to support it for the indefinite future.
   * It should be in a state where someone else can take over with reasonable effort.
@@ -43,14 +43,14 @@ requires judgement.  The Steering Group encourages contributions, but
 is the ultimate authority on what will be accepted.
 
 Contributions by the Steering Group members are held to the same
-standards.  Contributions by Steering Group members may (always?)
+standards.  Contributions by Steering Group members may (always? **TBD**)
 require sign-off by another member to ensure consistency and fairness.
 
 The Steering group welcomes contributions from everyone, and
-intends to provide timely feedback on proposals.
+intends to provide timely feedback on and/or assistance with proposals.
 
 ### Behaviors
-We hope this section isn't necessary.  But we expect professional behavior from all contributors to the project.  This includes these guidlines:
+We hope this section isn't necessary.  But in any case: we expect professional behavior from all contributors to the project.  This includes these guidlines:
  * Treat every respectfully - "Don't be a jerk"
  * If unsure, ask before doing something.
  * Keep the project core principles in mind.
