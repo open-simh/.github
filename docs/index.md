@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About Open SIMH
+title: The Open SIMH Project
 ---
 <a href="Version_7_Unix_SIMH_PDP11_Emulation_DMR.png" target="_blank"><img align="right" width="225" height="144" src="Version_7_Unix_SIMH_PDP11_Emulation_DMR_Small.png" title="Version 7 Unix running on a SimH PDP-11 emulation" alt="Terminal window running SimH"></a>
 
