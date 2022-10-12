@@ -3,9 +3,10 @@ layout: default
 title: Contributing to Open SIMH
 permalink: /contributions/
 ---
-# [Open SIMH](/)
+# Contributing to [Open SIMH](/)
 
-## About contributions
+---
+
 All contributions must support the core project principles:
 1. Preserve the ability to run old/historically significant software. This means functionally accurate, sometimes bug-compatible, but not cycle-accurate, simulation.
 2. Make it reasonably easy to add new simulators for other hardware while leveraging common functions between the simulators.

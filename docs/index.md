@@ -19,8 +19,10 @@ Note the "dmr" directory and home directory ("/usr/dmr") for Dennis Ritchie, one
  * [Project Contacts](contacts)
  * [Simulator Code repository](https://github.com/open-simh/simh)
  * [Simulation tools repository](https://github.com/open-simh/simtools)
+ * [Where to find sofware](software)
 
 ## External resources
+ * [Discussion lists and websites](community)
  * [bitsavers.org](http://bitsavers.org/) - documentation & software archive
  * [Computer History Museum](https://computerhistory.org/)
  * [IEEE history of computing](https://www.computer.org/csdl/magazine/an)
