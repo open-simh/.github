@@ -24,6 +24,9 @@ description: >
 #url: /docs
 #twitter_username: jekyllrb
 #github_username:  open-simh
+simh_username: open-simh
+simh_reponame: simh
+simtools_reponame: simtools
 show_downloads: True
 # Debug server requires a git "remote" called "origin" for these
 # to work:

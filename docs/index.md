@@ -17,8 +17,10 @@ Note the "dmr" directory and home directory ("/usr/dmr") for Dennis Ritchie, one
  * [About the project](about)
  * [About Contributions](contributions)
  * [Project Contacts](contacts)
- * [Simulator Code repository](https://github.com/open-simh/simh)
- * [Simulation tools repository](https://github.com/open-simh/simtools)
+ * [Simulator Code repository](https://github.com/{{site.simh_username}}/{{site.simh_reponame}})
+ * [Simulation tools repository](https://github.com/{{site.simh_username}}/{{site.simtools_reponame}})
+<a href="https://github.com/{{site.simh_username}}/{{site.simtools_reponame}}/tarball/master" class="download-button tar"><span>Download tools</span></a>
+<a href="https://github.com/{{site.simh_username}}/{{site.simtools_reponame}}/zipball/master" class="download-button zip"><span>Download tools</span></a>
  * [Where to find sofware and how to use it](software)
  * [Open SIMH usage tutorials](tutorials)
 
