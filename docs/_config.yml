@@ -24,12 +24,16 @@ description: >
 #url: /docs
 #twitter_username: jekyllrb
 #github_username:  open-simh
+show_downloads: True
 # Debug server requires a git "remote" called "origin" for these
 # to work:
 github:
   owner_url: https://github.com/open-simh
   repository_url: https://github.com/orgs/open-simh/repositories
   owner_name: The Open SIMH Steering Group
+  repository_url: https://github.com/open-simh/simh
+  tar_url: https://github.com/open-simh/simh/tarball/master
+  zip_url: https://github.com/open-simh/simh/zipball/master
 # Build settings
 theme: jekyll-theme-time-machine
 #plugins:
