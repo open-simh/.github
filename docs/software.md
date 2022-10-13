@@ -57,7 +57,7 @@ Title|HowTo|Origin|Current Owner|Status
 [IBM704-SHARE](https://sky-visions.com/ibm/ibm704_soft.shtml)|[various](https://sky-visions.com/ibm/ibm704.shtml)|IBM|IBM|Unknown
 [IBM705](https://sky-visions.com/ibm/ibm705_soft.shtml)|[various](https://sky-visions.com/ibm/ibm705.shtml)|IBM|IBM|Unknown
 [IBM709](https://sky-visions.com/ibm/ibm709_soft.shtml)|[various](https://sky-visions.com/ibm/ibm709.shtml)|IBM|IBM|Unknown
-[IBM14/70](https://sky-visions.com/ibm/ibm7010_soft.shtml)|[various](https://sky-visions.com/ibm/ibm1410.shtml)|IBM|IBM|Unknown
+[IBM1410/7010](https://sky-visions.com/ibm/ibm7010_soft.shtml)|[various](https://sky-visions.com/ibm/ibm1410.shtml)|IBM|IBM|Unknown
 [IBM7094](https://sky-visions.com/ibm/ibm7094_soft.shtml)|[various](https://sky-visions.com/ibm/ibm1410.shtml)|IBM|IBM|Unknown
 [PDP-11 Unix](http://www.bitsavers.org/bits/DEC/pdp11/floppyimages/rx50/V7M-11-V1.0_6_USR_RX50-QJ083-H3.zip)|[V7m](https://www.tuhs.org/Archive/Distributions/DEC/Jean_Huens_v7m/simh_notes.txt)|AT&T|Caldera|BSDish
 [PDP-11 Research Unix](https://www.tuhs.org/Archive/Distributions/Research/Keith_Bostic_v7/)|[V7](..\research-unix-7-pdp11-45-v2.0.pdf)|AT&T|Caldera|BSDish
