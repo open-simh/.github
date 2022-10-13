@@ -15,6 +15,7 @@ Note the "dmr" directory and home directory ("/usr/dmr") for Dennis Ritchie, one
 
 ## Project Resources
  * [About the project](about)
+ * [Available simulators](simulators)
  * [About Contributions](contributions)
  * [Project Contacts](contacts)
  * [Simulator Code repository](https://github.com/{{site.simh_username}}/{{site.simh_reponame}})

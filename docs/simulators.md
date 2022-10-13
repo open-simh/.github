@@ -15,12 +15,12 @@ SimH Name|Common Name|Software|HowTo/Moreinfo
 alpha|DEC Alpha AXP||
 ALTAIR|MITS Altair 8800||
 AltairZ80|MITS Altair 8080 & Z80||
-B5500|Burroughs B5500|[kit](https://sky-visions.com/burroughs)|[Usage](../B5500_quick_start.pdf)
+B5500|Burroughs B5500|[kit](https://sky-visions.com/burroughs)|[Tutorial](../B5500_quick_start.pdf)
 BESM6|BESM-6 (USSR)||[info](http://www.computer-museum.ru/english/besm6.htm)
 CDC1700|CDC 1700|[bits](https://bitsavers.org/bits/CDC/1700_Cyber18)
 GRI|GRI-909 & 99||[doc](../simdocs/gri_doc)
 H316|Honywell H316 & 516||[doc](../simdocs/h316_doc) [doc-IMP](../simdocs/Summary_of_IMP_IO_Device_Codes)
-HP2100|HP-2100||[doc](../simdocs/hp2100_doc)
+HP2100|HP-2100|[Available](../hp2100_sw)|[doc](../simdocs/hp2100_doc)
 HP3000|HP-3000||[doc](../simdocs/hp3000_doc)
 I1401|IBM 1401||[doc](../simdocs/i1401_doc)
 I1620|IBM 620||[doc](../simdocs/i1620_doc)
@@ -40,12 +40,12 @@ PDP7|DEC PDP-7||[doc](../simdocs/pdp18b_doc)
 PDP8|DEC PDP-8||[doc](../simdocs/pdp8_doc)
 PDP9|DEC PDP-9||[doc](../simdocs/pdp18b_doc)
 PDP15|DEC PDP-15||[doc](../simdocs/pdp18b_doc)
-PDP10|DEC PDP-10 (KS)||[doc](../simdocs/pdp10_doc)
-KA10|DEC PDP-10 (KA10)||[doc](../simdocs/ka10_doc)
-KI10|DEC PDP-10 (KI10)||[doc](../simdocs/ki10_doc)
-KL10|DEC PDP-10 (KL10)||[doc](../simdocs/kl10_doc)
-KS10|DEC PDP-10 (KS10)||[doc](../simdocs/ks10_doc)
-PDP11|DEC PDP-11||[doc](../simdocs/pdp11_doc)
+PDP10|DEC PDP-10 (KS)|[Available](../pdp-10_sw)|[doc](../simdocs/pdp10_doc)
+KA10|DEC PDP-10 (KA10)|[Available](../pdp-10_sw)|[doc](../simdocs/ka10_doc)
+KI10|DEC PDP-10 (KI10)|[Available](../pdp-10_sw)|[doc](../simdocs/ki10_doc)
+KL10|DEC PDP-10 (KL10)|[Available](../pdp-10_sw)|[doc](../simdocs/kl10_doc)
+KS10|DEC PDP-10 (KS10)|[Available](../pdp-10_sw)|[doc](../simdocs/ks10_doc)
+PDP11|DEC PDP-11|[Available](../pdp-11_sw)|[doc](../simdocs/pdp11_doc)
 PDQ-3|Advanced Computer PQD-3||
 S3|IBM System/3 model 10||
 SAGE|SAGE Inc. 68000||
@@ -56,7 +56,7 @@ SSEM|Manchester SSEM||[doc](../simdocs/ssem_doc)
 swtp6800|SWTP 6800||[doc](../simdocs/swtp6800_doc)
 tt2500|General Turtle tt2500||
 TX-0|MIT TX-0||[doc](../simdocs/tx0_doc)
-VAX|DEC VAX||[doc-780](../simdocs/vax780_doc) [doc-3900](../simdocs/vax_doc)
+VAX|DEC VAX|[Available](../vax_sw)|[doc-780](../simdocs/vax780_doc) [doc-3900](../simdocs/vax_doc)
 
 ## Other documents
 * [Writing a simulator for SIMH](../simdocs/simh)
