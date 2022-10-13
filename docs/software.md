@@ -37,7 +37,7 @@ Explicit licenses that organizations have generously granted for use of "Ancient
 The following table lists software that runs on SIMH and is available from other sources.
 
 When available, the names link to an onl-line source.  The HowTo links provide tutorials and additional information.
-The license status, which is to the best of our knowledge, is indicated but not guaranteed.
+The license status, as best we know it, is indicated but not guaranteed.
 Users are responsible for conforming with applicable license terms.
 
 Title|HowTo|Origin|Current Owner|Status
@@ -60,7 +60,7 @@ Title|HowTo|Origin|Current Owner|Status
 [IBM14/70](https://sky-visions.com/ibm/ibm7010_soft.shtml)|[various](https://sky-visions.com/ibm/ibm1410.shtml)|IBM|IBM|Unknown
 [IBM7094](https://sky-visions.com/ibm/ibm7094_soft.shtml)|[various](https://sky-visions.com/ibm/ibm1410.shtml)|IBM|IBM|Unknown
 [PDP-11 Unix](http://www.bitsavers.org/bits/DEC/pdp11/floppyimages/rx50/V7M-11-V1.0_6_USR_RX50-QJ083-H3.zip)|[V7m](https://www.tuhs.org/Archive/Distributions/DEC/Jean_Huens_v7m/simh_notes.txt)|AT&T|Caldera|BSDish
-
+[PDP-11 Research Unix](https://www.tuhs.org/Archive/Distributions/Research/Keith_Bostic_v7/)|[V7](..\research-unix-7-pdp11-45-v2.0.pdf)|AT&T|Caldera|BSDish
 
 ## Other tools
 We'd be happy to host/link to these if the license/owner allows...
