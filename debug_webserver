@@ -1,0 +1,12 @@
+#!/bin/sh
+[ -z "$SERVER" ] && SERVER="hagrid.sb.litts.net"
+# Install one level above the served directory
+# Start the Jekyll debug webserver with livereload support (changes refresh a connected browser)
+# This should NOT be exposed to the internet; it's a low-performance server, but works well
+# for verifying edits.
+# Changes to _config.yml require restart.
+# If server doesn't start, check for open files (the name will be in the huge traceback)
+cd "$(dirname "$0")"
+[ -d docs ] && cd docs
+# The server may crash randomly if LANG isn't set
+LANG=en_US.UTF-8 bundle exec jekyll serve -H "$SERVER" -P 4000 --livereload true
