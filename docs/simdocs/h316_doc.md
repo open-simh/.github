@@ -4,186 +4,90 @@
 
 **COPYRIGHT NOTICE**
 
-The following copyright notice applies to the SIMH source, binary, and
-documentation:
+Copyright (c) 1993 - 2013, Robert M Supnik
 
-> Original code published in 1993-2013, written by Robert M Supnik
->
-> Copyright (c) 1993-2013, Robert M Supnik
->
-> Permission is hereby granted, free of charge, to any person obtaining
-> a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
-> without limitation the rights to use, copy, modify, merge, publish,
-> distribute, sublicense, and/or sell copies of the Software, and to
-> permit persons to whom the Software is furnished to do so, subject to
-> the following conditions:
->
-> The above copyright notice and this permission notice shall be
-> included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
-> EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-> MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-> IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
-> OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-> ARISING FROM, OUT OF OR IN
->
-> CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-> SOFTWARE.
->
-> Except as contained in this notice, the name of Robert M Supnik shall
-> not be used in advertising or otherwise to promote the sale, use or
-> other dealings in this Software without prior written authorization
-> from Robert M Supnik.
+[COPYRIGHT NOTICE and LICENSE](#copyright-notice-and-license) are at the end of this document.
 
-[1 Simulator Files 3](#simulator-files)
-
-[2 H316/H516 Features 3](#h316h516-features)
-
-[2.1 CPU 4](#cpu)
-
-[2.1.1 Extended Interrupts 4](#extended-interrupts)
-
-[2.1.2 DMA channels 5](#dma-channels)
-
-[2.1.3 Break on Write 5](#break-on-write)
-
-[2.1.4 CPU State 5](#cpu-state)
-
-[2.2 Programmed I/O Devices 6](#programmed-io-devices)
-
-[2.2.1 316/516-50 Paper Tape Reader (PTR) 6](#paper-tape-reader-ptr)
-
-[2.2.2 316/516-52 Paper Tape Punch (PTP) 7](#paper-tape-punch-ptp)
-
-[2.2.3 316/516-33 Console Teletype (TTY) 8](#console-teletype-tty)
-
-[2.2.4 316/516-12 Real Time Clock (CLK) 9](#real-time-clock-clk)
-
-[2.3 316/516 Line Printer (LPT) 10](#line-printer-lpt)
-
-[2.4 4400 Fixed Head Disk (FHD) 11](#fixed-head-disk-fhd)
-
-[2.5 4100 7-track Magnetic Tape (MT) 11](#track-magnetic-tape-mt)
-
-[2.6 4623/4651/4720 Disk Packs (DP) 12](#disk-packs-dp)
-
-[3 Symbolic Display and Input 14](#symbolic-display-and-input)
+ - [CPU](#cpu)
+   - [Extended Interrupts](#extended-interrupts)
+   - [DMA channels](#dma-channels)
+   - [Break on Write](#break-on-write)
+   - [CPU State](#cpu-state)
+ - [Programmed I/O Devices](#programmed-io-devices)
+   - [316/516-50 Paper Tape Reader (PTR)](#316516-50-paper-tape-reader-ptr)
+   - [316/516-52 Paper Tape Punch (PTP)](#316516-52-paper-tape-punch-ptp)
+   - [316/516-33 Console Teletype (TTY)](#316516-33-console-teletype-tty)
+   - [316/516-12 Real Time Clock (CLK)](#316516-12-real-time-clock-clk)
+ - [316/516 Line Printer (LPT)](#316516-line-printer-lpt)
+ - [4400 Fixed Head Disk (FHD)](#4400-fixed-head-disk-fhd)
+ - [4100 7-track Magnetic Tape (MT)](#4100-7-track-magnetic-tape-mt)
+ - [4623/4651/4720 Disk Packs (DP)](#462346514720-disk-packs-dp)
 
 This memorandum documents the Honeywell H316/H516 simulator.
 
-Simulator Files
-===============
+# Simulator Files
 
 The H316 requires the following files:
 
-sim/ scp.h
+ - sim/
+   - scp.h
+   - sim\_console.h
+   - sim\_defs.h
+   - sim\_fio.h
+   - sim\_rev.h
+   - sim\_sock.h
+   - sim\_tape.h
+   - sim\_timer.h
+   - sim\_tmxr.h
+   - scp.c
+   - sim\_console.c
+   - sim\_fio.c
+   - sim\_sock.c
+   - sim\_tape.c
+   - sim\_timer.c
+   - sim\_tmxr.c
+ - sim/h316/
+   - h316\_defs.h
+   - h316\_cpu.c
+   - h316\_dp.c
+   - h316\_fhd.c
+   - h316\_hi.c
+   - h316\_imp.c
+   - h316\_lp.c
+   - h316\_mi.c
+   - h316\_mt.c
+   - h316\_rtc.c
+   - h316\_stddev.c
+   - h316\_sys.c
+   - h316\_udp.c
 
-sim\_console.h
-
-sim\_defs.h
-
-sim\_fio.h
-
-sim\_rev.h
-
-sim\_sock.h
-
-sim\_tape.h
-
-sim\_timer.h
-
-sim\_tmxr.h
-
-scp.c
-
-sim\_console.c
-
-sim\_fio.c
-
-sim\_sock.c
-
-sim\_tape.c
-
-sim\_timer.c
-
-sim\_tmxr.c
-
-sim/h316/ h316\_defs.h
-
-h316\_cpu.c
-
-h316\_dp.c
-
-h316\_fhd.c
-
-h316\_hi.c
-
-h316\_imp.c
-
-h316\_lp.c
-
-h316\_mi.c
-
-h316\_mt.c
-
-h316\_rtc.c
-
-h316\_stddev.c
-
-h316\_sys.c
-
-h316\_udp.c
-
-H316/H516 Features
-==================
+# H316/H516 Features
 
 The Honeywell 316/516 simulator is configured as follows:
 
-> device names simulates
->
-> CPU H316/H516 CPU with 16/32KW memory
->
-> PTR 316/516-50 paper tape reader
->
-> PTP 316/516-52 paper tape punch
->
-> LPT 316/516 line printer
->
-> TTY 316/516-33 console terminal
->
-> MT 4100 seven track magnetic tape with four drives
->
-> CLK 316/516-12 real time clock
->
-> FHD 4400 fixed head disk
->
-> DP 4623/4653/4720 disk pack controller with eight drives
->
-> WDT 4400 fixed head disk
->
-> RTC 4400 fixed head disk
->
-> IMP IM/TIP Specific Hardware
->
-> MI1 IM/TIP Modem Interface
->
-> MI2 IM/TIP Modem Interface
->
-> MI3 IM/TIP Modem Interface
->
-> MI4 IM/TIP Modem Interface
->
-> MI5 IM/TIP Modem Interface
->
-> HI1 IMP Host Interface
->
-> HI2 IMP Host Interface
->
-> HI3 IMP Host Interface
->
-> HI4 IMP Host Interface
+device |names |simulates
+------|-----|---------
+CPU| H316/H516 CPU with 16/32KW memory
+PTR| 316/516-50 paper tape reader
+PTP| 316/516-52 paper tape punch
+LPT| 316/516 line printer
+TTY| 316/516-33 console terminal
+MT| 4100 seven track magnetic tape with four drives
+CLK|316/516-12 real time clock
+FHD| 4400 fixed head disk
+DP| 4623/4653/4720 disk pack controller with eight drives
+WDT| 4400 fixed head disk
+RTC| 4400 fixed head disk
+IMP| IM/TIP Specific Hardware
+MI1| IM/TIP Modem Interface
+MI2| IM/TIP Modem Interface
+MI3| IM/TIP Modem Interface
+MI4| IM/TIP Modem Interface
+MI5| IM/TIP Modem Interface
+HI1| IMP Host Interface
+HI2| IMP Host Interface
+HI3| IMP Host Interface
+HI4| IMP Host Interface
 
 The H316/H516 simulator implements several unique stop conditions:
 
@@ -206,33 +110,24 @@ The H316/H516 simulator implements several unique stop conditions:
 
 The LOAD and DUMP commands are not implemented.
 
-CPU
----
+## CPU
 
 CPU options include choice of instruction set, memory size, DMC option,
 and number of DMA channels.
 
-SET CPU HSA high speed arithmetic instructions
-
-SET CPU NOHSA no high speed arithmetic instructions
-
-SET CPU 4K set memory size = 4K
-
-SET CPU 8K set memory size = 8K
-
-SET CPU 12K set memory size = 12K
-
-SET CPU 16K set memory size = 16K
-
-SET CPU 24K set memory size = 24K
-
-SET CPU 32K set memory size = 32K
-
-SET CPU DMC enable DMC option
-
-SET CPU NODMC disable DMC option
-
-SET CPU DMA=n set number of DMA channels to n (0-4)
+Command | Function
+-------|--------
+SET CPU HSA |high speed arithmetic instructions
+SET CPU NOHSA |no high speed arithmetic instructions
+SET CPU 4K |set memory size = 4K
+SET CPU 8K |set memory size = 8K
+SET CPU 12K |set memory size = 12K
+SET CPU 16K |set memory size = 16K
+SET CPU 24K |set memory size = 24K
+SET CPU 32K |set memory size = 32K
+SET CPU DMC |enable DMC option
+SET CPU NODMC |disable DMC option
+SET CPU DMA=n |set number of DMA channels to n (0-4)
 
 If memory size is being reduced, and the memory being truncated contains
 non-zero data, the simulator asks for confirmation. Data in the
@@ -293,63 +188,35 @@ modified the breakpoint location.
 CPU registers include the visible state of the processor as well as the
 control registers for the interrupt system.
 
-name size comments
-
-P 15 program counter
-
-A 16 A register
-
-B 16 B register
-
-X 16 index register
-
-SC 16 shift count
-
-C 1 carry flag
-
-EXT 1 extend flag
-
-PME 1 previous mode extend flag
-
-EXT\_OFF 1 extend off pending flag
-
-DP 1 double precision flag
-
-SS1..4 1 sense switches 1 to 4
-
-ION 1 interrupts enabled
-
-INODEF 1 interrupts not deferred
-
-INTREQ 16 interrupt requests
-
-EXTINT 16 extended interrupt requests
-
-EXTENB 16 extended interrupt enables
-
-DEVRDY 16 device ready flags (read only)
-
-DEVENB 16 device interrupt enable flags (read only)
-
-CHREQ 20 DMA/DMC channel requests
-
-DMAAD\[0:3\] 16 DMA channel current address, channels 1 to 4
-
-DMAWC\[0:3\] 15 DMA channel word count, channels 1 to 4
-
-DMAEOR\[0:3\] 1 DMA end of range flag, channels 1 to 4
-
-STOP\_INST 1 stop on undefined instruction
-
-STOP\_DEV 1 stop on undefined device
-
-INDMAX 8 indirect address limit
-
-PCQ\[0:63\] 15 PC prior to last JMP, JSB, or interrupt;
-
-most recent PC change first
-
-WRU 8 interrupt character
+name| size| comments
+----|----|--------
+P |15| program counter
+A |16| A register
+B |16| B register
+X |16| index register
+SC |16| shift count
+C |1| carry flag
+EXT |1| extend flag
+PME |1| previous mode extend flag
+EXT\_OFF |1| extend off pending flag
+DP |1| double precision flag
+SS1..4 |1| sense switches 1 to 4
+ION |1| interrupts enabled
+INODEF |1| interrupts not deferred
+INTREQ |16| interrupt requests
+EXTINT |16| extended interrupt requests
+EXTENB |16| extended interrupt enables
+DEVRDY |16| device ready flags (read only)
+DEVENB |16| device interrupt enable flags (read only)
+CHREQ |20| DMA/DMC channel requests
+DMAAD\[0:3\] |16| DMA channel current address, channels 1 to 4
+DMAWC\[0:3\] |15| DMA channel word count, channels 1 to 4
+DMAEOR\[0:3\] |1| DMA end of range flag, channels 1 to 4
+STOP\_INST| 1| stop on undefined instruction
+STOP\_DEV |1| stop on undefined device
+INDMAX |8| indirect address limit
+PCQ\[0:63\] |15| PC prior to last JMP, JSB, or interrupt;most recent PC change first
+WRU |8| interrupt character
 
 The CPU can maintain a history of the most recently executed
 instructions. This is controlled by the SET CPU HISTORY and SHOW CPU
@@ -367,8 +234,7 @@ SHOW CPU HISTORY=n print first n entries of CPU history
 
 The maximum length for the history is 65,536 entries.
 
-Programmed I/O Devices
-----------------------
+## Programmed I/O Devices
 
 ### 316/516-50 Paper Tape Reader (PTR)
 
@@ -402,35 +268,25 @@ absolute binary loader into memory and starts it running.
 
 The paper tape reader implements these registers:
 
-name size comments
-
-BUF 8 last data item processed
-
-INTREQ 1 device interrupt request
-
-READY 1 device ready
-
-ENABLE 1 device interrupts enabled
-
-POS 32 position in the input file
-
-TIME 24 time from I/O initiation to interrupt
-
-STOP\_IOE 1 stop on I/O error
+name |size| comments
+----|----|--------
+BUF |8| last data item processed
+INTREQ |1| device interrupt request
+READY |1| device ready
+ENABLE |1| device interrupts enabled
+POS |32| position in the input file
+TIME |24| time from I/O initiation to interrupt
+STOP\_IOE |1| stop on I/O error
 
 Error handling is as follows:
 
-error STOP\_IOE processed as
-
-not attached 1 report error and stop
-
-0 out of tape
-
-end of file 1 report error and stop
-
-0 out of tape
-
-OS I/O error x report error and stop
+error| STOP\_IOE| processed as
+-----|--------|------------
+not attached |1| report error and stop
+|0 |out of tape
+end of file| 1 |report error and stop
+|0 |out of tape
+OS I/O error| x |report error and stop
 
 ### 316/516-52 Paper Tape Punch (PTP)
 
@@ -585,8 +441,9 @@ BUF 8 last data item processed
 
 IN2ND 9 holding buffer, input busy wait; the high
 
-> order bit indicates character present
-
+~~~
+order bit indicates character present
+~~~
 MODE 1 read/write mode
 
 READY 1 device ready flag
@@ -645,8 +502,7 @@ clock specific IO instructions; it does not increment location 61~8~,
 and it does not generate interrupts. The SMK and OTK instructions are
 unaffected.
 
-316/516 Line Printer (LPT)
---------------------------
+## 316/516 Line Printer (LPT)
 
 The line printer (LPT) writes data to a disk file. The POS register
 specifies the number of the next data item to be written. Thus, by
@@ -713,8 +569,7 @@ not attached 1 report error and stop
 
 OS I/O error x report error and stop
 
-4400 Fixed Head Disk (FHD)
---------------------------
+## 4400 Fixed Head Disk (FHD)
 
 Fixed head disk options include the ability to set the number of
 surfaces to a fixed value between 1 and 16, or to autosize the number of
@@ -786,8 +641,7 @@ not attached 1 report error and stop
 Fixed head disk data files are buffered in memory; therefore, end of
 file and OS I/O errors cannot occur.
 
-4100 7-track Magnetic Tape (MT)
--------------------------------
+## 4100 7-track Magnetic Tape (MT)
 
 Magnetic tape options include the ability to make units write enabled or
 write locked.
@@ -866,8 +720,7 @@ end of file bad tape
 
 OS I/O error parity error; if STOP\_IOE, stop
 
-4623/4651/4720 Disk Packs (DP)
-------------------------------
+## 4623/4651/4720 Disk Packs (DP)
 
 The disk controller can be configured as a 4623, supporting 10-surface
 disk packs; a 4651, supporting 2-surface disk packs; or a 4720,
@@ -996,8 +849,7 @@ end of file ignored
 
 OS I/O error data error; if STOP\_IOE, stop
 
-Symbolic Display and Input
-==========================
+# Symbolic Display and Input
 
 The H316/H516 simulator implements symbolic display and input. Display
 is controlled by command line switches:
@@ -1057,3 +909,37 @@ Skip instructions have the format
 sub-op sub-op sub-op\...
 
 The simulator checks that the combination of sub-opcodes is legal.
+
+# COPYRIGHT NOTICE and LICENSE
+
+The following copyright notice applies to the SIMH source, binary, and
+documentation:
+
+Original code published in 1993-2013, written by Robert M Supnik
+
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+\"Software\"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN
+
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Except as contained in this notice, the name of Robert M Supnik shall
+not be used in advertising or otherwise to promote the sale, use or
+other dealings in this Software without prior written authorization
+from Robert M Supnik.

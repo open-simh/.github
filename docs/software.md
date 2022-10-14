@@ -19,9 +19,9 @@ But when a current owner can be identified, we do advocate for software to be re
 Explicit licenses that organizations have generously granted for use of "Ancient" (formerly proprietary) software include:
  * [Early UNIX (Caldera)](https://www.tuhs.org/Archive/Caldera-license.pdf)
  * [TOPS-10/20 Hobbyist (DEC)](../dec_36bit_license)
- * VAX/VMS Hobbyist (DEC), discontinued
+ * [VMS Hobbyist (DEC), discontinued](../dec_vms_license)
  * [PDP-11 RT-11, RSX-11, RSTS-11 Mentec - Hobbyist](../mentec_license)
- * [HP1000 (HP)](../HP1000-21XX_CHM_Source_Code_License_final.pdf)
+ * [HP1000 & HP21XX (HP/HPE)](../HP1000-21XX_CHM_Source_Code_License_final.pdf)
 
 ## Curated repositories
  * [bitsavers software archive (complete)](http://bitsavers.org/bits/): [DEC](http://bitsavers.org/bits/DEC/) [DG](http://bitsavers.org/bits/DataGeneral/) [HP](http://bitsavers.org/bits/HP/) [IBM](http://bitsavers.org/bits/IBM/)
