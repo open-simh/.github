@@ -22,7 +22,7 @@ Whereas, CUSTOMER desires to enter into a License Agreement which will allow CUS
 
 MENTEC and CUSTOMER agree as follows:
 
-1  **DEFINITIONS**
+1 **DEFINITIONS**
 
 SOFTWARE TECHNOLOGY shall mean the binary versions of the PDP-11 Operating Systems (RT-11 V5.3 or prior, RSTS/E V9.6 or prior, RSX-11M V4.3 or prior, RSX-11M PLUS V3.0 or prior), and associated utilities and layered products that run on PDP-11 computers.
 
@@ -30,30 +30,26 @@ MENTEC.S INTELLECTUAL PROPERTY RIGHTS shall mean MENTEC.s patent, copyright and 
 
 EMULATOR shall mean software owned by Digital Equipment Corporation that emulates the operation of a PDP-11 processor and allows PDP-11 programs and operating systems to run on non-PDP-11 systems.
 
-2  **LICENSE GRANT**
+2 **LICENSE GRANT**
 
 MENTEC grants to CUSTOMER a worldwide, non-exclusive, royalty-free license under MENTEC's INTELLECTUAL PROPERTY RIGHTS to use and copy the SOFTWARE TECHNOLOGY solely for personal, non-commercial uses in conjunction with the EMULATOR.
 
-
-3  **TECHNOLOGY TRANSFER AND ACCEPTANCE**
+3 **TECHNOLOGY TRANSFER AND ACCEPTANCE**
 
 3.1 CUSTOMER is responsible for obtaining copies of SOFTWARE TECHNOLOGY and accepts the SOFTWARE TECHNOLOGY "AS IS".
 
 3.2 MENTEC is under no obligation to supply SOFTWARE TECHNOLOGY, documentation, error corrections or updates to the SOFTWARE TECHNOLOGY if or when they become available, or to provide training, support or consulting for the SOFTWARE TECHNOLOGY.
 
-
-4   **WARRANTY DISCLAIMER/LIMITATION OF LIABILITY**
+4 **WARRANTY DISCLAIMER/LIMITATION OF LIABILITY**
 
 MENTEC DISCLAIMS ALL WARRANTIES WITH REGARD TO ANY SOFTWARE TECHNOLOGY
-LICENSED TO CUSTOMER HEREUNDER, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS.  IN NO EVENT SHALL MENTEC BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL  DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE OR DATA, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE, INTELLECTUAL PROPERTY INFRINGEMENT OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF ANY SOFTWARE TECHNOLOGY LICENSED HEREUNDER.
+LICENSED TO CUSTOMER HEREUNDER, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL MENTEC BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE OR DATA, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE, INTELLECTUAL PROPERTY INFRINGEMENT OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF ANY SOFTWARE TECHNOLOGY LICENSED HEREUNDER.
 
-
-5  **INDEMNITY**
+5 **INDEMNITY**
 
 CUSTOMER will hold MENTEC harmless against all liabilities, demands, damages, expenses, or losses arising out of use by CUSTOMER of SOFTWARE TECHNOLOGY or information furnished under this Agreement.
 
-
-6  **TERM AND TERMINATION**
+6 **TERM AND TERMINATION**
 
 6.1 This Agreement shall be effective until otherwise terminated. Either party may terminate this Agreement at any time upon 30 days written notice.
 
@@ -64,8 +60,7 @@ CUSTOMER will hold MENTEC harmless against all liabilities, demands, damages, ex
 6.4 In the event of any termination of this Agreement for any reason, CUSTOMER shall delete all original and all whole or partial copies and derivatives of the SOFTWARE TECHNOLOGY from his or her computer system. CUSTOMER further shall cease to use and distribute the SOFTWARE TECHNOLOGY
 in all forms immediately upon the date of termination.
 
-
-7  **GENERAL TERMS**
+7 **GENERAL TERMS**
 
 7.1 This Agreement shall be governed by the laws of the Commonwealth of Massachusetts.
 

@@ -8,30 +8,29 @@ permalink: /dec_vms_license/
 
 ---
 
-These licenses were granted on request by HPE's "OpenVMS Customer Lab".  They required
+These licenses were granted on request by HPE's "OpenVMS Customer Lab". They required
 an application, and resulted in time limited (1 year) Product Authorization Keys.
 
 More information about this (discontinued) program can be found [online](https://web.archive.org/web/20150704000623/http://www.vmshobbyist.org/forum/index.php).
 
-Below is a sample license from this program.  The text has been reformatted for the web.
+Below is a sample license from this program. The text has been reformatted for the web.
 
 Note that the "Signature" was electronic.
 
 ## HPE HOBBY LICENSE AGREEMENT For OpenVMS
-                              
- This document is the legal agreement governing your use of the Software.
- Please store it in a safe place.
 
+This document is the legal agreement governing your use of the Software.
+Please store it in a safe place.
 
 ### LICENSE TERMS
 
-####  1.	 GRANT
+#### 1. GRANT
 
 Upon your qualification for this license and your signature on this
 form, Hewlett Packard Enterprise("HPE") will grant you the
 right to use OpenVMS on a single computer ("Licensed
-Computer").  Use of the Licensed Computer is ONLY FOR NON-COMMERCIAL
-USES (e.g., home use).  As such, you may not use the Licensed Computer
+Computer"). Use of the Licensed Computer is ONLY FOR NON-COMMERCIAL
+USES (e.g., home use). As such, you may not use the Licensed Computer
 for any business purposes whatsoever, e.g., to develop applications
 for resale, to do business accounting, etc.
 
@@ -40,7 +39,7 @@ Your rights to use the software and the license key are LIMITED TO ONE
 YEAR from date of issuance of the license key.
 
 You may copy the Software into the local memory or storage device of
-the specified quantity of computers.  You may make a single archival
+the specified quantity of computers. You may make a single archival
 or back-up copy of the Software.
 
 You may NOT transfer your rights to use the Software, the Software
@@ -50,7 +49,7 @@ Agreement.
 #### 2. COPYRIGHT
 
 The Software is owned by HPE and its suppliers and is protected by
-copyright laws and international treaties.  Your use of the Software
+copyright laws and international treaties. Your use of the Software
 and associated documentation is subject to the applicable copyright
 laws and the express rights and restrictions of this License
 Agreement.
@@ -69,7 +68,7 @@ except to the extent HPE cannot prohibit such acts by law.
 **LIMITED WARRANTY AND LIABILITY**
 
 LIMITATION OF LIABILITY: THE PRODUCTS AND PRODUCT INFORMATION FURNISHED
-HEREUNDER ARE FURNISHED "AS IS".  HPE DISCLAIMS ALL WARRANTIES THAT MAY
+HEREUNDER ARE FURNISHED "AS IS". HPE DISCLAIMS ALL WARRANTIES THAT MAY
 BE IMPLIED ON THE PRODUCTS INCLUDING, WITHOUT LIMITATION, ALL IMPLIED
 WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT WILL HPE BE
 LIABLE FOR ANY DAMAGES WHATSOEVER, INCLUDING LOSS OF DATA OR USE, LOST
@@ -77,19 +76,17 @@ PROFITS OR ANY INCIDENTAL OR CONSEQUENTIAL DAMAGES, ARISING OUT OF OR IN
 CONNECTION WITH THIS AGREEMENT OR THE USE OR PERFORMANCE OF THE PRODUCTS,
 WHETHER IN AN ACTION OF CONTRACT OR TORT INCLUDING NEGLIGENCE.
 
-
 **U.S. GOVERNMENT RIGHTS**
 
- Consistent with FAR 12.211 and 12.212, Commercial Computer Software,
- Computer Software Documentation, and TEchnical Data for Commercial Items
- are licensed to the U.S. Government under vendor's standard commercial
- license.
-
+Consistent with FAR 12.211 and 12.212, Commercial Computer Software,
+Computer Software Documentation, and TEchnical Data for Commercial Items
+are licensed to the U.S. Government under vendor's standard commercial
+license.
 
 **GENERAL**
 
 You are responsible for compliance with all applicable export or re-export
-control laws and regulations if you export the Software.  This Agreement is
+control laws and regulations if you export the Software. This Agreement is
 governed by and is to be construed under the laws of the State of Texas.
 
 If you have any questions concerning this Agreement, please contact your
@@ -102,12 +99,10 @@ respective companies.
 
 Copyright 2012 Hewlett-Packward Company
 
-
 Usage of this licenses consistutes agreement with all terms of this Hobbyist
 License Agreement
 
-
-~~~
+```
 *************************************************************************
  Issued by the HPE LMF License Key Management Group*
      New England (New Hampshire) - USA
@@ -145,4 +140,4 @@ PAKs(112) listed below include:
   RMSJNL, RTR-CL, RTR-SVR, SQL-DEV, SSU, UCX, UCX-IP-CLIENT, UCX-IP-NFS,
   UCX-IP-RT, VAX-VMS, VAXCLUSTER, VAXSET, VMS-UI-JAPANESE, VMSCLUSTER,
   VOLSHAD, X25, X25-CLIENT, X500-ADMIN-FACILITY, X500-DIRECTORY-SERVER
-~~~
+```
