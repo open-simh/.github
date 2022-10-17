@@ -1,0 +1,74 @@
+#!/usr/bin/perl
+use warnings;
+use strict;
+use File::Basename;
+
+# Finds tables that doc conversion leaves as --- line, header instead
+# of header, --- line.  Reverses them.  Tries to insert | delims in each
+# column based on the spaces between -- -- line.  Sometimes gets it wrong.
+# Deletes the table footer.
+
+my $path = dirname( $0 ) . "/docs/simdocs/%s_doc.md";
+my $n = @ARGV;
+
+while( @ARGV ) {
+    my( $inb , @b);
+
+    my $fn = shift;
+    $fn = sprintf( $path, basename( $fn, ( qw(.md ) ) ) )
+      unless( $fn =~ m,/, );
+
+    open( my $f, '<', $fn ) or die( "$fn:$!\n" ) ;
+    printf STDERR ( "%s\n", $fn ) if( $n > 0 );
+    die( "$fn.bak exists\n" ) if( -f "$fn.bak" );
+    rename( $fn, "$fn.bak" ) || die( "rename: $!\n" );
+    open( my $of,">", $fn ) or die( "$fn.bak:$!\n" );
+
+    $inb = 1;  # zero if partially done, will skip to marker
+    while( <$f> ) {
+        chomp;
+        if( !$inb && /^__STARTHERE__$/ ) {
+            $inb = 1;
+            next;
+        }
+        unless( $inb ) {
+            print $of ( "$_\n" );
+            next;
+        }
+        if( /^ *((----+)(?: (----+))+)/ ) {
+            if( @b ) {
+                pb($of, \@b );
+                @b = ();
+            } else {
+                push @b, $1;
+            }
+        } elsif( @b ) {
+            s/^ +//g;
+            push @b, $_;
+        } else {
+            print $of ( "$_\n" );
+        }
+    }
+    pb( $of, \@b ) if( @b );
+    close $of;
+}
+exit;
+
+sub pb {
+    my( $of, $b ) = @_;
+    my( @col ) = split( / /, $b->[0] );
+
+
+    $_ = length foreach @col;
+    my $t = $b->[0]; $b->[0] = $b->[1]; $b->[1] = $t;
+
+    foreach my $l (@$b) {
+        my $r = '|';
+        foreach my $n (@col) {
+            $r .= substr( $l, 0, $n, '' ) . '|';
+        }
+        substr( $r, -1, 0, $l ) if( length $l );;
+        print $of ("$r\n" );
+    }
+
+}

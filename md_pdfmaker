@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Make PDF file(s) from docs/simdocs/ .md files
+# Defaults to all, or specify filename(s)
+
+function dopdf () {
+    local IN="$(basename $1 ".md")"
+    if ! [[ "$IN" =~ _doc$ ]]; then
+        IN="${IN}_doc"
+    fi
+    if ! [[ "$IN" =~ \.md$ ]]; then
+        IN="${IN}.md"
+    fi
+    local ON="$(dirname "$1")/$(basename "$IN" ".md").pdf"
+    local T="$(basename "$IN" "_doc.md" | sed -e's/_/ /g;')"
+    echo "$IN => $ON : $T"
+    # Generating PDF with working internal links requires
+    # - No Unicode chars (checkmark = &#10003)
+    # - LaTex processor (html handles Unicode, but not links)
+    # This work-around seems OK, at least for hp2100, for now.
+    mkdir -p /tmp/pdfmaker
+    trap "rm -rf /tmp/pdfmaker" EXIT INT
+    if [ "$IN" -nt "$ON" ]; then
+        echo "  - Updating"
+        sed -e's/&#10003;/Y/g;' "${IN}" >/tmp/pdfmaker/${IN}
+        pandoc  "/tmp/pdfmaker/${IN}" -o "$ON" \
+            --metadata title="$T" || exit 97
+    else
+        echo "  - Already up to date"
+    fi
+}
+
+cd "$(dirname "$0")/docs/simdocs" || exit 99
+
+if [ -n "$1" ]; then
+    while true; do
+        [ -z "$1" ] && exit
+        dopdf "$1"; 
+        shift
+    done
+    exit
+fi
+for F in *_doc.md; do dopdf "$F"; done

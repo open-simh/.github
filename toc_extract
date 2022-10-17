@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+use warnings;
+use strict;
+use File::Basename;
+
+# Jekyll's Markdown doesn't support [toc]
+# It does generate the anchor tags.
+# Look thru the generated HTML and produce a TOC.
+# It can be inserted manually.
+# Set $mode = 0 to skip the first H1; to -1 to include all.
+
+my $mode = -1;
+
+my $path = dirname( $0 ) . "/docs/_site/simdocs/%s.html";
+my $n = @ARGV;
+
+while( @ARGV ) {
+    my $fn = shift;
+    $fn = sprintf( $path, basename( $fn, ( qw(.html .htm) ) ) )
+      unless( $fn =~ m,/, );
+    my $first = $mode;
+
+    open( my $f, '<', $fn ) or die( "$fn:$!\n" ) ;
+    printf STDERR ( "%s\n", $fn ) if( $n > 1 );
+    while( <$f> ) {
+        next unless( /^\s*<h([1-6])\s+id="([^"]+)".*?>(.*?)<\/h/ );
+        my($lvl, $tag, $text) = ( $1, $2, $3 );
+        if( $lvl == 1 ) {
+            if( $first > 0 ) {
+                $first = 0;
+                next;
+            } else {
+                printf( " %s- [%s](#%s)\n", '  ' x ($lvl -1), $text, $tag );
+            }
+        } else {
+            printf( " %s- [%s](#%s)\n", '  ' x ($lvl -2), $text, $tag );
+            $first = 0 if( $first > 0 );
+        }
+    }
+}
+

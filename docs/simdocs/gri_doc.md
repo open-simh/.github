@@ -154,9 +154,9 @@ Error handling is as follows:
 | error        | STOP_IOE    | processed as          |
 | ------------ | ----------- | --------------------- |
 | not attached | 1           | report error and stop |
-| 0            | out of tape |
+|              | 0           | out of tape |
 | end of file  | 1           | report error and stop |
-| 0            | out of tape |
+|              | 0           | out of tape |
 | OS I/O error | x           | report error and stop |
 
 ### S42-006 High Speed Punch (HSP)
@@ -181,7 +181,7 @@ Error handling is as follows:
 | error        | STOP_IOE    | processed as          |
 | ------------ | ----------- | --------------------- |
 | not attached | 1           | report error and stop |
-| 0            | out of tape |
+|              | 0           | out of tape           |
 | OS I/O error | x           | report error and stop |
 
 ### S42-001 Teletype Input (TTI)

@@ -1,230 +1,91 @@
-HP 2100 Simulator User's Guide\
-5-Feb-2019
+**HP 2100 Simulator User's Guide**
+
+**5-Feb-2019**
 
 **COPYRIGHT NOTICE**
 
-The following copyright notice applies to the SIMH source, binary, and
-documentation:
-
-Original code published 1993-2012, written by Robert M Supnik\
 Copyright © 1993-2012, Robert M Supnik\
 Copyright © 2012-2019, J. David Bryan
 
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this soft­ware and associated documentation files (the
-\"Software\"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-dis­tribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be included
-in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
-EX­PRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MER­CHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-DEALINGS IN THE SOFTWARE.
-
-Except as contained in this notice, the names of the authors shall not
-be used in advertising or otherwise to promote the sale, use, or other
-dealings in this Software without prior written authorization from the
-authors.
-
-[4](#introduction)
-
-[4](#the-hp-21xx1000-computer-systems)
-
-[5](#simulator-files)
-
-[8](#simulator-features)
-
-[9](#hardware-equivalent-actions)
-
-[10](#simulator-specific-commands)
-
-[10](#numeric-display-and-entry)
-
-[10](#symbolic-display-and-entry)
-
-[12](#examine-deposit-iexamine-and-ideposit)
-
-[12](#break-and-nobreak)
-
-[13](#reset)
-
-[13](#run-and-go)
-
-[13](#load-dump-and-boot)
-
-[14](#device-configuration)
-
-[15](#enabling-and-disabling-devices)
-
-[15](#io-interface-select-code-assignments)
-
-[16](#save-and-restore)
-
-[16](#realistic-calibrated-and-optimized-timing)
-
-[18](#the-simulation-console-and-the-system-console)
-
-[18](#the-keyboard-poll-device)
-
-[18](#tracing-simulator-operations)
-
-[20](#processor-device-simulations)
-
-[20](#central-processing-unit)
-
-[24](#bootstrap-loaders)
-
-[26](#simulation-stops)
-
-[28](#stop-messages)
-
-[29](#tracing)
-
-[32](#registers)
-
-[32](#a12607b12895a-direct-memory-access-controllers-12897b-dual-channel-port-controller)
-
-[34](#a12892b-memory-protect)
-
-[35](#a-memory-expansion-module)
-
-[36](#general-io-device-simulations)
-
-[36](#c-buffered-teleprinter-interface-with-one-275254-teleprinter)
-
-[38](#c-time-base-generator)
-
-[40](#b-microcircuit-interface)
-
-[41](#a-002-tape-reader-interface-with-one-2748-paper-tape-reader)
-
-[44](#a-005-tape-punch-interface-with-one-2895-paper-tape-punch)
-
-[45](#a12936a-privileged-interrupt-fence)
-
-[46](#a-line-printer-interface-with-one-2767-line-printer)
-
-[49](#c-8-channel-asynchronous-multiplexer)
-
-[50](#device-options)
-
-[51](#unit-options)
-
-[52](#tracing-and-registers)
-
-[54](#b-line-printer-interface-with-one-2607131718-line-printer)
-
-[54](#device-options-1)
-
-[55](#unit-options-1)
-
-[56](#vertical-format-unit)
-
-[59](#tracing-and-registers-1)
-
-[60](#a-processor-interconnect)
-
-[63](#a-asynchronous-multiplexer-interface)
-
-[63](#lower-and-upper-data-pcas)
-
-[67](#control-pca)
-
-[68](#a-buffered-asynchronous-communications-interface)
-
-[72](#disc-io-device-simulations)
-
-[72](#a-cartridge-disc-interface-with-four-2870-drives-13210a-disc-drive-interface-with-four-7900-drives)
-
-[75](#a-disc-interface-with-two-2883-drives)
-
-[78](#b-disc-memory-interface-with-one-27702771-disc-12610b-drum-memory-interface-with-one-277327742775-drum)
-
-[81](#a-disc-interface-with-four-7906h7920h7925h-drives)
-
-[82](#device-options-2)
-
-[83](#unit-options-2)
-
-[83](#load-and-boot-commands)
-
-[84](#tracing-and-registers-2)
-
-[85](#d-disc-controller-interface-with-eight-7905790679207925-drives)
-
-[86](#device-options-3)
-
-[86](#unit-options-3)
-
-[87](#load-and-boot-commands-1)
-
-[88](#tracing-and-registers-3)
-
-[90](#magnetic-tape-io-device-simulations)
-
-[90](#c-9-track-magnetic-tape-unit-interface-with-one-3030-drive)
-
-[91](#b-digital-magnetic-tape-unit-interface-with-four-7970b-drives-13183b-digital-magnetic-tape-unit-interface-with-four-7970e-drives)
-
-[92](#device-options-4)
-
-[93](#unit-options-4)
-
-[94](#load-and-boot-commands-2)
-
-[95](#tracing-and-registers-4)1 Introduction 1.1 The HP 21xx/1000
-Computer Systems 1.2 Simulator Files 2 Simulator Features 2.1
-Hardware-Equivalent Actions 2.2 Simulator-Specific Commands 2.2.1
-Numeric Display and Entry 2.2.2 Symbolic Display and Entry 2.2.3
-EXAMINE, DEPOSIT, IEXAMINE, and IDEPOSIT 2.2.4 BREAK and NOBREAK 2.2.5
-RESET 2.2.6 RUN and GO 2.2.7 LOAD, DUMP, and BOOT 2.2.8 Device
-Configuration 2.2.9 Enabling and Disabling Devices 2.2.10 I/O Interface
-Select Code Assignments 2.2.11 SAVE and RESTORE 2.3 Realistic,
-Calibrated, and Optimized Timing 2.4 The Simulation Console and the
-System Console 2.5 The Keyboard Poll Device 2.6 Tracing Simulator
-Operations 3 Processor Device Simulations 3.1 Central Processing Unit
-3.1.1 Bootstrap Loaders 3.1.2 Simulation Stops 3.1.3 Stop Messages 3.1.4
-Tracing 3.1.5 Registers 3.2 12578A/12607B/12895A Direct Memory Access
-Controllers, 12897B Dual-Channel Port Controller 3.3 12581A/12892B
-Memory Protect 3.4 12731A Memory Expansion Module 4 General I/O Device
-Simulations 4.1 12531C Buffered Teleprinter Interface with One 2752/54
-Teleprinter 4.2 12539C Time Base Generator 4.3 12566B Microcircuit
-Interface 4.4 12597A-002 Tape Reader Interface with One 2748 Paper Tape
-Reader 4.5 12597A-005 Tape Punch Interface with One 2895 Paper Tape
-Punch 4.6 12620A/12936A Privileged Interrupt Fence 4.7 12653A Line
-Printer Interface with One 2767 Line Printer 4.8 12792C 8-Channel
-Asynchronous Multiplexer 4.8.1 Device Options 4.8.2 Unit Options 4.8.3
-Tracing and Registers 4.9 12845B Line Printer Interface with One
-2607/13/17/18 Line Printer 4.9.1 Device Options 4.9.2 Unit Options 4.9.3
-Vertical Format Unit 4.9.4 Tracing and Registers 4.10 12875A Processor
-Interconnect 4.11 12920A Asynchronous Multiplexer Interface 4.11.1 Lower
-and Upper Data PCAs 4.11.2 Control PCA 4.12 12966A Buffered Asynchronous
-Communications Interface 5 Disc I/O Device Simulations 5.1 12557A
-Cartridge Disc Interface with Four 2870 Drives, 13210A Disc Drive
-Interface with Four 7900 Drives 5.2 12565A Disc Interface with Two 2883
-Drives 5.3 12606B Disc Memory Interface with One 2770/2771 Disc, 12610B
-Drum Memory Interface with One 2773/2774/2775 Drum 5.4 12821A Disc
-Interface with Four 7906H/7920H/7925H Drives 5.4.1 Device Options 5.4.2
-Unit Options 5.4.3 LOAD and BOOT Commands 5.4.4 Tracing and Registers
-5.5 13175D Disc Controller Interface with Eight 7905/7906/7920/7925
-Drives 5.5.1 Device Options 5.5.2 Unit Options 5.5.3 LOAD and BOOT
-Commands 5.5.4 Tracing and Registers 6 Magnetic Tape I/O Device
-Simulations 6.1 12559C 9-Track Magnetic Tape Unit Interface with One
-3030 Drive 6.2 13181B Digital Magnetic Tape Unit Interface with Four
-7970B Drives, 13183B Digital Magnetic Tape Unit Interface with Four
-7970E Drives 6.2.1 Device Options 6.2.2 Unit Options 6.2.3 LOAD and BOOT
-Commands 6.2.4 Tracing and Registers
-
-Introduction
-============
+[COPYRIGHT NOTICE and LICENSE](#copyright-notice-and-license) are at the end of this document.
+
+ - [Introduction](#introduction)
+   - [The HP 21xx/1000 Computer Systems](#the-hp-21xx1000-computer-systems)
+   - [Simulator Files](#simulator-files)
+ - [Simulator Features](#simulator-features)
+   - [Hardware-Equivalent Actions](#hardware-equivalent-actions)
+   - [Simulator-Specific Commands](#simulator-specific-commands)
+     - [Numeric Display and Entry](#numeric-display-and-entry)
+     - [Symbolic Display and Entry](#symbolic-display-and-entry)
+     - [EXAMINE, DEPOSIT, IEXAMINE, and IDEPOSIT](#examine-deposit-iexamine-and-ideposit)
+     - [BREAK and NOBREAK](#break-and-nobreak)
+     - [RESET](#reset)
+     - [RUN and GO](#run-and-go)
+     - [LOAD, DUMP, and BOOT](#load-dump-and-boot)
+     - [Device Configuration](#device-configuration)
+     - [Enabling and Disabling Devices](#enabling-and-disabling-devices)
+     - [I/O Interface Select Code Assignments](#io-interface-select-code-assignments)
+     - [SAVE and RESTORE](#save-and-restore)
+   - [Realistic, Calibrated, and Optimized Timing](#realistic-calibrated-and-optimized-timing)
+   - [The Simulation Console and the System Console](#the-simulation-console-and-the-system-console)
+   - [The Keyboard Poll Device](#the-keyboard-poll-device)
+   - [Tracing Simulator Operations](#tracing-simulator-operations)
+ - [Processor Device Simulations](#processor-device-simulations)
+   - [Central Processing Unit](#central-processing-unit)
+     - [Bootstrap Loaders](#bootstrap-loaders)
+     - [Simulation Stops](#simulation-stops)
+     - [Stop Messages](#stop-messages)
+     - [Tracing](#tracing)
+     - [Registers](#registers)
+   - [12578A/12607B/12895A Direct Memory Access Controllers, 12897B Dual-Channel Port Controller](#12578a12607b12895a-direct-memory-access-controllers-12897b-dual-channel-port-controller)
+   - [12581A/12892B Memory Protect](#12581a12892b-memory-protect)
+   - [12731A Memory Expansion Module](#12731a-memory-expansion-module)
+ - [General I/O Device Simulations](#general-io-device-simulations)
+   - [12531C Buffered Teleprinter Interface with One 2752/54 Teleprinter](#12531c-buffered-teleprinter-interface-with-one-275254-teleprinter)
+   - [12539C Time Base Generator](#12539c-time-base-generator)
+   - [12566B Microcircuit Interface](#12566b-microcircuit-interface)
+   - [12597A-002 Tape Reader Interface with One 2748 Paper Tape Reader](#12597a-002-tape-reader-interface-with-one-2748-paper-tape-reader)
+   - [12597A-005 Tape Punch Interface with One 2895 Paper Tape Punch](#12597a-005-tape-punch-interface-with-one-2895-paper-tape-punch)
+   - [12620A/12936A Privileged Interrupt Fence](#12620a12936a-privileged-interrupt-fence)
+   - [12653A Line Printer Interface with One 2767 Line Printer](#12653a-line-printer-interface-with-one-2767-line-printer)
+   - [12792C 8-Channel Asynchronous Multiplexer](#12792c-8-channel-asynchronous-multiplexer)
+     - [Device Options](#device-options)
+     - [Unit Options](#unit-options)
+     - [Tracing and Registers](#tracing-and-registers)
+   - [12845B Line Printer Interface with One 2607/13/17/18 Line Printer](#12845b-line-printer-interface-with-one-2607131718-line-printer)
+     - [Device Options](#device-options-1)
+     - [Unit Options](#unit-options-1)
+     - [Vertical Format Unit](#vertical-format-unit)
+     - [Tracing and Registers](#tracing-and-registers-1)
+   - [12875A Processor Interconnect](#12875a-processor-interconnect)
+   - [12920A Asynchronous Multiplexer Interface](#12920a-asynchronous-multiplexer-interface)
+     - [Lower and Upper Data PCAs](#lower-and-upper-data-pcas)
+     - [Control PCA](#control-pca)
+   - [12966A Buffered Asynchronous Communications Interface](#12966a-buffered-asynchronous-communications-interface)
+ - [Disc I/O Device Simulations](#disc-io-device-simulations)
+   - [12557A Cartridge Disc Interface with Four 2870 Drives, 13210A Disc Drive Interface with Four 7900 Drives](#12557a-cartridge-disc-interface-with-four-2870-drives-13210a-disc-drive-interface-with-four-7900-drives)
+   - [12565A Disc Interface with Two 2883 Drives](#12565a-disc-interface-with-two-2883-drives)
+   - [12606B Disc Memory Interface with One 2770/2771 Disc, 12610B Drum Memory Interface with One 2773/2774/2775 Drum](#12606b-disc-memory-interface-with-one-27702771-disc-12610b-drum-memory-interface-with-one-277327742775-drum)
+   - [12821A Disc Interface with Four 7906H/7920H/7925H Drives](#12821a-disc-interface-with-four-7906h7920h7925h-drives)
+     - [Device Options](#device-options-2)
+     - [Unit Options](#unit-options-2)
+     - [LOAD and BOOT Commands](#load-and-boot-commands)
+     - [Tracing and Registers](#tracing-and-registers-2)
+   - [13175D Disc Controller Interface with Eight 7905/7906/7920/7925 Drives](#13175d-disc-controller-interface-with-eight-7905790679207925-drives)
+     - [Device Options](#device-options-3)
+     - [Unit Options](#unit-options-3)
+     - [LOAD and BOOT Commands](#load-and-boot-commands-1)
+     - [Tracing and Registers](#tracing-and-registers-3)
+ - [Magnetic Tape I/O Device Simulations](#magnetic-tape-io-device-simulations)
+   - [12559C 9-Track Magnetic Tape Unit Interface with One 3030 Drive](#12559c-9-track-magnetic-tape-unit-interface-with-one-3030-drive)
+   - [13181B Digital Magnetic Tape Unit Interface with Four 7970B Drives, 13183B Digital Magnetic Tape Unit Interface with Four 7970E Drives](#13181b-digital-magnetic-tape-unit-interface-with-four-7970b-drives-13183b-digital-magnetic-tape-unit-interface-with-four-7970e-drives)
+     - [Device Options](#device-options-4)
+     - [Unit Options](#unit-options-4)
+     - [LOAD and BOOT Commands](#load-and-boot-commands-2)
+     - [Tracing and Registers](#tracing-and-registers-4)
+ - [COPYRIGHT NOTICE and LICENSE](#copyright-notice-and-license)
+
+# Introduction
 
 This manual documents the features and operation of the HP 2100
 simulator. It is intended for use in conjunction with the *SIMH Users\'
@@ -232,8 +93,7 @@ Guide* manual, which describes how to compile and run the simulator, as
 well as the general commands that may be entered at the Simulation
 Control Program (SCP) prompt.
 
-The HP 21xx/1000 Computer Systems
----------------------------------
+## The HP 21xx/1000 Computer Systems
 
 Hewlett-Packard sold the HP 21xx/1000 family of real-time computers from
 1966 through 2000. There are three major divisions within this family:
@@ -247,55 +107,31 @@ multi-user time-shared BASIC system.
 
 Within each division, several distinct models were produced:
 
--   the HP 2116; introduced in 1966, expandable to 32 K words
-    > (originally 16 K words).
-
--   the HP 2115 (1967); slower, more I/O-limited, expandable to 8 K
-    > words.
-
--   the HP 2114 (1968); low-cost, still-more-limited expandability,
-    > expandable to 8 K words.
-
--   the HP 2100 (1971); user-microprogrammable, optional floating-point
-    > instructions, expandable to 32 KW.
-
--   the HP 21MX (1974, renamed 1000 M); memory-mapped, larger
-    > instruction set, expandable to 1024 KW.
-
--   the HP 21MXE (1976, renamed 1000 E); faster CPU and memory, larger
-    > microprogram address space.
-
--   the HP 1000 F-Series (1979); an E-Series CPU with a separate
-    > hardware floating-point processor.
-
--   the HP 1000 L-Series (1979); low-cost, slower, distributed I/O
-    > system, limited to 32K words.
-
--   the HP 1000 XL-Series (1980); an L-Series CPU with memory mapping,
-    > expandable to 256 KW.
-
--   the HP 1000 A600 (1982); E-Series speed with L-Series distributed
-    > I/O, expandable to 2048 KW.
-
--   the HP 1000 A700 (1982); an A600 with an optional hardware
-    > floating-point processor.
-
--   the HP 1000 A900 (1983); faster pipelined processor, cache memory,
-    > expandable to 3072 KW.
-
--   the HP 1000 A400 (1986); lower-cost, limited I/O expandability,
-    > expandable to 2048 KW.
-
--   the HP 1000 A990 (1991); fastest and last 1000 made, expandable to
-    > 4096 KW.
+-   the HP 2116; introduced in 1966, expandable to 32 K words (originally 16 K words).
+-   the HP 2115 (1967); slower, more I/O-limited, expandable to 8 K words.
+-   the HP 2114 (1968); low-cost, still-more-limited expandability, expandable to 8 K words.
+-   the HP 2100 (1971); user-microprogrammable, optional floating-point instructions, expandable to 32 KW.
+-   the HP 21MX (1974, renamed 1000 M); memory-mapped, larger instruction set, expandable to 1024 KW.
+-   the HP 21MXE (1976, renamed 1000 E); faster CPU and memory, larger microprogram address space.
+-   the HP 1000 F-Series (1979); an E-Series CPU with a separat hardware floating-point processor.
+-   the HP 1000 L-Series (1979); low-cost, slower, distributed I/O system, limited to 32K words.
+-   the HP 1000 XL-Series (1980); an L-Series CPU with memory mapping, expandable to 256 KW.
+-   the HP 1000 A600 (1982); E-Series speed with L-Series distributed I/O, expandable to 2048 KW.
+-   the HP 1000 A700 (1982); an A600 with an optional hardware floating-point processor.
+-   the HP 1000 A900 (1983); faster pipelined processor, cache memory, expandable to 3072 KW.
+-   the HP 1000 A400 (1986); lower-cost, limited I/O expandability, expandable to 2048 KW.
+-   the HP 1000 A990 (1991); fastest and last 1000 made, expandable to 4096 KW.
 
 HP claimed the relative CPU performance, normalized to a 1000 E-Series,
 as follows:
 
-  ------------ ------------ ------------ ------------ -------------- -------------- -------------- -------------- ------------ ------------ ------------ ------------ ------------
-  ***2114***   ***2115***   ***2116***   ***2100***   ***1000 M***   ***1000 E***   ***1000 F***   ***1000 L***   ***A400***   ***A600***   ***A700***   ***A900***   ***A990***
-  0.22         0.37         0.42         0.55         0.45           1.0            1.4            0.3            1.1          1.0          1.67         3.3          6.7
-  ------------ ------------ ------------ ------------ -------------- -------------- -------------- -------------- ------------ ------------ ------------ ------------ ------------
+| **_2114_** | **_2115_** | **_2116_** | **_2100_** | **_1000 M_** | **_1000 E_** | **_1000 F_** |
+| ---------- | ---------- | ---------- | ---------- | ------------ | ------------ | ------------ |
+| 0.22       | 0.37       | 0.42       | 0.55       | 0.45         | 1.0          | 1.4          |
+
+| **_1000 L_** | **_A400_** | **_A600_** | **_A700_** | **_A900_** | **_A990_** |
+| ------------ | ---------- | ---------- | ---------- | ---------- | ---------- |
+| 0.3          | 1.1        | 1.0        | 1.67       | 3.3        | 6.7        |
 
 All of the machines support a 15-bit logical address space, addressing a
 maximum of 32K words, divided into 1K-word pages. Memory-referencing
@@ -378,8 +214,7 @@ L/A-Series. An L/A-Series implementation would be almost a completely
 new simulator and therefore likely would be best constructed as a
 separate project.
 
-Simulator Files
----------------
+## Simulator Files
 
 The simulator sources are divided into a set of files for the Simulator
 Control Program and its support libraries, and a set of files for the HP
@@ -389,85 +224,84 @@ set is common to all SIMH simulators, whereas the latter set is specific
 to the virtual machine being simulated. The files that make up this
 simulator are:
 
-  -------------------- ---------------------- ---------------------------------------------------------------
-  ***Subdirectory***   ***File***             ***Contains***
-  **HP2100**           hp2100\_cpu.h          CPU architectural declarations
-                       hp2100\_cpu\_dmm.h     CPU-to-DMA/MEM/MP interface declarations
-                       hp2100\_cpu\_fp.h      Floating-point interface declarations
-                       hp2100\_defs.h         System architectural declarations
-                       hp2100\_di.h           12821A HP-IB Disc Interface simulator declarations
-                       hp2100\_disclib.h      13037D MAC/ICD disc controller simulator library declarations
-                       hp2100\_io.h           Device-to-CPU interface declarations
-                       hp2100\_baci.c         Buffered Asynchronous Communications Interface simulator
-                       hp2100\_cpu.c          Central Processing Unit simulator
-                       hp2100\_cpu0.c         UIG, user microcode, and unimplemented instruction simulator
-                       hp2100\_cpu1.c         EAU, FP, and IOP instruction set simulator
-                       hp2100\_cpu2.c         DMS and EIG instruction set simulator
-                       hp2100\_cpu3.c         FFP and DBI instruction set simulator
-                       hp2100\_cpu4.c         FPP and SIS instruction set simulator
-                       hp2100\_cpu5.c         RTE-IV EMA, VIS, and SIGNAL/1000 instruction set simulator
-                       hp2100\_cpu6.c         RTE-6/VM OS instruction set simulator
-                       hp2100\_cpu7.c         RTE-6/VM VMA instruction set simulator
-                       hp2100\_cpu\_fp.c      Firmware floating point instructions simulator
-                       hp2100\_cpu\_fpp.c     Floating-Point Processor simulator
-                       hp2100\_di.c           12821A HP-IB Disc Interface simulator
-                       hp2100\_di\_da.c       HP-IB Disc Interface simulator for Amigo disc drives
-                       hp2100\_disclib.c      13037D MAC/ICD disc controller simulator library
-                       hp2100\_dma.c          DMA/DCPC simulator
-                       hp2100\_dp.c           12557A/13210A Disc Interface simulator
-                       hp2100\_dq.c           12565A Disc Interface simulator
-                       hp2100\_dr.c           12606B/12610B Disc/Drum Memory Interface simulator
-                       hp2100\_ds.c           13175D Disc Controller Interface simulator
-                       hp2100\_ipl.c          12875A Processor Interconnect simulator
-                       hp2100\_lps.c          12653A Line Printer Interface simulator
-                       hp2100\_lpt.c          12845B Line Printer Interface simulator
-                       hp2100\_mc.c           12566B Microcircuit Interface simulator
-                       hp2100\_mem.c          Main memory/Memory Expansion/Memory Protect simulator
-                       hp2100\_mpx.c          12792C 8-Channel Asynchronous Multiplexer simulator
-                       hp2100\_ms.c           13181B/13183B Digital Magnetic Tape Unit Interface simulator
-                       hp2100\_mt.c           12559C 9-Track Magnetic Tape Unit Interface simulator
-                       hp2100\_mux.c          12920A Asynchronous Multiplexer Interface simulator
-                       hp2100\_pif.c          12620A/12936A Privileged Interrupt Fence simulator
-                       hp2100\_pt.c           12597A-002/005 Paper Tape Reader/Punch Interface simulator
-                       hp2100\_sys.c          SCP interface
-                       hp2100\_tbg.c          12539C Time Base Generator Interface simulator
-                       hp2100\_tty.c          12531C Buffered Teleprinter Interface simulator
-                       hp2100\_bugfixes.txt   HP 2100 simulator bug fix reports (historical)
-                       hp2100\_diag.txt       SIMH/HP 2100 diagnostics performance report
-                       hp2100\_release.txt    SIMH/HP 2100 simulator release notes
-  -------------------- ---------------------- ---------------------------------------------------------------
+| **_Directory_** | **_File_**          | **_Contains_**                                                |
+| --------------- | ------------------- | ------------------------------------------------------------- |
+| **HP2100**      | hp2100_cpu.h        | CPU architectural declarations                                |
+|                 | hp2100_cpu_dmm.h    | CPU-to-DMA/MEM/MP interface declarations                      |
+|                 | hp2100_cpu_fp.h     | Floating-point interface declarations                         |
+|                 | hp2100_defs.h       | System architectural declarations                             |
+|                 | hp2100_di.h         | 12821A HP-IB Disc Interface simulator declarations            |
+|                 | hp2100_disclib.h    | 13037D MAC/ICD disc controller simulator library declarations |
+|                 | hp2100_io.h         | Device-to-CPU interface declarations                          |
+|                 | hp2100_baci.c       | Buffered Asynchronous Communications Interface simulator      |
+|                 | hp2100_cpu.c        | Central Processing Unit simulator                             |
+|                 | hp2100_cpu0.c       | UIG, user microcode, and unimplemented instruction simulator  |
+|                 | hp2100_cpu1.c       | EAU, FP, and IOP instruction set simulator                    |
+|                 | hp2100_cpu2.c       | DMS and EIG instruction set simulator                         |
+|                 | hp2100_cpu3.c       | FFP and DBI instruction set simulator                         |
+|                 | hp2100_cpu4.c       | FPP and SIS instruction set simulator                         |
+|                 | hp2100_cpu5.c       | RTE-IV EMA, VIS, and SIGNAL/1000 instruction set simulator    |
+|                 | hp2100_cpu6.c       | RTE-6/VM OS instruction set simulator                         |
+|                 | hp2100_cpu7.c       | RTE-6/VM VMA instruction set simulator                        |
+|                 | hp2100_cpu_fp.c     | Firmware floating point instructions simulator                |
+|                 | hp2100_cpu_fpp.c    | Floating-Point Processor simulator                            |
+|                 | hp2100_di.c         | 12821A HP-IB Disc Interface simulator                         |
+|                 | hp2100_di_da.c      | HP-IB Disc Interface simulator for Amigo disc drives          |
+|                 | hp2100_disclib.c    | 13037D MAC/ICD disc controller simulator library              |
+|                 | hp2100_dma.c        | DMA/DCPC simulator                                            |
+|                 | hp2100_dp.c         | 12557A/13210A Disc Interface simulator                        |
+|                 | hp2100_dq.c         | 12565A Disc Interface simulator                               |
+|                 | hp2100_dr.c         | 12606B/12610B Disc/Drum Memory Interface simulator            |
+|                 | hp2100_ds.c         | 13175D Disc Controller Interface simulator                    |
+|                 | hp2100_ipl.c        | 12875A Processor Interconnect simulator                       |
+|                 | hp2100_lps.c        | 12653A Line Printer Interface simulator                       |
+|                 | hp2100_lpt.c        | 12845B Line Printer Interface simulator                       |
+|                 | hp2100_mc.c         | 12566B Microcircuit Interface simulator                       |
+|                 | hp2100_mem.c        | Main memory/Memory Expansion/Memory Protect simulator         |
+|                 | hp2100_mpx.c        | 12792C 8-Channel Asynchronous Multiplexer simulator           |
+|                 | hp2100_ms.c         | 13181B/13183B Digital Magnetic Tape Unit Interface simulator  |
+|                 | hp2100_mt.c         | 12559C 9-Track Magnetic Tape Unit Interface simulator         |
+|                 | hp2100_mux.c        | 12920A Asynchronous Multiplexer Interface simulator           |
+|                 | hp2100_pif.c        | 12620A/12936A Privileged Interrupt Fence simulator            |
+|                 | hp2100_pt.c         | 12597A-002/005 Paper Tape Reader/Punch Interface simulator    |
+|                 | hp2100_sys.c        | SCP interface                                                 |
+|                 | hp2100_tbg.c        | 12539C Time Base Generator Interface simulator                |
+|                 | hp2100_tty.c        | 12531C Buffered Teleprinter Interface simulator               |
+|                 | hp2100_bugfixes.txt | HP 2100 simulator bug fix reports (historical)                |
+|                 | hp2100_diag.txt     | SIMH/HP 2100 diagnostics performance report                   |
+|                 | hp2100_release.txt  | SIMH/HP 2100 simulator release notes                          |
+
 
 PDF files of the original HP 21xx and 1000-series hardware and software
 manuals are available from these repositories:
 
 -   Bitsavers --- <http://www.bitsavers.org/>
-
 -   The HP Computer Museum --- <http://www.hpmuseum.net/>
 
 A software kit containing an HP 7925 disc image with RTE-6/VM
 preinstalled is available from:
 
 -   Bitsavers ---
-    > <http://www.bitsavers.org/bits/HP/tapes/rte-6vm/rte6200/>
+    <http://www.bitsavers.org/bits/HP/tapes/rte-6vm/rte6200/>
 
 A software kit containing an HP 7920H disc image with RTE-IVB
 preinstalled is available from:
 
 -   The HP Computer Museum ---
-    > <http://www.hpmuseum.net/display_item.php?sw=565>
+    <http://www.hpmuseum.net/display_item.php?sw=565>
 
 Software kits containing bootable disc images with HP 2000E, 2000F, and
 2000 Access Time-Shared BASIC preinstalled and associated command files
 to automate the system startup processes are available from:
 
 -   The SIMH Software Repository ---
-    > <http://simh.trailing-edge.com/software.html>
+    <http://simh.trailing-edge.com/software.html>
 
 QCTerm, an HP 700 terminal emulator for Microsoft Windows, is available
 from:
 
 -   The HP Computer Museum ---
-    > <http://www.hpmuseum.net/display_item.php?sw=585>
+    <http://www.hpmuseum.net/display_item.php?sw=585>
 
 Use of an HP terminal via a serial port or a terminal emulator via
 Telnet enables the advanced screen editing features of the RTE operating
@@ -478,111 +312,55 @@ The simulator supports the dual-CPU HP 2000 Time-Shared BASIC systems
 involved in synchronizing two independent simulator processes is
 available from:
 
--   Papers on Simulation and Historic Systems --- [Running HP
-    > Time-Shared BASIC on
-    > SIMH](http://simh.trailing-edge.com/docs/running_hp_2000_tsb.pdf)
+-   Papers on Simulation and Historic Systems --- [Running HP Time-Shared BASIC on SIMH](http://simh.trailing-edge.com/docs/running_hp_2000_tsb.pdf)
 
 A paper describing the internal design of the I/O hardware simulation is
 available from:
 
--   Papers on Simulation and Historic Systems --- [The Evolution of the
-    > HP21xx/1000 I/O
-    > Simulation](http://simh.trailing-edge.com/docs/hp_1000_io_simulation.pdf)
+-   Papers on Simulation and Historic Systems --- [The Evolution of the HP21xx/1000 I/O Simulation](http://simh.trailing-edge.com/docs/hp_1000_io_simulation.pdf)
 
 Additional software and documentation resources are listed in the
-*hp2100\_release.txt* file. In addition, the reference manuals used to
+*hp2100_release.txt* file. In addition, the reference manuals used to
 develop the various simulated devices are listed in the comments at the
 start of the respective simulator source modules.
 
-Simulator Features
-==================
+# Simulator Features
 
 The HP 2100 simulator provides the following device simulations:
 
-+----------------------+----------------------------------------------+
-| ***Device Name(s)*** | ***Simulates***                              |
-+----------------------+----------------------------------------------+
-| **CPU**              | 2114C Computer with up to 16K words of       |
-|                      | memory                                       |
-|                      |                                              |
-|                      | 2115A Computer with up to 8K words of memory |
-|                      |                                              |
-|                      | 2116C Computer with up to 32K words of       |
-|                      | memory                                       |
-|                      |                                              |
-|                      | 2100A Computer with up to 32K words of       |
-|                      | memory                                       |
-|                      |                                              |
-|                      | 1000 M/E/F-Series Computer with up to 1024K  |
-|                      | words of memory                              |
-+----------------------+----------------------------------------------+
-| **DCPC1, DCPC2**     | 12897B Dual-Channel Port Controller          |
-+----------------------+----------------------------------------------+
-| **DMA1, DMA2**       | 12578A/12607B/12895A Direct Memory Access    |
-+----------------------+----------------------------------------------+
-| **MEM**              | 12731A Memory Expansion Module               |
-+----------------------+----------------------------------------------+
-| **MP**               | 12581A/12892B Memory Protect                 |
-+----------------------+----------------------------------------------+
-| **BACI**             | 12966A Buffered Asynchronous Communications  |
-|                      | Interface                                    |
-+----------------------+----------------------------------------------+
-| **DA**               | 12821A Disc Interface with four              |
-|                      | 7906H/7920H/7925H drives                     |
-+----------------------+----------------------------------------------+
-| **DPD, DPC**         | 12557A Cartridge Disc Interface with four    |
-|                      | 2870 drives                                  |
-|                      |                                              |
-|                      | 13210A Disc Drive Interface with four 7900   |
-|                      | drives                                       |
-+----------------------+----------------------------------------------+
-| **DQD, DQC**         | 12565A Disc Interface with two 2883 drives   |
-+----------------------+----------------------------------------------+
-| **DRD, DRC**         | 12606B Disc Memory Interface with one        |
-|                      | 2770/2771 disc                               |
-|                      |                                              |
-|                      | 12610B Drum Memory Interface with one        |
-|                      | 2773/2774/2775 drum                          |
-+----------------------+----------------------------------------------+
-| **DS**               | 13175D Disc Controller Interface with eight  |
-|                      | 7905/7906/7920/7925 drives                   |
-+----------------------+----------------------------------------------+
-| **IPLI, IPLO**       | 12875A Processor Interconnect                |
-+----------------------+----------------------------------------------+
-| **LPS**              | 12653A Line Printer Interface with one 2767  |
-|                      | line printer                                 |
-+----------------------+----------------------------------------------+
-| **LPT**              | 12845B Line Printer Interface with one       |
-|                      | 2607/13/17/18 line printer                   |
-+----------------------+----------------------------------------------+
-| **MC1, MC2**         | 12566B Microcircuit Interface                |
-+----------------------+----------------------------------------------+
-| **MPX**              | 12792C 8-Channel Asynchronous Multiplexer    |
-+----------------------+----------------------------------------------+
-| **MSD, MSC**         | 13181B Digital Magnetic Tape Unit Interface  |
-|                      | with four 7970B drives                       |
-|                      |                                              |
-|                      | 13183B Digital Magnetic Tape Unit Interface  |
-|                      | with four 7970E drives                       |
-+----------------------+----------------------------------------------+
-| **MTD, MTC**         | 12559C 9-Track Magnetic Tape Unit Interface  |
-|                      | with one 3030 drive                          |
-+----------------------+----------------------------------------------+
-| **MUX, MUXL, MUXC**  | 12920A Asynchronous Multiplexer Interface    |
-+----------------------+----------------------------------------------+
-| **PIF**              | 12620A/12936A Privileged Interrupt Fence     |
-+----------------------+----------------------------------------------+
-| **PTP**              | 12597A-005 Tape Punch Interface with one     |
-|                      | 2895 paper tape punch                        |
-+----------------------+----------------------------------------------+
-| **PTR**              | 12597A-002 Tape Reader Interface with one    |
-|                      | 2748 paper tape reader                       |
-+----------------------+----------------------------------------------+
-| **TBG**              | 12539C Time Base Generator Interface         |
-+----------------------+----------------------------------------------+
-| **TTY**              | 12531C Buffered Teleprinter Interface with   |
-|                      | one 2752/54 teleprinter                      |
-+----------------------+----------------------------------------------+
+| **_Device Name(s)_** | **_Simulates_**                                                        |
+| -------------------- | ---------------------------------------------------------------------- |
+| **CPU**              | 2114C Computer with up to 16K words of memory                          |
+|                      | 2115A Computer with up to 8K words of memory                           |
+|                      | 2116C Computer with up to 32K words of memory                          |
+|                      | 2100A Computer with up to 32K words of memory                          |
+|                      | 1000 M/E/F-Series Computer with up to 1024K words of memory            |
+| **DCPC1, DCPC2**     | 12897B Dual-Channel Port Controller                                    |
+| **DMA1, DMA2**       | 12578A/12607B/12895A Direct Memory Access                              |
+| **MEM**              | 12731A Memory Expansion Module                                         |
+| **MP**               | 12581A/12892B Memory Protect                                           |
+| **BACI**             | 12966A Buffered Asynchronous Communications Interface                  |
+| **DA**               | 12821A Disc Interface with four 7906H/7920H/7925H drives               |
+| **DPD, DPC**         | 12557A Cartridge Disc Interface with four 2870 drives                  |
+|                      | 13210A Disc Drive Interface with four 7900 drives                      |
+| **DQD, DQC**         | 12565A Disc Interface with two 2883 drives                             |
+| **DRD, DRC**         | 12606B Disc Memory Interface with one 2770/2771 disc                   |
+|                      | 12610B Drum Memory Interface with one 2773/2774/2775 drum              |
+| **DS**               | 13175D Disc Controller Interface with eight 7905/7906/7920/7925 drives |
+| **IPLI, IPLO**       | 12875A Processor Interconnect                                          |
+| **LPS**              | 12653A Line Printer Interface with one 2767line printer                |
+| **LPT**              | 12845B Line Printer Interface with one 2607/13/17/18 line printer      |
+| **MC1, MC2**         | 12566B Microcircuit Interface                                          |
+| **MPX**              | 12792C 8-Channel Asynchronous Multiplexer                              |
+| **MSD, MSC**         | 13181B Digital Magnetic Tape Unit Interface with four 7970B drives     |
+|                      | 13183B Digital Magnetic Tape Unit Interface with four 7970E drives     |
+| **MTD, MTC**         | 12559C 9-Track Magnetic Tape Unit Interface with one 3030 drive        |
+| **MUX, MUXL, MUXC**  | 12920A Asynchronous Multiplexer Interface                              |
+| **PIF**              | 12620A/12936A Privileged Interrupt Fence                               |
+| **PTP**              | 12597A-005 Tape Punch Interface with one 2895 paper tape punch         |
+| **PTR**              | 12597A-002 Tape Reader Interface with one 2748 paper tape reader       |
+| **TBG**              | 12539C Time Base Generator Interface                                   |
+| **TTY**              | 12531C Buffered Teleprinter Interface with one 2752/54 teleprinter     |
 
 One instance of each listed device may be installed in the simulated
 computer chassis. Many devices support multiple connected units. As an
@@ -594,81 +372,69 @@ The simulator has been tested with and supports the following operating
 systems:
 
 -   2000E Time-Shared BASIC revision 1534.
-
 -   2000F Time-Shared BASIC revision 1410.
-
 -   2000 Access Time-Shared BASIC revision 1812.
-
 -   DOS Disc Operating System revision C.
-
 -   DOS-M Disc Operating System revision F.
-
 -   DOS-III Disc Operating System revision 1511.
-
 -   RTE-II Real-Time Executive revision 1926.
-
 -   RTE-III Real-Time Executive revision 1926.
-
 -   RTE-IV Real-Time Executive revision 2013.
-
 -   RTE-IVB Real-Time Executive revision 5010.
-
 -   RTE-6/VM Real-Time Executive revision 6210.
 
 In addition, the simulator generally passes the HP 24396 Stand-Alone
-Diagnostics suite; see *hp2100\_diag.txt* for details.
+Diagnostics suite; see *hp2100_diag.txt* for details.
 
 The simulator may be configured to stop for any of these conditions:
 
 -   Attempted execution of an unimplemented or undefined instruction.
-
--   Attempted execution of an I/O instruction that addresses an
-    > unassigned select code.
-
--   Attempted execution of a memory reference instruction with too many
-    > indirect references.
-
--   Occurrence of an I/O error on a device that does not report error
-    > status to the CPU.
+-   Attempted execution of an I/O instruction that addresses an unassigned select code.
+-   Attempted execution of a memory reference instruction with too many indirect references.
+-   Occurrence of an I/O error on a device that does not report error status to the CPU.
 
 The simulator also provides extensive facilities for tracing CPU and I/O
 device operations.
 
-Hardware-Equivalent Actions
----------------------------
+## Hardware-Equivalent Actions
 
 The current implementation does not provide simulations of the CPU or
 peripheral device front panels. Instead, commands entered through the
 simulation console are used to perform hardware actions. The simulation
 commands that substitute for CPU front-panel actions are:
 
-  ------------------------------------------- -------------------------------------
-  ***Hardware Front-Panel Action***           ***Equivalent Simulation Command***
-  Pressing the RUN button                     GO
-  Pressing the HALT button                    CTRL+E
-  Pressing the INSTR STEP button              STEP
-  Pressing the PRESET button                  RESET
-  Pressing the PRESET and RUN buttons         RUN
-  Pressing the IBL button                     LOAD CPU
-  Pressing the IBL, PRESET, and RUN buttons   BOOT CPU
-  Pressing the LOADER ENABLE button           SET CPU LOADERENABLE
-  Displaying memory                           EXAMINE \<address\>
-  Displaying registers                        EXAMINE \<register\>
-  Setting memory                              DEPOSIT \<address\> \<value\>
-  Setting registers                           DEPOSIT \<register\> \<value\>
-  Setting the switch register                 DEPOSIT S \<value\>
-  ------------------------------------------- -------------------------------------
+| **_Hardware Front-Panel Action_**         | **_Equivalent Simulation Command_** |
+| ----------------------------------------- | ----------------------------------- |
+| Pressing the RUN button                   | GO                                  |
+| Pressing the HALT button                  | CTRL+E                              |
+| Pressing the INSTR STEP button            | STEP                                |
+| Pressing the PRESET button                | RESET                               |
+| Pressing the PRESET and RUN buttons       | RUN                                 |
+| Pressing the IBL button                   | LOAD CPU                            |
+| Pressing the IBL, PRESET, and RUN buttons | BOOT CPU                            |
+| Pressing the LOADER ENABLE button         | SET CPU LOADERENABLE                |
+| Displaying memory                         | EXAMINE \<address>                   |
+| Displaying registers                      | EXAMINE \<register>                  |
+| Setting memory                            | DEPOSIT \<address> \<value>           |
+| Setting registers                         | DEPOSIT \<register> \<value>          |
+| Setting the switch register               | DEPOSIT S \<value>                   |
 
 Memory may also be displayed, but not set, by setting the M (memory
 address) register to the desired memory address and displaying the T
 (memory data) register.
 
 Mounting media on a peripheral device is simulated by the ***ATTACH***
-command. For example, entering the ***ATTACH PTR
-\<tape-image-filename\>*** command is equivalent to loading the paper
+command. For example, entering the
+
+    ATTACH PTR <tape-image-filename>
+
+command is equivalent to loading the paper
 tape into an HP 2748B Tape Reader. Inserting a disc pack into an HP
-7900A disc drive set for unit 2 is simulated by the ***ATTACH DPC2
-\<disc-image-filename\>*** command.
+7900A disc drive set for unit 2 is simulated by the
+
+    ATTACH DPC2 <disc-image-filename>
+
+command.
 
 Each of these commands is explained in more detail below.
 
@@ -684,13 +450,9 @@ select code, and pressing STORE, IBL, PRESET, and RUN.
 
 In simulation, bootstrap loaders may be loaded and run explicitly or
 implicitly. Explicit operation is described in the Bootstrap Loaders
-section of the CPU device description below. As a convenience, ***BOOT
-\<device\>*** commands may be used to implicitly bootstrap their
-respective devices and are described in the individual device
-descriptions below.
+section of the CPU device description below. As a convenience, ***BOOT \<device>*** commands may be used to implicitly bootstrap their respective devices and are described in the individual device descriptions below.
 
-Simulator-Specific Commands
----------------------------
+## Simulator-Specific Commands
 
 In general, all of the commands documented in the *SIMH Users\' Guide*
 manual are available for use with the HP 2100 simulator. Commands whose
@@ -700,17 +462,16 @@ execution or parameters are implementation-defined are specified below.
 
 When examining or depositing into memory, the radix for addresses is
 octal, and the default radix for numeric data is octal. The data default
-may be changed with the ***SET CPU { BIN \| OCT \| DEC \| HEX }***
+may be changed with the ***SET CPU { BIN | OCT | DEC | HEX }***
 command, or the radix may be overridden temporarily with a command line
 switch, as follows:
 
-  --------------------- ----------------------
-  ***Switch***          ***Interpretation***
-  **--2**               A binary value
-  **--8** or **--O**    An octal value
-  **--10** or **--D**   A decimal value
-  **--16** or **--H**   A hexadecimal value
-  --------------------- ----------------------
+| **_Switch_**        | **_Interpretation_** |
+| ------------------- | -------------------- |
+| **--2**             | A binary value       |
+| **--8** or **--O**  | An octal value       |
+| **--10** or **--D** | A decimal value      |
+| **--16** or **--H** | A hexadecimal value  |
 
 When examining or depositing into device registers, the default radix
 for the specified register is used unless overridden with one of the
@@ -723,12 +484,11 @@ When examining or depositing into memory or certain registers, command
 line switches specifying the symbolic mode and format may be used to
 override the default numeric mode, as follows:
 
-  -------------- -------------------------------------------
-  ***Switch***   ***Mode Interpretation***
-  **--A**        A single character in the right-hand byte
-  **--C**        A two-character packed string
-  **--M**        A CPU instruction mnemonic
-  -------------- -------------------------------------------
+| **_Switch_** | **_Mode Interpretation_**                 |
+| ------------ | ----------------------------------------- |
+| **--A**      | A single character in the right-hand byte |
+| **--C**      | A two-character packed string             |
+| **--M**      | A CPU instruction mnemonic                |
 
 In the absence of a mode switch or a specified symbolic default,
 entering values with a leading \' (apostrophe) implies ***--A***, a
@@ -755,29 +515,26 @@ Any numeric operands present are displayed or accepted in a default
 radix unless overridden by the addition of one of these mutually
 exclusive format switches:
 
-  -------------- -------------------------------------------
-  ***Switch***   ***Format Interpretation***
-  **--A**        A single character in the right-hand byte
-  **--B**        A binary value
-  **--O**        An octal value
-  **--D**        A decimal value
-  **--H**        A hexadecimal value
-  -------------- -------------------------------------------
+| **_Switch_** | **_Format Interpretation_**               |
+| ------------ | ----------------------------------------- |
+| **--A**      | A single character in the right-hand byte |
+| **--B**      | A binary value                            |
+| **--O**      | An octal value                            |
+| **--D**      | A decimal value                           |
+| **--H**      | A hexadecimal value                       |
 
 Operand values use a default radix suitable to the type of the value, as
 follows:
 
 -   Operand memory addresses and I/O instruction select codes use the
-    > CPU's address radix, which is octal.
-
+    CPU's address radix, which is octal.
 -   Extended Arithmetic Unit instruction shift and rotate counts and I/O
-    > Processor instruction index displacements use decimal unless
-    > overridden by a format switch on the command line.
-
+    Processor instruction index displacements use decimal unless
+    overridden by a format switch on the command line.
 -   I/O Processor and Scientific Instruction Set instruction operand
-    > data values use the CPU\'s data radix, which defaults to octal but
-    > may be set to a different radix or overridden by a format switch
-    > on the command line.
+    data values use the CPU\'s data radix, which defaults to octal but
+    may be set to a different radix or overridden by a format switch
+    on the command line.
 
 If the CPU data radix is set to hexadecimal, caution must be exercised
 when entering hex values without a leading digit. A value that is the
@@ -801,9 +558,9 @@ RRR 12 rotates the registers right by 12 decimal places.
 
 Memory Reference Group instructions use this extended syntax:
 
-\<opcode\> {C \| Z} \<address\>{,I}
+    <opcode> {C | Z} <address>{,I}
 
-\...where the optional ***C*** or ***Z*** specifies a current-page or a
+...where the optional ***C*** or ***Z*** specifies a current-page or a
 zero-page (base-page) address, and the optional ***I*** specifies
 indirect addressing. If ***C*** or ***Z*** is specified, the address is
 restricted to the octal range 0-1777; otherwise, the full 32K logical
@@ -832,24 +589,22 @@ entered explicitly.
 
 For these commands, the following address forms are valid:
 
--   \<page\>.\<offset\>
+    <page>.<offset>
+    <logical-address>
 
--   \<logical-address\>
-
-\...where ***page*** is a 10-bit physical page number and ***offset***
+...where ***page*** is a 10-bit physical page number and ***offset***
 is a 10-bit offset within the page (e.g., ***1777.1777***), and
 ***logical-address*** is a 15-bit offset within the 32K logical address
 space (e.g., ***77777***). Command line switches modify the mapping of
 logical addresses to physical addresses as follows:
 
-  -------------- ----------------------------------------------------
-  ***Switch***   ***Interpretation***
-  **--N**        Use the address directly with no mapping
-  **--S**        If memory expansion is enabled, use the system map
-  **--U**        If memory expansion is enabled, use the user map
-  **--P**        If memory expansion is enabled, use the port A map
-  **--Q**        If memory expansion is enabled, use the port B map
-  -------------- ----------------------------------------------------
+| **_Switch_** | **_Interpretation_**                               |
+| ------------ | -------------------------------------------------- |
+| **--N**      | Use the address directly with no mapping           |
+| **--S**      | If memory expansion is enabled, use the system map |
+| **--U**      | If memory expansion is enabled, use the user map   |
+| **--P**      | If memory expansion is enabled, use the port A map |
+| **--Q**      | If memory expansion is enabled, use the port B map |
 
 If no switch is specified, the address is interpreted using **--N** if
 memory expansion is currently disabled, otherwise it is interpreted
@@ -871,13 +626,12 @@ in logical form.
 The CPU implements four different kinds of instruction breakpoints, as
 follows:
 
-  -------------- ----------------------------------------------------------
-  ***Switch***   ***Action***
-  **--E**        Break unconditionally
-  **--N**        Break if memory expansion is disabled
-  **--S**        Break if memory expansion and the system map are enabled
-  **--U**        Break if memory expansion and the user map are enabled
-  -------------- ----------------------------------------------------------
+  ***Switch*** |  ***Action***
+  -----------|-------------------------------------------------------------
+  **--E**    |    Break unconditionally
+  **--N**   |     Break if memory expansion is disabled
+  **--S**   |     Break if memory expansion and the system map are enabled
+  **--U**   |     Break if memory expansion and the user map are enabled
 
 If no switch is specified, the default is to use **--N** if memory
 expansion is currently disabled, otherwise to use **--S** if the system
@@ -893,8 +647,8 @@ front-panel button on the 211x and 1000 M/E/F-Series machines, and the
 INTERNAL PRESET and EXTERNAL PRESET buttons on the 2100. It presets all
 of the installed I/O interfaces. The ***RESET --P*** command is
 equivalent to cycling power on the CPU chassis and all installed
-peripheral devices. The ***RESET \<device\>*** and ***RESET --P
-\<device\>*** commands have no direct hardware analogs. They are
+peripheral devices. The ***RESET \<device>*** and ***RESET --P
+\<device>*** commands have no direct hardware analogs. They are
 functionally equivalent to presetting or power-cycling just the
 specified device and its associated interface card.
 
@@ -922,7 +676,7 @@ The ***LOAD*** command is used to install a bootstrap loader into the
 last 64 words of available memory within the 32K logical address space.
 The command accepts two forms. The syntax of the first form is:
 
-LOAD \<device-name\>
+    LOAD <device-name>
 
 This command copies the loader associated with the specified bootable
 device into memory, configures the loader to the select code(s)
@@ -931,18 +685,17 @@ starting address of the loader program. For a given device, the loader
 selected depends on the current CPU model, as shown in the following
 table:
 
-  ------------------- ------------------------- ------------------------- -----------------------------------
-  ***Device Name***   ***HP 21xx Bootstrap***   ***HP 1000 Bootstrap***   ***Boot Device***
-  **DA**              ---                       12992H                    7906H/7920H/7925H/9895 ICD Disc
-  **DPC**             BMDL-7900                 12992F                    2870/7900 Disc
-  **DQC**             BMDL-2883                 12992A                    2883 Disc
-  **DRC**             BBDL                      ---                       277x Fixed-Head Disc/Drum
-  **DS**              BMDL-7905                 12992B                    7905/7906/7920/7925 MAC Disc
-  **IPL**             BBL-IOP                   12992K                    12875A Processor Interconnect
-  **MSC**             BMTL                      12992D                    7970B/E Magnetic Tape
-  **PTR**             BBL                       12992K                    2748 Paper Tape Reader
-  **CPU**             ---                       (various)                 Selected by S-register bits 15-14
-  ------------------- ------------------------- ------------------------- -----------------------------------
+| **_Device Name_** | **_HP 21xx Bootstrap_** | **_HP 1000 Bootstrap_** | **_Boot Device_**                 |
+| ----------------- | ----------------------- | ----------------------- | --------------------------------- |
+| **DA**            | ---                     | 12992H                  | 7906H/7920H/7925H/9895 ICD Disc   |
+| **DPC**           | BMDL-7900               | 12992F                  | 2870/7900 Disc                    |
+| **DQC**           | BMDL-2883               | 12992A                  | 2883 Disc                         |
+| **DRC**           | BBDL                    | ---                     | 277x Fixed-Head Disc/Drum         |
+| **DS**            | BMDL-7905               | 12992B                  | 7905/7906/7920/7925 MAC Disc      |
+| **IPL**           | BBL-IOP                 | 12992K                  | 12875A Processor Interconnect     |
+| **MSC**           | BMTL                    | 12992D                  | 7970B/E Magnetic Tape             |
+| **PTR**           | BBL                     | 12992K                  | 2748 Paper Tape Reader            |
+| **CPU**           | ---                     | (various)               | Selected by S-register bits 15-14 |
 
 The BMDL (Basic Moving-Head Disc Loader), BBDL (Basic Binary Disc
 Loader), BMTL (Basic Magnetic Tape Loader), and the BBL-IOP (Basic
@@ -969,7 +722,7 @@ command will be rejected with a **Command not allowed** error.
 The second command form installs a loader from an absolute binary file.
 The syntax is:
 
-LOAD \<image-filename\> {\<select-code\>}
+    LOAD <image-filename> {<select-code>}
 
 The file is read into the last 64 words of memory. If the optional
 select code is supplied, the loader I/O instructions are configured to
@@ -980,7 +733,7 @@ x7700-x7777, where *x* may be 0-7. The loaded program will be relocated
 to the last 64 words of available memory, so the desired memory size
 must be set before issuing the ***LOAD*** command. If the optional
 configuration select code is supplied, all I/O instructions in the
-program that reference select codes \>= 10 octal will be changed by
+program that reference select codes >= 10 octal will be changed by
 adding the supplied value minus 10 to the instruction. The effect of
 this is that instructions that reference select code *10 + n* will be
 changed to reference the supplied *select code + n*. This permits the
@@ -1002,7 +755,7 @@ used immediately.
 The ***DUMP*** command writes the bootstrap loader currently residing in
 memory to an absolute binary file. The command format is:
 
-DUMP \<image-filename\>
+    DUMP <image-filename>
 
 For 21xx CPUs, the loader must be unprotected with a ***SET CPU
 LOADERENABLE*** command before entering the ***DUMP*** command; if the
@@ -1024,8 +777,8 @@ booting only from unit 0 of the target device.
 Most devices support user configuration. The general forms of the
 configuration commands are:
 
-SET {\<switch\> \...} \<device\> \<option\>{,\<option\> \...}\
-SET {\<switch\> \...} \<unit\> \<option\>{,\<option\> \...}
+    SET {<switch> ...} <device> <option>{,<option> ...}
+    SET {<switch> ...} <unit> <option>{,<option> ...}
 
 The options available and applicable switches are described in the
 individual device descriptions below.
@@ -1036,11 +789,10 @@ All devices other than the CPU may be disabled or enabled. Disabling a
 device simulates removing the associated accessory or interface from the
 system chassis. To disable or enable a device, use:
 
-  ----------------------------- --------------------
-  ***Command***                 ***Action***
-  **SET \<device\> DISABLED**   Disable the device
-  **SET \<device\> ENABLED**    Enable the device
-  ----------------------------- --------------------
+| **_Command_**             | **_Action_**       |
+| ------------------------- | ------------------ |
+| **SET \<device> DISABLED** | Disable the device |
+| **SET \<device> ENABLED**  | Enable the device  |
 
 For devices that use two interface cards, enabling or disabling either
 card also enables or disables the other card. For example, entering
@@ -1052,11 +804,10 @@ controller allow the units to be individually disabled or enabled.
 Disabling simulates disconnecting the associated unit from the
 controller. The commands to disable or enable a unit are:
 
-  --------------------------- ------------------
-  ***Command***               ***Action***
-  **SET \<unit\> DISABLED**   Disable the unit
-  **SET \<unit\> ENABLED**    Enable the unit
-  --------------------------- ------------------
+| **_Command_**           | **_Action_**     |
+| ----------------------- | ---------------- |
+| **SET \<unit> DISABLED** | Disable the unit |
+| **SET \<unit> ENABLED**  | Enable the unit  |
 
 Each of the above command options is replicated in the option tables of
 the devices to which they apply.
@@ -1071,49 +822,39 @@ Empty slots may not exist between interface cards; if all interfaces are
 not in contiguous slots, HP 12777A Priority Jumper Cards must be
 installed in the unused slots.
 
-A device's select code may be set with the ***SET \<dev\> SC=\<n\>***
+A device's select code may be set with the
+
+    SET <dev> SC=<n>
+
 command. The valid range of select code values is 10-77 octal. The
 current select code assignment for a device may be displayed with the
-***SHOW \<dev\> SC*** command. For example:
 
-SET MSC SC=26\
-SHOW PTR SC
+    SHOW <dev> SC
+
+command. For example:
+
+    SET MSC SC=26
+    SHOW PTR SC
 
 The current select codes of all devices are displayed with the ***SHOW
 DEVICES*** command. The default settings are:
 
-  ------------------- ------------------- --------------- ------------------- ------------------- ---------------
-  ***Device Name***   ***Select Code***   ***Initially\   ***Device Name***   ***Select Code***   ***Initially\
-                                          Disabled***                                             Disabled***
-
-  **PTR**             10                                  **MSD**             30                  
-
-  **TTY**             11                                  **MSC**             31                  
-
-  **PTP**             12                                  **IPLI**            32                  
-
-  **TBG**             13                                  **IPLO**            33                  
-
-  **LPS**             14                                 **DS**              34                  
-
-  **LPT**             15                                  **BACI**            35                  
-
-  **MTD**             20                                 **MPX**             36                  
-
-  **MTC**             21                                 **PIF**             37                  
-
-  **DPD**             22                                  **MUX**             40                  
-
-  **DPC**             23                                  **MUXL**            41                  
-
-  **DQD**             24                                  **MUXC**            42                  
-
-  **DQC**             25                                  **DA**              43                  
-
-  **DRD**             26                                  **MC1**             45                  
-
-  **DRC**             27                                  **MC2**             46                  
-  ------------------- ------------------- --------------- ------------------- ------------------- ---------------
+| **_Device Name_** | **_Select Code_** | **_Initially Disabled_** | **_Device Name_** | **_Select Code_** | **_Initially Disabled_** |
+| ----------------- | ----------------- | ------------------------ | ----------------- | ----------------- | ------------------------ |
+| **PTR**           | 10                |                          | **MSD**           | 30                |
+| **TTY**           | 11                |                          | **MSC**           | 31                |                          |
+| **PTP**           | 12                |                          | **IPLI**          | 32                | &bull;                 |
+| **TBG**           | 13                |                          | **IPLO**          | 33                | &bull;                 |
+| **LPS**           | 14                | &bull;                 | **DS**            | 34                |                          |
+| **LPT**           | 15                |                          | **BACI**          | 35                |                          |
+| **MTD**           | 20                | &bull;                 | **MPX**           | 36                |                          |
+| **MTC**           | 21                | &bull;                 | **PIF**           | 37                |                          |
+| **DPD**           | 22                |                          | **MUX**           | 40                |                          |
+| **DPC**           | 23                |                          | **MUXL**          | 41                |                          |
+| **DQD**           | 24                |                          | **MUXC**          | 42                |                          |
+| **DQC**           | 25                |                          | **DA**            | 43                |                          |
+| **DRD**           | 26                |                          | **MC1**           | 45                | &bull;                 |
+| **DRC**           | 27                |                          | **MC2**           | 46                | &bull;                 |
 
 For devices with two interface cards (e.g., DP), specify the lower
 select code with either device name; the higher select code will be set
@@ -1128,8 +869,7 @@ and MC1 and MC2 devices are initially disabled.
 
 The select codes of the CPU, MP, and DMA/DCPC devices are fixed and
 cannot be changed or displayed. The MEM device does not have a select
-code, as DMS instructions, and not I/O instructions, are used to control
-it.
+code, as DMS instructions, and not I/O instructions, are used to control it.
 
 ### SAVE and RESTORE
 
@@ -1141,8 +881,7 @@ variables being identical to the layout of the structure variables that
 were saved. This is guaranteed only when using the same executable, as
 the layout used is implementation-defined.
 
-Realistic, Calibrated, and Optimized Timing
--------------------------------------------
+## Realistic, Calibrated, and Optimized Timing
 
 Devices simulate their I/O operation delays (disc seeks, magnetic tape
 reads, printer paper movements, etc.) by counting specified numbers of
@@ -1154,12 +893,11 @@ the instruction (e.g., for each word moved within a block-move
 instruction). Device simulations provide commands that determine how the
 appropriate tick counts are selected for I/O operations timing:
 
-  ------------------------------- -----------------------------------------------
-  ***Command***                   ***Action***
-  ***SET \<device\> REALTIME***   Configure the device to use realistic timing
-  ***SET \<device\> CALTIME***    Configure the device to use calibrated timing
-  ***SET \<device\> FASTTIME***   Configure the device to use optimized timing
-  ------------------------------- -----------------------------------------------
+| **_Command_**               | **_Action_**                                  |
+| --------------------------- | --------------------------------------------- |
+| **_SET \<device> REALTIME_** | Configure the device to use realistic timing  |
+| **_SET \<device> CALTIME_**  | Configure the device to use calibrated timing |
+| **_SET \<device> FASTTIME_** | Configure the device to use optimized timing  |
 
 A device configured to use *realistic timing* selects its tick counts to
 encompass the same number of machine instructions as would be executed
@@ -1207,16 +945,16 @@ simulator runs 15 times faster than a real machine, then a user would
 observe that printing 100 characters takes:
 
 -   10 seconds in CALTIME mode\
-    > (100 characters × *n* event ticks per character adjusted to take
-    > exactly 100 mS each on the host system)
+    (100 characters × *n* event ticks per character adjusted to take
+    exactly 100 mS each on the host system)
 
 -   667 milliseconds in REALTIME mode\
-    > (100 characters × 157,729 event ticks per character × 0.634 µS per
-    > tick ÷ 15 times hardware speed)
+    (100 characters × 157,729 event ticks per character × 0.634 µS per
+    tick ÷ 15 times hardware speed)
 
 -   845 microseconds in FASTTIME mode\
-    > (100 characters × 200 event ticks per character × 0.634 µS per
-    > tick ÷ 15 times hardware speed)
+    (100 characters × 200 event ticks per character × 0.634 µS per
+    tick ÷ 15 times hardware speed)
 
 If the SCP ***SET THROTTLE*** command is used to reduce the speed of the
 simulator, CALTIME operations will not be affected, but REALTIME and
@@ -1240,8 +978,7 @@ running operating systems. In general, software running under simulation
 will run faster when devices are configured for optimized-time mode, and
 this is the default for all peripheral devices.
 
-The Simulation Console and the System Console
----------------------------------------------
+## The Simulation Console and the System Console
 
 When the simulator is started, the SCP command prompt appears at the
 *simulation console.* For windowed host operating systems, this is
@@ -1257,16 +994,18 @@ commands may be entered from the same window. Additional "user"
 terminals may be connected via Telnet or serial ports to the BACI, MPX,
 or MUX devices as described later.
 
-The system console may be separated from the simulation console by using
-the ***SET CONSOLE TELNET=\<port\>*** or ***SET CONSOLE
-SERIAL=\<port\>*** command. This leaves the simulation console at the
+The system console may be separated from the simulation console by using the
+
+    SET CONSOLE TELNET=<port> or
+    SET CONSOLE SERIAL=<port>
+
+command. This leaves the simulation console at the
 initiating window and moves the system console to a Telnet or serial
 port, allowing the use of an HP terminal or terminal emulator. Entering
 the ***SET CONSOLE NOTELNET*** or ***SET CONSOLE NOSERIAL*** command
 will rejoin the consoles.
 
-The Keyboard Poll Device
-------------------------
+## The Keyboard Poll Device
 
 The simulator obtains asynchronous external input, such as system
 console keystrokes, by polling. The poll interval is selected to provide
@@ -1283,8 +1022,7 @@ input.
 The Keyboard Poll device provides no modifiers or registers, and it
 cannot be disabled.
 
-Tracing Simulator Operations
-----------------------------
+## Tracing Simulator Operations
 
 The simulator provides options for extensive tracing of the internal
 operations of selected devices. This is useful as an aid to hardware and
@@ -1295,12 +1033,12 @@ assertions. Tracing for each device and its separate reporting levels
 may be enabled independently.
 
 To obtain a trace, two SCP commands must be given. First, a *debug log*
-must be established with the ***SET DEBUG \<target\>*** command. This
+must be established with the ***SET DEBUG \<target>*** command. This
 command is described in detail in the "Controlling Debugging" section of
-the *SIMH Users\' Guide* manual. Typically, the target is a text file,
+the *SIMH Users' Guide* manual. Typically, the target is a text file,
 so that the trace may be reviewed after capture. Second, tracing must be
-enabled for the desired devices with ***SET \<device\>
-DEBUG=\<option\>*** commands. These are documented below in the sections
+enabled for the desired devices with ***SET \<device>
+DEBUG=\<option>*** commands. These are documented below in the sections
 that refer to the simulated devices. The formats of the trace output are
 specific to the devices being traced. Examples are provided in each
 device description section below.
@@ -1311,7 +1049,7 @@ broadest overview with the least specific detail and generates the
 smallest number of trace lines, thereby slowing program execution the
 least. Subsequent options provide increasing detail at the expense of
 larger debug log files. Enabling all trace options with a ***SET
-\<device\> DEBUG*** command provides the fullest picture of device
+\<device> DEBUG*** command provides the fullest picture of device
 operation but may generate very large log files.
 
 Some options enable tracing of periodic events, e.g., a clock tick or a
@@ -1325,87 +1063,79 @@ overhead is incurred when tracing is suspended with the ***SET
 NODEBUG*** command, even if individual device tracing options remain in
 effect.
 
-Processor Device Simulations
-============================
+# Processor Device Simulations
 
 An HP-family computer consists of the following subsystems:
 
--   a 2114, 2115, 2116, 2100, or 1000 M/E/F-Series Central Processing
-    > Unit
-
--   an optional 12578A/12607B/12895A DMA Controller or 12897B DCPC
-    > Controller
-
+-   a 2114, 2115, 2116, 2100, or 1000 M/E/F-Series Central Processing Unit
+-   an optional 12578A/12607B/12895A DMA Controller or 12897B DCPC Controller
 -   an optional 12581A/12892B Memory Protect
-
 -   an optional 12731A Memory Expansion Module
 
-Central Processing Unit
------------------------
+## Central Processing Unit
 
 The HP computer Central Processing Unit contains the machine-instruction
 execution unit and main memory. CPU options specify the memory size,
 installed firmware, and simulation configuration. The CPU is configured
 with commands of the form:
 
-SET {-F} CPU \<option\>
+    SET {-F} CPU <option>
 
 Device options that may be specified are:
 
-  ------------------------------------ -----------------------------------------------------------------------
-  ***Option***                         ***Action***
-  **2114**                             Use a 2114 computer
-  **2115**                             Use a 2115 computer
-  **2116**                             Use a 2116 computer; default
-  **2100**                             Use a 2100 computer
-  **1000-M**                           Use a 1000 M-Series computer
-  **1000-E**                           Use a 1000 E-Series computer
-  **1000-F**                           Use a 1000 F-Series computer
-  **21MX-M**                           Use a 21MX M-Series computer (same as a 1000 M-Series)
-  **21MX-E**                           Use a 21MX E-Series computer (same as a 1000 E-Series)
-  **8K**                               Set the memory size to 8K words
-  **12K**                              Set the memory size to 12K words
-  **16K**                              Set the memory size to 16K words
-  **24K**                              Set the memory size to 24K words
-  **32K**                              Set the memory size to 32K words; default
-  **64K**                              Set the memory size to 64K words
-  **128K**                             Set the memory size to 128K words
-  **256K**                             Set the memory size to 256K words
-  **512K**                             Set the memory size to 512K words
-  **1024K**                            Set the memory size to 1024K words
-  **EAU**                              Enable the Extended Arithmetic Unit instructions
-  **NOEAU**                            Disable the Extended Arithmetic Unit instructions; default
-  **FP**                               Enable the Floating Point instructions
-  **NOFP**                             Disable the Floating Point instructions; default
-  **IOP**                              Enable the 2000/Access I/O Processor instructions
-  **NOIOP**                            Disable the 2000/Access I/O Processor; default
-  **DMS**                              Enable the Dynamic Mapping System instructions
-  **NODMS**                            Disable the Dynamic Mapping System instructions; default
-  **FFP**                              Enable the Fast FORTRAN Processor instructions
-  **NOFFP**                            Disable Fast FORTRAN Processor instructions; default
-  **DBI**                              Enable the Double Integer Instructions
-  **NODBI**                            Disable the Double Integer Instructions; default
-  **EMA**                              Enable the Extended Memory Array instructions
-  **NOEMA**                            Disable the Extended Memory Array instructions; default
-  **VMAOS**                            Enable the Virtual Memory and Operating System instructions
-  **NOVMAOS**                          Disable the Virtual Memory and Operating System instructions; default
-  **VIS**                              Enable the Vector Instruction Set
-  **NOVIS**                            Disable the Vector Instruction Set; default
-  **SIGNAL**                           Enable the SIGNAL/1000 instructions
-  **NOSIGNAL**                         Disable the SIGNAL/1000 Instructions; default
-  **LOADERENABLE**                     Enable access to the protected binary loader
-  **LOADERDISABLE**                    Disable access to the protected binary loader; default
-  **ROMS=\<rom-list\>**                Change the set of installed boot loader ROMs
-  **IDLE**                             Enable idle detection
-  **NOIDLE**                           Disable idle detection; default
-  **STOP=\<option\>\[;\<option\]**     Enable simulation stops
-  **NOSTOP=\<option\>\[;\<option\]**   Disable simulation stops; default
-  **INDIR=\<limit\>**                  Set the maximum indirect addressing chain length; default is 16
-  **EXEC=\<match\>\[;\<mask\>\]**      Enable execution tracing of matching instructions
-  **NOEXEC**                           Disable execution tracing; default
-  **DEBUG=\<option\>**                 Enable tracing
-  **NODEBUG**                          Disable tracing; default
-  ------------------------------------ -----------------------------------------------------------------------
+| **_Option_**                          | **_Action_**                                                          |
+| ------------------------------------- | --------------------------------------------------------------------- |
+| **2114**                              | Use a 2114 computer                                                   |
+| **2115**                              | Use a 2115 computer                                                   |
+| **2116**                              | Use a 2116 computer; default                                          |
+| **2100**                              | Use a 2100 computer                                                   |
+| **1000-M**                            | Use a 1000 M-Series computer                                          |
+| **1000-E**                            | Use a 1000 E-Series computer                                          |
+| **1000-F**                            | Use a 1000 F-Series computer                                          |
+| **21MX-M**                            | Use a 21MX M-Series computer (same as a 1000 M-Series)                |
+| **21MX-E**                            | Use a 21MX E-Series computer (same as a 1000 E-Series)                |
+| **8K**                                | Set the memory size to 8K words                                       |
+| **12K**                               | Set the memory size to 12K words                                      |
+| **16K**                               | Set the memory size to 16K words                                      |
+| **24K**                               | Set the memory size to 24K words                                      |
+| **32K**                               | Set the memory size to 32K words; default                             |
+| **64K**                               | Set the memory size to 64K words                                      |
+| **128K**                              | Set the memory size to 128K words                                     |
+| **256K**                              | Set the memory size to 256K words                                     |
+| **512K**                              | Set the memory size to 512K words                                     |
+| **1024K**                             | Set the memory size to 1024K words                                    |
+| **EAU**                               | Enable the Extended Arithmetic Unit instructions                      |
+| **NOEAU**                             | Disable the Extended Arithmetic Unit instructions; default            |
+| **FP**                                | Enable the Floating Point instructions                                |
+| **NOFP**                              | Disable the Floating Point instructions; default                      |
+| **IOP**                               | Enable the 2000/Access I/O Processor instructions                     |
+| **NOIOP**                             | Disable the 2000/Access I/O Processor; default                        |
+| **DMS**                               | Enable the Dynamic Mapping System instructions                        |
+| **NODMS**                             | Disable the Dynamic Mapping System instructions; default              |
+| **FFP**                               | Enable the Fast FORTRAN Processor instructions                        |
+| **NOFFP**                             | Disable Fast FORTRAN Processor instructions; default                  |
+| **DBI**                               | Enable the Double Integer Instructions                                |
+| **NODBI**                             | Disable the Double Integer Instructions; default                      |
+| **EMA**                               | Enable the Extended Memory Array instructions                         |
+| **NOEMA**                             | Disable the Extended Memory Array instructions; default               |
+| **VMAOS**                             | Enable the Virtual Memory and Operating System instructions           |
+| **NOVMAOS**                           | Disable the Virtual Memory and Operating System instructions; default |
+| **VIS**                               | Enable the Vector Instruction Set                                     |
+| **NOVIS**                             | Disable the Vector Instruction Set; default                           |
+| **SIGNAL**                            | Enable the SIGNAL/1000 instructions                                   |
+| **NOSIGNAL**                          | Disable the SIGNAL/1000 Instructions; default                         |
+| **LOADERENABLE**                      | Enable access to the protected binary loader                          |
+| **LOADERDISABLE**                     | Disable access to the protected binary loader; default                |
+| **ROMS=\<rom-list>**                   | Change the set of installed boot loader ROMs                          |
+| **IDLE**                              | Enable idle detection                                                 |
+| **NOIDLE**                            | Disable idle detection; default                                       |
+| **STOP=\<option>\[;\<option\]**   | Enable simulation stops                                               |
+| **NOSTOP=\<option>\[;\<option\]** | Disable simulation stops; default                                     |
+| **INDIR=\<limit>**                  | Set the maximum indirect addressing chain length; default is 16       |
+| **EXEC=\<match>\[;\<mask>\]**     | Enable execution tracing of matching instructions                     |
+| **NOEXEC**                            | Disable execution tracing; default                                    |
+| **DEBUG=\<option>**                 | Enable tracing                                                        |
+| **NODEBUG**                           | Disable tracing; default                                              |
 
 The abbreviated ***SET CPU 1000*** and ***SET CPU 21MX*** commands
 configure the CPU models as 1000 E-Series and 1000 M-Series machines,
@@ -1420,12 +1150,11 @@ lost.
 The following standard microcode is automatically enabled when the
 applicable 1000-series CPU is selected:
 
-  ---------------------------- ---------------------
-  ***Instruction Set***        ***Applicable to***
-  Extended Instruction Group   1000 M/E/F-Series
-  Floating-Point Processor     1000 F-Series
-  Scientific Instruction Set   1000 F-Series
-  ---------------------------- ---------------------
+| **_Instruction Set_**      | **_Applicable to_** |
+| -------------------------- | ------------------- |
+| Extended Instruction Group | 1000 M/E/F-Series   |
+| Floating-Point Processor   | 1000 F-Series       |
+| Scientific Instruction Set | 1000 F-Series       |
 
 The 1000 E/F-Series microcode self-test diagnostics are not simulated.
 
@@ -1502,7 +1231,7 @@ allocated to installed firmware options will be dispatched to a
 user-alterable module to aid in the implementation of user-written
 microcode simulations. In the absence of such simulations, execution
 will cause unimplemented instruction stops. See the comments in the
-*hp2100\_cpu0.c* source file for details.
+*hp2100_cpu0.c* source file for details.
 
 The 2114, 2115, 2116, and 2100 models support a protected area of memory
 containing an initial binary loader. The loader always resides in the
@@ -1543,27 +1272,27 @@ This command is described in the Tracing section below.
 The CPU models and feature applicability are shown in the following
 table:
 
-  ------------------------------------------------ ------------ ------------ ------------ ------------ -------------- -------------- --------------
-  ***Feature***                                    ***2114***   ***2115***   ***2116***   ***2100***   ***1000 M***   ***1000 E***   ***1000 F***
-  Maximum Memory                                   16K          8K           32K          32K          1024K          1024K          1024K
-  Memory Expansion                                 ×            ×            ×            ×                                        
-  Memory Protect                                   ×            ×                                                                
-  Direct Memory Access                                                                                                         
-  EAU                                              ×                                                                            
-  FP                                               ×            ×            ×                                                    
-  IOP                                              ×            ×            ×                                                    ×
-  FFP                                              ×            ×            ×                                                    
-  EIG                                              ×            ×            ×            ×                                        
-  DMS                                              ×            ×            ×            ×                                        
-  DBI                                              ×            ×            ×            ×            ×                            
-  EMA                                              ×            ×            ×            ×            ×                            
-  VMA/OS                                           ×            ×            ×            ×            ×                            
-  FPP                                              ×            ×            ×            ×            ×              ×              
-  SIS                                              ×            ×            ×            ×            ×              ×              
-  VIS                                              ×            ×            ×            ×            ×              ×              
-  SIGNAL                                           ×            ×            ×            ×            ×              ×              
-  Key: × = unavailable  = optional  = standard                                                                                     
-  ------------------------------------------------ ------------ ------------ ------------ ------------ -------------- -------------- --------------
+| **_Feature_**        | **_2114_** | **_2115_** | **_2116_** | **_2100_** | **_1000 M_** | **_1000 E_** | **_1000 F_** |
+| -------------------- | ---------- | ---------- | ---------- | ---------- | ------------ | ------------ | ------------ |
+| Maximum Memory       | 16K        | 8K         | 32K        | 32K        | 1024K        | 1024K        | 1024K        |
+| Memory Expansion     | ×          | ×          | ×          | ×          | O            | O            | O            |
+| Memory Protect       | ×          | ×          | O          | &#10003;   | O            | O            | O            |
+| Direct Memory Access | O          | O          | O          | O          | O            | O            | O            |
+| EAU                  | ×          | O          | O          | &#10003;   | &#10003;     | &#10003;     | &#10003;     |
+| FP                   | ×          | ×          | ×          | O          | &#10003;     | &#10003;     | &#10003;     |
+| IOP                  | x          | x          | x          | O          | O            | O            | x            |
+| FPP                  | x          | x          | x          | O          | O            | O            | &#10003;     |
+| EIG                  | ×          | ×          | ×          | x          | &#10003;     | &#10003;     | &#10003;     |
+| DMS                  | ×          | ×          | ×          | x          | O            | O            | O            |
+| DBI                  | ×          | ×          | ×          | ×          | ×            | O            | &#10003;     |
+| EMA                  | ×          | ×          | ×          | ×          | ×            | O            | O            |
+| VMA/OS               | ×          | ×          | ×          | ×          | ×            | O            | O            |
+| FPP                  | ×          | ×          | ×          | ×          | ×            | ×            | &#10003;     |
+| SIS                  | ×          | ×          | ×          | ×          | ×            | ×            | &#10003;     |
+| VIS                  | ×          | ×          | ×          | ×          | ×            | ×            | O            |
+| SIGNAL               | ×          | ×          | ×          | ×          | ×            | ×            | O            |
+
+Key: × = unavailable O = optional &#10003; = standard
 
 If a feature is standard for a given CPU, it cannot be disabled; if a
 feature is unavailable, it cannot be enabled.
@@ -1578,16 +1307,15 @@ fine-tune the desired feature set.
 
 The CPU configuration may be displayed with the following commands:
 
-  --------------------- -----------------------------------------------------
-  ***Command***         ***Action***
-  **SHOW CPU**          Display the device configuration
-  **SHOW CPU ROMS**     Display the set of installed boot loader ROMs
-  **SHOW CPU IOCAGE**   Display the set of installed I/O interfaces
-  **SHOW CPU STOPS**    Display the enabled simulation stops
-  **SHOW CPU INDIR**    Display the indirect chain length limit
-  **SHOW CPU EXEC**     Display the matching criteria for execution tracing
-  **SHOW CPU SPEED**    Display the current simulation speed
-  --------------------- -----------------------------------------------------
+| **_Command_**       | **_Action_**                                        |
+| ------------------- | --------------------------------------------------- |
+| **SHOW CPU**        | Display the device configuration                    |
+| **SHOW CPU ROMS**   | Display the set of installed boot loader ROMs       |
+| **SHOW CPU IOCAGE** | Display the set of installed I/O interfaces         |
+| **SHOW CPU STOPS**  | Display the enabled simulation stops                |
+| **SHOW CPU INDIR**  | Display the indirect chain length limit             |
+| **SHOW CPU EXEC**   | Display the matching criteria for execution tracing |
+| **SHOW CPU SPEED**  | Display the current simulation speed                |
 
 The current simulation speed, expressed as a multiple of the speed of a
 real HP 1000 E-Series, may be obtained with the ***SHOW CPU SPEED***
@@ -1604,28 +1332,23 @@ by entering ***LOAD*** commands as described above.
 
 To execute the BBL, the following sequence of commands is used:
 
-ATTACH PTR \<tape-image-filename\>\
-SET CPU LOADERENABLE\
-DEPOSIT S \<value\>\
-DEPOSIT P \<address\>\
-RESET\
-GO
+    ATTACH PTR <tape-image-filename>
+    SET CPU LOADERENABLE
+    DEPOSIT S <value>
+    DEPOSIT P <address>
+    RESET
+    GO
 
-\...where *address* is the appropriate loader starting address --- 07700
+...where *address* is the appropriate loader starting address --- 07700
 for 4K, 17700 for 8K, 27700 for 12K, 37700 for 16K, 57700 for 24K, or
 77700 for 32K. The S-register value is set to 000000 to load the paper
 tape, 000001 to verify the paper tape, or 100000 to compare the paper
 tape to memory. Loader execution ends with one of the following halt
 instructions:
 
--   HLT 00 --- the tape does not compare with memory; A = the tape value
-    > that did not compare.
-
--   HLT 11 --- a checksum error occurred; A = the tape value, B = the
-    > calculated value.
-
+-   HLT 00 --- the tape does not compare with memory; A = the tape value that did not compare.
+-   HLT 11 --- a checksum error occurred; A = the tape value, B = the calculated value.
 -   HLT 55 --- the load address would overlay the BBL.
-
 -   HLT 77 --- the end of tape was reached with a successful read.
 
 The loader is automatically disabled when the CPU executes the halt
@@ -1642,22 +1365,21 @@ interfaces, and begin execution.
 In simulation, the ***LOAD CPU*** command implements the IBL facility.
 The following set of ROMs is initially installed in the CPU:
 
-  ------------------ ---------------------- -------------------------------- -------------------
-  ***ROM Number***   ***Product Number***   ***Boot Device Description***    ***Boot Device***
-  00                 12992K                 2748B paper tape reader          PTR
-  01                 12992A                 7900 or 2883 disc                DPC or DQC
-  10                 12992D                 7970B or 7970E magnetic tape     MSC
-  11                 12992B                 7905, 7906, 7920, or 7925 disc   DS
-  ------------------ ---------------------- -------------------------------- -------------------
+| **_ROM Number_** | **_Product Number_** | **_Boot Device Description_**  | **_Boot Device_** |
+| ---------------- | -------------------- | ------------------------------ | ----------------- |
+| 00               | 12992K               | 2748B paper tape reader        | PTR               |
+| 01               | 12992A               | 7900 or 2883 disc              | DPC or DQC        |
+| 10               | 12992D               | 7970B or 7970E magnetic tape   | MSC               |
+| 11               | 12992B               | 7905, 7906, 7920, or 7925 disc | DS                |
 
 To copy and execute a loader, the following sequence of commands is
 used:
 
-ATTACH \<dev\> \<image-filename\>\
-DEPOSIT S \<value\>\
-LOAD CPU\
-RESET\
-GO
+    ATTACH <dev> <image-filename>
+    DEPOSIT S <value>
+    LOAD CPU
+    RESET
+    GO
 
 A successful copy will set the O (overflow) register to 0 and the P
 register to the starting address of the loader. If bits 15-14 of the S
@@ -1675,7 +1397,7 @@ loader halt codes are listed under their respective devices below.
 The set of boot loaders installed in a 1000-series CPU may be changed
 with the following command:
 
-SET CPU ROMS=\<rom-list\>
+    SET CPU ROMS=<rom-list>
 
 The ROM list may be omitted or contain from one to four device names,
 separated by semicolons, that specify the corresponding loaders to
@@ -1686,14 +1408,13 @@ into the socket corresponding to the position of the device name in the
 list. Sockets may be left empty by omitting the corresponding device
 name or by supplying fewer than four device names. For example:
 
-  --------------------------- -------------------------------------------------------------------
-  ***Command***               ***Action***
-  **SET CPU ROMS=**           Remove ROMs from sockets 0-3
-  **SET CPU ROMS=PTR**        Install the PTR ROM in socket 0; leave sockets 1-3 empty
-  **SET CPU ROMS=DS;MS**      Install the DS ROM in 0 and the MS ROM in 1; leave 2 and 3 empty
-  **SET CPU ROMS=;;DPC**      Install the DPC ROM in 2; leave 0, 1, and 3 empty
-  **SET CPU ROMS=DQC;;;DA**   Install the DQC ROM in 0 and the DA ROM in 3; leave 1 and 2 empty
-  --------------------------- -------------------------------------------------------------------
+| **_Command_**             | **_Action_**                                                      |
+| ------------------------- | ----------------------------------------------------------------- |
+| **SET CPU ROMS=**         | Remove ROMs from sockets 0-3                                      |
+| **SET CPU ROMS=PTR**      | Install the PTR ROM in socket 0; leave sockets 1-3 empty          |
+| **SET CPU ROMS=DS;MS**    | Install the DS ROM in 0 and the MS ROM in 1; leave 2 and 3 empty  |
+| **SET CPU ROMS=;;DPC**    | Install the DPC ROM in 2; leave 0, 1, and 3 empty                 |
+| **SET CPU ROMS=DQC;;;DA** | Install the DQC ROM in 0 and the DA ROM in 3; leave 1 and 2 empty |
 
 The current CPU model must be a 1000-series machine, and each device
 must be bootable and have a loader ROM assigned, or the command will be
@@ -1702,30 +1423,27 @@ rejected. A rejected command does not alter any of the ROM assignments.
 The ***SHOW CPU ROMS*** command displays the set of loader ROMs
 currently installed. For example:
 
-Socket Device ROM Description\
-\-\-\-\-\-- \-\-\-\-\--
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\
-0 PTR 12992K Paper Tape Loader\
-1 DQC 12992A 7900/7901/2883 Disc Loader\
-2 MSC 12992D 7970 Magnetic Tape Loader\
-3 DS 12992B 7905/7906/7920/7925 Disc Loader
+| Socket | Device | ROM Description                        |
+| ------ | ------ | -------------------------------------- |
+| 0      | PTR    | 12992K Paper Tape Loader               |
+| 1      | DQC    | 12992A 7900/7901/2883 Disc Loader      |
+| 2      | MSC    | 12992D 7970 Magnetic Tape Loader       |
+| 3      | DS     | 12992B 7905/7906/7920/7925 Disc Loader |
 
 The ***SHOW CPU IOCAGE*** command displays the set of interfaces
 currently installed in the I/O card cage. For example:
 
-SC Device Interface Description\
-\-- \-\-\-\-\--
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\
-10 PTR 12597A-002 Tape Reader Interface\
-11 TBG 12539C Time Base Generator Interface\
-12 DS 13175D Disc Controller Interface\
-13 MSD 13181B/13183B Digital Magnetic Tape Unit Interface Data Channel\
-14 MSC 13181B/13183B Digital Magnetic Tape Unit Interface Command
-Channel\
-15 (none) 12777A Priority Jumper Card\
-16 TTY 12531C Buffered Teleprinter Interface\
-17 PTP 12597A-005 Tape Punch Interface\
-20 LPT 12845B Line Printer Interface
+| SC  | Device | Interface Description                                              |
+| --- | ------ | ------------------------------------------------------------------ |
+| 10  | PTR    | 12597A-002 Tape Reader Interface                                   |
+| 11  | TBG    | 12539C Time Base Generator Interface                               |
+| 12  | DS     | 13175D Disc Controller Interface                                   |
+| 13  | MSD    | 13181B/13183B Digital Magnetic Tape Unit Interface Data Channel    |
+| 14  | MSC    | 13181B/13183B Digital Magnetic Tape Unit Interface Command Channel |
+| 15  | (none) | 12777A Priority Jumper Card                                        |
+| 16  | TTY    | 12531C Buffered Teleprinter Interface                              |
+| 17  | PTP    | 12597A-005 Tape Punch Interface                                    |
+| 20  | LPT    | 12845B Line Printer Interface                                      |
 
 The devices appear in select code order, beginning with select code 10
 and ending with the last occupied select code. Empty card cage slots
@@ -1733,24 +1451,22 @@ between devices behave as though they contain HP 12777A Priority Jumper
 Cards as shown above. Multiple devices assigned to the same select code
 are reported as a conflict. For instance:
 
-sim\> SET PTP SC=12\
-sim\> SHOW CPU IOCAGE\
-\
-Select code 12 conflict (PTP and DS)\
-\
-SC Device Interface Description\
-\-- \-\-\-\-\--
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\
-10 PTR 12597A-002 Tape Reader Interface\
-11 TBG 12539C Time Base Generator Interface\
-12 \-\-- (multiple assignments)\
-13 MSD 13181B/13183B Digital Magnetic Tape Unit Interface Data Channel\
-14 MSC 13181B/13183B Digital Magnetic Tape Unit Interface Command
-Channel\
-15 (none) 12777A Priority Jumper Card\
-16 TTY 12531C Buffered Teleprinter Interface\
-17 (none) 12777A Priority Jumper Card\
-20 LPT 12845B Line Printer Interface
+    sim> SET PTP SC=12
+    sim> SHOW CPU IOCAGE
+    
+    Select code 12 conflict (PTP and DS)
+
+SC |Device |Interface Description
+--|------|---------------------
+10 |PTR |12597A-002 Tape Reader Interface
+11 |TBG| 12539C Time Base Generator Interface
+12 |\-\--| (multiple assignments)
+13 |MSD |13181B/13183B Digital Magnetic Tape Unit Interface Data Channel
+14 |MSC |13181B/13183B Digital Magnetic Tape Unit Interface Command Channel
+15 |(none) |12777A Priority Jumper Card
+16 |TTY |12531C Buffered Teleprinter Interface
+17 |(none)| 12777A Priority Jumper Card
+20 |LPT| 12845B Line Printer Interface
 
 The simulator will not begin program execution until the conflict is
 resolved.
@@ -1761,21 +1477,20 @@ The simulator can be configured to detect certain machine instruction
 conditions and stop execution when one of them occurs. Stops may be
 enabled or disabled individually with these commands:
 
-SET CPU STOP=\<option\>\[;\<option\]\
-SET CPU NOSTOP=\<option\>\[;\<option\]
+    SET CPU STOP=<option>[;<option]
+    SET CPU NOSTOP=<option>[;<option]
 
 The ***SET CPU STOP*** and ***SET CPU NOSTOP*** commands enable or
 disable all of the configurable stops.
 
 These options control the simulation stop conditions:
 
-  -------------- ----------------------------------------------------
-  ***Option***   ***Stop Condition***
-  **UNIMPL**     Stop when an unimplemented instruction is executed
-  **UNDEF**      Stop when an undefined instruction is executed
-  **UNSC**       Stop when an unused select code is referenced
-  **IOERR**      Stop when an unreported I/O error occurs
-  -------------- ----------------------------------------------------
+  ***Option***  | ***Stop Condition***
+  -------------- |----------------------------------------------------
+  **UNIMPL**   |  Stop when an unimplemented instruction is executed
+  **UNDEF**  |    Stop when an undefined instruction is executed
+  **UNSC**   |    Stop when an unused select code is referenced
+  **IOERR**    |  Stop when an unreported I/O error occurs
 
 Setting the ***UNIMPL*** option stops the simulator if execution of an
 unimplemented instruction is attempted. An instruction is unimplemented
@@ -1844,17 +1559,16 @@ specifying the ***--B*** switch with any of the preceding commands will
 resume execution while bypassing the stop for the current instruction.
 Bypassing a stop has the following effect:
 
-  -------------- --------------------------------------------------------------
-  ***Option***   ***Bypass Action***
-  **UNIMPL**     Resume execution with the instruction ignored
-  **UNDEF**      Resume execution with the instruction decoded as in hardware
-  **UNSC**       Resume execution with the I/O instruction ignored
-  **IOERR**      Resume execution with the action as in hardware
-  -------------- --------------------------------------------------------------
+| **_Option_** | **_Bypass Action_**                                          |
+| ------------ | ------------------------------------------------------------ |
+| **UNIMPL**   | Resume execution with the instruction ignored                |
+| **UNDEF**    | Resume execution with the instruction decoded as in hardware |
+| **UNSC**     | Resume execution with the I/O instruction ignored            |
+| **IOERR**    | Resume execution with the action as in hardware              |
 
 In addition to these configurable stops, an unconditional simulation
 stop will occur if an indirect addressing chain exceeds the maximum
-length specified by a ***SET CPU INDIR=\<limit\>*** command. HP computer
+length specified by a ***SET CPU INDIR=\<limit>*** command. HP computer
 family memory addresses may be indirect to indicate that the values
 point to the target addresses rather than contain the target addresses.
 The target of an indirect address may itself be indirect, and the CPU
@@ -1864,11 +1578,11 @@ chain loops back on itself (e.g., if an indirect address points to
 itself), then instruction execution will be stopped. For example, these
 commands:
 
-DEPOSIT 0 LDA 1,I\
-DEPOSIT 1 100001\
-RUN 0
+    DEPOSIT 0 LDA 1,I
+    DEPOSIT 1 100001
+    RUN 0
 
-\...will stop the simulator with an **Indirect address loop** message.
+...will stop the simulator with an **Indirect address loop** message.
 
 The limit may be set to any number of levels up to 32,768. This is the
 absolute maximum number of levels that can be created without an
@@ -1884,22 +1598,22 @@ and control returns to the SCP prompt. The contents of the T and P
 registers, and the halt instruction and the next instruction to execute
 are displayed. For example:
 
-Programmed halt, T: 102023 (HLT 23), P: 00101 (CLA,INA)\
-sim\>
+    Programmed halt, T: 102023 (HLT 23), P: 00101 (CLA,INA)
+    sim>
 
 When the simulator stops for a user request or after reaching a
 breakpoint or completing a ***STEP*** command, the P-register value and
 the next instruction to execute are displayed. For example:
 
-Simulation stopped, P: 03306 (JMP 3311)\
-sim\>
+    Simulation stopped, P: 03306 (JMP 3311)
+    sim>
 
 If an interrupt is pending, however, the instruction contained in the
 trap cell corresponding to the highest-priority interrupting device will
 be displayed instead:
 
-Simulation stopped, P: 03306 (IAK 11: JSB 1644,I)\
-sim\>
+    Simulation stopped, P: 03306 (IAK 11: JSB 1644,I)
+    sim>
 
 This indicates that when simulation resumes, the device with select code
 11 will receive the interrupt acknowledgement, and JSB 1644,I will be
@@ -1911,40 +1625,34 @@ trap cell instruction is executed.
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ---------------------------------------
-  ***Option***   ***Reporting Level***
-  **INSTR**      Machine instructions executed
-  **DATA**       Memory data accesses
-  **FETCH**      Memory instruction fetches
-  **REG**        Register values
-  **OPND**       Memory operand values
-  **EXEC**       Matching instruction execution states
-  -------------- ---------------------------------------
+  ***Option*** |  ***Reporting Level***
+  --------------| ---------------------------------------
+  **INSTR**  |    Machine instructions executed
+  **DATA**   |    Memory data accesses
+  **FETCH**|      Memory instruction fetches
+  **REG**  |      Register values
+  **OPND** |      Memory operand values
+  **EXEC**  |     Matching instruction execution states
 
 A section of an example trace is:
 
-> \>\>CPU instr: S 0002 05756 102705 STC 5\
-> \>\>CPU fetch: S 0002 05757 105736 instruction fetch\
-> \>\>CPU reg: P \*\*\*\* 01011 042200 A 177777, B 177777, X 177777, Y
-> 000000, E O I\
-> \>\>CPU instr: S 0002 05757 105736 UJP 2111\
-> \>\>CPU fetch: S 0002 05760 002111 instruction fetch\
-> \>\>CPU fetch: U 0001 02111 026111 instruction fetch\
-> \>\>CPU reg: P \*\*\*\* 01011 042200 A 177777, B 177777, X 177777, Y
-> 000000, E O I\
-> \>\>CPU instr: U 0001 02111 026111 JMP 2111\
-> \>\>CPU instr: U 0001 02111 000011 interrupt\
-> \>\>CPU fetch: S 0000 00011 115013 instruction fetch\
-> \>\>CPU reg: - \*\*\*\* 01011 042200 A 177777, B 177777, X 177777, Y
-> 000000, E O I\
-> \>\>CPU reg: - \*\*\*\* \*\*\*\*\* \*\*\*\*\*\* MPF 000000, MPV
-> 002111, MES 163011, MEV 030000\
-> \>\>CPU instr: S 0000 00011 115013 JSB 1013,I\
-> \>\>CPU data: S 0000 01013 005557 data read\
-> \>\>CPU data: S 0002 05557 002111 data write\
-> \>\>CPU fetch: S 0002 05560 103100 instruction fetch\
-> \>\>CPU reg: - \*\*\*\* 01011 042200 A 177777, B 177777, X 177777, Y
-> 000000, E O I
+    >>CPU instr: S 0002 05756 102705 STC 5
+    >>CPU fetch: S 0002 05757 105736 instruction fetch
+    >>CPU reg:   P **** 01011 042200 A 177777, B 177777, X 177777, Y 000000, E O I
+    >>CPU instr: S 0002 05757 105736 UJP 2111
+    >>CPU fetch: S 0002 05760 002111 instruction fetch
+    >>CPU fetch: U 0001 02111 026111 instruction fetch
+    >>CPU reg:   P **** 01011 042200 A 177777, B 177777, X 177777, Y 000000, E O I
+    >>CPU instr: U 0001 02111 026111 JMP 2111
+    >>CPU instr: U 0001 02111 000011 interrupt
+    >>CPU fetch: S 0000 00011 115013 instruction fetch
+    >>CPU reg:   - **** 01011 042200 A 177777, B 177777, X 177777, Y 000000, E O I
+    >>CPU reg:   - **** ***** ****** MPF 000000, MPV 002111, MES 163011, MEV 030000
+    >>CPU instr: S 0000 00011 115013 JSB 1013,I
+    >>CPU data:  S 0000 01013 005557 data read
+    >>CPU data:  S 0002 05557 002111 data write
+    >>CPU fetch: S 0002 05560 103100 instruction fetch
+    >>CPU reg:   - **** 01011 042200 A 177777, B 177777, X 177777, Y 000000, E O I
 
 The ***INSTR*** option traces instruction executions. Each instruction
 is printed before it is executed.
@@ -2007,97 +1715,60 @@ either by an interrupt or a simulation stop.
 
 The trace formats are interpreted as follows:
 
-\>\>CPU instr: [S]{.underline} [0002]{.underline} [05757]{.underline}
-[105736]{.underline} [UJP 2111]{.underline}
+    >>CPU instr: S 0002 05757 105736 UJP 2111
+                 |    |     |      |   \-Instruction mnemonic
+                 |    |     |      \-Octal data (instruction opcode)
+                 |    |      \-Octal address (P register)
+                 |     \-Octal physical page number
+                  \- Memory map (system/user/disabled)
 
-Instruction mnemonic
+    >>CPU instr: U 0001 02111 000011 interrupt
+                 |    |     |      |  \-Interrupt classification
+                 |    |     |       \-Octal interrupting select code
+                 |    |     \-Octal address (P register) at interrupt
+                 |    \-Octal physical page number at interrupt
+                  \- Memory map (system/user/disabled) at interrupt
 
-Octal data (instruction opcode)
+    >>CPU data:  - 0000 01013 005557 data read
+    >>CPU data:  U 0000 01776 000104 unprotected write
+    >>CPU fetch: S 0002 05757 105736 instruction fetch
+                 |    |     |      |  \-Memory access classification
+                 |    |     |      \-Octal data (memory contents)
+                 |    |     \-Octal logical address (effective address)
+                 |    \-Octal physical page number
+                 \-Memory map (system/user/disabled)
 
-Octal address (P register)
+    >>CPU reg: P **** 01011 042200 A 177777, B 177777, X 177777, Y 000000, e O I
+               |          |      | \-Register values and interrupt system status
+               |          |      \-S register
+               |           \-MEM base-page fence register
+               \-Protection status (protected/unprotected)
 
-Octal physical page number
+    >>CPU reg: - **** ***** ***** MPF 000000, MPV 002111, MES 163011, MEV 030000
+               |                  \-MP and MEM register values
+               \- Protection status (protected/unprotected)
 
-Memory map (system/user/disabled)
+    >>CPU opnd: * **** 20056 105251 virtual address 1400006
+    >>CPU opnd: * **** 20056 105251 dimension 1 element count 1024
+    >>CPU opnd: * **** 20056 105251 element size 2 offset 00000000000
+                          |     |    \-Instruction-specific operand value
+                          |     \-Associated instruction opcode
+                          \-Octal address (P register)
 
-\>\>CPU instr: [U]{.underline} [0001]{.underline} [02111]{.underline}
-[000011]{.underline} [interrupt]{.underline}
-
-Interrupt classification
-
-Octal interrupting select code
-
-Octal address (P register) at interrupt
-
-Octal physical page number at interrupt
-
-Memory map (system/user/disabled) at interrupt
-
-\>\>CPU data: - 0000 01013 005557 data read\
-\>\>CPU data: U 0000 01776 000104 unprotected write[\
-]{.underline}\>\>CPU fetch: [S]{.underline} [0002]{.underline}
-[05757]{.underline} [105736]{.underline} [instruction fetch]{.underline}
-
-Memory access classification
-
-Octal data (memory contents)
-
-Octal logical address (effective address)
-
-Octal physical page number
-
-Memory map (system/user/disabled)
-
-\>\>CPU reg: [P]{.underline} \*\*\*\* [01011]{.underline}
-[042200]{.underline} [A 177777, B 177777, X 177777, Y 000000, e O
-I]{.underline}
-
-Register values and interrupt system status
-
-S register
-
-MEM base-page fence register
-
-Protection status (protected/unprotected)
-
-> \>\>CPU reg: [-]{.underline} \*\*\*\* \*\*\*\*\* \*\*\*\*\*\* [MPF
-> 000000, MPV 002111, MES 163011, MEV 030000]{.underline}
-
-MP and MEM register values
-
-Protection status (protected/unprotected)
-
-\>\>CPU opnd: \* \*\*\*\* 20056 105251 virtual address 1400006\
-\>\>CPU opnd: \* \*\*\*\* 20056 105251 dimension 1 element count 1024\
-\>\>CPU opnd: \* \*\*\*\* [20056]{.underline} [105251]{.underline}
-[element size 2 offset 00000000000]{.underline}
-
-Instruction-specific operand value
-
-Associated instruction opcode
-
-Octal address (P register)
-
-\>\>CPU instr: [-]{.underline} [0001]{.underline} [02200]{.underline}
-[102077]{.underline} [simulation stop: Programmed halt]{.underline}
-
-Reason for the simulation stop
-
-Octal data (T register)
-
-Octal address (M register)
-
-Octal physical page number
-
-Memory map (system/user/disabled)
+    >>CPU instr: - 0001 02200 102077 simulation stop: Programmed halt
+                 |   |    |      |     \-Reason for the simulation stop
+                 |   |    |      \-Octal data (T register)
+                 |   |    \-Octal address (M register)
+                 |   |\-Octal physical page number
+                 \-Memory map (system/user/disabled)
 
 Enabling CPU tracing can produce a very large number of lines very
 quickly, so care should be used to enable tracing only around the area
 of interest. Breakpoint actions may be used to implement this; for
 example:
 
-BREAK 100; SET CPU DEBUG; GO\
-BREAK 200; SET CPU NODEBUG; GO
+    BREAK 100; SET CPU DEBUG; GO
+    BREAK 200; SET CPU NODEBUG; GO
 
 These commands will enable tracing when the program counter reaches
 location 100 and disable tracing when it reaches location 200, thereby
@@ -2111,31 +1782,30 @@ log file size.
 The CPU state contains the registers visible to the programmer and the
 interrupt and dynamic mapping system control registers:
 
-  ------------------ ------------ ------------- ---------------- ----------------- -------------------------------
-  ***Name***         ***Size***   ***Radix***   ***Symbolic***   ***Read-Only***   ***Description***
-  **P**              15           8                                                Program Counter
-  **A**              16           8                                               Accumulator A
-  **B**              16           8                                               Accumulator B
-  **M**              15           8                                                Memory Address Register
-  **T**              16           8                                              Memory Data Register
-  **X**              16           8                                               Index Register X
-  **Y**              16           8                                               Index Register Y
-  **S**              16           8                                               Display Register
-  **E**              1            2                                                Extend Register
-  **O**              1            2                                                Overflow Register
-  **CIR**            6            8                                                Central Interrupt Register
-  **INTSYS**         1            2                                                Interrupt System Enabled
-  **INTEN**          1            2                                                Interrupt Recognition Enabled
-  **IOPSP**          16           8                                                I/O Processor Stack Pointer
-  **PCQ \[0:63\]**   15           8                                               Program Counter Queue
-  ------------------ ------------ ------------- ---------------- ----------------- -------------------------------
+| **_Name_**       | **_Size_** | **_Radix_** | **_Symbolic_** | **_Read-Only_** | **_Description_**             |
+| ---------------- | ---------- | ----------- | -------------- | --------------- | ----------------------------- |
+| **P**            | 15         | 8           |                |                 | Program Counter               |
+| **A**            | 16         | 8           | &#10003;       |                 | Accumulator A                 |
+| **B**            | 16         | 8           | &#10003;       |                 | Accumulator B                 |
+| **M**            | 15         | 8           |                |                 | Memory Address Register       |
+| **T**            | 16         | 8           | &#10003;       | &#10003;        | Memory Data Register          |
+| **X**            | 16         | 8           | &#10003;       |                 | Index Register X              |
+| **Y**            | 16         | 8           | &#10003;       |                 | Index Register Y              |
+| **S**            | 16         | 8           | &#10003;       |                 | Display Register              |
+| **E**            | 1          | 2           |                |                 | Extend Register               |
+| **O**            | 1          | 2           |                |                 | Overflow Register             |
+| **CIR**          | 6          | 8           |                |                 | Central Interrupt Register    |
+| **INTSYS**       | 1          | 2           |                |                 | Interrupt System Enabled      |
+| **INTEN**        | 1          | 2           |                |                 | Interrupt Recognition Enabled |
+| **IOPSP**        | 16         | 8           |                |                 | I/O Processor Stack Pointer   |
+| **PCQ \[0:63\]** | 15         | 8           |                | &#10003;        | Program Counter Queue         |
+
 
 The A, B, T, X, Y, and S registers may be examined or deposited using
 any of the modes described in the Symbolic Display and Entry section
 above.
 
-12578A/12607B/12895A Direct Memory Access Controllers, 12897B Dual-Channel Port Controller
-------------------------------------------------------------------------------------------
+## 12578A/12607B/12895A Direct Memory Access Controllers, 12897B Dual-Channel Port Controller
 
 Direct memory access controllers permit the computer to transfer data
 directly between an I/O device and memory on a cycle-stealing basis.
@@ -2160,25 +1830,23 @@ The device names are ***DMA1*** for the 12607B, ***DMA1*** and
 ***DMA2*** for the 12578A and 12895A, and ***DCPC1*** and ***DCPC2***
 for the 12897B. Device options that may be specified are:
 
-  ---------------------- ----------------------------
-  ***Option***           ***Action***
-  **DEBUG=\<option\>**   Enable tracing
-  **NODEBUG**            Disable tracing; default
-  **ENABLED**            Enable the device; default
-  **DISABLED**           Disable the device
-  ---------------------- ----------------------------
+| **_Option_**          | **_Action_**               |
+| --------------------- | -------------------------- |
+| **DEBUG=\<option>** | Enable tracing             |
+| **NODEBUG**           | Disable tracing; default   |
+| **ENABLED**           | Enable the device; default |
+| **DISABLED**          | Disable the device         |
 
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **CMD**        Channel commands
-  **CSRW**       Control, status, read, and write actions
-  **SR**         Service requests received
-  **DATA**       Direct memory data accesses
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+| **_Option_** | **_Reporting Level_**                                |
+| ------------ | ---------------------------------------------------- |
+| **CMD**      | Channel commands                                     |
+| **CSRW**     | Control, status, read, and write actions             |
+| **SR**       | Service requests received                            |
+| **DATA**     | Direct memory data accesses                          |
+| **IOBUS**    | I/O bus signals and data words received and returned |
 
 The ***CMD*** option traces the initiation and completion of channel
 transfers. The ***CSRW*** option traces control, status, read, and write
@@ -2190,50 +1858,40 @@ controller.
 
 The trace formats are interpreted as follows:
 
-\>\>DCPC1 cmd: Channel transfer completed\
-\>\>DCPC1 csrw: Control word 1 is STC \| CLC \| select code 23\
-\>\>DCPC1 sr: Select code 23 asserted SRQ\
-\>\>DCPC1 iobus: [Received data 000000 with signals STC \| CLF \| SIR \|
-PRH]{.underline}
+    >>DCPC1   cmd: Channel transfer completed
+    >>DCPC1  csrw: Control word 1 is STC | CLC | select code 23
+    >>DCPC1    sr: Select code 23 asserted SRQ
+    >>DCPC1 iobus: Received data 000000 with signals STC | CLF | SIR | PRH
+                   \-Operational message
 
-Operational message
-
-\>\>DCPC1 data: [B]{.underline} [0002]{.underline} [05757]{.underline}
-[105736]{.underline} [dma write]{.underline}
-
-Memory access classification
-
-Octal data (memory contents)
-
-Octal logical address (effective address)
-
-Octal physical page number
-
-Memory map (port A/port B/disabled)
+    >>DCPC1  data: B 0002 05757 105736 dma write
+                   |    |     |   |    \-Memory access classification
+                   |    |     |   \-Octal data (memory contents)
+                   |    |     \-Octal logical address (effective address)
+                   |    \-Octal physical page number
+                   \-Memory map (port A/port B/disabled)
 
 Each DMA/DCPC channel state contains these registers:
 
-  ------------ ------------ ------------- ---------------- -----------------------------------
-  ***Name***   ***Size***   ***Radix***   ***Symbolic***   ***Description***
-  **XFR**      6            8                              Channel is active if \> 0
-  **CTL**      1            2                              Channel interrupt is enabled
-  **FLG**      1            2                              Channel is ready
-  **FBF**      1            2                              Channel is ready (buffer)
-  **CTL2**     1            2                              Command word 2/3 selector
-  **CW1**      16           8                              Command word 1
-  **CW2**      16           8                              Command word 2
-  **CW3**      16           8                              Command word 3
-  **BYTE**     1            2                              Byte-packing register is occupied
-  **PACKER**   8            8                             Byte-packing register
-  ------------ ------------ ------------- ---------------- -----------------------------------
+| **_Name_** | **_Size_** | **_Radix_** | **_Symbolic_** | **_Description_**                 |
+| ---------- | ---------- | ----------- | -------------- | --------------------------------- |
+| **XFR**    | 6          | 8           |                | Channel is active if > 0          |
+| **CTL**    | 1          | 2           |                | Channel interrupt is enabled      |
+| **FLG**    | 1          | 2           |                | Channel is ready                  |
+| **FBF**    | 1          | 2           |                | Channel is ready (buffer)         |
+| **CTL2**   | 1          | 2           |                | Command word 2/3 selector         |
+| **CW1**    | 16         | 8           |                | Command word 1                    |
+| **CW2**    | 16         | 8           |                | Command word 2                    |
+| **CW3**    | 16         | 8           |                | Command word 3                    |
+| **BYTE**   | 1          | 2           |                | Byte-packing register is occupied |
+| **PACKER** | 8          | 8           | &#10003;       | Byte-packing register             |
 
 The BYTE and PACKER registers are applicable only to the 12578A
 controller. The PACKER register defaults to single-character format
 display and entry but may be overridden with a numeric-format switch, if
 desired.
 
-12581A/12892B Memory Protect
-----------------------------
+## 12581A/12892B Memory Protect
 
 Memory protection is standard equipment on the 2100 (although it may be
 disabled by removing a jumper) and optional on the 2116 and 1000. It
@@ -2250,17 +1908,16 @@ standard memory protection for the 2100.
 
 Device options that may be specified are:
 
-  -------------- ----------------------------
-  ***Option***   ***Action***
-  **JSBIN**      Install jumper W5; default
-  **JSBOUT**     Remove jumper W5
-  **INTIN**      Install jumper W6; default
-  **INTOUT**     Remove jumper W6
-  **SEL1IN**     Install jumper W7
-  **SEL1OUT**    Remove jumper W7; default
-  **ENABLED**    Enable the device; default
-  **DISABLED**   Disable the device
-  -------------- ----------------------------
+| **_Option_** | **_Action_**               |
+| ------------ | -------------------------- |
+| **JSBIN**    | Install jumper W5; default |
+| **JSBOUT**   | Remove jumper W5           |
+| **INTIN**    | Install jumper W6; default |
+| **INTOUT**   | Remove jumper W6           |
+| **SEL1IN**   | Install jumper W7          |
+| **SEL1OUT**  | Remove jumper W7; default  |
+| **ENABLED**  | Enable the device; default |
+| **DISABLED** | Disable the device         |
 
 W5 determines whether JSB instructions referencing memory locations 0
 and 1 are legal (installed) or illegal (removed). W6 controls whether
@@ -2279,40 +1936,35 @@ Violation Register, but the offending program is allowed to continue.
 When a debug log has been established, tracing may be configured by
 specifying the reporting level option:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+| **_Option_** | **_Reporting Level_**                                |
+| ------------ | ---------------------------------------------------- |
+| **IOBUS**    | I/O bus signals and data words received and returned |
 
 The ***IOBUS*** option traces the I/O backplane signals and data
 received and returned by the device.
 
 Examples of the trace formats follow:
 
-\>\>MP iobus: Received data 000000 with signals ENF \| SIR \| IEN \|
-PRH\
-\>\>MP iobus: Returned data 000000 with signals FLG \| IRQ\
-\>\>MP iobus: Received data 000000 with signals IAK \| SIR \| IEN \|
-PRH\
-\>\>MP iobus: Returned data 000000 with signals PRL\
-\>\>MP iobus: Received data 000000 with signals IOI\
-\>\>MP iobus: Returned data 024601 with signals (none)
+    >>MP iobus: Received data 000000 with signals ENF | SIR | IEN | PRH
+    >>MP iobus: Returned data 000000 with signals FLG | IRQ
+    >>MP iobus: Received data 000000 with signals IAK | SIR | IEN | PRH
+    >>MP iobus: Returned data 000000 with signals PRL
+    >>MP iobus: Received data 000000 with signals IOI
+    >>MP iobus: Returned data 024601 with signals (none)
 
 The Memory Protect state contains these registers:
 
-  ------------ ------------ ------------- --------------------------------------
-  ***Name***   ***Size***   ***Radix***   ***Description***
-  **CTL**      1            2             Control flip-flop
-  **FLG**      1            2             Flag flip-flop
-  **FBF**      1            2             Flag buffer flip-flop
-  **FR**       15           8             Fence register
-  **VR**       16           8             Violation register
-  **EVR**      1            2             Enable violation register flip-flop
-  **MEV**      1            2             Memory expansion violation flip-flop
-  ------------ ------------ ------------- --------------------------------------
+| **_Name_** | **_Size_** | **_Radix_** | **_Description_**                   |
+| ---------- | ---------- | ----------- | ----------------------------------- |
+| **CTL**    | 1          | 2           | Control flip-flop                   |
+| **FLG**    | 1          | 2           | Flag flip-flop                      |
+| **FBF**    | 1          | 2           | Flag buffer flip-flop               |
+| **FR**     | 15         | 8           | Fence register                      |
+| **VR**     | 16         | 8           | Violation register                  |
+| **EVR**    | 1          | 2           | Enable violation register flip-flop |
+| **MEV**    | 1          | 2           | Memory expansion violation flip-flo |
 
-12731A Memory Expansion Module
-------------------------------
+## 12731A Memory Expansion Module
 
 The HP 12731A Memory Expansion Module is an option for the HP 1000
 M/E/F-Series computers. The MEM provides mapping of the 32 1024-word
@@ -2330,50 +1982,36 @@ The MEM simulator is enabled and disabled by the ***SET CPU DMS*** and
 ***SET CPU NODMS*** commands, rather than the ***SET MEM ENABLED*** and
 ***DISABLED*** commands. The MEM state contains these registers:
 
-  -------------------- ------------ ------------- ------------------------------------
-  ***Name***           ***Size***   ***Radix***   ***Description***
-  **ENABLED**          1            2             Memory expansion is enabled
-  **CURMAP**           1            2             The user map is currently selected
-  **STATUS**           16           8             Status register
-  **VIOL**             16           8             Violation register
-  **SMAP \[0:31\]**    16           8             System map registers
-  **UMAP \[0:31\]**    16           8             User map registers
-  **PAMAP \[0:31\]**   16           8             DCPC port A registers
-  **PBMAP \[0:31\]**   16           8             DCPC port B registers
-  -------------------- ------------ ------------- ------------------------------------
+| **_Name_**         | **_Size_** | **_Radix_** | **_Description_**                 |
+| ------------------ | ---------- | ----------- | --------------------------------- |
+| **ENABLED**        | 1          | 2           | Memory expansion is enabled       |
+| **CURMAP**         | 1          | 2           | The user map is currently selecte |
+| **STATUS**         | 16         | 8           | Status register                   |
+| **VIOL**           | 16         | 8           | Violation register                |
+| **SMAP \[0:31\]**  | 16         | 8           | System map registers              |
+| **UMAP \[0:31\]**  | 16         | 8           | User map registers                |
+| **PAMAP \[0:31\]** | 16         | 8           | DCPC port A registers             |
+| **PBMAP \[0:31\]** | 16         | 8           | DCPC port B registers             |
 
-General I/O Device Simulations
-==============================
+# General I/O Device Simulations
 
 The simulator provides these general I/O device interfaces and their
 associated peripherals:
 
 -   12531C Buffered Teleprinter Interface
-
 -   12539C Time Base Generator
-
 -   12566B Microcircuit Interface
-
 -   12597A-002 Tape Reader Interface
-
 -   12597A-005 Tape Punch Interface
-
 -   12620A/12936A Privileged Interrupt Fence
-
 -   12653A Line Printer Interface
-
 -   12792C 8-Channel Asynchronous Multiplexer
-
 -   12845B Line Printer Interface
-
 -   12875A Processor Interconnect
-
 -   12920A Asynchronous Multiplexer Interface
-
 -   12966A Buffered Asynchronous Communications Interface
 
-12531C Buffered Teleprinter Interface with One 2752/54 Teleprinter
-------------------------------------------------------------------
+## 12531C Buffered Teleprinter Interface with One 2752/54 Teleprinter
 
 The 12531C Buffered Teleprinter Interface connects current-loop devices,
 such as the HP 2752A (ASR33) and 2754A (ASR35) teleprinters, as well as
@@ -2385,7 +2023,7 @@ keyboard. Unit 1 writes to the teleprinter printer. Unit 2 writes to the
 teleprinter paper tape punch. Attaching a paper tape image file to unit
 2 simulates loading blank paper tape into the punch:
 
-ATTACH {-N} TTY2 \<image-filename\>
+    ATTACH {-N} TTY2 <image-filename>
 
 Adding the ***--N*** (new file) switch clears the contents of the image
 file if present. Without the ***--N*** switch, punch output will be
@@ -2405,20 +2043,19 @@ console, e.g.:
 
 HP 2100 simulator teleprinter punch I/O error: Permission denied
 
-\...and the simulator stops. Simulation may be resumed and the operation
+...and the simulator stops. Simulation may be resumed and the operation
 retried if the problem has been corrected or with the punch operation
 incomplete if the problem is uncorrectable.
 
 Device options that may be specified are:
 
-  -------------- ---------------------------------------------------
-  ***Option***   ***Action***
-  **FASTTIME**   Use optimized timing; default
-  **REALTIME**   Use realistic timing
-  **SC=\<n\>**   Set the interface card select code; default is 11
-  **ENABLED**    Enable the device; default
-  **DISABLED**   Disable the device
-  -------------- ---------------------------------------------------
+| **_Option_**  | **_Action_**                                      |
+| ------------- | ------------------------------------------------- |
+| **FASTTIME**  | Use optimized timing; default                     |
+| **REALTIME**  | Use realistic timing                              |
+| **SC=\<n>** | Set the interface card select code; default is 11 |
+| **ENABLED**   | Enable the device; default                        |
+| **DISABLED**  | Disable the device                                |
 
 The interface supports realistic and optimized timing modes. Realistic
 timing accurately models the 10 character per second print and punch
@@ -2438,23 +2075,21 @@ which defaults to CTRL+E.
 
 Device configuration may be displayed with the following commands:
 
-  ------------------- -------------------------------------------
-  ***Command***       ***Action***
-  **SHOW TTY**        Display the device and unit configuration
-  **SHOW TTY MODE**   Display the timing mode
-  ------------------- -------------------------------------------
+|***Command***      | ***Action***|
+|-------------------| ------------------------------------------|
+|**SHOW TTY**       | Display the device and unit configuration|
+|**SHOW TTY MODE**  | Display the timing mode|
 
 Unit options that may be specified for the keyboard and printer are:
 
-  -------------- ------------------------------------------------------------------------------
-  ***Option***   ***Action***
-  **UC**         Upshift lowercase characters to uppercase; default
-  **7B**         Transfer characters with the high-order bit cleared
-  **7P**         Transfer characters with the high-order bit cleared, non-printing suppressed
-  **8B**         Transfer characters without changing
-  **AUTOLF**     Enable automatic output of line-feed characters
-  **NOAUTOLF**   Disable automatic output of line-feed characters; default
-  -------------- ------------------------------------------------------------------------------
+|***Option***  | ***Action***|
+|--------------| -----------------------------------------------------------------------------|
+|**UC**        | Upshift lowercase characters to uppercase; default|
+|**7B**        | Transfer characters with the high-order bit cleared|
+|**7P**        | Transfer characters with the high-order bit cleared, non-printing suppressed|
+|**8B**        | Transfer characters without changing|
+|**AUTOLF**    | Enable automatic output of line-feed characters|
+|**NOAUTOLF**  | Disable automatic output of line-feed characters; default|
 
 The printer may be set to mode ***UC***, ***7B***, ***7P***, or
 ***8B***. The set of non-printing characters allowed by mode ***7P*** is
@@ -2473,14 +2108,13 @@ the AUTO LF latching key on an HP 264x terminal.
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **CSRW**       Interface control, status, read, and write actions
-  **SERV**       Printer and punch unit service events
-  **PSERV**      Keyboard unit service events (periodic)
-  **XFER**       Data receptions and transmissions
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**CSRW**      | Interface control, status, read, and write actions|
+|**SERV**      | Printer and punch unit service events|
+|**PSERV**     | Keyboard unit service events (periodic)|
+|**XFER**      | Data receptions and transmissions|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***CSRW*** option traces control, status, read, and write commands
 sent to the interface. The ***SERV*** option traces print and punch
@@ -2494,37 +2128,34 @@ and returned by the interface.
 
 Examples of the trace formats follow:
 
-\>\>TTY csrw: Control is output \| printer enabled\
-\>\>TTY csrw: Output data is CR\
-\>\>TTY csrw: Status is idle \| \'T\'\
-\>\>TTY serv: Unit delay 200 service scheduled\
-\>\>TTY serv: Printer and punch service entered\
-\>\>TTY pserv: Poll delay 221566 service entered\
-\>\>TTY xfer: Character \'T\' entered at keyboard\
-\>\>TTY xfer: Character CR sent to printer\
-\>\>TTY iobus: Received data 000000 with signals IOI\
-\>\>TTY iobus: Returned data 000115 with signals (none)\
-\>\>TTY iobus: Received data 000000 with signals ENF \| SIR \| IEN \|
-PRH\
-\>\>TTY iobus: Returned data 000000 with signals FLG \| IRQ \| SRQ
+    >>TTY csrw: Control is output | printer enabled
+    >>TTY csrw: Output data is CR
+    >>TTY csrw: Status is idle | 'T'
+    >>TTY serv: Unit delay 200 service scheduled
+    >>TTY serv: Printer and punch service entered
+    >>TTY pserv: Poll delay 221566 service entered
+    >>TTY xfer: Character 'T' entered at keyboard
+    >>TTY xfer: Character CR sent to printer
+    >>TTY iobus: Received data 000000 with signals IOI
+    >>TTY iobus: Returned data 000115 with signals (none)
+    >>TTY iobus: Received data 000000 with signals ENF | SIR | IEN | PRH
+    >>TTY iobus: Returned data 000000 with signals FLG | IRQ | SRQ
 
 The teleprinter interface state contains these registers:
 
-  ------------ ------------ ------------- -----------------------------------
-  ***Name***   ***Size***   ***Radix***   ***Description***
-  **BUF**      8            8             Output data buffer
-  **MODE**     3            2             Control word bits 14-12
-  **CTL**      1            2             Control flip-flop
-  **FLG**      1            2             Flag flip-flop
-  **FBF**      1            2             Flag buffer flip-flop
-  **KPOS**     32           10            Number of characters input
-  **TPOS**     32           10            Number of characters printed
-  **PPOS**     32           10            Position in the punch output file
-  **TTIME**    24           10            Fast print/punch time
-  ------------ ------------ ------------- -----------------------------------
+|***Name***  | ***Size*** |  ***Radix***|   ***Description***|
+|------------| -----------|-------------|-----------------------------------|
+|**BUF**     | 8          |  8          |   Output data buffer|
+|**MODE**    | 3          |  2          |   Control word bits 14-12|
+|**CTL**     | 1          |  2          |   Control flip-flop|
+|**FLG**     | 1          |  2          |   Flag flip-flop|
+|**FBF**     | 1          |  2          |   Flag buffer flip-flop|
+|**KPOS**    | 32         |  10         |   Number of characters input|
+|**TPOS**    | 32         |  10         |   Number of characters printed|
+|**PPOS**    | 32         |  10         |   Position in the punch output file|
+|**TTIME**   | 24         |  10         |   Fast print/punch time|
 
-12539C Time Base Generator
---------------------------
+## 12539C Time Base Generator
 
 The HP 12539C Time Base Generator provides a programmable interval clock
 employed as the DOS, RTE, and TSB time-of-day and process-switching
@@ -2535,18 +2166,17 @@ second time without acknowledgement.
 
 Device options that may be specified are:
 
-  -------------- ---------------------------------------------------
-  ***Option***   ***Action***
-  **CALTIME**    Use calibrated timing; default
-  **REALTIME**   Use realistic timing
-  **W1A**        Install jumper W1 in the A position; default
-  **W1B**        Install jumper W1 in the B position
-  **W2A**        Install jumper W2 in the A position; default
-  **W2B**        Install jumper W2 in the B position
-  **SC=\<n\>**   Set the interface card select code; default is 13
-  **ENABLED**    Enable the device; default
-  **DISABLED**   Disable the device
-  -------------- ---------------------------------------------------
+|***Option***  | ***Action***|
+|--------------| --------------------------------------------------|
+|**CALTIME**   | Use calibrated timing; default|
+|**REALTIME**  | Use realistic timing|
+|**W1A**       | Install jumper W1 in the A position; default|
+|**W1B**       | Install jumper W1 in the B position|
+|**W2A**       | Install jumper W2 in the A position; default|
+|**W2B**       | Install jumper W2 in the B position|
+|**SC=\<n>**   |Set the interface card select code; default is 13|
+|**ENABLED**   | Enable the device; default|
+|**DISABLED**  | Disable the device|
 
 Calibrated timing aligns the simulated clock periods with the clock on
 the host system. When calibrated, each of the programmable periods will
@@ -2569,12 +2199,11 @@ milliseconds to facilitate testing with the diagnostic.
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **CSRW**       Interface control, status, read, and write actions
-  **PSERV**      Clock unit service events (periodic)
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**CSRW**      | Interface control, status, read, and write actions|
+|**PSERV**     | Clock unit service events (periodic)|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***CSRW*** option traces control, status, read, and write commands
 sent to the interface. The ***PSERV*** option traces event service
@@ -2584,27 +2213,24 @@ backplane signals and data received and returned via the interface.
 
 Examples of the trace formats follow:
 
-\>\>TBG csrw: Control is 10 millisecond rate\
-\>\>TBG csrw: Status is lost tick\
-\>\>TBG pserv: Rate 100 millisecond delay 157729 service scheduled\
-\>\>TBG iobus: Received data 000000 with signals STC \| CLF \| SIR \|
-PRH\
-\>\>TBG iobus: Returned data 000020 with signals PRL
+    >>TBG csrw: Control is 10 millisecond rate
+    >>TBG csrw: Status is lost tick
+    >>TBG pserv: Rate 100 millisecond delay 157729 service scheduled
+    >>TBG iobus: Received data 000000 with signals STC | CLF | SIR | PRH
+    >>TBG iobus: Returned data 000020 with signals PRL
 
 The Time Base Generator state contains these registers:
 
-  ------------ ------------ ------------- ----------------------------------------
-  ***Name***   ***Size***   ***Radix***   ***Description***
-  **SEL**      3            8             Time base selector
-  **CTR**      14           10            Prescale counter for \< 1 Hz operation
-  **CTL**      1            2             Control flip-flop
-  **FLG**      1            2             Flag flip-flop
-  **FBF**      1            2             Flag buffer flip-flop
-  **ERR**      1            2             Error flip-flop
-  ------------ ------------ ------------- ----------------------------------------
+|***Name***  | ***Size*** |  ***Radix***|   ***Description***|
+|------------| -----------|-------------|----------------------------------------|
+|**SEL**     | 3          |  8          |   Time base selector|
+|**CTR**     | 14         |  10         |   Prescale counter for \< 1 Hz operation|
+|**CTL**     | 1          |  2          |   Control flip-flop|
+|**FLG**     | 1          |  2          |   Flag flip-flop|
+|**FBF**     | 1          |  2          |   Flag buffer flip-flop|
+|**ERR**     | 1          |  2          |   Error flip-flop|
 
-12566B Microcircuit Interface
------------------------------
+## 12566B Microcircuit Interface
 
 The HP 12566B Microcircuit Interface provides a general-purpose 16-bit
 bidirectional data path at TTL logic levels for interfacing to a variety
@@ -2624,30 +2250,28 @@ disabled by default, as they are only useful when running diagnostics.
 
 Device options that may be specified are:
 
-  ---------------- ------------------------------------------------------------
-  ***Option***     ***Action***
-  **DEVICE**       Remove the diagnostic loopback connector; default
-  **DIAGNOSTIC**   Install the diagnostic loopback connector
-  **SC=\<n\>**     Set the interface card select code; defaults are 44 and 45
-  **ENABLED**      Enable the device
-  **DISABLED**     Disable the device; default
-  ---------------- ------------------------------------------------------------
+|***Option***    | ***Action***|
+|----------------| -----------------------------------------------------------|
+|**DEVICE**      | Remove the diagnostic loopback connector; default|
+|**DIAGNOSTIC**  | Install the diagnostic loopback connector|
+|**SC=\<n>**     |Set the interface card select code; defaults are 44 and 45|
+|**ENABLED**     | Enable the device|
+|**DISABLED**    | Disable the device; default|
 
 The ***DIAGNOSTIC*** option simulates the installation of the HP
 1251-0332 diagnostic test (loopback) connector in place of the device
 cable. It also configures hardware jumpers W1-W3 on the interface as
 required by the following diagnostics:
 
-  ---------- ---------- ---------- ------------ ------------------------------
-  ***W1***   ***W2***   ***W3***   ***DSN***    ***Diagnostic***
-  **C**      **B**      **B**      **143300**   General Purpose Register
-  **C**      **B**      **B**      **141203**   I/O Instruction Group
-  **C**      **B**      **B**      **102103**   Memory Expansion Unit
-  **C**      **B**      **B**      **101220**   DMA/DCPC for 2100/1000
-  **B**      **A**      **A**      **---**      DMA for 2100 (HP 24195)
-  **B**      **A**      **A**      **101105**   DMA for 2114/2115/2116
-  **B**      **C**      **B**      **---**      DMA for 2115/2116 (HP 24185)
-  ---------- ---------- ---------- ------------ ------------------------------
+|***W1***  | ***W2*** |  ***W3***|   ***DSN***|    ***Diagnostic***|
+|----------| ---------|----------|------------|------------------------------|
+|**C**     | **B**    |  **B**   |   **143300**|   General Purpose Register|
+|**C**     | **B**    |  **B**   |   **141203**|   I/O Instruction Group|
+|**C**     | **B**    |  **B**   |   **102103**|   Memory Expansion Unit|
+|**C**     | **B**    |  **B**   |   **101220**|   DMA/DCPC for 2100/1000|
+|**B**     | **A**    |  **A**   |   **---**  |    DMA for 2100 (HP 24195)|
+|**B**     | **A**    |  **A**   |   **101105**|   DMA for 2114/2115/2116|
+|**B**     | **C**    |  **B**   |   **---**  |    DMA for 2115/2116 (HP 2418|
 
 Setting the ***DEVICE*** option removes the loopback connector and
 leaves the device interface disconnected.
@@ -2655,11 +2279,10 @@ leaves the device interface disconnected.
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **XFER**       Data transmissions or receptions
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**XFER**      | Data transmissions or receptions|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***XFER*** option traces the words sent or received by the interface
 during diagnostic operation. The ***IOBUS*** option traces the I/O
@@ -2667,27 +2290,24 @@ backplane signals and data received and returned via the interface.
 
 Examples of the trace formats follow:
 
-\>\>MC1 xfer: Output data word 062140 looped back to input\
-\>\>MC1 iobus: Received data 000000 with signals ENF \| SIR \| IEN \|
-PRH\
-\>\>MC1 iobus: Returned data 000000 with signals FLG \| IRQ \| SRQ\
-\>\>MC2 iobus: Received data 000000 with signals IOI\
-\>\>MC2 iobus: Returned data 000145 with signals (none)
+    >>MC1  xfer: Output data word 062140 looped back to input
+    >>MC1 iobus: Received data 000000 with signals ENF | SIR | IEN | PRH
+    >>MC1 iobus: Returned data 000000 with signals FLG | IRQ | SRQ
+    >>MC2 iobus: Received data 000000 with signals IOI
+    >>MC2 iobus: Returned data 000145 with signals (none)
 
 The interface state contains these registers:
 
-  ------------ ------------ ------------- -----------------------
-  ***Name***   ***Size***   ***Radix***   ***Description***
-  **IN**       16           8             Input data register
-  **OUT**      16           8             Output data register
-  **CTL**      1            2             Control flip-flop
-  **FLG**      1            2             Flag flip-flop
-  **FBF**      1            2             Flag buffer flip-flop
-  **CMD**      1            2             Command flip-flop
-  ------------ ------------ ------------- -----------------------
+|***Name***  | ***Size*** |  ***Radix***|   ***Description***|
+|------------| -----------|-------------|-----------------------|
+|**IN**      | 16         |  8          |   Input data register|
+|**OUT**     | 16         |  8          |   Output data register|
+|**CTL**     | 1          |  2          |   Control flip-flop|
+|**FLG**     | 1          |  2          |   Flag flip-flop|
+|**FBF**     | 1          |  2          |   Flag buffer flip-flop|
+|**CMD**     | 1          |  2          |   Command flip-flop|
 
-12597A-002 Tape Reader Interface with One 2748 Paper Tape Reader
-----------------------------------------------------------------
+## 12597A-002 Tape Reader Interface with One 2748 Paper Tape Reader
 
 The 12597A-002 Tape Reader Interface is an 8-bit duplex register card
 that connects the HP 2748A/B Tape Reader to the HP computer family. The
@@ -2700,9 +2320,9 @@ preset for proper tape reader operation.
 The simulation provides one reader unit. Attaching a paper tape image
 file to the unit:
 
-ATTACH PTR \<image-filename\>
+    ATTACH PTR <image-filename>
 
-\... simulates pressing the LOAD button on the reader's front panel,
+... simulates pressing the LOAD button on the reader's front panel,
 loading the paper tape into the reader, and pressing the READ button.
 
 The interface does not provide status to the CPU to indicate that a tape
@@ -2718,24 +2338,23 @@ If the host operating system returns an error when reading from the
 paper tape image file, the simulator will report the error to the
 simulation console, e.g.:
 
-HP 2100 simulator paper tape reader I/O error: Permission denied
+    HP 2100 simulator paper tape reader I/O error: Permission denied
 
-\...and the simulator stops. Simulation may be resumed and the operation
+...and the simulator stops. Simulation may be resumed and the operation
 retried if the problem has been corrected or with the reader operation
 incomplete if the problem is uncorrectable.
 
 Device options that may be specified are:
 
-  ---------------- --------------------------------------------------------
-  ***Option***     ***Action***
-  **READER**       Use a normal paper tape; default
-  **DIAGNOSTIC**   Use a continuous paper tape loop or loopback connector
-  **FASTTIME**     Use optimized timing; default
-  **REALTIME**     Use realistic timing
-  **SC=\<n\>**     Set the interface card select code; default is 10
-  **ENABLED**      Enable the device; default
-  **DISABLED**     Disable the device
-  ---------------- --------------------------------------------------------
+|***Option***    | ***Action***|
+|----------------| -------------------------------------------------------|
+|**READER**      | Use a normal paper tape; default|
+|**DIAGNOSTIC**  | Use a continuous paper tape loop or loopback connector|
+|**FASTTIME**    | Use optimized timing; default|
+|**REALTIME**    | Use realistic timing|
+|**SC=\<n>**     |Set the interface card select code; default is 10|
+|**ENABLED**     | Enable the device; default|
+|**DISABLED**    | Disable the device|
 
 The simulator provides two diagnostic modes. If a paper tape image file
 is not attached, then the ***DIAGNOSTIC*** option simulates the
@@ -2776,10 +2395,9 @@ the front panel, and, for the ***BOOT*** command, pressing the INTERNAL
 PRESET, EXTERNAL PRESET, and RUN buttons to begin execution. Before
 execution, the S register must be set as follows:
 
-  ---------- ---------- ---------- ---------- ---------- ---------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
-  ***15***   ***14***   ***13***   ***12***   ***11***   ***10***   ***9***   ***8***   ***7***   ***6***   ***5***   ***4***   ***3***   ***2***   ***1***   ***0***
-            0          0          0          0          0          0         0         0         0         0         0         0         0         0         
-  ---------- ---------- ---------- ---------- ---------- ---------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
+|***15***  | ***14*** |  ***13***|  ***12***|***11***  | ***10*** | ***9*** | ***8*** | ***7*** |***6***  | ***5*** |  ***4***| ***3***|***2***  |  ***1***|***0*** |
+|----------| ---------|----------|----------|----------|----------|---------|---------|---------|-------- |---------| --------|--------|---------|---------|--------|
+|&bull;  |   0      |    0     |     0    |      0   |       0  |    0    |0        | 0       |  0      |   0     |    0    |     0  |      0  |       0 |&bull;|
 
 If bit 15 is set to 1, the loader will compare the absolute program on
 tape to the contents of memory. If bit 0 is set to 1, the loader will
@@ -2789,12 +2407,8 @@ absolute program on the paper tape into memory. Loader execution ends
 with one of the following halt instructions:
 
 -   HLT 00 --- a comparison error occurred; A = the tape value.
-
--   HLT 11 --- a checksum error occurred; A = the tape value, B = the
-    > calculated value.
-
+-   HLT 11 --- a checksum error occurred; A = the tape value, B = the calculated value.
 -   HLT 55 --- the program load address would overlay the loader.
-
 -   HLT 77 --- the end of tape was reached with a successful read.
 
 For a 1000 M/E/F-Series CPU, the commands are equivalent in hardware to
@@ -2803,29 +2417,24 @@ ROM, pressing the IBL button to copy the ROM into memory, and, for the
 ***BOOT*** command, pressing the PRESET and RUN buttons to begin
 execution. The S register is preset as follows:
 
-  ---------- ---------- ---------- ---------- ----------------- ---------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
-  ***15***   ***14***   ***13***   ***12***   ***11***          ***10***   ***9***   ***8***   ***7***   ***6***   ***5***   ***4***   ***3***   ***2***   ***1***   ***0***
-  0          0          0          0          PTR select code   0          0         0         0         0         0                                                 
-  ---------- ---------- ---------- ---------- ----------------- ---------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
+| **_15_** | **_14_** | **_13_** | **_12_** | **_11_** --- **_6_** | **_5_** | **_4_** | **_3_** | **_2_** | **_1_** | **_0_** |
+| -------- | -------- | -------- | -------- | -------------------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| 0        | 0        | 0        | 0        | PTR select code      | 0       | 0       | 0       | 0       | 0       | 0       |
 
 Loader execution ends with one of the following halt instructions:
 
--   HLT 11 --- a checksum error occurred; A = the calculated value, B =
-    > the tape value.
-
+-   HLT 11 --- a checksum error occurred; A = the calculated value, B = the tape value.
 -   HLT 55 --- the load address would overlay the ROM loader.
-
 -   HLT 77 --- the end of tape was reached with a successful read.
 
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **SERV**       Reader unit service events
-  **XFER**       Data bytes read from the tape
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**SERV**      | Reader unit service events|
+|**XFER**      | Data bytes read from the tape|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***SERV*** option traces reader event service scheduling and
 entries. The ***XFER*** option traces the bytes received from the
@@ -2834,27 +2443,25 @@ received and returned via the interface.
 
 Examples of the trace formats follow:
 
-\>\>PTR serv: Unit delay 3155 service scheduled\
-\>\>PTR serv: Reader service entered\
-\>\>PTR xfer: Data 145 character \'e\' received from reader\
-\>\>PTR iobus: Received data 000000 with signals ENF \| SIR \| IEN \|
-PRH\
-\>\>PTR iobus: Returned data 000000 with signals FLG \| IRQ \| SRQ\
-\>\>PTR iobus: Received data 000000 with signals IOI\
-\>\>PTR iobus: Returned data 000145 with signals (none)
+    >>PTR serv: Unit delay 3155 service scheduled
+    >>PTR serv: Reader service entered
+    >>PTR xfer: Data 145 character 'e' received from reader
+    >>PTR iobus: Received data 000000 with signals ENF | SIR | IEN | PRH
+    >>PTR iobus: Returned data 000000 with signals FLG | IRQ | SRQ
+    >>PTR iobus: Received data 000000 with signals IOI
+    >>PTR iobus: Returned data 000145 with signals (none)
 
 The paper tape reader state contains these registers:
 
-  ------------ ------------ ------------- --------------------------------
-  ***Name***   ***Size***   ***Radix***   ***Description***
-  **BUF**      8            8             Input data buffer
-  **CTL**      1            2             Control flip-flop
-  **FLG**      1            2             Flag flip-flop
-  **FBF**      1            2             Flag buffer flip-flop
-  **TRLLIM**   8            10            Trailing feed frame limit
-  **POS**      32           10            Paper tape image file position
-  **TIME**     24           10            Fast read time
-  ------------ ------------ ------------- --------------------------------
+|***Name***  | ***Size*** |  ***Radix***|   ***Description***|
+|------------| -----------|-------------|--------------------------------|
+|**BUF**     | 8          |  8          |   Input data buffer|
+|**CTL**     | 1          |  2          |   Control flip-flop|
+|**FLG**     | 1          |  2          |   Flag flip-flop|
+|**FBF**     | 1          |  2          |   Flag buffer flip-flop|
+|**TRLLIM**  | 8          |  10         |   Trailing feed frame limit|
+|**POS**     | 32         |  10         |   Paper tape image file positio|
+|**TIME**    | 24         |  10         |   Fast read time|
 
 The TRLLIM register specifies the number of feed frames (zero bytes) to
 supply as paper tape trailer when the end of the tape image file is
@@ -2863,8 +2470,7 @@ set to zero or the count is exhausted, the reader will hang. The POS
 register specifies the current file position of the next data byte to
 read. Setting POS to 0 rewinds the attached tape.
 
-12597A-005 Tape Punch Interface with One 2895 Paper Tape Punch
---------------------------------------------------------------
+## 12597A-005 Tape Punch Interface with One 2895 Paper Tape Punch
 
 The 12597A-005 Tape Punch Interface is an 8-bit duplex register card
 that connects the HP 2895A/B Tape Punch to the HP computer family. The
@@ -2877,7 +2483,7 @@ preset for proper tape punch operation.
 The simulation provides one punch unit. Attaching a paper tape image
 file to the unit simulates loading blank paper tape into the punch:
 
-ATTACH {-N} PTP \<image-filename\>
+    ATTACH {-N} PTP <image-filename>
 
 Adding the ***--N*** (new file) switch clears the contents of the image
 file if present. Without the ***--N*** switch, punch output will be
@@ -2888,24 +2494,23 @@ If the host operating system returns an error when writing to the paper
 tape image file, the simulator will report the error to the simulation
 console, e.g.:
 
-HP 2100 simulator paper tape punch I/O error: No space left on device
+    HP 2100 simulator paper tape punch I/O error: No space left on device
 
-\...and the simulator stops. Simulation may be resumed and the operation
+...and the simulator stops. Simulation may be resumed and the operation
 retried if the problem has been corrected or with the punch operation
 incomplete if the problem is uncorrectable.
 
 Device options that may be specified are:
 
-  ---------------- ---------------------------------------------------
-  ***Option***     ***Action***
-  **PUNCH**        Connect to the paper tape punch; default
-  **DIAGNOSTIC**   Use a loopback connector
-  **FASTTIME**     Use optimized timing; default
-  **REALTIME**     Use realistic timing
-  **SC=\<n\>**     Set the interface card select code; default is 12
-  **ENABLED**      Enable the device; default
-  **DISABLED**     Disable the device
-  ---------------- ---------------------------------------------------
+|***Option***    | ***Action***|
+|----------------| --------------------------------------------------|
+|**PUNCH**       | Connect to the paper tape punch; default|
+|**DIAGNOSTIC**  | Use a loopback connector|
+|**FASTTIME**    | Use optimized timing; default|
+|**REALTIME**    | Use realistic timing|
+|**SC=\<n>**   | Set the interface card select code; default is 12|
+|**ENABLED**     | Enable the device; default|
+|**DISABLED**    | Disable the device|
 
 Setting the ***DIAGNOSTIC*** option simulates the installation of the HP
 1251-0332 diagnostic test (loopback) connector in place of the punch
@@ -2929,13 +2534,12 @@ rapid punching operations. Resetting the device with the ***RESET --P***
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **CSRW**       Interface control, status, read, and write actions
-  **SERV**       Punch unit service events
-  **XFER**       Data bytes written to the tape
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**CSRW**      | Interface control, status, read, and write actions|
+|**SERV**      | Punch unit service events|
+|**XFER**      | Data bytes written to the tape|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***CSRW*** option traces control, status, read, and write commands
 sent to the interface. The ***SERV*** option traces punch event service
@@ -2945,29 +2549,27 @@ data received and returned via the interface.
 
 Examples of the trace formats follow:
 
-\>\>PTP csrw: Status is tape low\
-\>\>PTP serv: Unit delay 20978 service scheduled\
-\>\>PTP serv: Punch service entered\
-\>\>PTP xfer: Data 045 character \'%\' sent to punch\
-\>\>PTP iobus: Received data 000045 with signals IOO\
-\>\>PTP iobus: Returned data 000000 with signals (none)\
-\>\>PTP iobus: Received data 000000 with signals STC \| CLF \| SIR\
-\>\>PTP iobus: Returned data 000000 with signals (none)
+    >>PTP  csrw: Status is tape low
+    >>PTP  serv: Unit delay 20978 service scheduled
+    >>PTP  serv: Punch service entered
+    >>PTP  xfer: Data 045 character '%' sent to punch
+    >>PTP iobus: Received data 000045 with signals IOO
+    >>PTP iobus: Returned data 000000 with signals (none)
+    >>PTP iobus: Received data 000000 with signals STC | CLF | SIR
+    >>PTP iobus: Returned data 000000 with signals (none)
 
 The paper tape punch state contains these registers:
 
-  ------------ ------------ ------------- --------------------------------
-  ***Name***   ***Size***   ***Radix***   ***Description***
-  **BUF**      8            8             Output data buffer
-  **CTL**      1            2             Control flip-flop
-  **FLG**      1            2             Flag flip-flop
-  **FBF**      1            2             Flag buffer flip-flop
-  **POS**      32           10            Paper tape image file position
-  **TIME**     24           10            Fast punch time
-  ------------ ------------ ------------- --------------------------------
+|***Name***  | ***Size*** |  ***Radix***|   ***Description***|
+|------------| -----------|-------------|--------------------------------|
+|**BUF**     | 8          |  8          |   Output data buffer|
+|**CTL**     | 1          |  2          |   Control flip-flop|
+|**FLG**     | 1          |  2          |   Flag flip-flop|
+|**FBF**     | 1          |  2          |   Flag buffer flip-flop|
+|**POS**     | 32         |  10         |   Paper tape image file position|
+|**TIME**    | 24         |  10         |   Fast punch time|
 
-12620A/12936A Privileged Interrupt Fence
-----------------------------------------
+## 12620A/12936A Privileged Interrupt Fence
 
 The Privileged Interrupt Fence (PIF) is used in DOS and RTE systems to
 provide privileged interrupt capability. The PIF is installed in the I/O
@@ -2985,33 +2587,30 @@ for DOS. They behave quite differently and are not interchangeable.
 
 Device options that may be specified are:
 
-  ---------------------- ---------------------------------------------------
-  ***Option***           ***Action***
-  **12620A**             Use a 12620A RTE fence; default
-  **12936A**             Use a 12936A DOS fence
-  **SC=\<n\>**           Set the interface card select code; default is 37
-  **DEBUG=\<option\>**   Enable tracing
-  **NODEBUG**            Disable tracing; default
-  **ENABLED**            Enable the device; default
-  **DISABLED**           Disable the device
-  ---------------------- ---------------------------------------------------
+|***Option***          | ***Action***|
+|----------------------| --------------------------------------------------|
+|**12620A**            | Use a 12620A RTE fence; default|
+|**12936A**            | Use a 12936A DOS fence|
+|**SC=\<n>**            | Set the interface card select code; default is 37|
+|**DEBUG=\<option>** | Enable tracing|
+|**NODEBUG**           | Disable tracing; default|
+|**ENABLED**           | Enable the device; default|
+|**DISABLED**          | Disable the device|
 
 Device configuration may be displayed with the following commands:
 
-  -------------------- ---------------------------------
-  ***Command***        ***Action***
-  **SHOW PIF TYPE**    Display the current fence type
-  **SHOW PIF DEBUG**   Display the current debug state
-  -------------------- ---------------------------------
+|***Command***       | ***Action***|
+|--------------------| --------------------------------|
+|**SHOW PIF TYPE**   | Display the current fence type|
+|**SHOW PIF DEBUG**  | Display the current debug state|
 
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **CMD**        Interface commands
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**CMD**       | Interface commands|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***CMD*** option traces commands executed by the interface. The
 ***IOBUS*** option traces the I/O backplane signals and data received
@@ -3019,11 +2618,11 @@ and returned via the interface.
 
 Examples of the trace formats follow:
 
-\>\>PIF cmd: Control reset\
-\>\>PIF cmd: Fence allows lower-priority interrupts\
-\>\>PIF cmd: Fence inhibits lower-priority interrupts\
-\>\>PIF iobus: Received data 000000 with signals SFS \| PRH\
-\>\>PIF iobus: Returned data 000000 with signals SKF \| PRL
+    >>PIF cmd: Control reset
+    >>PIF cmd: Fence allows lower-priority interrupts
+    >>PIF cmd: Fence inhibits lower-priority interrupts
+    >>PIF iobus: Received data 000000 with signals SFS | PRH
+    >>PIF iobus: Returned data 000000 with signals SKF | PRL
 
 Because the PIF is accessed twice for each unprivileged interrupt,
 systems employing the 12539C Time Base Generator will generate a large
@@ -3032,15 +2631,13 @@ be enabled for the minimum time necessary.
 
 The Privileged Interrupt Fence state contains these registers:
 
-  ------------ ------------ ------------- -----------------------
-  ***Name***   ***Size***   ***Radix***   ***Description***
-  **CTL**      1            2             Control flip-flop
-  **FLG**      1            2             Flag flip-flop
-  **FBF**      1            2             Flag Buffer flip-flop
-  ------------ ------------ ------------- -----------------------
+|***Name***  | ***Size*** |  ***Radix***|   ***Description***|
+|------------| -----------|-------------|-----------------------|
+|**CTL**     | 1          |  2          |   Control flip-flop|
+|**FLG**     | 1          |  2          |   Flag flip-flop|
+|**FBF**     | 1          |  2          |   Flag Buffer flip-flop|
 
-12653A Line Printer Interface with One 2767 Line Printer
---------------------------------------------------------
+## 12653A Line Printer Interface with One 2767 Line Printer
 
 The HP 12653A Line Printer Interface connects the HP 2767A line printer
 to the HP computer family. The printer provides 80-column output at
@@ -3053,7 +2650,7 @@ will slew to the top-of-form upon receipt of a form-feed character.
 The simulation provides one printer unit. Attaching a text file to the
 unit simulates loading paper into the printer:
 
-ATTACH {-N} LPS \<image-filename\>
+    ATTACH {-N} LPS <image-filename>
 
 Adding the ***--N*** (new file) switch clears the contents of the image
 file if present. Without the ***--N*** switch, printer output will be
@@ -3069,7 +2666,7 @@ If the host operating system returns an error when writing to the
 printer image file, the simulator will report the error to the
 simulation console, e.g.:
 
-HP 2100 simulator printer I/O error: No space left on device
+    HP 2100 simulator printer I/O error: No space left on device
 
 The printer goes offline, and the simulator stops. Simulation may then
 be resumed, either with the printer set back online if the problem is
@@ -3080,23 +2677,22 @@ Device and unit options include configuring the printer type and timing,
 turning the printer power off and on, and the ability to set the printer
 offline or online. The command forms are:
 
-SET LPS \<device-option\>\
-SET LPS \<unit-option\>
+    SET LPS <device-option>
+    SET LPS <unit-option>
 
 Device options that may be specified are:
 
-  ---------------------- ---------------------------------------------------
-  ***Option***           ***Action***
-  **FASTTIME**           Use optimized timing; default
-  **REALTIME**           Use realistic timing
-  **PRINTER**            Install the standard printer cable; default
-  **DIAGNOSTIC**         Install the diagnostic loopback connector
-  **SC=\<n\>**           Set the interface card select code; default is 14
-  **DEBUG=\<option\>**   Enable tracing
-  **NODEBUG**            Disable tracing; default
-  **ENABLED**            Enable the device
-  **DISABLED**           Disable the device; default
-  ---------------------- ---------------------------------------------------
+|***Option***          | ***Action***|
+|----------------------| --------------------------------------------------|
+|**FASTTIME**          | Use optimized timing; default|
+|**REALTIME**          | Use realistic timing|
+|**PRINTER**           | Install the standard printer cable; default|
+|**DIAGNOSTIC**        | Install the diagnostic loopback connector|
+|**SC=\<n>**         | Set the interface card select code; default is 14|
+|**DEBUG=\<option>** | Enable tracing|
+|**NODEBUG**           | Disable tracing; default|
+|**ENABLED**           | Enable the device|
+|**DISABLED**          | Disable the device; default|
 
 The printer supports realistic and optimized timing modes. Realistic
 timing attempts to model the print buffer load and print-and-space
@@ -3125,25 +2721,23 @@ Setting the ***PRINTER*** option reinstalls the standard printer cable.
 
 Device configuration may be displayed with the following commands:
 
-  --------------------- -------------------------------------------
-  ***Command***         ***Action***
-  **SHOW LPS**          Display the device and unit configuration
-  **SHOW LPS TIMING**   Display the timing mode
-  --------------------- -------------------------------------------
+|***Command***        | ***Action***|
+|---------------------| ------------------------------------------|
+|**SHOW LPS**         | Display the device and unit configuration|
+|**SHOW LPS TIMING**  | Display the timing mode|
 
 Unit options that may be specified are:
 
-  -------------- ------------------------------------------------
-  ***Option***   ***Action***
-  **OFFLINE**    Set the printer offline; default when detached
-  **ONLINE**     Set the printer online; default when attached
-  **POWEROFF**   Turn the printer power off
-  **POWERON**    Turn the printer power on; default
-  -------------- ------------------------------------------------
+|***Option***  | ***Action***|
+|--------------| -----------------------------------------------|
+|**OFFLINE**   | Set the printer offline; default when detached|
+|**ONLINE**    | Set the printer online; default when attached|
+|**POWEROFF**  | Turn the printer power off|
+|**POWERON**   | Turn the printer power on; default|
 
 The ***OFFLINE*** and ***ONLINE*** options place the printer offline and
 online, respectively. The former provides a convenient method of setting
-the printer \"down\" without detaching the associated output file.
+the printer "down" without detaching the associated output file.
 
 Entering the ***SET LPS POWEROFF*** command simulates removing power
 from the line printer. A ***SET LPS POWERON*** command restores power to
@@ -3152,14 +2746,13 @@ the printer.
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **CMDS**       Command initiations and completions
-  **CPU**        Words received from and sent to the CPU
-  **XFER**       Data receptions and transmissions
-  **STATE**      Printer state transitions
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**CMDS**      | Command initiations and completions|
+|**CPU**       | Words received from and sent to the CPU|
+|**XFER**      | Data receptions and transmissions|
+|**STATE**     | Printer state transitions|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***CMDS*** option traces the commands executed by the printer. The
 ***CPU*** option traces words received from (control and write data) and
@@ -3170,43 +2763,39 @@ and data received and returned via the interface.
 
 Examples of the trace formats follow:
 
-\>\>LPS cmds: Character \'M\' scheduled for line 6, column 20, time =
-13825\
-\>\>LPS cmds: Character CR scheduled for line 6, column 81, time = 0\
-\>\>LPS cpu: Control 000015 (CR) output\
-\>\>LPS cpu: Status 100001 returned\
-\>\>LPS xfer: Character \'D\' printed\
-\>\>LPS xfer: Character ETX erased\
-\>\>LPS state: Power state is OFF\
-\>\>LPS state: Power state is TURNING ON, scheduled time = 39500\
-\>\>LPS iobus: Received data 000000 with signals CLC \| CLF \| SIR \|
-PRH\
-\>\>LPS iobus: Returned data 000000 with signals PRL
+    >>LPS  cmds: Character 'M' scheduled for line 6, column 20, time = 13825
+    >>LPS  cmds: Character CR scheduled for line 6, column 81, time = 0
+    >>LPS   cpu: Control 000015 (CR) output
+    >>LPS   cpu: Status 100001 returned
+    >>LPS  xfer: Character 'D' printed
+    >>LPS  xfer: Character ETX erased
+    >>LPS state: Power state is OFF
+    >>LPS state: Power state is TURNING ON, scheduled time = 39500
+    >>LPS iobus: Received data 000000 with signals CLC | CLF | SIR | PRH
+    >>LPS iobus: Returned data 000000 with signals PRL
 
 The Line Printer Controller state contains these registers:
 
-  ------------ ------------ ------------- ---------------- ----------------- -------------------------------
-  ***Name***   ***Size***   ***Radix***   ***Symbolic***   ***Read-Only***   ***Action***
-  **BUF**      16           8                                               Output buffer
-  **STA**      16           8                                                Printer status
-  **POWER**    2            8                                               Printer power state
-  **CTL**      1            2                                                Control flip-flop
-  **FLG**      1            2                                                Flag flip-flop
-  **FBF**      1            2                                                Flag buffer flip-flop
-  **CCNT**     7            10                                               Current character count
-  **LCNT**     7            10                                               Current line count
-  **POS**      32           10                                               Printer file position
-  **CTIME**    24           10                                               Character transfer time
-  **PTIME**    24           10                                               Per-zone print operation time
-  **STIME**    24           10                                               Per-line paper slew time
-  **RTIME**    24           10                                               Power-on ready delay time
-  ------------ ------------ ------------- ---------------- ----------------- -------------------------------
+|***Name***  | ***Size*** |  ***Radix***|  ***Symbolic***|  ***Read-Only***|   ***Action***|
+|------------|------------|-------------|----------------|-----------------|-------------------------------|
+|**BUF**     | 16         |  8          |   &#10003;     |                 |       Output buffer|
+|**STA**     | 16         |  8          |                |                 |     Printer status|
+|**POWER**   | 2          |  8          |                |    &#10003;     |       Printer power state|
+|**CTL**     | 1          |  2          |                |                 |     Control flip-flop|
+|**FLG**     | 1          |  2          |                |                 |     Flag flip-flop|
+|**FBF**     | 1          |  2          |                |                 |     Flag buffer flip-flop|
+|**CCNT**    | 7          |  10         |                |                 |     Current character count|
+|**LCNT**    | 7          |  10         |                |                 |     Current line count|
+|**POS**     | 32         |  10         |                |                 |     Printer file position|
+|**CTIME**   | 24         |  10         |                |                 |     Character transfer time|
+|**PTIME**   | 24         |  10         |                |                 |     Per-zone print operation time|
+|**STIME**   | 24         |  10         |                |                 |     Per-line paper slew time|
+|**RTIME**   | 24         |  10         |                |                 |     Power-on ready delay time|
 
 The BUF register may be displayed in character format, if desired.
 Symbolic entry is also supported.
 
-12792C 8-Channel Asynchronous Multiplexer
------------------------------------------
+## 12792C 8-Channel Asynchronous Multiplexer
 
 The 12792C is an eight-channel asynchronous serial multiplexer that
 connects terminals, modems, serial line printers, and \"black box\"
@@ -3255,9 +2844,9 @@ individually specified host serial ports. It supports concurrent Telnet
 and serial connections. The ***ATTACH*** command specifies the local
 port to be used for Telnet connections:
 
-ATTACH MPX \<port\>
+    ATTACH MPX <port>
 
-\...where ***port*** is a decimal number between 1 and 65535 that is not
+...where ***port*** is a decimal number between 1 and 65535 that is not
 being used for other TCP/IP activities. When the multiplexer is attached
 and the simulator is running, the multiplexer listens for connections on
 the specified port and assigns them to channels in ascending numeric
@@ -3266,10 +2855,10 @@ order, unless an alternate connection order has been specified.
 The ***ATTACH*** command is also used to specify the host serial port
 for individual multiplexer channels:
 
-ATTACH {--V} MPX
-LINE=\<line\>,CONNECT=\<name\>{;\<rate\>-\<size\>\<parity\>\<stopbits\>}
+    ATTACH {--V} MPX
+    LINE=<line>,CONNECT=<name>{;<rate>-<size><parity><stopbits>}
 
-\...where ***line*** is the multiplexer channel number from 0-7, and
+...where ***line*** is the multiplexer channel number from 0-7, and
 ***name*** is the host name of the serial port to use (e.g., *ser0* or
 *COM1*). If the ***--V*** (verbose) option is included, a connection
 confirmation message will be output to the port.
@@ -3280,10 +2869,10 @@ host name. The required values are:
 -   ***rate*** is the baud rate in bits per second.
 
 -   ***size*** is the character size in bits including the parity bit,
-    > if designated.
+    if designated.
 
 -   ***parity*** designates the parity to use: *N* (no), *E* (even), *O*
-    > (odd), *M* (mark), or *S* (space).
+    (odd), *M* (mark), or *S* (space).
 
 -   ***stopbits*** is the number of stop bits (*1*, *1.5*, or *2*).
 
@@ -3293,23 +2882,22 @@ and one stop bit.
 Configuration options are available for the device and for the
 individual units. The command forms are:
 
-SET MPX \<device-option\>\
-SET MPXn \<unit-option\>
+    SET MPX <device-option>
+    SET MPXn <unit-option>
 
 ### Device Options
 
 Device options that may be specified are:
 
-  ------------------------------------- ---------------------------------------------------
-  ***Option***                          ***Action***
-  **LINEORDER=\<c1\>\[;\<c2\>\...\]**   Set the channel connection order
-  **DISCONNECT=\<chan\>**               Disconnect the specified channel
-  **SC=\<n\>**                          Set the interface card select code; default is 36
-  **DEBUG=\<option\>**                  Enable tracing
-  **NODEBUG**                           Disable tracing; default
-  **ENABLED**                           Enable the device; default
-  **DISABLED**                          Disable the device
-  ------------------------------------- ---------------------------------------------------
+|***Option***                         | ***Action***|
+|-------------------------------------| --------------------------------------------------|
+|**LINEORDER=\<c1>[;\<c2>...]**      | Set the channel connection order|
+|**DISCONNECT=\<chan>**                | Disconnect the specified channel|
+|**SC=\<n>**                           | Set the interface card select code; default is 36|
+|**DEBUG=\<option>**                   | Enable tracing|
+|**NODEBUG**                          | Disable tracing; default|
+|**ENABLED**                          | Enable the device; default|
+|**DISABLED**                         | Disable the device|
 
 The ***LINEORDER*** option specifies the order in which new connections
 are assigned to multiplexer channels. The arguments may be single
@@ -3321,7 +2909,7 @@ ascending channel order. The default order may be reestablished by
 specifying the command ***SET MPX LINEORDER=ALL***.
 
 A channel may be manually disconnected from its associated Telnet
-session with the ***SET MPX DISCONNECT=\<chan\>*** command. Otherwise,
+session with the ***SET MPX DISCONNECT=\<chan>*** command. Otherwise,
 the connection will remain open until disconnected either by the Telnet
 client or a ***DETACH MPX*** command. For a serial connection, the
 command will drop and then raise the Data Terminal Ready line; to
@@ -3331,15 +2919,14 @@ disconnect the serial port, include the ***--C*** switch in the command.
 
 Unit options that may be specified are:
 
-  ---------------------- -------------------------------------------------
-  ***Option***           ***Action***
-  **FASTTIME**           Use optimized timing; default
-  **REALTIME**           Use realistic timing
-  **CAPSLOCK**           Upshift lowercase input characters to uppercase
-  **NOCAPSLOCK**         Input characters are unchanged; default
-  **LOG=\<filename\>**   Enable I/O logging
-  **NOLOG**              Disable I/O logging; default
-  ---------------------- -------------------------------------------------
+|***Option***          | ***Action***|
+|----------------------| ------------------------------------------------|
+|**FASTTIME**          | Use optimized timing; default|
+|**REALTIME**          | Use realistic timing|
+|**CAPSLOCK**          | Upshift lowercase input characters to uppercase|
+|**NOCAPSLOCK**        | Input characters are unchanged; default|
+|**LOG=\<filename>** | Enable I/O logging|
+|**NOLOG**             | Disable I/O logging; default|
 
 The 12792C supports twelve programmable baud rates from 50 to 19200
 baud. When realistic timing is enabled, the simulation accurately models
@@ -3368,35 +2955,32 @@ Disabling logging also closes the log file.
 
 The device configuration may be displayed with the following commands:
 
-  -------------------------- ---------------------------------------------------------------
-  ***Command***              ***Action***
-  **SHOW MPX**               Display the device configuration
-  **SHOW MPX LINEORDER**     Display the channel connection order
-  **SHOW MPX CONNECTIONS**   Display the channel connections
-  **SHOW MPX STATISTICS**    Display the channel I/O statistics for the active connections
-  -------------------------- ---------------------------------------------------------------
+|***Command***             | ***Action***|
+|--------------------------| --------------------------------------------------------------|
+|**SHOW MPX**              | Display the device configuration|
+|**SHOW MPX LINEORDER**    | Display the channel connection order|
+|**SHOW MPX CONNECTIONS**  | Display the channel connections|
+|**SHOW MPX STATISTICS**   | Display the channel I/O statistics for the active connections|
 
 The unit configuration may be displayed with the following commands:
 
-  ----------------------- -----------------------------------------------
-  ***Command***           ***Action***
-  **SHOW MPX\<n\>**       Display the selected channel's configuration
-  **SHOW MPX\<n\> LOG**   Display the selected channel's logging status
-  ----------------------- -----------------------------------------------
+|***Command***          | ***Action***|
+|-----------------------| ----------------------------------------------|
+|**SHOW MPX\<n>**        | Display the selected channel's configuration|
+|**SHOW MPX\<n> LOG**    | Display the selected channel's logging status|
 
 ### Tracing and Registers
 
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **CMDS**       Command initiations and completions
-  **CPU**        Words received from and sent to the CPU
-  **BUF**        Data read from and written to the channel buffers
-  **XFER**       Data receptions and transmissions
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**CMDS**      | Command initiations and completions|
+|**CPU**       | Words received from and sent to the CPU|
+|**BUF**       | Data read from and written to the channel buffers|
+|**XFER**      | Data receptions and transmissions|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***CMDS*** option traces the commands executed by the multiplexer.
 The ***CPU*** option traces words received from (control and write data)
@@ -3408,54 +2992,52 @@ data received and returned via the interface.
 
 Examples of the trace formats follow:
 
-\>\>MPX cmds: \[OTx\] Command 037 parameter 100000 scheduled, time =
-1250\
-\>\>MPX cpu: \[Lix,C\] Status = 102000\
-\>\>MPX buf: Port 2 character \'A\' get from read buffer \[73\]\
-\>\>MPX xfer: Port 0 character LF transmitted\
-\>\>MPX iobus: Received data 000000 with signals STF \| PRH
+    >>MPX cmds: [OTx] Command 037 parameter 100000 scheduled, time = 1250
+    >>MPX cpu: [Lix,C] Status = 102000
+    >>MPX buf: Port 2 character 'A' get from read buffer [73]
+    >>MPX xfer: Port 0 character LF transmitted
+    >>MPX iobus: Received data 000000 with signals STF | PR
 
 The multiplexer state contains these registers:
 
-  ---------------------------- ------------ ------------- ---------------- -----------------------------------------
-  ***Name***                   ***Size***   ***Radix***   ***Symbolic***   ***Action***
-  **STATE**                    3            10                             Controller state
-  **IBUF**                     16           8                             Input buffer (from multiplexer to CPU)
-  **OBUF**                     16           8                             Output buffer (from CPU to multiplexer)
-  **CMD**                      8            8                              Command code
-  **PARAM**                    16           8                              Command parameter
-  **PORT**                     8            10                             Port number for last command
-  **PORTKEY**                  8            10                             Port key for last command
-  **IOLEN**                    16           10                             I/O transfer length for last command
-  **UIEN**                     1            2                              Unsolicited interrupts enabled
-  **UIPORT**                   3            10                             Unsolicited interrupt port
-  **UICODE**                   3            10                             Unsolicited interrupt reason code
-  **KEYS \[0:7\]**             8            10                             Port keys, ports 0-7
-  **PCONFIG \[0:7\]**          16           8                              Port configuration, ports 0-7
-  **RCVTYPE \[0:7\]**          16           2                              Receive type, ports 0-7
-  **CHARCNT \[0:7\]**          16           8                              Received character count, ports 0-7
-  **TERMCNT \[0:7\]**          16           8                              Termination character count, ports 0-7
-  **FLOWCNTL \[0:7\]**         16           8                              Flow control, ports 0-7
-  **ENQCNTR \[0:7\]**          7            10                             ENQ character counter, ports 0-7
-  **ACKWAIT \[0:7\]**          10           10                             ACK wait counter, ports 0-7
-  **PFLAGS \[0:7\]**           12           2                              Port flags, ports 0-7
-  **RBUF \[0:7\] \[0:513\]**   8            8                             Read buffers, ports 0-7
-  **WBUF \[0:7\] \[0:513\]**   8            8                             Write buffers, ports 0-7
-  **GET \[0:7\] \[0:1\]**      10           10                             Read/write get indexes, ports 0-7
-  **SEP \[0:7\] \[0:1\]**      10           10                             Read/write separator indexes, ports 0-7
-  **PUT \[0:7\] \[0:1\]**      10           10                             Read/write put indexes, ports 0-7
-  **CTL**                      1            2                              Control flip-flop
-  **FLG**                      1            2                              Flag flip-flop
-  **FBF**                      1            2                              Flag buffer flip-flop
-  ---------------------------- ------------ ------------- ---------------- -----------------------------------------
+|***Name***                  | ***Size*** |  ***Radix***|   ***Symbolic***|   ***Action***|
+|----------------------------| -----------|-------------|----------------|-----------------------------------------|
+|**STATE**                   | 3          |  10         |                |    Controller state|
+|**IBUF**                    | 16         |  8          |   &#10003;     |      Input buffer (from multiplexer to C|
+|**OBUF**                    | 16         |  8          |   &#10003;     |      Output buffer (from CPU to multiple|
+|**CMD**                     | 8          |  8          |                |    Command code|
+|**PARAM**                   | 16         |  8          |                |    Command parameter|
+|**PORT**                    | 8          |  10         |                |    Port number for last command|
+|**PORTKEY**                 | 8          |  10         |                |    Port key for last command|
+|**IOLEN**                   | 16         |  10         |                |    I/O transfer length for last command|
+|**UIEN**                    | 1          |  2          |                |    Unsolicited interrupts enabled|
+|**UIPORT**                  | 3          |  10         |                |    Unsolicited interrupt port|
+|**UICODE**                  | 3          |  10         |                |    Unsolicited interrupt reason code|
+|**KEYS [0:7]**            | 8          |  10         |                |    Port keys, ports 0-7|
+|**PCONFIG [0:7]**         | 16         |  8          |                |    Port configuration, ports 0-7|
+|**RCVTYPE [0:7]**         | 16         |  2          |                |    Receive type, ports 0-7|
+|**CHARCNT [0:7]**         | 16         |  8          |                |    Received character count, ports 0-7|
+|**TERMCNT [0:7]**         | 16         |  8          |                |    Termination character count, ports 0-|
+|**FLOWCNTL [0:7]**        | 16         |  8          |                |    Flow control, ports 0-7|
+|**ENQCNTR [0:7]**         | 7          |  10         |                |    ENQ character counter, ports 0-7|
+|**ACKWAIT [0:7]**         | 10         |  10         |                |    ACK wait counter, ports 0-7|
+|**PFLAGS [0:7]**          | 12         |  2          |                |    Port flags, ports 0-7|
+|**RBUF [0:7] [0:513]**  | 8          |  8          |   &#10003;     |      Read buffers, ports 0-7|
+|**WBUF [0:7] [0:513]**  | 8          |  8          |   &#10003;     |      Write buffers, ports 0-7|
+|**GET [0:7] [0:1]**     | 10         |  10         |                |    Read/write get indexes, ports 0-7|
+|**SEP [0:7] [0:1]**     | 10         |  10         |                |    Read/write separator indexes, ports 0|
+|**PUT [0:7] [0:1]**     | 10         |  10         |                |    Read/write put indexes, ports 0-7|
+|**CTL**                     | 1          |  2          |                |    Control flip-flop|
+|**FLG**                     | 1          |  2          |                |    Flag flip-flop|
+|**FBF**                     | 1          |  2          |                |    Flag buffer flip-flop|
 
 The RBUF and WBUF registers logically represent eight character buffers
 of 514 bytes each, and the GET, SEP, and PUT registers logically
 represent eight sets of two-word indexes. However, SCP supports only
 one-dimensional register arrays, so they must be examined and deposited
 as linear arrays of 4112 bytes and 16 words, respectively. So, for
-example, RBUF \[0\] is byte 0 of buffer 0, RBUF \[513\] is byte 513 of
-buffer 0, RBUF \[514\] is byte 0 of buffer 1, etc.
+example, RBUF [0] is byte 0 of buffer 0, RBUF [513] is byte 513 of
+buffer 0, RBUF [514] is byte 0 of buffer 1, etc.
 
 The IBUF and OBUF registers default to octal display but may be
 displayed in single- or two-character formats by specifying the
@@ -3464,8 +3046,7 @@ registers is also supported. The RBUF and WBUF registers default to
 single-character format display and entry but may be overridden with
 numeric-format switches, if desired.
 
-12845B Line Printer Interface with One 2607/13/17/18 Line Printer
------------------------------------------------------------------
+## 12845B Line Printer Interface with One 2607/13/17/18 Line Printer
 
 The HP 12845B Line Printer Interface connects the HP 2607A (200 lines
 per minute), HP 2613 (300 lpm), HP 2617 (600 lpm), and HP 2618 (1250
@@ -3473,7 +3054,7 @@ lpm) line printers to the HP computer family. The simulation provides
 one printer unit; the 2607 is selected by default. Attaching a text file
 to the unit simulates loading paper into the printer:
 
-ATTACH {-N} LPT \<image-filename\>
+    ATTACH {-N} LPT <image-filename>
 
 Adding the ***--N*** (new file) switch clears the contents of the image
 file if present. Without the ***--N*** switch, printer output will be
@@ -3489,7 +3070,7 @@ If the host operating system returns an error when writing to the
 printer image file, the simulator will report the error to the
 simulation console, e.g.:
 
-HP 2100 simulator printer I/O error: No space left on device
+    HP 2100 simulator printer I/O error: No space left on device
 
 The printer goes offline with an alarm condition, and the simulator
 stops. Simulation may then be resumed, either with the printer set back
@@ -3513,25 +3094,24 @@ Device and unit options include configuring the printer type and timing,
 output format, vertical format unit (VFU), and the ability to set the
 printer offline or online. The command forms are:
 
-SET LPT \<device-option\>\
-SET LPT \<unit-option\>
+    SET LPT <device-option>
+    SET LPT <unit-option>
 
 ### Device Options
 
 Device options that may be specified are:
 
-  ---------------------- ---------------------------------------------------
-  ***Option***           ***Action***
-  **FASTTIME**           Use optimized timing; default
-  **REALTIME**           Use realistic timing
-  **PRINTER**            Install the standard printer VFU tape; default
-  **DIAGNOSTIC**         Install the diagnostic VFU tape
-  **SC=\<n\>**           Set the interface card select code; default is 15
-  **DEBUG=\<option\>**   Enable tracing
-  **NODEBUG**            Disable tracing; default
-  **ENABLED**            Enable the device; default
-  **DISABLED**           Disable the device
-  ---------------------- ---------------------------------------------------
+|***Option***          | ***Action***|
+|----------------------| --------------------------------------------------|
+|**FASTTIME**          | Use optimized timing; default|
+|**REALTIME**          | Use realistic timing|
+|**PRINTER**           | Install the standard printer VFU tape; default|
+|**DIAGNOSTIC**        | Install the diagnostic VFU tape|
+|**SC=\<n>**         | Set the interface card select code; default is 15|
+|**DEBUG=\<option>** | Enable tracing|
+|**NODEBUG**           | Disable tracing; default|
+|**ENABLED**           | Enable the device; default|
+|**DISABLED**          | Disable the device|
 
 The printer supports realistic and optimized timing modes. Realistic
 timing attempts to model the print buffer load and print-and-space
@@ -3558,31 +3138,29 @@ reinstalls the standard VFU tape (02607-80024 for the 2607 and
 
 Device configuration may be displayed with the following commands:
 
-  -------------------- -------------------------------------------
-  ***Command***        ***Action***
-  **SHOW LPT**         Display the device and unit configuration
-  **SHOW LPT MODES**   Display the timing and VFU tape modes
-  -------------------- -------------------------------------------
+|***Command***       | ***Action***|
+|--------------------| ------------------------------------------|
+|**SHOW LPT**        | Display the device and unit configuration|
+|**SHOW LPT MODES**  | Display the timing and VFU tape modes|
 
 ### Unit Options
 
 Unit options that may be specified are:
 
-  ---------------------- ----------------------------------------------------------
-  ***Option***           ***Action***
-  **2607**               Set the printer model to 2607; default
-  **2613**               Set the printer model to 2613
-  **2617**               Set the printer model to 2617
-  **2618**               Set the printer model to 2618
-  **VFU**                Install the HP standard 66-line VFU tape; default
-  **VFU=\<filename\>**   Install a custom VFU tape image
-  **OFFLINE**            Set the printer offline; default when detached
-  **ONLINE**             Set the printer online; default when attached
-  **EXPAND**             Write expanded output to the printer image file; default
-  **COMPACT**            Write compact output to the printer image file
-  **POWEROFF**           Turn the printer power off
-  **POWERON**            Turn the printer power on; default
-  ---------------------- ----------------------------------------------------------
+|***Option***          | ***Action***|
+|----------------------| ---------------------------------------------------------|
+|**2607**              | Set the printer model to 2607; default|
+|**2613**              | Set the printer model to 2613|
+|**2617**              | Set the printer model to 2617|
+|**2618**              | Set the printer model to 2618|
+|**VFU**               | Install the HP standard 66-line VFU tape; default|
+|**VFU=\<filename>** | Install a custom VFU tape image|
+|**OFFLINE**           | Set the printer offline; default when detached|
+|**ONLINE**            | Set the printer online; default when attached|
+|**EXPAND**            | Write expanded output to the printer image file; default|
+|**COMPACT**           | Write compact output to the printer image file|
+|**POWEROFF**          | Turn the printer power off|
+|**POWERON**           | Turn the printer power on; default|
 
 The ***2607***, ***2613***, ***2617***, and ***2618*** options select
 the printer model. Each printer is configured with Option 001, which
@@ -3673,17 +3251,16 @@ Initially, the standard VFU tape (part number 02607-80024 for the HP
 tape associates commands for channels 1-8 with the following printer
 actions:
 
-  --------------- -------------------------------
-  ***Channel***   ***Printer Advances to the***
-  **1**           Top of form
-  **2**           Bottom of form
-  **3**           Next single space
-  **4**           Next double space
-  **5**           Next triple space
-  **6**           Next half-page
-  **7**           Next quarter-page
-  **8**           Next sixth-page
-  --------------- -------------------------------
+|***Channel***  | ***Printer Advances to the***|
+|---------------| ------------------------------|
+|**1**          | Top of form|
+|**2**          | Bottom of form|
+|**3**          | Next single space|
+|**4**          | Next double space|
+|**5**          | Next triple space|
+|**6**          | Next half-page|
+|**7**          | Next quarter-page|
+|**8**          | Next sixth-page|
 
 For the 02613-80001 tape, channel 9 is punched the same as channel 2,
 and channels 10-12 are uncommitted.
@@ -3693,19 +3270,18 @@ If the device is in diagnostic mode, the appropriate diagnostic VFU tape
 installed. These tapes associate commands for channels 1-8 as above and
 for channels 9-12 with the following actions:
 
-  --------------- --------------------------------
-  ***Channel***   ***Printer Advances to the***
-  **9**           Bottom of form
-  **10**          Line before the bottom of form
-  **11**          Line before the top of form
-  **12**          Top of form
-  --------------- --------------------------------
+|***Channel***  | ***Printer Advances to the***|
+|---------------| -------------------------------|
+|**9**          | Bottom of form|
+|**10**         | Line before the bottom of form|
+|**11**         | Line before the top of form|
+|**12**         | Top of form|
 
 Setting the device back to printer mode restores the standard VFU tape.
 
 The simulator supports the use of custom VFU tape images. A custom tape
 may be installed in place of the standard tape by issuing the ***SET LPT
-VFU=\<filename\>*** command. Custom tapes must reserve channel 1 for the
+VFU=\<filename>*** command. Custom tapes must reserve channel 1 for the
 top-of-form location, but the other channels may be defined as desired.
 
 A custom tape image is a plain-text file that starts with a VFU
@@ -3722,19 +3298,19 @@ example, the line " *; a comment starting in column 2*" is not ignored.
 The first (non-ignored) line in the file must be a VFU definition line
 of this exact form:
 
-VFU=\<punch characters\>,\<no-punch character\>{,\<title\>}
+    VFU=<punch characters>,<no-punch character>{,<title>}
 
-\...where:
+...where:
 
 -   ***punch characters*** is a set of one or more characters used
-    > interchangeably to represent a punched location.
+    interchangeably to represent a punched location.
 
 -   ***no-punch character*** is a single character representing a
-    > non-punched location.
+    non-punched location.
 
 -   ***title*** is an optional description that is printed by the
-    > ***SHOW LPT VFU*** command; the description "Custom VFU" is used
-    > if the title is omitted.
+    ***SHOW LPT VFU*** command; the description "Custom VFU" is used
+    if the title is omitted.
 
 If the ***VFU*** line is missing or not of the correct form, then
 **Format error** is displayed on the simulation console, and the VFU
@@ -3762,27 +3338,27 @@ margin of the next form.
 An example custom VFU file using a 66-line tape definition for an
 8-channel VFU is:
 
-; the VFU definition\
-;\
-; the set of punch characters is "1" and "X"\
-; the no-punch character is "0"\
-; all other characters are ignored\
-\
-VFU=1X,0,A binary tape image\
-\
-; the channel definitions\
-\
-1 0 1 1 1 1 1 1 ; top of form (line 1; must have a punch in channel 1)\
-0-0-X-0-0-0-0-0 ; single space (line 2)\
-0011 ; channels 5-8 default to no-punch (line 3)\
-\[\...\]\
-0 1 1 0 0 0 0 0 ; bottom of form (line 60)\
-0 0 0 0 0 0 0 0 ; bottom form margin (line 61)\
-0 0 0 0 0 0 0 0 ; bottom form margin (line 62)\
-0 0 0 0 0 0 0 0 ; bottom form margin (line 63)\
-0 0 0 0 0 0 0 0 ; top of form margin (line 64)\
-0 0 0 0 0 0 0 0 ; top of form margin (line 65)\
-0 0 0 0 0 0 0 0 ; top of form margin (line 66)
+    ; the VFU definition
+    ;
+    ; the set of punch characters is "1" and "X"
+    ; the no-punch character is "0"
+    ; all other characters are ignored
+    
+    VFU=1X,0,A binary tape image
+    
+    ; the channel definitions
+    
+    1 0 1 1 1 1 1 1 ; top of form (line 1; must have a punch in channel 1)
+    0-0-X-0-0-0-0-0 ; single space (line 2)
+    0011            ; channels 5-8 default to no-punch (line 3)
+    [...]
+    0 1 1 0 0 0 0 0 ; bottom of form (line 60)
+    0 0 0 0 0 0 0 0 ; bottom form margin (line 61)
+    0 0 0 0 0 0 0 0 ; bottom form margin (line 62)
+    0 0 0 0 0 0 0 0 ; bottom form margin (line 63)
+    0 0 0 0 0 0 0 0 ; top of form margin (line 64)
+    0 0 0 0 0 0 0 0 ; top of form margin (line 65)
+    0 0 0 0 0 0 0 0 ; top of form margin (line 66)
 
 If a custom tape has been used, the standard tape may be reinstalled by
 issuing the ***SET LPT VFU*** command.
@@ -3793,10 +3369,9 @@ back online will clear the fault.
 
 The current VFU definition may be displayed with the following command:
 
-  ------------------ --------------------------------------------------
-  ***Command***      ***Action***
-  **SHOW LPT VFU**   Display the currently loaded VFU tape definition
-  ------------------ --------------------------------------------------
+|***Command***     | ***Action***|
+|------------------| -------------------------------------------------|
+|**SHOW LPT VFU**  | Display the currently loaded VFU tape definition|
 
 This command displays the current VFU tape title and then the channel
 definitions for each form line. By default, a punched channel is
@@ -3809,14 +3384,13 @@ into the PUNCHR and UNPCHR registers, respectively.
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **CMD**        Printer commands executed
-  **CSRW**       Interface control, status, read, and write actions
-  **SERV**       Printer unit service events
-  **XFER**       Data transmissions
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**CMD**       | Printer commands executed|
+|**CSRW**      | Interface control, status, read, and write actions|
+|**SERV**      | Printer unit service events|
+|**XFER**      | Data transmissions|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***CMD*** option traces the commands executed by the printer. The
 ***CSRW*** option traces control, status, read, and write commands sent
@@ -3827,46 +3401,44 @@ signals and data received and returned via the interface.
 
 Examples of the trace formats follow:
 
-\>\>LPT cmd: Printed 136 characters on line 1\
-\>\>LPT cmd: Printer commanded to slew to VFU channel 3 from line 1\
-\>\>LPT cmd: Printer advanced 1 line to line 2\
-\>\>LPT csrw: Control is character \| \'\#\'\
-\>\>LPT csrw: Status is online \| ready \| VFU 12 \| idle\
-\>\>LPT serv: Unit delay 1577 service scheduled\
-\>\>LPT serv: Printer service entered\
-\>\>LPT xfer: Character \'G\' sent to printer\
-\>\>LPT xfer: Format code 102 sent to printer\
-\>\>LPT iobus: Received data 000000 with signals STC \| CLF \| SIR \|
-PRH\
-\>\>LPT iobus: Returned data 000000 with signals PRL
+    >>LPT   cmd: Printed 136 characters on line 1
+    >>LPT   cmd: Printer commanded to slew to VFU channel 3 from line 1
+    >>LPT   cmd: Printer advanced 1 line to line 2
+    >>LPT  csrw: Control is character | '#'
+    >>LPT  csrw: Status is online | ready | VFU 12 | idle
+    >>LPT  serv: Unit delay 1577 service scheduled
+    >>LPT  serv: Printer service entered
+    >>LPT  xfer: Character 'G' sent to printer
+    >>LPT  xfer: Format code 102 sent to printer
+    >>LPT iobus: Received data 000000 with signals STC | CLF | SIR | PRH
+    >>LPT iobus: Returned data 000000 with signals PRL
 
 The Line Printer Controller state contains these registers:
 
-  ---------------------- ------------ ------------- ---------------- ----------------- -------------------------------------
-  ***Name***             ***Size***   ***Radix***   ***Symbolic***   ***Read-Only***   ***Description***
-  **DEVCTL**             1            2                                                Device control flip-flop
-  **DEVFLG**             1            2                                                Device flag flip-flop
-  **DEVFBF**             1            2                                                Device flag buffer flip-flop
-  **STROBE**             1            2                                                Strobe signal to the printer
-  **DEMAND**             1            2                                                Demand signal from the printer
-  **OUTPUT**             16           8                                               Output data word to the printer
-  **STATUS**             16           8                                                Device status from the printer
-  **PFAULT**             1            2                                                Paper fault exists
-  **TFAULT**             1            2                                                Tape fault exists
-  **OLPEND**             1            2                                                Offline transition is pending
-  **PRLINE**             8            10                                               Current print line number
-  **BUFIDX**             8            10                                               Current print buffer index
-  **PRTBUF \[0:423\]**   8            8                                               Print buffer
-  **OVPCHR**             8            8                                               Overprint character
-  **FORMLN**             8            10                                              Form length in lines
-  **VFU \[0:144\]**      12           2                                               Vertical format unit channels
-  **PUNCHR**             8            8                                               Punched channel character
-  **UNPCHR**             8            8                                               Unpunched channel character
-  **BTIME**              24           10                                               Fast printer buffer load delay time
-  **PTIME**              24           10                                               Fast printing delay time
-  **STIME**              24           10                                               Fast paper slew per-line delay time
-  **POS**                32           10                                               Printer file current position
-  ---------------------- ------------ ------------- ---------------- ----------------- -------------------------------------
+|***Name***            | ***Size*** |  ***Radix***|   ***Symbolic***|   ***Read-Only***|   ***Description***|
+|----------------------| -----------|-------------|----------------|-----------------|-------------------------------------|
+|**DEVCTL**            | 1          |  2          |                |                 |     Device control flip-flop|
+|**DEVFLG**            | 1          |  2          |                |                 |     Device flag flip-flop|
+|**DEVFBF**            | 1          |  2          |                |                 |     Device flag buffer flip-flop|
+|**STROBE**            | 1          |  2          |                |                 |     Strobe signal to the printer|
+|**DEMAND**            | 1          |  2          |                |                 |     Demand signal from the printer|
+|**OUTPUT**            | 16         |  8          |   &#10003;     |                 |       Output data word to the printer|
+|**STATUS**            | 16         |  8          |                |                 |     Device status from the printer|
+|**PFAULT**            | 1          |  2          |                |                 |     Paper fault exists|
+|**TFAULT**            | 1          |  2          |                |                 |     Tape fault exists|
+|**OLPEND**            | 1          |  2          |                |                 |     Offline transition is pending|
+|**PRLINE**            | 8          |  10         |                |                 |     Current print line number|
+|**BUFIDX**            | 8          |  10         |                |                 |     Current print buffer index|
+|**PRTBUF \[0:423\]**  | 8          |  8          |   &#10003;     |                 |       Print buffer|
+|**OVPCHR**            | 8          |  8          |   &#10003;     |                 |       Overprint character|
+|**FORMLN**            | 8          |  10         |                |    &#10003;      |       Form length in lines|
+|**VFU \[0:144\]**     | 12         |  2          |                |    &#10003;     |       Vertical format unit channels|
+|**PUNCHR**            | 8          |  8          |   &#10003;     |                 |       Punched channel character|
+|**UNPCHR**            | 8          |  8          |   &#10003;     |                 |       Unpunched channel character|
+|**BTIME**             | 24         |  10         |                |                 |     Fast printer buffer load delay time|
+|**PTIME**             | 24         |  10         |                |                 |     Fast printing delay time|
+|**STIME**             | 24         |  10         |                |                 |     Fast paper slew per-line delay time|
+|**POS**               | 32         |  10         |                |                 |     Printer file current position|
 
 The PRTBUF, OVPCHR, PUNCHR, and UNPCHR registers default to
 single-character format display and entry but may be overridden with
@@ -3897,8 +3469,7 @@ logical OR of elements 1-n, so a 1 value indicates that the channel is
 punched somewhere on the tape, and a 0 value indicates that the channel
 is not punched.
 
-12875A Processor Interconnect
------------------------------
+## 12875A Processor Interconnect
 
 The HP 12875A Processor Interconnect kit is used to communicate between
 the System Processor and the I/O Processor of a two-CPU HP 2000
@@ -3926,15 +3497,15 @@ of one machine to the IPL devices of the other simulates connecting the
 cables. The System Processor instance establishes its connections with
 this command:
 
-ATTACH --S IPL \<code\>
+    ATTACH --S IPL <code>
 
-\...where ***code*** is a user-selected decimal number between 1 and
+...where ***code*** is a user-selected decimal number between 1 and
 65535 that uniquely identifies the instance pair to interconnect. The
 I/O Processor instance establishes its connections with this command:
 
-ATTACH --I IPL \<code\>
+    ATTACH --I IPL <code>
 
-\...where ***code*** is the same decimal number specified in the System
+...where ***code*** is the same decimal number specified in the System
 Processor's ***ATTACH*** command.
 
 The interface does not provide status to the CPU to indicate that the
@@ -3948,14 +3519,13 @@ device, then resuming simulation will retry the operation.
 Processor interconnect options that may be specified for the IPL device
 are:
 
-  -------------- ----------------------------------------------------------------------
-  ***Option***   ***Action***
-  **WAIT**       Suspend execution until a signal is received from the other instance
-  **SIGNAL**     Signal the other instance
-  **SC=\<n\>**   Set the interface card select codes; defaults are 32/33
-  **ENABLED**    Enable the IPLI and IPLO devices
-  **DISABLED**   Disable the IPLI and IPLO devices; default
-  -------------- ----------------------------------------------------------------------
+|***Option***  | ***Action***|
+|--------------| ---------------------------------------------------------------------|
+|**WAIT**      | Suspend execution until a signal is received from the other instance|
+|**SIGNAL**    | Signal the other instance|
+|**SC=\<n>** | Set the interface card select codes; defaults are 32/33|
+|**ENABLED**   | Enable the IPLI and IPLO devices|
+|**DISABLED**  | Disable the IPLI and IPLO devices; default|
 
 The ***WAIT*** and ***SIGNAL*** options are used to synchronize the two
 simulator instances connected by ***ATTACH*** commands specifying the
@@ -3976,13 +3546,12 @@ assigned in the correct order.
 Processor interconnect options that may be specified for either the IPLI
 or IPLO device are:
 
-  ---------------------- ------------------------------------------------------
-  ***Option***           ***Action***
-  **DIAGNOSTIC**         Connect using the diagnostic test connector or cable
-  **LINK**               Connect using the processor interconnect cables
-  **DEBUG=\<option\>**   Enable tracing
-  **NODEBUG**            Disable tracing; default
-  ---------------------- ------------------------------------------------------
+|***Option***          | ***Action***|
+|----------------------| -----------------------------------------------------|
+|**DIAGNOSTIC**        | Connect using the diagnostic test connector or cable|
+|**LINK**              | Connect using the processor interconnect cables|
+|**DEBUG=\<option>** | Enable tracing|
+|**NODEBUG**           | Disable tracing; default|
 
 Enabling diagnostic mode for either device individually simulates the
 installation of the HP 1251-0332 diagnostic test (loopback) connector in
@@ -4002,14 +3571,13 @@ When a debug log has been established, tracing may be configured for
 each card separately by specifying one or more of the reporting level
 options:
 
-  -------------- -----------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **CMD**        Command initiations and completions
-  **CSRW**       Control, status, read, and write actions
-  **PSERV**      Interface service scheduling calls and entries (periodic)
-  **XFER**       Data receptions and transmissions
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- -----------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| ----------------------------------------------------------|
+|**CMD**       | Command initiations and completions|
+|**CSRW**      | Control, status, read, and write actions|
+|**PSERV**     | Interface service scheduling calls and entries (periodic)|
+|**XFER**      | Data receptions and transmissions|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***CMD*** option traces the commands executed by the processor
 interconnect. The ***CSRW*** option traces words received from and sent
@@ -4022,16 +3590,15 @@ interface.
 
 Examples of the trace formats follow:
 
-\>\>IPLI cmd: Delaying DMA completion interrupt for 1 msec\
-\>\>IPLI csrw: Command input word is 040000\
-\>\>IPLI csrw: Status output word is 000103\
-\>\>IPLI pserv: Poll delay 32 service scheduled\
-\>\>IPLO pserv: Poll delay 50 service entered\
-\>\>IPLI xfer: Word 000015 sent to link\
-\>\>IPLI xfer: Word 000040 delta 63 received from link\
-\>\>IPLI iobus: Received data 000000 with signals IOO \| STC \| CLC \|
-CLF \| EDT \| SIR\
-\>\>IPLI iobus: Returned data 000000 with signals (none)
+    >>IPLI cmd: Delaying DMA completion interrupt for 1 msec
+    >>IPLI csrw: Command input word is 040000
+    >>IPLI csrw: Status output word is 000103
+    >>IPLI pserv: Poll delay 32 service scheduled
+    >>IPLO pserv: Poll delay 50 service entered
+    >>IPLI xfer: Word 000015 sent to link
+    >>IPLI xfer: Word 000040 delta 63 received from link
+    >>IPLI iobus: Received data 000000 with signals IOO | STC | CLC | CLF | EDT | SIR
+    >>IPLI iobus: Returned data 000000 with signals (none)
 
 The interface supports the ***LOAD IPL*** and ***BOOT IPL*** commands to
 load an absolute binary program into memory from the other processor.
@@ -4065,36 +3632,29 @@ ROM, pressing the IBL button to copy the ROM into memory, and, for the
 ***BOOT*** command, pressing the PRESET and RUN buttons to begin
 execution. The S register is preset as follows:
 
-  ---------- ---------- ---------- ---------- ------------------ ---------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
-  ***15***   ***14***   ***13***   ***12***   ***11***           ***10***   ***9***   ***8***   ***7***   ***6***   ***5***   ***4***   ***3***   ***2***   ***1***   ***0***
-  0          0          0          0          IPLI select code   0          0         0         0         0         0                                                 
-  ---------- ---------- ---------- ---------- ------------------ ---------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
+|***15***  | ***14*** | ***13***| ***12***|   ***11*** --- ***6***  | ***5*** |  ***4***|  ***3***| ***2*** | ***1*** | ***0*** |
+|----------|----------|---------|---------|-------------------------|---------|---------|---------|-------- |---------| --------|
+|0         | 0        |  0       |   0    |  IPLI select code       |      0  |       0 |        0|         |0        | 0       |
 
 For either loader, execution ends with one of the following halt
 instructions:
 
--   HLT 11 --- a checksum error occurred; A = the calculated value, B =
-    > the tape value.
-
+-   HLT 11 --- a checksum error occurred; A = the calculated value, B = the tape value.
 -   HLT 55 --- the program load address would overlay the loader.
-
--   HLT 77 --- the end of the program was reached with a successful
-    > read.
+-   HLT 77 --- the end of the program was reached with a successful read.
 
 The IPLI and IPLO state contains these registers:
 
-  ------------ ------------ ------------- ----------------------------
-  ***Name***   ***Size***   ***Radix***   ***Action***
-  **IBUF**     16           8             Input buffer
-  **OBUF**     16           8             Output buffer
-  **CTL**      1            2             Control flip-flop
-  **FLG**      1            2             Flag flip-flop
-  **FBF**      1            2             Flag buffer flip-flop
-  **TIME**     24           10            Polling interval for input
-  ------------ ------------ ------------- ----------------------------
+|***Name***  | ***Size*** |  ***Radix***|   ***Action***|
+|------------| -----------|-------------|----------------------------|
+|**IBUF**    | 16         |  8          |   Input buffer|
+|**OBUF**    | 16         |  8          |   Output buffer|
+|**CTL**     | 1          |  2          |   Control flip-flop|
+|**FLG**     | 1          |  2          |   Flag flip-flop|
+|**FBF**     | 1          |  2          |   Flag buffer flip-flop|
+|**TIME**    | 24         |  10         |   Polling interval for input|
 
-12920A Asynchronous Multiplexer Interface
------------------------------------------
+## 12920A Asynchronous Multiplexer Interface
 
 The HP 12920A Asynchronous Multiplexer Interface is a 16-channel
 terminal multiplexer commonly used with the HP 2000 series of
@@ -4115,9 +3675,7 @@ simulation, the multiplexer is implemented as a three-device set, as
 follows:
 
 -   MUXL --- the Lower Data PCA
-
 -   MUX --- the Upper Data PCA
-
 -   MUXC --- the Control PCA
 
 The Data PCAs provide the serial data line connections for terminals and
@@ -4144,9 +3702,9 @@ individually specified host serial ports. The Data PCAs support
 concurrent Telnet and serial connections. The ***ATTACH*** command
 specifies the local port to be used for Telnet connections:
 
-ATTACH MUX \<port\>
+    ATTACH MUX <port>
 
-\...where ***port*** is a decimal number between 1 and 65535 that is not
+...where ***port*** is a decimal number between 1 and 65535 that is not
 being used for other TCP/IP activities. When the Upper Data PCA is
 attached and the simulator is running, the multiplexer listens for
 connections on the specified port and assigns them to channels in
@@ -4156,10 +3714,10 @@ specified.
 The ***ATTACH*** command is also used to specify the host serial port
 for individual multiplexer channels:
 
-ATTACH {--V} MUX
-LINE=\<chan\>,CONNECT=\<name\>{;\<rate\>-\<size\>\<parity\>\<stopbits\>}
+    ATTACH {--V} MUX
+    LINE=<chan>,CONNECT=<name>{;<rate>-<size><parity><stopbits>}
 
-\...where ***chan*** is the multiplexer channel number from 0-15, and
+...where ***chan*** is the multiplexer channel number from 0-15, and
 ***name*** is the host name of the serial port to use (e.g., *ser0* or
 *COM1*). If the ***--V*** (verbose) option is included, a connection
 confirmation message will be output to the port.
@@ -4170,10 +3728,10 @@ host name. The required values are:
 -   ***rate*** is the baud rate in bits per second.
 
 -   ***size*** is the character size in bits including the parity bit,
-    > if designated.
+    if designated.
 
 -   ***parity*** designates the parity to use: *N* (no), *E* (even), *O*
-    > (odd), *M* (mark), or *S* (space).
+    (odd), *M* (mark), or *S* (space).
 
 -   ***stopbits*** is the number of stop bits (*1*, *1.5*, or *2*).
 
@@ -4183,24 +3741,23 @@ parity, and one stop bit.
 Upper and Lower Data PCA configuration options are available for the
 device and for the individual units. The command forms are:
 
-SET MUX \<device-option\>\
-SET MUXL \<device-option\>\
-SET MUXLn \<unit-option\>
+    SET MUX <device-option>
+    SET MUXL <device-option>
+    SET MUXLn <unit-option>
 
 Device options that may be specified for the Upper Data PCA are:
 
-  ------------------------------------- -------------------------------------------------------
-  ***Option***                          ***Action***
-  **TERMINAL**                          Connect using Telnet or serial ports; default
-  **DIAGNOSTIC**                        Connect using diagnostic test cables
-  **LINEORDER=\<c1\>\[;\<c2\>\...\]**   Set the channel connection order
-  **DISCONNECT=\<chan\>**               Disconnect the specified channel
-  **SC=\<n\>**                          Set the interface card select codes; default is 40/41
-  **DEBUG=\<option\>**                  Enable tracing
-  **NODEBUG**                           Disable tracing; default
-  **ENABLED**                           Enable the device; default
-  **DISABLED**                          Disable the device
-  ------------------------------------- -------------------------------------------------------
+|***Option***                         | ***Action***|
+|-------------------------------------| ------------------------------------------------------|
+|**TERMINAL**                         | Connect using Telnet or serial ports; default|
+|**DIAGNOSTIC**                       | Connect using diagnostic test cables|
+|**LINEORDER=\<c1>\[;\<c2>...\]** | Set the channel connection order|
+|**DISCONNECT=\<chan>**             | Disconnect the specified channel|
+|**SC=\<n>**                        | Set the interface card select codes; default is 40/41|
+|**DEBUG=\<option>**                | Enable tracing|
+|**NODEBUG**                          | Disable tracing; default|
+|**ENABLED**                          | Enable the device; default|
+|**DISABLED**                         | Disable the device|
 
 Enabling the ***DIAGNOSTIC*** mode simulates the installation of eight
 HP 30062-60003 diagnostic test (loopback) cables between channels 0-1,
@@ -4223,7 +3780,7 @@ ascending channel order. The default order may be reestablished by
 specifying the command ***SET MUX LINEORDER=ALL***.
 
 A channel may be manually disconnected from its associated Telnet
-session with the ***SET MUX DISCONNECT=\<chan\>*** command. Otherwise,
+session with the ***SET MUX DISCONNECT=\<chan>*** command. Otherwise,
 the connection will remain open until disconnected either by the Telnet
 client or a ***DETACH MUX*** command, unless the channel is controlled
 by the Control PCA. For a serial connection, the command will drop and
@@ -4236,30 +3793,28 @@ and the cards will be assigned in the correct order.
 
 Device options that may be specified for the Lower Data PCA are:
 
-  ---------------------- -------------------------------------------------------
-  ***Option***           ***Action***
-  **SC=\<n\>**           Set the interface card select codes; default is 40/41
-  **DEBUG=\<option\>**   Enable tracing
-  **NODEBUG**            Disable tracing; default
-  **ENABLED**            Enable the device; default
-  **DISABLED**           Disable the device
-  ---------------------- -------------------------------------------------------
+|***Option***          | ***Action***|
+|----------------------| ------------------------------------------------------|
+|**SC=\<n>**         | Set the interface card select codes; default is 40/41|
+|**DEBUG=\<option>** | Enable tracing|
+|**NODEBUG**           | Disable tracing; default|
+|**ENABLED**           | Enable the device; default|
+|**DISABLED**          | Disable the device|
 
 Unit options that may be specified for individual Lower Data PCA
 channels are:
 
-  ---------------------- -------------------------------------------------------------
-  ***Option***           ***Action***
-  **UC**                 Upshift lowercase output characters to uppercase; default
-  **7B**                 Output with high-order bit cleared
-  **7P**                 Output with high-order bit cleared, non-printing suppressed
-  **8B**                 Output characters without changing
-  **DATASET**            Enable modem control via the Control PCA
-  **NODATASET**          Disable modem control; default
-  **LOG=\<filename\>**   Enable I/O logging
-  **NOLOG**              Disable I/O logging; default
-  **DISCONNECT**         Disconnect the channel
-  ---------------------- -------------------------------------------------------------
+|***Option***          | ***Action***|
+|----------------------| ------------------------------------------------------------|
+|**UC**                | Upshift lowercase output characters to uppercase; default|
+|**7B**                | Output with high-order bit cleared|
+|**7P**                | Output with high-order bit cleared, non-printing suppressed|
+|**8B**                | Output characters without changing|
+|**DATASET**           | Enable modem control via the Control PCA|
+|**NODATASET**         | Disable modem control; default|
+|**LOG=\<filename>** | Enable I/O logging|
+|**NOLOG**             | Disable I/O logging; default|
+|**DISCONNECT**        | Disconnect the channel|
 
 Each channel may be set to one of four output modes (***UC***, ***7B***,
 ***7P***, or ***8B***). The default mode is ***UC*** for all channels.
@@ -4292,22 +3847,20 @@ include the ***--C*** switch in the command.
 Upper Data PCA device configuration may be displayed with the following
 commands:
 
-  -------------------------- ---------------------------------------------------------------
-  ***Command***              ***Action***
-  **SHOW MUX**               Display the device configuration
-  **SHOW MUX LINEORDER**     Display the channel connection order
-  **SHOW MUX CONNECTIONS**   Display the channel connections
-  **SHOW MUX STATISTICS**    Display the channel I/O statistics for the active connections
-  -------------------------- ---------------------------------------------------------------
+|***Command***             | ***Action***|
+|--------------------------| --------------------------------------------------------------|
+|**SHOW MUX**              | Display the device configuration|
+|**SHOW MUX LINEORDER**    | Display the channel connection order|
+|**SHOW MUX CONNECTIONS**  | Display the channel connections|
+|**SHOW MUX STATISTICS**   | Display the channel I/O statistics for the active connections|
 
 Lower Data PCA unit configuration may be displayed with the following
 commands:
 
-  ------------------------ -----------------------------------------------
-  ***Command***            ***Action***
-  **SHOW MUXL\<n\>**       Display the selected channel's configuration
-  **SHOW MUXL\<n\> LOG**   Display the selected channel's logging status
-  ------------------------ -----------------------------------------------
+|***Command***           | ***Action***|
+|------------------------| ----------------------------------------------|
+|**SHOW MUXL\<n>**     | Display the selected channel's configuration|
+|**SHOW MUXL\<n> LOG** | Display the selected channel's logging status|
 
 In addition to the current configuration settings, a channel controlled
 by the Control PCA will be marked **data set** in the listing; a channel
@@ -4317,23 +3870,21 @@ When a debug log has been established, tracing of the Upper Data PCA
 device may be configured by specifying one or more of these reporting
 level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **CSRW**       Control, status, read, and write actions
-  **PSERV**      Poll unit service events (periodic)
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**CSRW**      | Control, status, read, and write actions|
+|**PSERV**     | Poll unit service events (periodic)|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 Tracing of the Lower Data PCA device may be configured by specifying
 these options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **CSRW**       Control, status, read, and write actions
-  **SERV**       Channel unit service events
-  **XFER**       Data receptions and transmissions
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**CSRW**      | Control, status, read, and write actions|
+|**SERV**      | Channel unit service events|
+|**XFER**      | Data receptions and transmissions|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***CSRW*** option traces control, status, read, and write commands
 sent to the interface. The ***PSERV*** option traces poll unit service
@@ -4347,49 +3898,46 @@ data received and returned via the interface.
 
 Examples of the trace formats follow:
 
-\>\>MUX csrw: Channel 0 is selected\
-\>\>MUX csrw: Status is channel 0 \| receive\
-\>\>MUXL csrw: Parameter is send \| enable parity/echo \| 11 bits \| 110
-baud\
-\>\>MUXL csrw: Channel 0 receive parameter 131202 stored\
-\>\>MUXL csrw: Channel 0 send interrupt requested\
-\>\>MUX pserv: Poll delay 15773 service entered\
-\>\>MUXL serv: Channel 0 delay 500 service scheduled\
-\>\>MUXL serv: Channel 0 service entered\
-\>\>MUXL xfer: Channel 0 character \'R\' sent\
-\>\>MUXL xfer: Channel 0 character LF sent\
-\>\>MUXL xfer: Channel 0 character \'H\' received\
-\>\>MUXL xfer: Channel 2 break detected\
-\>\>MUXL iobus: Received data 114015 with signals SFS \| PRH\
-\>\>MUXL iobus: Returned data 114015 with signals SKF \| PRL\
-\>\>MUX iobus: Received data 000000 with signals IOI\
-\>\>MUX iobus: Returned data 000001 with signals (none)
+    >>MUX   csrw: Channel 0 is selected
+    >>MUX   csrw: Status is channel 0 | receive
+    >>MUXL  csrw: Parameter is send | enable parity/echo | 11 bits | 110 baud
+    >>MUXL  csrw: Channel 0 receive parameter 131202 stored
+    >>MUXL  csrw: Channel 0 send interrupt requested
+    >>MUX  pserv: Poll delay 15773 service entered
+    >>MUXL  serv: Channel 0 delay 500 service scheduled
+    >>MUXL  serv: Channel 0 service entered
+    >>MUXL  xfer: Channel 0 character 'R' sent
+    >>MUXL  xfer: Channel 0 character LF sent
+    >>MUXL  xfer: Channel 0 character 'H' received
+    >>MUXL  xfer: Channel 2 break detected
+    >>MUXL iobus: Received data 114015 with signals SFS | PRH
+    >>MUXL iobus: Returned data 114015 with signals SKF | PRL
+    >>MUX  iobus: Received data 000000 with signals IOI
+    >>MUX  iobus: Returned data 000001 with signals (none)
 
 The Upper Data PCA state contains these registers:
 
-  ------------ ------------ ------------- ------------------------------------
-  ***Name***   ***Size***   ***Radix***   ***Action***
-  **IBUF**     16           8             Input buffer; holds channel status
-  **OBUF**     16           8             Output buffer; hold channel select
-  ------------ ------------ ------------- ------------------------------------
+|***Name***  | ***Size*** |  ***Radix***|   ***Action***|
+|------------| -----------|-------------|------------------------------------|
+|**IBUF**    | 16         |  8          |   Input buffer; holds channel statu|
+|**OBUF**    | 16         |  8          |   Output buffer; hold channel selec|
 
 The Lower Data PCA state contains these registers:
 
-  ------------------- ------------ ------------- ---------------- --------------------------------------------------
-  ***Name***          ***Size***   ***Radix***   ***Symbolic***   ***Action***
-  **CTL**             1            2                              Control flip-flop
-  **FLG**             1            2                              Flag flip-flop
-  **FBF**             1            2                              Flag buffer flip-flop
-  **STA \[0:20\]**    16           8                              Receive channel status, channels 0-20
-  **RPAR \[0:20\]**   16           8                              Receive channel parameters, channels 0-20
-  **XPAR \[0:15\]**   16           8                              Transmit channel parameters, channels 0-15
-  **RBUF \[0:20\]**   16           8                             Receive channel buffers, channels 0-20
-  **XBUF \[0:15\]**   16           8                             Transmit channel buffers, channels 0-15
-  **RCHP \[0:20\]**   1            2                              Receive channel character present, channels 0-20
-  **XDON \[0:15\]**   1            2                              Transmit channel done, channels 0-15
-  **BDFR \[0:15\]**   1            2                              Receive channel break deferred, channels 0-15
-  **TIME \[0:15\]**   24           10                             Transmit channel time, channels 0-15
-  ------------------- ------------ ------------- ---------------- --------------------------------------------------
+|***Name***         | ***Size*** |  ***Radix***| ***Symbolic*** |   ***Action***|
+|-------------------| -----------| ------------| ---------------| -------------------------------------------------|
+|**CTL**            | 1          |  2          |                |    Control flip-flop|
+|**FLG**            | 1          |  2          |                |    Flag flip-flop|
+|**FBF**            | 1          |  2          |                |    Flag buffer flip-flop|
+|**STA \[0:20\]**   | 16         |  8          |                |    Receive channel status, channels 0-20|
+|**RPAR \[0:20\]**  | 16         |  8          |                |    Receive channel parameters, channels 0-20|
+|**XPAR \[0:15\]**  | 16         |  8          |                |    Transmit channel parameters, channels 0-15|
+|**RBUF \[0:20\]**  | 16         |  8          |   &#10003;     |      Receive channel buffers, channels 0-20|
+|**XBUF \[0:15\]**  | 16         |  8          |   &#10003;     |      Transmit channel buffers, channels 0-15|
+|**RCHP \[0:20\]**  | 1          |  2          |                |    Receive channel character present, channels 0-|
+|**XDON \[0:15\]**  | 1          |  2          |                |    Transmit channel done, channels 0-15|
+|**BDFR \[0:15\]**  | 1          |  2          |                |    Receive channel break deferred, channels 0-15|
+|**TIME \[0:15\]**  | 24         |  10         |                |    Transmit channel time, channels 0-15|
 
 The RBUF and XBUF registers default to single-character format display
 and entry but may be overridden with numeric-format switches, if
@@ -4407,10 +3955,9 @@ Data Terminal Ready is set or not.
 
 Control PCA device options that may be specified are:
 
-  -------------- ---------------------------------------------------
-  ***Option***   ***Action***
-  **SC=\<n\>**   Set the interface card select code; default is 42
-  -------------- ---------------------------------------------------
+|***Option***  | ***Action***|
+|--------------| --------------------------------------------------|
+|**SC=\<n>** | Set the interface card select code; default is 42|
 
 The Control PCA is usually installed in the slot above the Upper Data
 PCA, but this is not required.
@@ -4420,20 +3967,18 @@ There are no Control PCA units or unit commands.
 Control PCA device configuration may be displayed with the following
 commands:
 
-  --------------- ----------------------------------
-  ***Command***   ***Action***
-  **SHOW MUXC**   Display the device configuration
-  --------------- ----------------------------------
+|***Command***  | ***Action***|
+|---------------| ---------------------------------|
+|**SHOW MUXC**  | Display the device configuration|
 
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **CSRW**       Control, status, read, and write actions
-  **XFER**       Control and status line changes
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**CSRW**      | Control, status, read, and write actions|
+|**XFER**      | Control and status line changes|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The CSRW option traces control, status, read, and write commands sent to
 the interface. The XFER option traces the changes in control and status
@@ -4442,33 +3987,29 @@ backplane signals and data received and returned via the interface.
 
 Examples of the trace formats follow:
 
-\>\>MUXC csrw: Status is channel 0 \| I2 \| I1 \| ES2 \| ES1 \| \~S2 \|
-\~S1\
-\>\>MUXC csrw: Control is channel 0 \| update \| \~C2 \| \~C1 \| ES2 \|
-ES1 \| S2 \| S1\
-\>\>MUXC csrw: Channel 1 disconnected by DTR drop\
-\>\>MUXC csrw: Channel 1 interrupt requested\
-\>\>MUXC xfer: Channel 0 connected\
-\>\>MUXC xfer: Channel 0 line status is RTS \| DTR\
-\>\>MUXC xfer: Channel 0 disconnect dropped DCD and DSR\
-\>\>MUXC iobus: Received data 031374 with signals IOO\
-\>\>MUXC iobus: Returned data 141414 with signals (none)
+    >>MUXC csrw: Status is channel 0 | I2 | I1 | ES2 | ES1 | ~S2 | ~S1
+    >>MUXC csrw: Control is channel 0 | update | ~C2 | ~C1 | ES2 | ES1 | S2 | S1
+    >>MUXC csrw: Channel 1 disconnected by DTR drop
+    >>MUXC csrw: Channel 1 interrupt requested
+    >>MUXC xfer: Channel 0 connected
+    >>MUXC xfer: Channel 0 line status is RTS | DTR
+    >>MUXC xfer: Channel 0 disconnect dropped DCD and DSR
+    >>MUXC iobus: Received data 031374 with signals IOO
+    >>MUXC iobus: Returned data 141414 with signals (none)
 
 The Control PCA state contains these registers:
 
-  ------------------ ------------ ------------- -------------------------------------------------------------
-  ***Name***         ***Size***   ***Radix***   ***Description***
-  **CTL**            1            2             Control flip-flop
-  **FLG**            1            2             Flag flip-flop
-  **FBF**            1            2             Flag buffer flip-flop
-  **SCAN**           1            2             Scan flip-flop
-  **CHAN**           4            8             Current channel number
-  **DSO \[0:15\]**   6            2             Control lines C2, C1, ES2, ES1, SS2, and SS1, channels 0-15
-  **DSI \[0:15\]**   2            2             Status lines S2 and S1, channels 0-15
-  ------------------ ------------ ------------- -------------------------------------------------------------
+|***Name***        | ***Size*** |  ***Radix***|   ***Description***|
+|------------------| -----------|-------------|-------------------------------------------------------------|
+|**CTL**           | 1          |  2          |   Control flip-flop|
+|**FLG**           | 1          |  2          |   Flag flip-flop|
+|**FBF**           | 1          |  2          |   Flag buffer flip-flop|
+|**SCAN**          | 1          |  2          |   Scan flip-flop|
+|**CHAN**          | 4          |  8          |   Current channel number|
+|**DSO \[0:15\]**  | 6          |  2          |   Control lines C2, C1, ES2, ES1, SS2, and SS1, channels 0-1|
+|**DSI \[0:15\]**  | 2          |  2          |   Status lines S2 and S1, channels 0-15|
 
-12966A Buffered Asynchronous Communications Interface
------------------------------------------------------
+## 12966A Buffered Asynchronous Communications Interface
 
 The 12966A Buffered Asynchronous Communications Interface card
 supplanted the 12531C Teletype and 12880A CRT interfaces as the primary
@@ -4489,9 +4030,9 @@ connected to a user-specified port or through a specified host serial
 port. The ***ATTACH*** command specifies the local port to be used for
 Telnet connections:
 
-ATTACH BACI \<port\>
+    ATTACH BACI <port>
 
-\...where ***port*** is a decimal number between 1 and 65535 that is not
+...where ***port*** is a decimal number between 1 and 65535 that is not
 being used for other TCP/IP activities. When the BACI is attached and
 the simulator is running, the BACI listens for connections on the
 specified port. Only one connection at a time is permitted.
@@ -4499,10 +4040,9 @@ specified port. Only one connection at a time is permitted.
 The ***ATTACH*** command is also used to specify a host port for serial
 connections:
 
-ATTACH {--V} BACI
-CONNECT=\<name\>{;\<rate\>-\<size\>\<parity\>\<stopbits\>}
+    ATTACH {--V} BACI CONNECT=<name>{;<rate>-<size><parity><stopbits>}
 
-\...where ***name*** is the host name of the serial port to use (e.g.,
+...where ***name*** is the host name of the serial port to use (e.g.,
 *ser0* or *COM1*). If the ***--V*** (verbose) option is included, a
 connection confirmation message will be output to the port.
 
@@ -4512,10 +4052,10 @@ host name. The required values are:
 -   ***rate*** is the baud rate in bits per second.
 
 -   ***size*** is the character size in bits including the parity bit,
-    > if designated.
+    if designated.
 
 -   ***parity*** designates the parity to use: *N* (no), *E* (even), *O*
-    > (odd), *M* (mark), or *S* (space).
+    (odd), *M* (mark), or *S* (space).
 
 -   ***stopbits*** is the number of stop bits (*1*, *1.5*, or *2*).
 
@@ -4528,23 +4068,22 @@ require the use of HP terminals or terminal emulators.
 Device and unit configuration options specify timing and output modes.
 The command forms are:
 
-SET BACI \<device-option\>\
-SET BACI \<unit-option\>
+    SET BACI <device-option>
+    SET BACI <unit-option>
 
 Device options that may be specified are:
 
-  ---------------------- ---------------------------------------------------
-  ***Option***           ***Action***
-  **DIAGNOSTIC**         Connect using a diagnostic test connector
-  **TERMINAL**           Connect using Telnet or a serial port; default
-  **FASTTIME**           Use optimized timing; default
-  **REALTIME**           Use realistic timing
-  **SC=\<n\>**           Set the interface card select code; default is 35
-  **DEBUG=\<option\>**   Enable tracing
-  **NODEBUG**            Disable tracing; default
-  **ENABLED**            Enable the device; default
-  **DISABLED**           Disable the device
-  ---------------------- ---------------------------------------------------
+|***Option***          | ***Action***|
+|----------------------| --------------------------------------------------|
+|**DIAGNOSTIC**        | Connect using a diagnostic test connector|
+|**TERMINAL**          | Connect using Telnet or a serial port; default|
+|**FASTTIME**          | Use optimized timing; default|
+|**REALTIME**          | Use realistic timing|
+|**SC=\<n>**         | Set the interface card select code; default is 35|
+|**DEBUG=\<option>** | Enable tracing|
+|**NODEBUG**           | Disable tracing; default|
+|**ENABLED**           | Enable the device; default|
+|**DISABLED**          | Disable the device|
 
 Enabling ***DIAGNOSTIC*** mode simulates the installation of the HP
 12966-60003 diagnostic test (loopback) connector onto the 12966A card.
@@ -4575,14 +4114,13 @@ break-mode response under RTE.
 
 Unit options that may be specified are:
 
-  ---------------------- -------------------------------------------------
-  ***Option***           ***Action***
-  **CAPSLOCK**           Upshift lowercase input characters to uppercase
-  **NOCAPSLOCK**         Input characters are unchanged; default
-  **LOG=\<filename\>**   Enable I/O logging
-  **NOLOG**              Disable I/O logging; default
-  **DISCONNECT**         Disconnect the connection
-  ---------------------- -------------------------------------------------
+|***Option***          | ***Action***|
+|----------------------| ------------------------------------------------|
+|**CAPSLOCK**          | Upshift lowercase input characters to uppercase|
+|**NOCAPSLOCK**        | Input characters are unchanged; default|
+|**LOG=\<filename>** | Enable I/O logging|
+|**NOLOG**             | Disable I/O logging; default|
+|**DISCONNECT**        | Disconnect the connection|
 
 Many HP operating systems require command input in upper case, although
 mixed-case output is supported. As an aid to avoid toggling the host
@@ -4601,24 +4139,22 @@ serial port, include the ***--C*** switch in the command.
 
 Device configuration may be displayed with the following commands:
 
-  -------------------------- ------------------------------------------------------
-  ***Command***              ***Action***
-  **SHOW BACI**              Display the device and unit configuration
-  **SHOW BACI CONNECTION**   Display the active connection status
-  **SHOW BACI STATISTICS**   Display the I/O statistics for the active connection
-  -------------------------- ------------------------------------------------------
+|***Command***             | ***Action***|
+|--------------------------| -----------------------------------------------------|
+|**SHOW BACI**             | Display the device and unit configuration|
+|**SHOW BACI CONNECTION**  | Display the active connection status|
+|**SHOW BACI STATISTICS**  | Display the I/O statistics for the active connection|
 
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **CMDS**       Command initiations and completions
-  **CPU**        Words received from and sent to the CPU
-  **BUF**        Data read from and written to the FIFO
-  **XFER**       Data receptions and transmissions
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**CMDS**      | Command initiations and completions|
+|**CPU**       | Words received from and sent to the CPU|
+|**BUF**       | Data read from and written to the FIFO|
+|**XFER**      | Data receptions and transmissions|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***CMDS*** option traces the commands executed by the interface. The
 ***CPU*** option traces words received from (control and write data) and
@@ -4630,43 +4166,42 @@ received and returned via the interface.
 
 Examples of the trace formats follow:
 
-\>\>BACI cmds: \[STF\] Flag, SRQ, and lockout set\
-\>\>BACI cpu: \[Lix,C\] Received data = 102042\
-\>\>BACI buf: Character LF put to FIFO \[29\], character counter = 53\
-\>\>BACI xfer: Character \'R\' transmitted from the UART\
-\>\>BACI iobus: Received data 000000 with signals STF \| SIR\
-\>\>BACI iobus: Returned data 000000 with signals (none)
+    >>BACI  cmds: [STF] Flag, SRQ, and lockout set
+    >>BACI  cpu: [Lix,C] Received data = 102042
+    >>BACI  buf: Character LF put to FIFO [29], character counter = 53
+    >>BACI  xfer: Character 'R' transmitted from the UART
+    >>BACI iobus: Received data 000000 with signals STF | SIR
+    >>BACI iobus: Returned data 000000 with signals (none)
 
 The BACI state contains these registers:
 
-  ---------------------- ------------ ------------- ---------------- -----------------------------------------
-  ***Name***             ***Size***   ***Radix***   ***Symbolic***   ***Action***
-  **IBUF**               16           8                             Input buffer; holds line status
-  **OBUF**               16           8                             Output buffer; hold channel select
-  **STATUS**             16           2                              Card status word
-  **EDSIW**              16           8                              Enable device status interrupt word
-  **DSRW**               16           8                              Device status reference word
-  **CFCW**               16           8                              Character frame control word
-  **ICW**                16           8                              Interface control word
-  **ISRW**               16           8                              Interrupt status reset word
-  **FIFOPUT**            8            10                             FIFO load index
-  **FIFOGET**            8            10                             FIFO unload index
-  **FIFOCNTR**           8            10                             FIFO character counter
-  **BRKCNTR**            16           10                             BREAK clock counter
-  **FIFO \[0:127\]**     8            8                             FIFO buffer
-  **SPCHAR \[0:255\]**   1            2                              Special character RAM
-  **UARTTHR**            16           8                             UART transmitter holding register
-  **UARTTR**             16           8                             UART transmitter register
-  **UARTRHR**            16           8                             UART receiver holding register
-  **UARTRR**             16           8                             UART receiver register
-  **UARTCLK**            16           10                             UART transmitter/receiver clock counter
-  **CTIME**              19           10                             Inter-character poll time
-  **LKO**                1            2                              Interface interrupt lockout flip-flop
-  **CTL**                1            2                              Interface control flip-flop
-  **FLG**                1            2                              Interface flag flip-flop
-  **FBF**                1            2                              Interface flag buffer flip-flop
-  **SRQ**                1            2                              Interface DMA service request flip-flop
-  ---------------------- ------------ ------------- ---------------- -----------------------------------------
+|***Name***            | ***Size*** |  ***Radix***| ***Symbolic*** |   ***Action***|
+|----------------------| -----------|-------------|----------------|-----------------------------------------|
+|**IBUF**              | 16         |  8          |   &#10003;     |      Input buffer; holds line status|
+|**OBUF**              | 16         |  8          |   &#10003;     |      Output buffer; hold channel select|
+|**STATUS**            | 16         |  2          |                |    Card status word|
+|**EDSIW**             | 16         |  8          |                |    Enable device status interrupt word|
+|**DSRW**              | 16         |  8          |                |    Device status reference word|
+|**CFCW**              | 16         |  8          |                |    Character frame control word|
+|**ICW**               | 16         |  8          |                |    Interface control word|
+|**ISRW**              | 16         |  8          |                |    Interrupt status reset word|
+|**FIFOPUT**           | 8          |  10         |                |    FIFO load index|
+|**FIFOGET**           | 8          |  10         |                |    FIFO unload index|
+|**FIFOCNTR**          | 8          |  10         |                |    FIFO character counter|
+|**BRKCNTR**           | 16         |  10         |                |    BREAK clock counter|
+|**FIFO \[0:127\]**    | 8          |  8          |   &#10003;     |      FIFO buffer|
+|**SPCHAR \[0:255\]**  | 1          |  2          |                |    Special character RAM|
+|**UARTTHR**           | 16         |  8          |   &#10003;     |      UART transmitter holding register|
+|**UARTTR**            | 16         |  8          |   &#10003;     |      UART transmitter register|
+|**UARTRHR**           | 16         |  8          |   &#10003;     |      UART receiver holding register|
+|**UARTRR**            | 16         |  8          |   &#10003;     |      UART receiver register|
+|**UARTCLK**           | 16         |  10         |                |    UART transmitter/receiver clock count|
+|**CTIME**             | 19         |  10         |                |    Inter-character poll time|
+|**LKO**               | 1          |  2          |                |    Interface interrupt lockout flip-flop|
+|**CTL**               | 1          |  2          |                |    Interface control flip-flop|
+|**FLG**               | 1          |  2          |                |    Interface flag flip-flop|
+|**FBF**               | 1          |  2          |                |    Interface flag buffer flip-flop|
+|**SRQ**               | 1          |  2          |                |    Interface DMA service request flip-flop|
 
 The FIFO register defaults to single-character format display and entry
 but may be overridden with a numeric-format switch, if desired. The
@@ -4674,28 +4209,20 @@ other symbolic registers default to octal display but may be displayed
 in single-character format by specifying the ***--A*** switch. Symbolic
 entry for these registers is also supported
 
-Disc I/O Device Simulations
-===========================
+# Disc I/O Device Simulations
 
 The simulator provides these disc interfaces and their associated
 peripherals:
 
 -   12557A Cartridge Disc Interface
-
 -   13210A Disc Drive Interface
-
 -   12565A Disc Interface
-
 -   12606B Disc Memory Interface
-
 -   12610B Drum Memory Interface
-
 -   12821A Disc Interface
-
 -   13175D Disc Controller Interface
 
-12557A Cartridge Disc Interface with Four 2870 Drives, 13210A Disc Drive Interface with Four 7900 Drives
---------------------------------------------------------------------------------------------------------
+## 12557A Cartridge Disc Interface with Four 2870 Drives, 13210A Disc Drive Interface with Four 7900 Drives
 
 The 12557A Cartridge Disc Interface connects from one to four HP 2870A
 (2.5 MB) disc drives to the HP computer family. The 13210A Disc Drive
@@ -4708,7 +4235,7 @@ lower-priority select code. The DPD and DPC devices simulate these PCAs.
 Attaching a disc image file to a unit simulates inserting a disc pack
 into a drive:
 
-ATTACH {-R \| -N} DPCn \<image-filename\>
+    ATTACH {-R | -N} DPCn <image-filename>
 
 Adding the ***--R*** (read-only) switch is equivalent to setting the
 drive's Upper and Lower Data Protect switches to the *On* position.
@@ -4719,9 +4246,9 @@ If the host operating system returns an error when reading or writing a
 disc image file, the simulator will report the error to the simulation
 console, e.g.:
 
-HP 2100 simulator DP disc I/O error: No space left on device
+    HP 2100 simulator DP disc I/O error: No space left on device
 
-\...and the simulation will stop with an **I/O Error** message. No error
+...and the simulation will stop with an **I/O Error** message. No error
 recovery is attempted.
 
 A drive's unit number is not set explicitly. Instead, the drive unit
@@ -4734,19 +4261,18 @@ Device and unit options include configuring the interface and drive
 type, protection and format status, and the ability to set drives ready
 or not-ready. The command forms are:
 
-SET DPC \<device-option\>\
-SET DPCn \<unit-option\>
+    SET DPC <device-option>
+    SET DPCn <unit-option>
 
 Device options that may be specified are:
 
-  -------------- -------------------------------------------------------
-  ***Option***   ***Action***
-  **12557A**     Use the 12557A interface and 2870A drives
-  **13210A**     Use the 13210A interface and 7900A drives; default
-  **SC=\<n\>**   Set the interface card select codes; default is 22/23
-  **ENABLED**    Enable the device; default
-  **DISABLED**   Disable the device
-  -------------- -------------------------------------------------------
+|***Option***  | ***Action***|
+|--------------| ------------------------------------------------------|
+|**12557A**    | Use the 12557A interface and 2870A drives|
+|**13210A**    | Use the 13210A interface and 7900A drives; default|
+|**SC=\<n>** |  Set the interface card select codes; default is 22/23|
+|**ENABLED**   | Enable the device; default|
+|**DISABLED**  | Disable the device|
 
 The ***12557A*** and ***13210A*** options set the interface type and, by
 implication, the disc drive type.
@@ -4757,23 +4283,21 @@ and the cards will be assigned in the correct order.
 
 Device configuration may be displayed with the following commands:
 
-  ------------------- -------------------------------------------
-  ***Command***       ***Action***
-  **SHOW DPC**        Display the device and unit configuration
-  **SHOW DPC TYPE**   Display the interface type
-  ------------------- -------------------------------------------
+|***Command***      | ***Action***|
+|-------------------| ------------------------------------------|
+|**SHOW DPC**       | Display the device and unit configuration|
+|**SHOW DPC TYPE**  | Display the interface type|
 
 Unit options that may be specified for the individual disc drives are:
 
-  --------------- ------------------------------------------------------------------
-  ***Option***    ***Action***
-  **UNLOAD**      Set the drive's Run/Stop switch to *Stop*; default when detached
-  **LOAD**        Set the drive's Run/Stop switch to *Run*; default when attached
-  **PROTECT**     Set the drive's Data Protect switches to *On*
-  **UNPROTECT**   Set the drive's Data Protect switches to *Off*; default
-  **ENABLED**     Enable the unit; default
-  **DISABLED**    Disable the unit
-  --------------- ------------------------------------------------------------------
+|***Option***   | ***Action***|
+|---------------| -----------------------------------------------------------------|
+|**UNLOAD**     | Set the drive's Run/Stop switch to *Stop*; default when detached|
+|**LOAD**       | Set the drive's Run/Stop switch to *Run*; default when attached|
+|**PROTECT**    | Set the drive's Data Protect switches to *On*|
+|**UNPROTECT**  | Set the drive's Data Protect switches to *Off*; default|
+|**ENABLED**    | Enable the unit; default|
+|**DISABLED**   | Disable the unit|
 
 The ***UNLOAD*** and ***LOAD*** options unload and load the drive\'s
 heads from the disc pack, setting the drive not-ready and ready,
@@ -4818,7 +4342,7 @@ set to the starting address of the disc portion, which starts at x7750
 sector 0 of the specified subchannel into memory starting at location
 2011 octal. Loader execution ends with the following instruction:
 
--   JSB 2055,I --- the disc read completed.
+    JSB 2055,I --- the disc read completed.
 
 Normal completion status is End of Cylinder and Any Error (000041
 octal).
@@ -4827,11 +4351,8 @@ To execute the paper tape portion, the P register may be reset to x7700
 (offset 1700). Loader execution ends with one of the following halt
 instructions:
 
--   HLT 11 --- a checksum error occurred; A = the tape value, B = the
-    > calculated value.
-
+-   HLT 11 --- a checksum error occurred; A = the tape value, B = the calculated value.
 -   HLT 55 --- the program load address would overlay the loader.
-
 -   HLT 77 --- the end of tape was reached with a successful read.
 
 For a 1000 M/E/F-Series CPU, the commands are equivalent in hardware to
@@ -4840,10 +4361,9 @@ ROM, pressing the IBL button to copy the ROM into memory, and, for the
 ***BOOT*** command, pressing the PRESET and RUN buttons to begin
 execution. The S register is preset as follows:
 
-  ---------- ---------- ---------- ---------- ----------------- ----------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
-  ***15***   ***14***   ***13***   ***12***   ***11***          ***10***    ***9***   ***8***   ***7***   ***6***   ***5***   ***4***   ***3***   ***2***   ***1***   ***0***
-  0          0          0          0          DPD select code   unchanged   0         0                                                                              
-  ---------- ---------- ---------- ---------- ----------------- ----------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
+|***15***  | ***14*** |  ***13***| ***12*** |   ***11*** --- ***6***   | ***5*** --- ***3***  | ***2*** |  ***1*** | ***0*** |
+|----------| ---------|----------|----------|------------------------- |----------------------|---------|---------|--------- |
+|0         | 0        |  0       |   0      |    DPD select code       |  unchanged           |     0   |       0 | &bull; |
 
 If the ***--R*** switch is specified, bit 0 is set to 1 to boot from the
 removable platter. If ***--R*** is not specified, then bit 0 is set to 0
@@ -4856,63 +4376,59 @@ subchannel into memory starting at location 2011 octal. Loader execution
 ends with one of the following instructions:
 
 -   HLT 30 --- a drive fault occurred; enter the ***GO*** command to
-    > retry.
+    retry.
 
 -   JSB 2055,I --- the disc read succeeded.
 
 When a debug log has been established, tracing may be configured for
 each card separately by specifying the reporting level option:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***IOBUS*** option traces the I/O backplane signals and data
 received and returned by the interface.
 
 The Data PCA state contains these registers:
 
-  -------------------- ------------ ------------- ---------------------------
-  ***Name***           ***Size***   ***Radix***   ***Action***
-  **IBUF**             16           8             Input buffer
-  **OBUF**             16           8             Output buffer
-  **DBUF \[0:127\]**   16           8             Sector buffer
-  **BPTR**             7            10            Sector buffer pointer
-  **CMD**              1            2             Command flip-flop
-  **CTL**              1            2             Control flip-flop
-  **FLG**              1            2             Flag flip-flop
-  **FBF**              1            2             Flag buffer flip-flop
-  **XFER**             1            2             Transfer in progress flag
-  **WVAL**             1            2             Write data valid flag
-  -------------------- ------------ ------------- ---------------------------
+|***Name***          | ***Size*** |  ***Radix***|   ***Action***|
+|--------------------| -----------|-------------|---------------------------|
+|**IBUF**            | 16         |  8          |   Input buffer|
+|**OBUF**            | 16         |  8          |   Output buffer|
+|**DBUF \[0:127\]**  | 16         |  8          |   Sector buffer|
+|**BPTR**            | 7          |  10         |   Sector buffer pointer|
+|**CMD**             | 1          |  2          |   Command flip-flop|
+|**CTL**             | 1          |  2          |   Control flip-flop|
+|**FLG**             | 1          |  2          |   Flag flip-flop|
+|**FBF**             | 1          |  2          |   Flag buffer flip-flop|
+|**XFER**            | 1          |  2          |   Transfer in progress fla|
+|**WVAL**            | 1          |  2          |   Write data valid flag|
 
 The Control PCA state contains these registers:
 
-  ----------------- ------------ ------------- ----------------- ------------------------------------
-  ***Name***        ***Size***   ***Radix***   ***Read-Only***   ***Action***
-  **OBUF**          16           8                               Output buffer
-  **BUSY**          4            8                              Busy unit number + 1
-  **CNT**           5            8                               Check record counter
-  **CMD**           1            2                               Command flip-flop
-  **CTL**           1            2                               Control flip-flop
-  **FLG**           1            2                               Flag flip-flop
-  **FBF**           1            2                               Flag buffer flip-flop
-  **EOC**           1            2                               End of cylinder pending
-  **POLL**          1            2                               Attention polling enabled
-  **RARC**          8            10                              Record address register (cylinder)
-  **RARH**          2            10                              Record address register (head)
-  **RARS**          4            10                              Record address register (sector)
-  **CYL \[0:3\]**   8            10                              Current cylinder, drives 0-3
-  **STA \[0:3\]**   16           8                               Drive status, drives 0-3
-  **CTIME**         24           10                              Data transfer command delay time
-  **DTIME**         24           10                              Data channel command delay time
-  **STIME**         24           10                              Seek delay time, per cylinder
-  **XTIME**         24           10                              Inter-word transfer time
-  ----------------- ------------ ------------- ----------------- ------------------------------------
+|***Name***       | ***Size*** | ***Radix*** | ***Read-Only*** |   ***Action***|
+|-----------------| -----------|-------------|-----------------|-----------------------------------|
+|**OBUF**         | 16         |  8          |                 |    Output buffer|
+|**BUSY**         | 4          |  8          |   &#10003;      |      Busy unit number + 1|
+|**CNT**          | 5          |  8          |                 |    Check record counter|
+|**CMD**          | 1          |  2          |                 |    Command flip-flop|
+|**CTL**          | 1          |  2          |                 |    Control flip-flop|
+|**FLG**          | 1          |  2          |                 |    Flag flip-flop|
+|**FBF**          | 1          |  2          |                 |    Flag buffer flip-flop|
+|**EOC**          | 1          |  2          |                 |    End of cylinder pending|
+|**POLL**         | 1          |  2          |                 |    Attention polling enabled|
+|**RARC**         | 8          |  10         |                 |    Record address register (cylinde|
+|**RARH**         | 2          |  10         |                 |    Record address register (head)|
+|**RARS**         | 4          |  10         |                 |    Record address register (sector)|
+|**CYL \[0:3\]**  | 8          |  10         |                 |    Current cylinder, drives 0-3|
+|**STA \[0:3\]**  | 16         |  8          |                 |    Drive status, drives 0-3|
+|**CTIME**        | 24         |  10         |                 |    Data transfer command delay time|
+|**DTIME**        | 24         |  10         |                 |    Data channel command delay time|
+|**STIME**        | 24         |  10         |                 |    Seek delay time, per cylinder|
+|**XTIME**        | 24         |  10         |                 |    Inter-word transfer time|
 
-12565A Disc Interface with Two 2883 Drives
-------------------------------------------
+## 12565A Disc Interface with Two 2883 Drives
 
 The 12565A Disc Interface connects one or two HP 2883A (23 MB) disc
 drives to the HP computer family. The interface consists of two Printed
@@ -4924,7 +4440,7 @@ devices simulate these PCAs.
 Attaching a disc image file to a unit simulates inserting a disc pack
 into a drive:
 
-ATTACH {-R \| -N} DQCn \<image-filename\>
+    ATTACH {-R | -N} DQCn <image-filename>
 
 Adding the ***--R*** (read-only) switch prevents writing to the disc
 image. Adding the ***--N*** (new file) switch creates a full-size image
@@ -4934,9 +4450,9 @@ If the host operating system returns an error when reading or writing a
 disc image file, the simulator will report the error to the simulation
 console, e.g.:
 
-HP 2100 simulator DQ disc I/O error: No space left on device
+    HP 2100 simulator DQ disc I/O error: No space left on device
 
-\...and the simulation will stop with an **I/O Error** message. No error
+...and the simulation will stop with an **I/O Error** message. No error
 recovery is attempted.
 
 A drive's unit number is not set explicitly. Instead, the drive unit
@@ -4948,17 +4464,16 @@ disc image file to the corresponding simulation unit.
 Device and unit options include configuring the protection and
 drive-ready status. The command forms are:
 
-SET DQC \<device-option\>\
-SET DQCn \<unit-option\>
+    SET DQC <device-option>
+    SET DQCn <unit-option>
 
 Device options that may be specified are:
 
-  -------------- -------------------------------------------------------
-  ***Option***   ***Action***
-  **SC=\<n\>**   Set the interface card select codes; default is 24/25
-  **ENABLED**    Enable the device; default
-  **DISABLED**   Disable the device
-  -------------- -------------------------------------------------------
+|***Option***  | ***Action***|
+|--------------| ------------------------------------------------------|
+|**SC=\<n>** | Set the interface card select codes; default is 24/25|
+|**ENABLED**   | Enable the device; default|
+|**DISABLED**  | Disable the device|
 
 When entering the ***SC*** option, specify the lower select code with
 either device name; the higher select code will be set automatically,
@@ -4966,22 +4481,20 @@ and the cards will be assigned in the correct order.
 
 Device configuration may be displayed with the following command:
 
-  --------------- -------------------------------------------
-  ***Command***   ***Action***
-  **SHOW DQC**    Display the device and unit configuration
-  --------------- -------------------------------------------
+|***Command***  | ***Action***|
+|---------------| ------------------------------------------|
+|**SHOW DQC**   | Display the device and unit configuration|
 
 Unit options that may be specified for individual disc drives are:
 
-  --------------- ------------------------------------------------------------------
-  ***Option***    ***Action***
-  **UNLOAD**      Set the drive's Run/Stop switch to *Stop*; default when detached
-  **LOAD**        Set the drive's Run/Stop switch to *Run*; default when attached
-  **PROTECT**     Prohibit writing to the drive
-  **UNPROTECT**   Permit writing to the drive; default
-  **ENABLED**     Enable the unit; default
-  **DISABLED**    Disable the unit
-  --------------- ------------------------------------------------------------------
+|***Option***   | ***Action***|
+|---------------| -----------------------------------------------------------------|
+|**UNLOAD**     | Set the drive's Run/Stop switch to *Stop*; default when detached|
+|**LOAD**       | Set the drive's Run/Stop switch to *Run*; default when attached|
+|**PROTECT**    | Prohibit writing to the drive|
+|**UNPROTECT**  | Permit writing to the drive; default|
+|**ENABLED**    | Enable the unit; default|
+|**DISABLED**   | Disable the unit|
 
 The ***UNLOAD*** and ***LOAD*** options unload and load the drive\'s
 heads from the disc pack, setting the drive not-ready and ready,
@@ -5020,17 +4533,14 @@ set to the starting address of the disc portion, which starts at x7750
 location 2011 octal. Loader execution ends with the following
 instruction:
 
--   JMP 2055,I --- the disc read completed.
+    JMP 2055,I --- the disc read completed.
 
 To execute the paper tape portion, the P register may be reset to x7700
 (offset 1700). Loader execution ends with one of the following halt
 instructions:
 
--   HLT 11 --- a checksum error occurred; A = the tape value, B = the
-    > calculated value.
-
+-   HLT 11 --- a checksum error occurred; A = the tape value, B = the calculated value.
 -   HLT 55 --- the program load address would overlay the loader.
-
 -   HLT 77 --- the end of tape was reached with a successful read.
 
 For a 1000 M/E/F-Series CPU, the commands are equivalent in hardware to
@@ -5039,10 +4549,9 @@ ROM, pressing the IBL button to copy the ROM into memory, and, for the
 ***BOOT*** command, pressing the PRESET and RUN buttons to begin
 execution. The S register is preset as follows:
 
-  ---------- ---------- ---------- ---------- ----------------- ----------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
-  ***15***   ***14***   ***13***   ***12***   ***11***          ***10***    ***9***   ***8***   ***7***   ***6***   ***5***   ***4***   ***3***   ***2***   ***1***   ***0***
-  0          0          1          0          DQD select code   unchanged   0         0         0                                                                     
-  ---------- ---------- ---------- ---------- ----------------- ----------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
+|***15***  | ***14*** | ***13***| ***12*** |  ***11***  --- ***6***  | ***5*** --- ***3***| ***2****|   ***1*** | ***0*** |
+|----------| ---------|---------|----------|-------------------------|--------------------|---------|-------- |-----------|
+|0         | 0        |  1      |   0      |    DQD select code      | unchanged          |       0 |        0|     0     |
 
 Bits 5-3 of the existing S-register value are retained when the loader
 is executed and are available to the boot extension program.
@@ -5051,62 +4560,58 @@ The loader reads 128 words from cylinder 0 head 0 sector 0 into memory
 starting at location 2011 octal. Loader execution ends with the
 following instruction:
 
--   JSB 2055,I --- the disc read completed.
+    JSB 2055,I --- the disc read completed.
 
 The success or failure of the transfer is not checked.
 
 When a debug log has been established, tracing may be configured for
 each card separately by specifying the reporting level option:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***IOBUS*** option traces the I/O backplane signals and data
 received and returned by the interface.
 
 The Data PCA state contains these registers:
 
-  -------------------- ------------ ------------- ---------------------------
-  ***Name***           ***Size***   ***Radix***   ***Action***
-  **IBUF**             16           8             Input buffer
-  **OBUF**             16           8             Output buffer
-  **DBUF \[0:127\]**   16           8             Sector buffer
-  **BPTR**             7            10            Sector buffer pointer
-  **CMD**              1            2             Command flip-flop
-  **CTL**              1            2             Control flip-flop
-  **FLG**              1            2             Flag flip-flop
-  **FBF**              1            2             Flag buffer flip-flop
-  **XFER**             1            2             Transfer in progress flag
-  **WVAL**             1            2             Write data valid flag
-  -------------------- ------------ ------------- ---------------------------
+|***Name***          | ***Size*** |  ***Radix***|   ***Action***|
+|--------------------| -----------|-------------|---------------------------|
+|**IBUF**            | 16         |  8          |   Input buffer|
+|**OBUF**            | 16         |  8          |   Output buffer|
+|**DBUF \[0:127\]**  | 16         |  8          |   Sector buffer|
+|**BPTR**            | 7          |  10         |   Sector buffer pointer|
+|**CMD**             | 1          |  2          |   Command flip-flop|
+|**CTL**             | 1          |  2          |   Control flip-flop|
+|**FLG**             | 1          |  2          |   Flag flip-flop|
+|**FBF**             | 1          |  2          |   Flag buffer flip-flop|
+|**XFER**            | 1          |  2          |   Transfer in progress fla|
+|**WVAL**            | 1          |  2          |   Write data valid flag|
 
 The Control PCA state contains these registers:
 
-  ----------------- ------------ ------------- ----------------- ------------------------------------
-  ***Name***        ***Size***   ***Radix***   ***Read-Only***   ***Action***
-  **OBUF**          16           8                               Output buffer
-  **BUSY**          2            8                              Busy unit number + 1
-  **CNT**           9            8                               Check record counter
-  **CMD**           1            2                               Command flip-flop
-  **CTL**           1            2                               Control flip-flop
-  **FLG**           1            2                               Flag flip-flop
-  **FBF**           1            2                               Flag buffer flip-flop
-  **RARC**          8            10                              Record address register (cylinder)
-  **RARH**          5            10                              Record address register (head)
-  **RARS**          5            10                              Record address register (sector)
-  **CYL \[0:1\]**   8            10                              Current cylinder, drives 0-1
-  **HED \[0:1\]**   5            10                              Current head, drives 0-1
-  **STA \[0:1\]**   16           8                               Drive status, drives 0-1
-  **CTIME**         24           10                              Data transfer command delay time
-  **DTIME**         24           10                              Data channel command delay time
-  **STIME**         24           10                              Seek delay time, per cylinder
-  **XTIME**         24           10                              Inter-word transfer time
-  ----------------- ------------ ------------- ----------------- ------------------------------------
+|***Name***       | ***Size*** |  ***Radix***| ***Read-Only*** |   ***Action***|
+|-----------------| -----------|-------------|-----------------|------------------------------------|
+|**OBUF**         | 16         |  8          |                 |    Output buffer|
+|**BUSY**         | 2          |  8          |   &#10003;      |      Busy unit number + 1|
+|**CNT**          | 9          |  8          |                 |    Check record counter|
+|**CMD**          | 1          |  2          |                 |    Command flip-flop|
+|**CTL**          | 1          |  2          |                 |    Control flip-flop|
+|**FLG**          | 1          |  2          |                 |    Flag flip-flop|
+|**FBF**          | 1          |  2          |                 |    Flag buffer flip-flop|
+|**RARC**         | 8          |  10         |                 |    Record address register (cylinde|
+|**RARH**         | 5          |  10         |                 |    Record address register (head)|
+|**RARS**         | 5          |  10         |                 |    Record address register (sector)|
+|**CYL \[0:1\]**  | 8          |  10         |                 |    Current cylinder, drives 0-1|
+|**HED \[0:1\]**  | 5          |  10         |                 |    Current head, drives 0-1|
+|**STA \[0:1\]**  | 16         |  8          |                 |    Drive status, drives 0-1|
+|**CTIME**        | 24         |  10         |                 |    Data transfer command delay time|
+|**DTIME**        | 24         |  10         |                 |    Data channel command delay time|
+|**STIME**        | 24         |  10         |                 |    Seek delay time, per cylinder|
+|**XTIME**        | 24         |  10         |                 |    Inter-word transfer time|
 
-12606B Disc Memory Interface with One 2770/2771 Disc, 12610B Drum Memory Interface with One 2773/2774/2775 Drum
----------------------------------------------------------------------------------------------------------------
+## 12606B Disc Memory Interface with One 2770/2771 Disc, 12610B Drum Memory Interface with One 2773/2774/2775 Drum
 
 The 12606B Disc Memory Interface connects one HP 2770A or 2771A
 fixed-head disc drive to the HP computer family. The 12610B Drum Memory
@@ -5120,24 +4625,23 @@ The storage capacity of the HP 277x drives is expandable by adding sets
 of heads to the base model. This simulation supports the following
 models and options:
 
-  -------------------- -------------- --------------- ------------- ----------------
-  ***Model-Option***   ***Tracks***   ***Sectors***   ***Words***   ***Capacity***
-  **2770A**            32             90              64            180 KW
-  **2771A**            64             90              64            360 KW
-  **2771A-001**        128            90              64            720 KW
-  **2773A**            192            32              64            384 KW
-  **2773A-001**        256            32              64            512 KW
-  **2773A-002**        320            32              64            640 KW
-  **2774A**            384            32              64            768 KW
-  **2774A-001**        448            32              64            896 KW
-  **2774A-002**        512            32              64            1024 KW
-  **2775A**            768            32              64            1536 KW
-  -------------------- -------------- --------------- ------------- ----------------
+|***Model-Option***  | ***Tracks*** |  ***Sectors***|   ***Words**|*   ***Capacity*|
+|--------------------| -------------|---------------|-------------|----------------|
+|**2770A**           | 32           |  90           |   64        |    180 KW|
+|**2771A**           | 64           |  90           |   64        |    360 KW|
+|**2771A-001**       | 128          |  90           |   64        |    720 KW|
+|**2773A**           | 192          |  32           |   64        |    384 KW|
+|**2773A-001**       | 256          |  32           |   64        |    512 KW|
+|**2773A-002**       | 320          |  32           |   64        |    640 KW|
+|**2774A**           | 384          |  32           |   64        |    768 KW|
+|**2774A-001**       | 448          |  32           |   64        |    896 KW|
+|**2774A-002**       | 512          |  32           |   64        |    1024 KW|
+|**2775A**           | 768          |  32           |   64        |    1536 KW|
 
 Attaching a disc or drum image file to a unit simulates applying power
 to the drive:
 
-ATTACH {-R \| -N} DRC \<image-filename\>
+    ATTACH {-R | -N} DRC <image-filename>
 
 Adding the ***--R*** (read-only) switch is equivalent to removing all of
 the track-protection diodes and setting the Data PCA Track Protect
@@ -5150,24 +4654,23 @@ written until the unit is detached. If the host operating system returns
 an error when writing the file, the simulator will report the error to
 the simulation console, e.g.:
 
-HP 2100: I/O error - No space left on device
+    HP 2100: I/O error - No space left on device
 
 No error recovery is attempted.
 
 Device and unit options include configuring the drive type and track
 protection. The command forms are:
 
-SET DRC \<device-option\>\
-SET DRC \<unit-option\>
+    SET DRC <device-option>
+    SET DRC <unit-option>
 
 Device options that may be specified are:
 
-  -------------- -------------------------------------------------------
-  ***Option***   ***Action***
-  **SC=\<n\>**   Set the interface card select codes; default is 26/27
-  **ENABLED**    Enable the device; default
-  **DISABLED**   Disable the device
-  -------------- -------------------------------------------------------
+|***Option***  | ***Action***|
+|--------------| ------------------------------------------------------|
+|**SC=\<n>** | Set the interface card select codes; default is 26/27|
+|**ENABLED**   | Enable the device; default|
+|**DISABLED**  | Disable the device|
 
 When entering the ***SC*** option, specify the lower select code with
 either device name; the higher select code will be set automatically,
@@ -5175,29 +4678,27 @@ and the cards will be assigned in the correct order.
 
 Device configuration may be displayed with the following command:
 
-  --------------- -------------------------------------------
-  ***Command***   ***Action***
-  **SHOW DRC**    Display the device and unit configuration
-  --------------- -------------------------------------------
+|***Command***  | ***Action***|
+|---------------| ------------------------------------------|
+|**SHOW DRC**   | Display the device and unit configuration|
 
 Unit options that may be specified are:
 
-  --------------------- --------------------------------------------------
-  ***Option***          ***Action***
-  **180K**              Use the 12606B interface and 2770A drive
-  **360K**              Use the 12606B interface and 2771A drive
-  **720K**              Use the 12606B interface and 2771A-001 drive
-  **384K**              Use the 12610B interface and 2773A drive
-  **512K**              Use the 12610B interface and 2773A-001 drive
-  **640K**              Use the 12610B interface and 2773A-002 drive
-  **768K**              Use the 12610B interface and 2774A drive
-  **896K**              Use the 12610B interface and 2774A-001 drive
-  **1024K**             Use the 12610B interface and 2774A-002 drive
-  **1536K**             Use the 12610B interface and 2775A drive
-  **PROTECT**           Prohibit writing to the protected tracks
-  **UNPROTECT**         Permit writing to all tracks; default
-  **TRACKPROT=\<n\>**   Set the number of protected tracks; default is 1
-  --------------------- --------------------------------------------------
+|***Option***         | ***Action***|
+|---------------------| -------------------------------------------------|
+|**180K**             | Use the 12606B interface and 2770A drive|
+|**360K**             | Use the 12606B interface and 2771A drive|
+|**720K**             | Use the 12606B interface and 2771A-001 drive|
+|**384K**             | Use the 12610B interface and 2773A drive|
+|**512K**             | Use the 12610B interface and 2773A-001 drive|
+|**640K**             | Use the 12610B interface and 2773A-002 drive|
+|**768K**             | Use the 12610B interface and 2774A drive|
+|**896K**             | Use the 12610B interface and 2774A-001 drive|
+|**1024K**            | Use the 12610B interface and 2774A-002 drive|
+|**1536K**            | Use the 12610B interface and 2775A drive|
+|**PROTECT**          | Prohibit writing to the protected tracks|
+|**UNPROTECT**        | Permit writing to all tracks; default|
+|**TRACKPROT=\<n>** | Set the number of protected tracks; default is 1|
 
 The ***180K***, ***360K***, and ***720K*** options set the interface
 type and drive model for the fixed-head disc. The ***384K***,
@@ -5248,11 +4749,8 @@ To execute the paper tape portion, the P register may be reset to x7700
 (offset 1700). Loader execution ends with one of the following halt
 instructions:
 
--   HLT 11 --- a checksum error occurred; A = the tape value, B = the
-    > calculated value.
-
+-   HLT 11 --- a checksum error occurred; A = the tape value, B = the calculated value.
 -   HLT 55 --- the program load address would overlay the loader.
-
 -   HLT 77 --- the end of tape was reached with a successful read.
 
 The 1000 M/E/F-Series does not support this device. Attempting to
@@ -5262,37 +4760,33 @@ a **Command not allowed** error.
 When a debug log has been established, tracing may be configured for
 each card separately by specifying the reporting level option:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***IOBUS*** option traces the I/O backplane signals and data
 received and returned by the interface.
 
 The Data PCA state contains these registers:
 
-  ------------ ------------ ------------- -----------------------
-  ***Name***   ***Size***   ***Radix***   ***Action***
-  **IBUF**     16           8             Input buffer
-  **OBUF**     16           8             Output buffer
-  **CTL**      1            2             Control flip-flop
-  **FLG**      1            2             Flag flip-flop
-  **BPTR**     6            8             Sector buffer pointer
-  ------------ ------------ ------------- -----------------------
+|***Name***  | ***Size*** |  ***Radix***|   ***Action***|
+|------------| -----------|-------------|-----------------------|
+|**IBUF**    | 16         |  8          |   Input buffer|
+|**OBUF**    | 16         |  8          |   Output buffer|
+|**CTL**     | 1          |  2          |   Control flip-flop|
+|**FLG**     | 1          |  2          |   Flag flip-flop|
+|**BPTR**    | 6          |  8          |   Sector buffer pointe|
 
 The Control PCA state contains these registers:
 
-  ------------ ------------ ------------- --------------------------
-  ***Name***   ***Size***   ***Radix***   ***Action***
-  **CW**       16           8             Command word
-  **STA**      16           8             Status word
-  **RUN**      1            2             Run flip-flop
-  **TIME**     24           10            Inter-word transfer time
-  ------------ ------------ ------------- --------------------------
+|***Name***  | ***Size*** |  ***Radix***|   ***Action***|
+|------------| -----------|-------------|--------------------------|
+|**CW**      | 16         |  8          |   Command word|
+|**STA**     | 16         |  8          |   Status word|
+|**RUN**     | 1          |  2          |   Run flip-flop|
+|**TIME**    | 24         |  10         |   Inter-word transfer tim|
 
-12821A Disc Interface with Four 7906H/7920H/7925H Drives
---------------------------------------------------------
+## 12821A Disc Interface with Four 7906H/7920H/7925H Drives
 
 The HP 12821A Disc Interface connects from one to four HP 7906H (20 MB),
 7920H (50 MB), or 7925H (120 MB) Integrated Controller Disc (ICD) drives
@@ -5310,7 +4804,7 @@ ICD drives can be connected to a single 12821A card; bus loading and the
 Attaching a disc image file to a unit simulates inserting a disc pack
 into a drive:
 
-ATTACH {-R \| -N} DAn \<image-filename\>
+    ATTACH {-R | -N} DAn <image-filename>
 
 Adding the ***--R*** (read-only) switch is equivalent to setting the
 drive's Disc Protect or Read Only switch to the *On* position. Adding
@@ -5321,7 +4815,7 @@ If the host operating system returns an error when seeking, reading, or
 writing a disc image file, the simulator will report the error to the
 simulation console, e.g.:
 
-HP 2100 simulator disc library I/O error: No space left on device
+    HP 2100 simulator disc library I/O error: No space left on device
 
 A simulated disc seek will fail with Status 2 Error (Drive Fault)
 status, and the drive's heads will unload. Reloading the heads will
@@ -5340,24 +4834,23 @@ Device and unit options include configuring the timing, drive type,
 protection and format status, and the ability to set drives ready or
 not-ready. The command forms are:
 
-SET DA \<device-option\>\
-SET DAn \<unit-option\>
+    SET DA <device-option>
+    SET DAn <unit-option>
 
 ### Device Options
 
 Device options that may be specified are:
 
-  ---------------------- ---------------------------------------------------
-  ***Option***           ***Action***
-  **ADDRESS=\<n\>**      Set the HP-IB address; default is 0
-  **DIAGNOSTIC**         Connect the HP-IB cable to a second interface
-  **HPIB**               Connect the HP-IB cable to the drives
-  **SC=\<n\>**           Set the interface card select code; default is 43
-  **DEBUG=\<option\>**   Enable tracing
-  **NODEBUG**            Disable tracing; default
-  **ENABLED**            Enable the device; default
-  **DISABLED**           Disable the device
-  ---------------------- ---------------------------------------------------
+|***Option***          | ***Action***|
+|----------------------| --------------------------------------------------|
+|**ADDRESS=\<n>**    | Set the HP-IB address; default is 0|
+|**DIAGNOSTIC**        | Connect the HP-IB cable to a second interface|
+|**HPIB**              | Connect the HP-IB cable to the drives|
+|**SC=\<n>**         | Set the interface card select code; default is 43|
+|**DEBUG=\<option>** | Enable tracing|
+|**NODEBUG**           | Disable tracing; default|
+|**ENABLED**           | Enable the device; default|
+|**DISABLED**          | Disable the device|
 
 The ***ADDRESS*** option configures the interface to use the specified
 HP-IB address from 0-7. The interface address is independent of the disc
@@ -5372,32 +4865,30 @@ interface and the drives.
 
 Device configuration may be displayed with the following commands:
 
-  ------------------- -------------------------------------------
-  ***Command***       ***Action***
-  **SHOW DA**         Display the device and unit configuration
-  **SHOW DA CABLE**   Display the HP-IB cable configuration
-  **SHOW DA BUS**     Display the bus address
-  ------------------- -------------------------------------------
+|***Command***      | ***Action***|
+|-------------------| ------------------------------------------|
+|**SHOW DA**        | Display the device and unit configuration|
+|**SHOW DA CABLE**  | Display the HP-IB cable configuration|
+|**SHOW DA BUS**    | Display the bus address|
 
 ### Unit Options
 
 Unit options that may be specified for individual disc drives are:
 
-  --------------- ------------------------------------------------------------------
-  ***Option***    ***Action***
-  **7906H**       Set the drive type to 7906H; default
-  **7920H**       Set the drive type to 7920H
-  **7925H**       Set the drive type to 7925H
-  **BUS=\<n\>**   Set the drive's HP-IB address; default is the unit number
-  **UNLOAD**      Set the drive's Run/Stop switch to *Stop*; default when detached
-  **LOAD**        Set the drive's Run/Stop switch to *Run*; default when attached
-  **PROTECT**     Set the drive's Disc Protect or Read Only switch to *On*
-  **UNPROTECT**   Set the drive's Disc Protect or Read Only switch to *Off*
-  **FORMAT**      Set the drive's Format switch to *Enabled*
-  **NOFORMAT**    Set the drive's Format switch to *Disabled*; default
-  **ENABLED**     Enable the unit; default
-  **DISABLED**    Disable the unit
-  --------------- ------------------------------------------------------------------
+|***Option***   | ***Action***|
+|---------------| -----------------------------------------------------------------|
+|**7906H**      | Set the drive type to 7906H; default|
+|**7920H**      | Set the drive type to 7920H|
+|**7925H**      | Set the drive type to 7925H|
+|**BUS=\<n>** | Set the drive's HP-IB address; default is the unit number|
+|**UNLOAD**     | Set the drive's Run/Stop switch to *Stop*; default when detached|
+|**LOAD**       | Set the drive's Run/Stop switch to *Run*; default when attached|
+|**PROTECT**    | Set the drive's Disc Protect or Read Only switch to *On*|
+|**UNPROTECT**  | Set the drive's Disc Protect or Read Only switch to *Off*|
+|**FORMAT**     | Set the drive's Format switch to *Enabled*|
+|**NOFORMAT**   | Set the drive's Format switch to *Disabled*; default|
+|**ENABLED**    | Enable the unit; default|
+|**DISABLED**   | Disable the unit|
 
 The ***7906H***, ***7920H***, and ***7925H*** options select the disc
 drive model.
@@ -5426,10 +4917,9 @@ subject to the appropriate drive protection status.
 
 Drive configuration may be displayed with the following command:
 
-  ------------------ --------------------------------------------
-  ***Command***      ***Action***
-  **SHOW DA\<n\>**   Display the selected drive's configuration
-  ------------------ --------------------------------------------
+|***Command***     | ***Action***|
+|------------------| -------------------------------------------|
+|**SHOW DA\<n>** |  Display the selected drive's configuration|
 
 ### LOAD and BOOT Commands
 
@@ -5446,10 +4936,9 @@ ROM, pressing the IBL button to copy the ROM into memory, and, for the
 ***BOOT*** command, pressing the PRESET and RUN buttons to begin
 execution. The S register is preset as follows:
 
-  ---------- ---------- ---------- ---------- ---------------- ----------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
-  ***15***   ***14***   ***13***   ***12***   ***11***         ***10***    ***9***   ***8***   ***7***   ***6***   ***5***   ***4***   ***3***   ***2***   ***1***   ***0***
-  0          0          0          1          DA select code   unchanged   0         head                                                                            
-  ---------- ---------- ---------- ---------- ---------------- ----------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
+|***15***  | ***14*** | ***13***|  ***12**|*   ***11***  --- ***6***  | ***5*** ---   ***3***  | ***2*** | ***1*** --- ***0*** |
+|----------| ---------|---------|---------|---------------------------|------------------------|-------- |---------------------|
+|0         | 0        |  0       |  1      |    DA select code        | unchanged              | 0       |       head          |
 
 The head number is obtained from bits 1-0 of the existing S-register
 value when the loader is executed. Bits 5-3 of the existing S-register
@@ -5459,9 +4948,7 @@ The loader reads 620 words from cylinder 0 sector 0 of the specified
 head into memory starting at location 2011 octal. Loader execution ends
 with one of the following instructions:
 
--   HLT 11 --- the drive aborted the transfer due to an unrecoverable
-    > error.
-
+-   HLT 11 --- the drive aborted the transfer due to an unrecoverable error.
 -   JSB 2055,I --- the disc read succeeded.
 
 The 2100/14/15/16 CPU does not support this device. Attempting to
@@ -5473,16 +4960,15 @@ execute a ***LOAD DA*** or ***BOOT DA*** command will be rejected with a
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **RWSC**       Controller read, write, status, and control commands
-  **CMDS**       Interface commands received from the CPU
-  **CPU**        Words received from and sent to the CPU
-  **BUF**        Data read from and written to the interface FIFO
-  **XFER**       Data received and transmitted via HP-IB
-  **SERV**       Disc unit service events
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**RWSC**      | Controller read, write, status, and control commands|
+|**CMDS**      | Interface commands received from the CPU|
+|**CPU**       | Words received from and sent to the CPU|
+|**BUF**       | Data read from and written to the interface FIFO|
+|**XFER**      | Data received and transmitted via HP-IB|
+|**SERV**      | Disc unit service events|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***RWSC*** option traces the read, write, status, and control
 commands executed by the disc controller. The ***CMDS*** option traces
@@ -5495,52 +4981,49 @@ backplane signals and data received and returned via the interface.
 
 Examples of the trace formats follow:
 
-\>\>DA rwsc: Unit 1 position 1069056 seek disc command initiated\
-\>\>DA rwsc: Unit 1 seek disc command completed\
-\>\>DA cmds: \[STC\] Control set (data mode)\
-\>\>DA cmds: SRQ cleared\
-\>\>DA cpu: \[OTx\] Control = 004003\
-\>\>DA cpu: \[LIx,C\] Data = 063613\
-\>\>DA buf: Data 277 tag ATN \| EDT unloaded from FIFO (0)\
-\>\>DA buf: FIFO cleared\
-\>\>DA xfer: Data 100677 tag ATN \| EDT loaded into FIFO (1)\
-\>\>DA xfer: HP-IB DIO 277 signals ATN available\
-\>\>DA xfer: HP-IB address 0 accepted unlisten\
-\>\>DA xfer: HP-IB address 1 accepted secondary 08H\
-\>\>DA serv: Unit 1 state read transfer delay 3 service scheduled\
-\>\>DA serv: Unit 1 state command execution delay 100 service scheduled\
-\>\>DA iobus: Received data 000000 with signals CLC \| CLF \| SIR \|
-PRH\
-\>\>DA iobus: Returned data 000000 with signals PRL
+    >>DA rwsc: Unit 1 position 1069056 seek disc command initiated
+    >>DA rwsc: Unit 1 seek disc command completed
+    >>DA cmds: [STC] Control set (data mode)
+    >>DA cmds: SRQ cleared
+    >>DA cpu: [OTx] Control = 004003
+    >>DA cpu: [LIx,C] Data = 063613
+    >>DA buf: Data 277 tag ATN | EDT unloaded from FIFO (0)
+    >>DA buf: FIFO cleared
+    >>DA xfer: Data 100677 tag ATN | EDT loaded into FIFO (1)
+    >>DA xfer: HP-IB DIO 277 signals ATN available
+    >>DA xfer: HP-IB address 0 accepted unlisten
+    >>DA xfer: HP-IB address 1 accepted secondary 08H
+    >>DA serv: Unit 1 state read transfer delay 3 service scheduled
+    >>DA serv: Unit 1 state command execution delay 100 service scheduled
+    >>DA iobus: Received data 000000 with signals CLC | CLF | SIR | PRH
+    >>DA iobus: Returned data 000000 with signals PRL
 
 The Disc Interface state contains these registers:
 
-  ---------------------- ------------ ------------- ----------------------------------------------
-  ***Name***             ***Size***   ***Radix***   ***Description***
-  **CWR**                16           8             Control word register
-  **SWR**                16           8             Status word register
-  **IDR**                16           8             Input data register
-  **FCNT**               5            10            FIFO fill count
-  **FIFO \[0:15\]**      20           8             Data FIFO
-  **ACPT**               4            2             Bus acceptor units bitmap
-  **LSTN**               4            2             Bus listener units bitmap
-  **TALK**               4            2             Bus talker unit bitmap
-  **PPR**                8            2             Parallel poll response bitmap
-  **BUSCTL**             8            2             HP-IB control lines
-  **CTL**                1            2             Interface control
-  **FLG**                1            2             Interface flag
-  **FBF**                1            2             Interface flag buffer
-  **SRQ**                1            2             Interface DCPC service request
-  **EDT**                1            2             End of data transfer flag
-  **EOR**                1            2             End of record flag
-  **BUFFER \[0:137\]**   16           8             Sector buffer
-  **DSJ \[0:3\]**        2            10            Controller Device-Specified Jump, drives 0-3
-  **ISTATE \[0:3\]**     4            10            Interface state, drives 0-3
-  **ICMD \[0:3\]**       4            10            Interface command, drives 0-3
-  ---------------------- ------------ ------------- ----------------------------------------------
+|***Name***            | ***Size*** |  ***Radix***|   ***Description***|
+|----------------------| -----------|-------------|----------------------------------------------|
+|**CWR**               | 16         |  8          |   Control word register|
+|**SWR**               | 16         |  8          |   Status word register|
+|**IDR**               | 16         |  8          |   Input data register|
+|**FCNT**              | 5          |  10         |   FIFO fill count|
+|**FIFO \[0:15\]**     | 20         |  8          |   Data FIFO|
+|**ACPT**              | 4          |  2          |   Bus acceptor units bitmap|
+|**LSTN**              | 4          |  2          |   Bus listener units bitmap|
+|**TALK**              | 4          |  2          |   Bus talker unit bitmap|
+|**PPR**               | 8          |  2          |   Parallel poll response bitmap|
+|**BUSCTL**            | 8          |  2          |   HP-IB control lines|
+|**CTL**               | 1          |  2          |   Interface control|
+|**FLG**               | 1          |  2          |   Interface flag|
+|**FBF**               | 1          |  2          |   Interface flag buffer|
+|**SRQ**               | 1          |  2          |   Interface DCPC service request|
+|**EDT**               | 1          |  2          |   End of data transfer flag|
+|**EOR**               | 1          |  2          |   End of record flag|
+|**BUFFER \[0:137\]**  | 16         |  8          |   Sector buffer|
+|**DSJ \[0:3\]**       | 2          |  10         |   Controller Device-Specified Jump, drives 0-|
+|**ISTATE \[0:3\]**    | 4          |  10         |   Interface state, drives 0-3|
+|**ICMD \[0:3\]**      | 4          |  10         |   Interface command, drives 0-3|
 
-13175D Disc Controller Interface with Eight 7905/7906/7920/7925 Drives
-----------------------------------------------------------------------
+## 13175D Disc Controller Interface with Eight 7905/7906/7920/7925 Drives
 
 The HP 13175D Disc Controller Interface connects 7905A (15 MB), 7906A
 (20 MB), 7920A (50 MB), and 7925A (120 MB) disc drives to the HP 1000.
@@ -5560,7 +5043,7 @@ hardware, the simulator does not provide this capability.
 Attaching a disc image file to a unit simulates inserting a disc pack
 into a drive:
 
-ATTACH {-R \| -N} DSn \<image-filename\>
+    ATTACH {-R | -N} DSn <image-filename>
 
 Adding the ***--R*** (read-only) switch is equivalent to setting the
 drive's Disc Protect or Read Only switch to the *On* position. Adding
@@ -5571,7 +5054,7 @@ If the host operating system returns an error when seeking, reading, or
 writing a disc image file, the simulator will report the error to the
 simulation console, e.g.:
 
-HP 2100 simulator disc library I/O error: No space left on device
+    HP 2100 simulator disc library I/O error: No space left on device
 
 A simulated disc seek will fail with Status 2 Error (Drive Fault)
 status, and the drive's heads will unload. Reloading the heads will
@@ -5590,49 +5073,46 @@ Device and unit options include configuring the timing, drive type,
 protection and format status, and the ability to set drives ready or
 not-ready. The command forms are:
 
-SET DS \<device-option\>\
-SET DSn \<unit-option\>
+    SET DS <device-option>
+    SET DSn <unit-option>
 
 ### Device Options
 
 Device options that may be specified are:
 
-  ---------------------- ---------------------------------------------------
-  ***Option***           ***Action***
-  **SC=\<n\>**           Set the interface card select code; default is 34
-  **DEBUG=\<option\>**   Enable tracing
-  **NODEBUG**            Disable tracing; default
-  **ENABLED**            Enable the device; default
-  **DISABLED**           Disable the device
-  ---------------------- ---------------------------------------------------
+|***Option***          | ***Action***|
+|----------------------| --------------------------------------------------|
+|**SC=\<n>**         | Set the interface card select code; default is 34|
+|**DEBUG=\<option>** | Enable tracing|
+|**NODEBUG**           | Disable tracing; default|
+|**ENABLED**           | Enable the device; default|
+|**DISABLED**          | Disable the device|
 
 Device configuration may be displayed with the following commands:
 
-  --------------- -------------------------------------------
-  ***Command***   ***Action***
-  **SHOW DS**     Display the device and unit configuration
-  --------------- -------------------------------------------
+|***Command***  | ***Action***|
+|---------------| ------------------------------------------|
+|**SHOW DS**    | Display the device and unit configuration|
 
 ### Unit Options
 
 Unit options that may be specified for individual disc drives are:
 
-  --------------- ------------------------------------------------------------------
-  ***Option***    ***Action***
-  **7905**        Set the drive type to 7905; default
-  **7906**        Set the drive type to 7906
-  **7920**        Set the drive type to 7920
-  **7925**        Set the drive type to 7925
-  **AUTOSIZE**    Set the drive type based on the attached file size
-  **UNLOAD**      Set the drive's Run/Stop switch to *Stop*; default when detached
-  **LOAD**        Set the drive's Run/Stop switch to *Run*; default when attached
-  **PROTECT**     Set the drive's Disc Protect or Read Only switch to *On*
-  **UNPROTECT**   Set the drive's Disc Protect or Read Only switch to *Off*
-  **FORMAT**      Set the drive's Format switch to *Enabled*
-  **NOFORMAT**    Set the drive's Format switch to *Disabled*; default
-  **ENABLED**     Enable the unit; default
-  **DISABLED**    Disable the unit
-  --------------- ------------------------------------------------------------------
+|***Option***   | ***Action***|
+|---------------| -----------------------------------------------------------------|
+|**7905**       | Set the drive type to 7905; default|
+|**7906**       | Set the drive type to 7906|
+|**7920**       | Set the drive type to 7920|
+|**7925**       | Set the drive type to 7925|
+|**AUTOSIZE**   | Set the drive type based on the attached file size|
+|**UNLOAD**     | Set the drive's Run/Stop switch to *Stop*; default when detached|
+|**LOAD**       | Set the drive's Run/Stop switch to *Run*; default when attached|
+|**PROTECT**    | Set the drive's Disc Protect or Read Only switch to *On*|
+|**UNPROTECT**  | Set the drive's Disc Protect or Read Only switch to *Off*|
+|**FORMAT**     | Set the drive's Format switch to *Enabled*|
+|**NOFORMAT**   | Set the drive's Format switch to *Disabled*; default|
+|**ENABLED**    | Enable the unit; default|
+|**DISABLED**   | Disable the unit|
 
 The ***7905***, ***7906***, ***7920***, and ***7925*** options select
 the disc drive model. The ***AUTOSIZE*** option selects the disc drive
@@ -5661,10 +5141,9 @@ command, subject to the appropriate drive protection status.
 
 Drive configuration may be displayed with the following command:
 
-  ------------------ --------------------------------------------
-  ***Command***      ***Action***
-  **SHOW DS\<n\>**   Display the selected drive's configuration
-  ------------------ --------------------------------------------
+|***Command***     | ***Action***|
+|------------------| -------------------------------------------|
+|**SHOW DS\<n>** | isplay the selected drive's configuration|
 
 ### LOAD and BOOT Commands
 
@@ -5691,10 +5170,9 @@ set to the starting address of the disc portion, which starts at x7750
 (i.e., offset 1750 within the highest page in memory). Before execution,
 the S register must be set as follows:
 
-  ---------- ---------- ---------- ---------- ---------- ---------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
-  ***15***   ***14***   ***13***   ***12***   ***11***   ***10***   ***9***   ***8***   ***7***   ***6***   ***5***   ***4***   ***3***   ***2***   ***1***   ***0***
-  0          0          0          0          0          0          0         0         0         0         0         0         0         0         head      
-  ---------- ---------- ---------- ---------- ---------- ---------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
+|***15***  | ***14*** |  ***13***|  ***12***| ***11*** | ***10*** | ***9*** | ***8*** | ***7*** |***6***  | ***5*** |  ***4***| ***3*** | ***2*** | ***1*** --- ***0*** |
+|----------| ---------|----------|----------|----------|----------|---------|---------|---------|-------- |---------| --------|---------|---------|---------------------|
+|0         | 0        |  0       |   0      |    0     |     0    |      0  |       0 |        0|    0    |0        | 0       |  0      |   0     |       head          |
 
 The loader stores the value 002055 into location 2055 octal, stores a
 HLT 11 into location 2056 octal, and then reads 2047 words from cylinder
@@ -5702,18 +5180,14 @@ HLT 11 into location 2056 octal, and then reads 2047 words from cylinder
 octal. Loader execution ends with one of the following instructions:
 
 -   HLT 11 --- the disc read failed.
-
 -   JSB 2055,I --- the disc read succeeded.
 
 To execute the paper tape portion, the P register may be reset to x7700
 (offset 1700). Loader execution ends with one of the following halt
 instructions:
 
--   HLT 11 --- a checksum error occurred; A = the tape value, B = the
-    > calculated value.
-
+-   HLT 11 --- a checksum error occurred; A = the tape value, B = the calculated value.
 -   HLT 55 --- the program load address would overlay the loader.
-
 -   HLT 77 --- the end of tape was reached with a successful read.
 
 For a 1000 M/E/F-Series CPU, the commands are equivalent in hardware to
@@ -5722,10 +5196,9 @@ ROM, pressing the IBL button to copy the ROM into memory, and, for the
 ***BOOT*** command, pressing the PRESET and RUN buttons to begin
 execution. The S register is preset as follows:
 
-  ---------- ---------- ---------- ---------- ---------------- ----------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
-  ***15***   ***14***   ***13***   ***12***   ***11***         ***10***    ***9***   ***8***   ***7***   ***6***   ***5***   ***4***   ***3***   ***2***   ***1***   ***0***
-  0          0          0          1          DS select code   unchanged   0         head                                                                            
-  ---------- ---------- ---------- ---------- ---------------- ----------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
+|***15***  | ***14*** |  ***13***|  ***12*** | ***11*** ---  ***6***    | ***5*** ---  ***3***  |***2***  | ***1*** --- ***0*** |
+|----------|----------|----------|----------|---------------------------|-----------------------|---------|-------------------- |
+|0         | 0        |  0       |   1      |    DS select code         | unchanged             | 0       |       head          |
 
 The head number is obtained from bits 1-0 of the existing S-register
 value when the loader is executed. Bits 5-3 of the existing S-register
@@ -5734,7 +5207,6 @@ value are also retained and are available to the boot extension program.
 Loader execution ends with one of the following instructions:
 
 -   HLT 30 --- the drive is not ready.
-
 -   JSB 2055,I --- the disc read succeeded.
 
 ### Tracing and Registers
@@ -5742,15 +5214,14 @@ Loader execution ends with one of the following instructions:
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **RWSC**       Controller read, write, status, and control commands
-  **CMDS**       Interface commands received from the CPU
-  **CPU**        Words received from and sent to the CPU
-  **BUF**        Data read from and written to the interface FIFO
-  **SERV**       Disc unit service events
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**RWSC**      | Controller read, write, status, and control commands|
+|**CMDS**      | Interface commands received from the CPU|
+|**CPU**       | Words received from and sent to the CPU|
+|**BUF**       | Data read from and written to the interface FIFO|
+|**SERV**      | Disc unit service events|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***RWSC*** option traces the read, write, status, and control
 commands executed by the disc controller. The ***CMDS*** option traces
@@ -5762,75 +5233,69 @@ signals and data received and returned via the interface.
 
 Examples of the trace formats follow:
 
-\>\>DS rwsc: Unit 0 position 0 cold load read command initiated\
-\>\>DS rwsc: Controller address record command completed\
-\>\>DS cmds: \[STF\] Flag set\
-\>\>DS cmds: \[LIx\] SRQ cleared\
-\>\>DS cpu: \[OTx,C\] Command = 001200\
-\>\>DS cpu: \[EDT\] DCPC transfer ended\
-\>\>DS buf: Data 020334 loaded into FIFO (5)\
-\>\>DS buf: Data 170001 unloaded from FIFO (0)\
-\>\>DS serv: Unit 0 delay 2400 service scheduled\
-\>\>DS serv: Controller delay 3 service scheduled\
-\>\>DS iobus: Received data 021057 with signals IOO \| CLF \| EDT \|
-SIR\
-\>\>DS iobus: Returned data 174163 with signals (none)
+    >>DS rwsc: Unit 0 position 0 cold load read command initiated
+    >>DS rwsc: Controller address record command completed
+    >>DS cmds: [STF] Flag set
+    >>DS cmds: [LIx] SRQ cleared
+    >>DS cpu: [OTx,C] Command = 001200
+    >>DS cpu: [EDT] DCPC transfer ended
+    >>DS buf: Data 020334 loaded into FIFO (5)
+    >>DS buf: Data 170001 unloaded from FIFO (0)
+    >>DS serv: Unit 0 delay 2400 service scheduled
+    >>DS serv: Controller delay 3 service scheduled
+    >>DS iobus: Received data 021057 with signals IOO | CLF | EDT | SIR
+    >>DS iobus: Returned data 174163 with signals (none)
 
 The Disc Interface state contains these registers:
 
-  ---------------------- ------------ ------------- -----------------------------------------------------------
-  ***Name***             ***Size***   ***Radix***   ***Description***
-  **CMFOL**              1            2             Command follows flip-flop
-  **CMRDY**              1            2             Command ready flip-flop
-  **FCNT**               5            10            FIFO fill count
-  **FIFO \[0:15\]**      16           8             Data FIFO
-  **STATE**              2            8             Controller state
-  **OPCODE**             6            8             Current operation code
-  **STATUS**             6            8             Last operation status
-  **EOC**                1            2             End of cylinder flip-flop
-  **EOD**                1            2             End of data flip-flop
-  **SPDU**               16           8             S/P/D flags and last unit
-  **FLMASK**             4            8             File mask
-  **CYL**                16           10            Controller cylinder
-  **HEAD**               6            10            Controller head
-  **SECTOR**             8            10            Controller sector
-  **VFYCNT**             16           8             Verify counter
-  **LASPOL**             3            8             Last unit polled
-  **BUFFER \[0:137\]**   16           8             Sector buffer
-  **INDEX**              8            10            Buffer index
-  **LENGTH**             8            10            Buffer length
-  **STIME**              24           10            Per-cylinder seek delay time
-  **ITIME**              24           10            Intersector delay time
-  **CTIME**              24           10            Command response time
-  **DTIME**              24           10            Data transfer response time
-  **WTIME**              31           10            Command wait time
-  **CTL**                1            2             Interface control flip-flop
-  **FLG**                1            2             Interface flag flip-flop
-  **FBF**                1            2             Interface flag buffer flip-flop
-  **SRQ**                1            2             Interface DCPC service request flip-flop
-  **EDT**                1            2             End of data transfer flag
-  **UCYL \[0:9\]**       10           10            Current cylinder, drives 0-7, controller, and timer
-  **UOP \[0:9\]**        6            8             Current operation code, drives 0-7, controller, and timer
-  **USTAT \[0:9\]**      8            2             Unit status, drives 0-7, controller, and timer
-  **UPHASE \[0:9\]**     3            8             Current command state, drives 0-7, controller, and timer
-  **UPOS \[0:9\]**       32           8             Current byte position, drives 0-7, controller, and timer
-  **UWAIT \[0:9\]**      32           8             Scheduled wait delay, drives 0-7, controller, and timer
-  ---------------------- ------------ ------------- -----------------------------------------------------------
+|***Name***            | ***Size*** |  ***Radix***|   ***Description***|
+|----------------------| -----------|-------------|-----------------------------------------------------------|
+|**CMFOL**             | 1          |  2          |   Command follows flip-flop|
+|**CMRDY**             | 1          |  2          |   Command ready flip-flop|
+|**FCNT**              | 5          |  10         |   FIFO fill count|
+|**FIFO \[0:15\]**     | 16         |  8          |   Data FIFO|
+|**STATE**             | 2          |  8          |   Controller state|
+|**OPCODE**            | 6          |  8          |   Current operation code|
+|**STATUS**            | 6          |  8          |   Last operation status|
+|**EOC**               | 1          |  2          |   End of cylinder flip-flop|
+|**EOD**               | 1          |  2          |   End of data flip-flop|
+|**SPDU**              | 16         |  8          |   S/P/D flags and last unit|
+|**FLMASK**            | 4          |  8          |   File mask|
+|**CYL**               | 16         |  10         |   Controller cylinder|
+|**HEAD**              | 6          |  10         |   Controller head|
+|**SECTOR**            | 8          |  10         |   Controller sector|
+|**VFYCNT**            | 16         |  8          |   Verify counter|
+|**LASPOL**            | 3          |  8          |   Last unit polled|
+|**BUFFER \[0:137\]**  | 16         |  8          |   Sector buffer|
+|**INDEX**             | 8          |  10         |   Buffer index|
+|**LENGTH**            | 8          |  10         |   Buffer length|
+|**STIME**             | 24         |  10         |   Per-cylinder seek delay time|
+|**ITIME**             | 24         |  10         |   Intersector delay time|
+|**CTIME**             | 24         |  10         |   Command response time|
+|**DTIME**             | 24         |  10         |   Data transfer response time|
+|**WTIME**             | 31         |  10         |   Command wait time|
+|**CTL**               | 1          |  2          |   Interface control flip-flop|
+|**FLG**               | 1          |  2          |   Interface flag flip-flop|
+|**FBF**               | 1          |  2          |   Interface flag buffer flip-flop|
+|**SRQ**               | 1          |  2          |   Interface DCPC service request flip-flop|
+|**EDT**               | 1          |  2          |   End of data transfer flag|
+|**UCYL \[0:9\]**      | 10         |  10         |   Current cylinder, drives 0-7, controller, and timer|
+|**UOP \[0:9\]**       | 6          |  8          |   Current operation code, drives 0-7, controller, and time|
+|**USTAT \[0:9\]**     | 8          |  2          |   Unit status, drives 0-7, controller, and timer|
+|**UPHASE \[0:9\]**    | 3          |  8          |   Current command state, drives 0-7, controller, and timer|
+|**UPOS \[0:9\]**      | 32         |  8          |   Current byte position, drives 0-7, controller, and timer|
+|**UWAIT \[0:9\]**     | 32         |  8          |   Scheduled wait delay, drives 0-7, controller, and timer|
 
-Magnetic Tape I/O Device Simulations
-====================================
+# Magnetic Tape I/O Device Simulations
 
 The simulator provides these magnetic tape device interfaces and their
 associated peripherals:
 
 -   12559C 9-Track Magnetic Tape Unit Interface
-
 -   13181B Digital Magnetic Tape Unit Interface
-
 -   13183B Digital Magnetic Tape Unit Interface
 
-12559C 9-Track Magnetic Tape Unit Interface with One 3030 Drive
----------------------------------------------------------------
+## 12559C 9-Track Magnetic Tape Unit Interface with One 3030 Drive
 
 The 12559C 9-Track Magnetic Tape Unit Interface connects one HP 3030
 800-bpi NRZI ½-inch magnetic tape drive to the HP computer family. The
@@ -5841,7 +5306,7 @@ lower-priority select code. The MTD and MTC devices simulate these PCAs
 
 Attaching a tape image file simulates mounting a tape reel on a drive:
 
-ATTACH {-R} {-F} MTC {\<format\>} \<image-filename\>
+    ATTACH {-R} {-F} MTC {<format>} <image-filename>
 
 Adding the ***--R*** (read-only) switch is equivalent to mounting the
 tape without a write ring in place. Adding the ***--F*** switch and a
@@ -5855,7 +5320,7 @@ If the host operating system returns an error when reading or writing a
 tape image file, the simulator will report the error to the simulation
 console, e.g.:
 
-HP 2100: Magtape library I/O error: No space left on device
+    HP 2100: Magtape library I/O error: No space left on device
 
 If this or another tape library error occurs, e.g., due to an illegal or
 damaged tape format, the simulator stops with an appropriate error
@@ -5866,13 +5331,12 @@ error).
 
 Device options that may be specified with the ***SET MTC*** command are:
 
-  -------------------- ---------------------------------------------------------
-  ***Option***         ***Action***
-  **FORMAT=\<fmt\>**   Set the tape image format; default is SIMH format
-  **SC=\<n\>**         Set the interface card select codes; defaults are 20/11
-  **ENABLED**          Enable the device;
-  **DISABLED**         Disable the device; default
-  -------------------- ---------------------------------------------------------
+|***Option***        | ***Action***|
+|--------------------| --------------------------------------------------------|
+|**FORMAT=\<fmt>** | Set the tape image format; default is SIMH format|
+|**SC=\<n>**       | Set the interface card select codes; defaults are 20/11|
+|**ENABLED**         | Enable the device;|
+|**DISABLED**        | Disable the device; default|
 
 The tape image format for future ***ATTACH*** commands may be set to one
 of the format identifiers listed above. The unit must be detached when
@@ -5884,11 +5348,10 @@ and the cards will be assigned in the correct order.
 
 Drive configuration may be displayed with the following commands:
 
-  --------------------- ---------------------------------------
-  ***Command***         ***Action***
-  **SHOW MTC**          Display the drive's configuration
-  **SHOW MTC FORMAT**   Display the drive's tape image format
-  --------------------- ---------------------------------------
+|***Command***        | ***Action***|
+|---------------------| --------------------------------------|
+|**SHOW MTC**         | Display the drive's configuration|
+|**SHOW MTC FORMAT**  | Display the drive's tape image format|
 
 The ***BOOT*** command is not supported. The 12559C is disabled by
 default.
@@ -5896,45 +5359,41 @@ default.
 When a debug log has been established, tracing may be configured for
 each card separately by specifying the reporting level option:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***IOBUS*** option traces the I/O backplane signals and data
 received and returned by the interface.
 
 The Data PCA state contains these registers:
 
-  ---------------------- ------------ ------------- ------------------------
-  ***Name***             ***Size***   ***Radix***   ***Action***
-  **FLG**                1            2             Flag flip-flop
-  **FBF**                1            2             Flag buffer flip-flop
-  **DBUF \[0:65535\]**   8            8             Tape record buffer
-  **BPTR**               17           10            Buffer pointer
-  **BMAX**               17           10            Buffer size for writes
-  ---------------------- ------------ ------------- ------------------------
+|***Name***            | ***Size*** |  ***Radix***|   ***Action***|
+|----------------------| -----------|-------------|------------------------|
+|**FLG**               | 1          |  2          |   Flag flip-flop|
+|**FBF**               | 1          |  2          |   Flag buffer flip-flop|
+|**DBUF \[0:65535\]**  | 8          |  8          |   Tape record buffer|
+|**BPTR**              | 17         |  10         |   Buffer pointer|
+|**BMAX**              | 17         |  10         |   Buffer size for write|
 
 The Control PCA state contains these registers:
 
-  ------------ ------------ ------------- ---------------------------------
-  ***Name***   ***Size***   ***Radix***   ***Action***
-  **FNC**      8            8             Current function
-  **STA**      9            8             Tape status
-  **BUF**      8            8             Command buffer
-  **CTL**      1            2             Control flip-flop
-  **FLG**      1            2             Flag flip-flop
-  **FBF**      1            2             Flag buffer flip-flop
-  **DTF**      1            2             Data transfer flip-flop
-  **FSVC**     1            2             First service flip-flop
-  **POS**      32           10            Tape position
-  **CTIME**    24           10            Command delay time
-  **GTIME**    24           10            Inter-record gap traversal time
-  **XTIME**    24           10            Inter-word transfer time
-  ------------ ------------ ------------- ---------------------------------
+|***Name***  | ***Size*** |  ***Radix***|   ***Action***|
+|------------| -----------|-------------|---------------------------------|
+|**FNC**     | 8          |  8          |   Current function|
+|**STA**     | 9          |  8          |   Tape status|
+|**BUF**     | 8          |  8          |   Command buffer|
+|**CTL**     | 1          |  2          |   Control flip-flop|
+|**FLG**     | 1          |  2          |   Flag flip-flop|
+|**FBF**     | 1          |  2          |   Flag buffer flip-flop|
+|**DTF**     | 1          |  2          |   Data transfer flip-flop|
+|**FSVC**    | 1          |  2          |   First service flip-flop|
+|**POS**     | 32         |  10         |   Tape position|
+|**CTIME**   | 24         |  10         |   Command delay time|
+|**GTIME**   | 24         |  10         |   Inter-record gap traversal tim|
+|**XTIME**   | 24         |  10         |   Inter-word transfer time|
 
-13181B Digital Magnetic Tape Unit Interface with Four 7970B Drives, 13183B Digital Magnetic Tape Unit Interface with Four 7970E Drives
---------------------------------------------------------------------------------------------------------------------------------------
+## 13181B Digital Magnetic Tape Unit Interface with Four 7970B Drives, 13183B Digital Magnetic Tape Unit Interface with Four 7970E Drives
 
 The HP 13181B and 13183B Digital Magnetic Tape Unit Interfaces connect
 from one to four HP 7970B 800-bpi NRZI and HP 7970E 1600-bpi PE ½-inch
@@ -5947,7 +5406,7 @@ lower-priority select code. The MSD and MSC devices simulate these PCAs.
 Attaching a tape image file to a unit simulates mounting a tape reel on
 a drive:
 
-ATTACH {-R} {-F} MSCn {\<format\>} \<image-filename\>
+    ATTACH {-R} {-F} MSCn {<format>} <image-filename>
 
 Adding the ***--R*** (read-only) switch is equivalent to mounting the
 tape without a write ring in place. Adding the ***--F*** switch and a
@@ -5961,7 +5420,7 @@ If the host operating system returns an error when reading or writing a
 tape image file, the simulator will report the error to the simulation
 console, e.g.:
 
-HP 2100: Magtape library I/O error: No space left on device
+    HP 2100: Magtape library I/O error: No space left on device
 
 If this or another tape library error occurs, e.g., due to an illegal or
 damaged tape format, the simulator stops with an appropriate error
@@ -5981,25 +5440,24 @@ Device and unit options include configuring the drive type and timing,
 tape reel size, tape image format, and the ability to set drives offline
 or online. The command forms are:
 
-SET MSC \<device-option\>\
-SET MSCn \<unit-option\>
+    SET MSC <device-option>
+    SET MSCn <unit-option>
 
 ### Device Options
 
 The device options that may be specified are:
 
-  ---------------------- ---------------------------------------------------------
-  ***Option***           ***Action***
-  **13181**              Use the 13181B interface and 7970B drives; default
-  **13183**              Use the 13183B interface and 7970E drives
-  **FASTTIME**           Use optimized timing; default
-  **REALTIME**           Use realistic timing
-  **SC=\<n\>**           Set the interface card select codes; defaults are 30/31
-  **DEBUG=\<option\>**   Enable tracing
-  **NODEBUG**            Disable tracing; default
-  **ENABLED**            Enable the device; default
-  **DISABLED**           Disable the device
-  ---------------------- ---------------------------------------------------------
+|***Option***          | ***Action***|
+|----------------------| --------------------------------------------------------|
+|**13181**             | Use the 13181B interface and 7970B drives; default|
+|**13183**             | Use the 13183B interface and 7970E drives|
+|**FASTTIME**          | Use optimized timing; default|
+|**REALTIME**          | Use realistic timing|
+|**SC=\<n>**         | Set the interface card select codes; defaults are 30/31|
+|**DEBUG=\<option>** | Enable tracing|
+|**NODEBUG**           | Disable tracing; default|
+|**ENABLED**           | Enable the device; default|
+|**DISABLED**          | Disable the device|
 
 The ***13181*** and ***13183*** options set the interface type and, by
 implication, the tape drive type.
@@ -6029,27 +5487,25 @@ and the cards will be assigned in the correct order.
 
 Device configuration may be displayed with the following commands:
 
-  --------------------- -------------------------------------------
-  ***Command***         ***Action***
-  **SHOW MSC**          Display the device and unit configuration
-  **SHOW MSC TIMING**   Display the timing mode
-  **SHOW MSC TYPE**     Display the interface type
-  --------------------- -------------------------------------------
+|***Command***        | ***Action***|
+|---------------------| ------------------------------------------|
+|**SHOW MSC**         | Display the device and unit configuration|
+|**SHOW MSC TIMING**  | Display the timing mode|
+|**SHOW MSC TYPE**    | Display the interface type|
 
 ### Unit Options
 
 Unit options that may be specified for individual tape drives are:
 
-  -------------------- ----------------------------------------------------------
-  ***Option***         ***Action***
-  **OFFLINE**          Set the unit offline; default when detached
-  **ONLINE**           Set the unit online; default when attached
-  **REEL=\<n\>**       Set the reel size in feet; default is unlimited
-  **CAPACITY=\<n\>**   Set the reel capacity in megabytes; default is unlimited
-  **FORMAT=\<fmt\>**   Set the tape image format; default is SIMH format
-  **ENABLED**          Enable the unit; default
-  **DISABLED**         Disable the unit
-  -------------------- ----------------------------------------------------------
+|***Option***        | ***Action***|
+|--------------------| ---------------------------------------------------------|
+|**OFFLINE**         | Set the unit offline; default when detached|
+|**ONLINE**          | Set the unit online; default when attached|
+|**REEL=\<n>**     | Set the reel size in feet; default is unlimited|
+|**CAPACITY=\<n>** | Set the reel capacity in megabytes; default is unlimited|
+|**FORMAT=\<fmt>** | Set the tape image format; default is SIMH format|
+|**ENABLED**         | Enable the unit; default|
+|**DISABLED**        | Disable the unit|
 
 The ***OFFLINE*** and ***ONLINE*** options place a drive offline and
 online, respectively. The former provides a convenient method of setting
@@ -6066,13 +5522,12 @@ the format is set.
 
 Drive configuration may be displayed with the following commands:
 
-  ---------------------------- ----------------------------------------------------
-  ***Command***                ***Action***
-  **SHOW MSC\<n\>**            Display the selected drive's configuration
-  **SHOW MSC\<n\> REEL**       Display the selected drive's reel size or capacity
-  **SHOW MSC\<n\> CAPACITY**   Display the selected drive's reel size or capacity
-  **SHOW MSC\<n\> FORMAT**     Display the selected drive's tape image format
-  ---------------------------- ----------------------------------------------------
+|***Command***               | ***Action***|
+|----------------------------| ---------------------------------------------------|
+|**SHOW MSC\<n>**          | Display the selected drive's configuration|
+|**SHOW MSC\<n> REEL**     | Display the selected drive's reel size or capacity|
+|**SHOW MSC\<n> CAPACITY** | Display the selected drive's reel size or capacity|
+|**SHOW MSC\<n> FORMAT**   | Display the selected drive's tape image format|
 
 ### LOAD and BOOT Commands
 
@@ -6092,10 +5547,9 @@ the front panel, and, for the ***BOOT*** command, pressing the INTERNAL
 PRESET, EXTERNAL PRESET, and RUN buttons to begin execution. Before
 execution, the S register must be set as follows:
 
-  ---------- ---------- ---------- ---------- ---------- ---------- --------- --------- --------- --------- ------------- --------- --------- --------- --------- ---------
-  ***15***   ***14***   ***13***   ***12***   ***11***   ***10***   ***9***   ***8***   ***7***   ***6***   ***5***       ***4***   ***3***   ***2***   ***1***   ***0***
-  0          0          0          0          0          0          0         0         0         0         file number                                           
-  ---------- ---------- ---------- ---------- ---------- ---------- --------- --------- --------- --------- ------------- --------- --------- --------- --------- ---------
+|***15***  | ***14*** | ***13*** | ***12*** | ***11*** | ***10*** | ***9*** | ***8*** | ***7*** | ***6*** |  ***5***  ---  ***0***|
+|----------|----------|----------|----------|----------|----------|---------|---------|---------|---------|-------------|---------|
+|0         | 0        |  0       |   0      |    0     |     0    |      0  |       0 |        0|         |      file number      |
 
 If S-register bits 5-0 are zero, the file located at the current tape
 position is read. If the bits are non-zero, the tape is rewound, and the
@@ -6104,10 +5558,7 @@ be absolute binary, and a tape mark must end each file. Loader execution
 ends with one of the following instructions:
 
 -   HLT 00 --- a tape read (parity) error occurred.
-
--   HLT 11 --- a checksum error occurred; A = the calculated value, B =
-    > the tape value.
-
+-   HLT 11 --- a checksum error occurred; A = the calculated value, B = the tape value.
 -   HLT 77 --- the end of the file was reached with a successful read.
 
 For a 1000 M/E/F-Series CPU, the commands are equivalent in hardware to
@@ -6116,10 +5567,9 @@ ROM, pressing the IBL button to copy the ROM into memory, and, for the
 ***BOOT*** command, pressing the PRESET and RUN buttons to begin
 execution. The S register is preset as follows:
 
-  ---------- ---------- ---------- ---------- ----------------- ----------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
-  ***15***   ***14***   ***13***   ***12***   ***11***          ***10***    ***9***   ***8***   ***7***   ***6***   ***5***   ***4***   ***3***   ***2***   ***1***   ***0***
-  1          0          0          0          MSD select code   unchanged   0         0                                                                              
-  ---------- ---------- ---------- ---------- ----------------- ----------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
+|***15***  | ***14*** |  ***13***|   ***12*** |  ***11***   --- ***6***  | ***5*** --- ***3*** |  ***2*** |  ***1*** | ***0*** |
+|----------|----------|----------|------------|--------------------------|---------------------|----------|----------|---------|
+|1         | 0        |  0       |   0        |  MSD select code         |   unchanged         |     0    |     0    |&bull; |
 
 If the ***--S*** switch is specified, bit 0 is set to 1 to rewind the
 tape and then load the file number (1 - n) specified in the A register.
@@ -6131,10 +5581,7 @@ available to the loaded program.
 Loader execution ends with one of the following halt instructions:
 
 -   HLT 00 --- a tape read (parity) error occurred.
-
--   HLT 11 --- a checksum error occurred; A = the calculated value, B =
-    > the tape value.
-
+-   HLT 11 --- a checksum error occurred; A = the calculated value, B = the tape value.
 -   HLT 77 --- the end of the file was reached with a successful read.
 
 ### Tracing and Registers
@@ -6142,13 +5589,12 @@ Loader execution ends with one of the following halt instructions:
 When a debug log has been established, tracing may be configured by
 specifying one or more of the reporting level options:
 
-  -------------- ------------------------------------------------------
-  ***Option***   ***Reporting Level***
-  **CMDS**       Controller command initiations and completions
-  **RWS**        Tape reads, writes, and status returns
-  **CPU**        Words received from and sent to the CPU
-  **IOBUS**      I/O bus signals and data words received and returned
-  -------------- ------------------------------------------------------
+|***Option***  | ***Reporting Level***|
+|--------------| -----------------------------------------------------|
+|**CMDS**      | Controller command initiations and completions|
+|**RWS**       | Tape reads, writes, and status returns|
+|**CPU**       | Words received from and sent to the CPU|
+|**IOBUS**     | I/O bus signals and data words received and returned|
 
 The ***CMDS*** option traces the commands executed by the tape
 controller. The ***RWS*** option traces the read, write, and status
@@ -6159,45 +5605,74 @@ and data received and returned via the interface.
 
 Examples of the trace formats follow:
 
-\>\>MSC cmds: Unit 0 command 023 (RRF) scheduled, pos = 0, time = 1001\
-\>\>MSC cmds: Unit 0 command 023 (RRF) complete\
-\>\>MSC rws: Unit 0 read 33 word record\
-\>\>MSC rws: Unit 0 tape library status = 1\
-\>\>MSC cpu: Command = 000101\
-\>\>MSC cpu: Status = 000004\
-\>\>MSC iobus: Received data 000000 with signals STC \| CLF \| SIR \|
-PRH\
-\>\>MSC iobus: Returned data 000020 with signals PRL
+    >>MSC cmds: Unit 0 command 023 (RRF) scheduled, pos = 0, time = 1001
+    >>MSC cmds: Unit 0 command 023 (RRF) complete
+    >>MSC rws: Unit 0 read 33 word record
+    >>MSC rws: Unit 0 tape library status = 1
+    >>MSC cpu: Command = 000101
+    >>MSC cpu: Status = 000004
+    >>MSC iobus: Received data 000000 with signals STC | CLF | SIR | PRH
+    >>MSC iobus: Returned data 000020 with signals PRL
 
 The Data PCA state contains these registers:
 
-  ---------------------- ------------ ------------- ------------------------
-  ***Name***             ***Size***   ***Radix***   ***Action***
-  **BUF**                16           8             Data buffer
-  **CTL**                1            2             Control flip-flop
-  **FLG**                1            2             Flag flip-flop
-  **FBF**                1            2             Flag buffer flip-flop
-  **DBUF \[0:65535\]**   8            8             Tape record buffer
-  **BPTR**               17           10            Buffer pointer
-  **BMAX**               17           10            Buffer size for writes
-  ---------------------- ------------ ------------- ------------------------
+|***Name***            | ***Size*** |  ***Radix***|   ***Action***|
+|----------------------| -----------|-------------|------------------------|
+|**BUF**               | 16         |  8          |   Data buffer|
+|**CTL**               | 1          |  2          |   Control flip-flop|
+|**FLG**               | 1          |  2          |   Flag flip-flop|
+|**FBF**               | 1          |  2          |   Flag buffer flip-flop|
+|**DBUF \[0:65535\]**  | 8          |  8          |   Tape record buffer|
+|**BPTR**              | 17         |  10         |   Buffer pointer|
+|**BMAX**              | 17         |  10         |   Buffer size for write|
 
 The Control PCA state contains these registers:
 
-  ----------------- ------------ ------------- ---------------------------
-  ***Name***        ***Size***   ***Radix***   ***Action***
-  **STA**           12           8             Tape status
-  **BUF**           16           8             Command buffer
-  **USEL**          2            8             Currently selected unit
-  **FSVC**          1            2             First service flip-flop
-  **CTL**           1            2             Control flip-flop
-  **FLG**           1            2             Flag flip-flop
-  **FBF**           1            2             Flag buffer flip-flop
-  **POS \[0:3\]**   32           10            Tape position, drives 0-3
-  **BTIME**         24           10            BOT start delay time
-  **CTIME**         24           10            Command delay time
-  **GTIME**         24           10            Gap traversal time
-  **ITIME**         24           10            IRG traversal time
-  **RTIME**         24           10            Rewind initiation time
-  **XTIME**         24           10            Inter-word transfer time
-  ----------------- ------------ ------------- ---------------------------
+|***Name***       | ***Size*** |  ***Radix***|   ***Action***|
+|-----------------| -----------|-------------|---------------------------|
+|**STA**          | 12         |  8          |   Tape status|
+|**BUF**          | 16         |  8          |   Command buffer|
+|**USEL**         | 2          |  8          |   Currently selected unit|
+|**FSVC**         | 1          |  2          |   First service flip-flop|
+|**CTL**          | 1          |  2          |   Control flip-flop|
+|**FLG**          | 1          |  2          |   Flag flip-flop|
+|**FBF**          | 1          |  2          |   Flag buffer flip-flop|
+|**POS \[0:3\]**  | 32         |  10         |   Tape position, drives 0-3 |
+|**BTIME**        | 24         |  10         |   BOT start delay time|
+|**CTIME**        | 24         |  10         |   Command delay time|
+|**GTIME**        | 24         |  10         |   Gap traversal time|
+|**ITIME**        | 24         |  10         |   IRG traversal time|
+|**RTIME**        | 24         |  10         |   Rewind initiation time|
+|**XTIME**        | 24         |  10         |   Inter-word transfer time|
+
+# COPYRIGHT NOTICE and LICENSE
+
+The following copyright notice applies to the SIMH source, binary, and
+documentation:
+
+Original code published in 1993-2012, written by Robert M Supnik
+
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of Robert M Supnik shall
+not be used in advertising or otherwise to promote the sale, use or
+other dealings in this Software without prior written authorization
+from Robert M Supnik.

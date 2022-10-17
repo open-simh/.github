@@ -16,15 +16,18 @@ Many of the originating companies have changed hands - some many times - or are 
 The Open SIMH project does not distribute software that runs on our emulators.
 But when a current owner can be identified, we do advocate for software to be released - at least for educational/non-commercial use.
 
+The software distributions listed here may be of interest to some (or all) users of Open SIMH.  Be sure to verify that your use is permissible under the terms of any applicable license.
+
 ## Licenses permitting use with Open SIMH
 
 Explicit licenses that organizations have generously granted for use of "Ancient" (formerly proprietary) software include:
 
-- [Early UNIX (Caldera)](https://www.tuhs.org/Archive/Caldera-license.pdf)
+- [Early UNIX (Caldera)](Caldera-license.pdf)
 - [TOPS-10/20 Hobbyist (DEC)](../dec_36bit_license)
 - [VMS Hobbyist (DEC), discontinued](../dec_vms_license)
-- [PDP-11 RT-11, RSX-11, RSTS-11 Mentec - Hobbyist](../mentec_license)
+- [PDP-11 RT-11, RSX-11, RSTS-11 (Mentec)](../mentec_license)
 - [HP1000 & HP21XX (HP/HPE)](../HP1000-21XX_CHM_Source_Code_License_final.pdf)
+- [MCP Mark XIII (Burroughs/Unisys)](../Unisys-B5500-Software-License.pdf)
 
 ## Curated repositories
 
@@ -37,7 +40,10 @@ Explicit licenses that organizations have generously granted for use of "Ancient
 - **Lars Brinkhoff:** [PDP-6](https://github.com/PDP-6) [PDP-10](https://github.com/PDP-10) [PDP-11](https://github.com/PDP-11) [CLU(language)](https://github.com/get-a-clu) [Imlac](https://github.com/larsbrinkhoff/imlac-software)
 - [HP Computer Museum software collection](https://www.hpmuseum.net/collection_document.php#CS)
 
-[The simulators list](../simulators) provides links to software available for a particular simulated system.
+## See also
+
+- [The list of SIMH simulators](../simulators): includes hyperlinks to pages for many simulators that catalog the software known to be available for each one.
+Documentation for simulators may include additional hyperlinks and/or repositories.
 
 ## Other tools
 

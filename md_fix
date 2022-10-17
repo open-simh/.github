@@ -1,0 +1,51 @@
+#!/usr/bin/perl
+use warnings;
+use strict;
+use File::Basename;
+
+# converts ---- and === to ## and # (not tables, headings)
+# Changes blockquotes to code blocks
+
+my $path = dirname( $0 ) . "/docs/simdocs/%s_doc.md";
+my $n = @ARGV;
+
+while( @ARGV ) {
+    my( $ll, $inq );
+
+    my $fn = shift;
+    $fn = sprintf( $path, basename( $fn, ( qw(.md ) ) ) )
+      unless( $fn =~ m,/, );
+
+    open( my $f, '<', $fn ) or die( "$fn:$!\n" ) ;
+    printf STDERR ( "%s\n", $fn ) if( $n > 0 );
+    die( "$fn.bak exists\n" ) if( -f "$fn.bak" );
+    rename( $fn, "$fn.bak" ) || die( "rename: $!\n" );
+    open( my $of,">", $fn ) or die( "$fn.bak:$!\n" );
+
+    while( <$f> ) {
+        chomp;
+        if( $inq ) {
+            if( $_ !~ s/^>\s*// ) {
+                $_ = "~~~";
+                $inq = 0;
+            }
+        } elsif( $_ =~ s/^>\s*// ) {
+            print $of ( $ll ) if( $ll );
+            $ll = "~~~\n";
+            $inq = 1;
+        }
+        if( /^[=\-]{3,}$/ ) {
+            if( $ll ) {
+                print $of ( (/=/? '#' : '##') . " $ll" );
+                undef $ll; undef $inq;
+            } else {
+                print $of ( "$_\n" );
+            }
+            next;
+        }
+        print $of ( $ll ) if( $ll );
+        $ll = "$_\n";
+    }
+    print $of ( $ll ) if( $ll );
+    close $of;
+}

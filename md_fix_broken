@@ -1,0 +1,60 @@
+#!/usr/bin/perl
+use warnings;
+use strict;
+use File::Basename;
+
+my $path = dirname( $0 ) . "/docs/simdocs/%s_doc.md";
+my $n = @ARGV;
+
+while( @ARGV ) {
+    my( $ll, $int, $inq );
+
+    my $fn = shift;
+    $fn = sprintf( $path, basename( $fn, ( qw(.md ) ) ) )
+      unless( $fn =~ m,/, );
+
+    open( my $f, '<', $fn ) or die( "$fn:$!\n" ) ;
+    printf STDERR ( "%s\n", $fn ) if( $n > 0 );
+    die( "$fn.bak exists\n" ) if( -f "$fn.bak" );
+#    rename( $fn, "$fn.bak" ) || die( "rename: $!\n" );
+#    open( my $of,">", $fn ) or die( "$fn.bak:$!\n" );
+my $of = \*STDOUT;
+
+    $int = 0;
+    while( <$f> ) {
+        chomp;
+        if( $inq ) {
+            if( $_ !~ s/^>\s*// ) {
+                $_ = "~~~";
+                $inq = 0;
+            }
+        } elsif( $_ =~ s/^>\s*// ) {
+            print $of ( $ll ) if( $ll );
+            $ll = "~~~\n";
+            $inq = 1;
+        }
+        if( /^\s*[=\-]{3,}(?: [=\\-]+)+$/ ) {
+            if( !$int ) {
+                print $of ( $ll ) if( $ll );
+                $ll = "$_\n";
+                $int = 1;
+                next;
+            }
+            print $of ( $ll ) if( $ll );
+            undef $ll;  $int = 0;
+            next;
+        }
+        if( $int ) {
+            if( $int++ ==1 ) {
+                print $of ( (/^\s*=/? '#' : '##') . " $_\n" );
+                print $of ( "$ll" );
+                undef $ll;
+                next
+            }
+        }
+        print $of ( $ll ) if( $ll );
+        $ll = "$_\n";
+    }
+    print $of ( $ll ) if( $ll );
+    close $of;
+}
