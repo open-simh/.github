@@ -1,10 +1,20 @@
+---
+title: GRI 909/GRI99  Simulator Usage
+author:
+ - Robert M Supnik
+date: 01-Dec-2008
+---
+<!-- notpdf -->
 # GRI-909/GRI-99 Simulator Usage
 
 **01-Dec-2008**
 
+<!-- /notpdf -->
 Copyright (c) 1993-2008, Robert M Supnik
 
 [COPYRIGHT NOTICE and LICENSE](#copyright-notice-and-license) are at the end of this document.
+
+## Contents
 
 - [Simulator Files](#simulator-files)
 - [GRI-909/GRI-99 Features](#gri-909gri-99-features)

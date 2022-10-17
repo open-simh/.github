@@ -2,6 +2,8 @@
 
 # Make PDF file(s) from docs/simdocs/ .md files
 # Defaults to all, or specify filename(s)
+#
+# Note that the PDF document title comes from the first line of the MD
 
 function dopdf () {
     local IN="$(basename $1 ".md")"
@@ -11,24 +13,36 @@ function dopdf () {
     if ! [[ "$IN" =~ \.md$ ]]; then
         IN="${IN}.md"
     fi
+    local R="$(readlink -nf "$IN")"
+    [ -n "$R" ] && IN="$R"
     local ON="$(dirname "$1")/$(basename "$IN" ".md").pdf"
-    local T="$(basename "$IN" "_doc.md" | sed -e's/_/ /g;')"
-    echo "$IN => $ON : $T"
+    echo "$IN => $(basename $ON)"
     # Generating PDF with working internal links requires
     # - No Unicode chars (checkmark = &#10003)
     # - LaTex processor (html handles Unicode, but not links)
     # This work-around seems OK, at least for hp2100, for now.
+    # Remove <!-- notpdf --> blocks (replaced with yaml meta
+    # block's data  in PDF generation
+
+    if ! [ -f "$IN" ]; then
+        echo "${IN}: no such file"
+        return
+    fi
     mkdir -p /tmp/pdfmaker
     trap "rm -rf /tmp/pdfmaker" EXIT INT
-    if [ "$IN" -nt "$ON" ]; then
+    if [ "$IN" -nt "$ON" ] || [ "$ME" -nt "$ON" ]; then
+        IN="$(basename "$IN")"
         echo "  - Updating"
-        sed -e's/&#10003;/Y/g;' "${IN}" >/tmp/pdfmaker/${IN}
+        sed -e's/&#10003;/Y/g;/^<!-- notpdf -->/,/^<!-- \/notpdf -->/d;' "${IN}" >/tmp/pdfmaker/${IN}
         pandoc  "/tmp/pdfmaker/${IN}" -o "$ON" \
-            --metadata title="$T" || exit 97
+            || exit 97
     else
         echo "  - Already up to date"
     fi
 }
+
+ME="$(readlink -e $0)"
+[ -z "$ME" ] && exit 90
 
 cd "$(dirname "$0")/docs/simdocs" || exit 99
 

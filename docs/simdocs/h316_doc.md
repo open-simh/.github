@@ -1,12 +1,21 @@
+---
+title: H316 Simulator Usage
+author:
+ - Robert M Supnik
+date: 30-Apr-2020
+---
+<!-- notpdf -->
 **H316 Simulator Usage**
 
 **30-Apr-2020**
 
-**COPYRIGHT NOTICE**
+<!-- /notpdf -->
 
 Copyright (c) 1993 - 2013, Robert M Supnik
 
 [COPYRIGHT NOTICE and LICENSE](#copyright-notice-and-license) are at the end of this document.
+
+# Contents
 
 - [H316/H516 Features](#h316h516-features)
 - [CPU](#cpu)

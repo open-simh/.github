@@ -1,6 +1,15 @@
+---
+title: Summary of I/O Commands for the Arpanet IMP
+author:
+ - Robert M Supnik
+date: 19-Nov-2013
+---
+<!-- notpdf -->
 **Summary of I/O Commands for the Arpanet IMP**
 
 ***19 Nov 2013***
+
+<!-- /notpdf -->
 
 This document will describe the I/O addresses, commands and interrupts
 as currently employed in the IMP 3050 listing from 9/16/1973. This

@@ -1,13 +1,23 @@
-**HP 3000 Simulator User's Guide**
+---
+title: HP 3000 Simulator User's Guide
+author:
+ - Robert M Supnik
+ - J. David Bryan
+date: 5-Jan-2018
+---
+<!-- notpdf -->
+**HP 300000 Simulator User's Guide**
 
 **5-Jan-2018**
 
-**COPYRIGHT NOTICE**
+<!-- /notpdf -->
 
 Copyright © 1993-2012, Robert M Supnik\
 Copyright © 2012-2018, J. David Bryan
 
 [COPYRIGHT NOTICE and LICENSE](#copyright-notice-and-license) are at the end of this document.
+
+# Contents
 
  - [Introduction](#introduction)
  - [The HP 3000 Computer System](#the-hp-3000-computer-system)

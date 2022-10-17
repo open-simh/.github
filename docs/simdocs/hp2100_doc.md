@@ -1,13 +1,23 @@
+---
+title: HP 2100 Simulator User's Guide
+author:
+ - Robert M Supnik
+ - J. David Bryan
+date: 5-Feb-2019
+---
+<!-- notpdf -->
 **HP 2100 Simulator User's Guide**
 
 **5-Feb-2019**
 
-**COPYRIGHT NOTICE**
+<!-- /notpdf -->
 
 Copyright © 1993-2012, Robert M Supnik\
 Copyright © 2012-2019, J. David Bryan
 
 [COPYRIGHT NOTICE and LICENSE](#copyright-notice-and-license) are at the end of this document.
+
+# Contents
 
  - [Introduction](#introduction)
    - [The HP 21xx/1000 Computer Systems](#the-hp-21xx1000-computer-systems)
