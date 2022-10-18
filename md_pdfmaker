@@ -18,7 +18,7 @@ function dopdf () {
     local ON="$(dirname "$1")/$(basename "$IN" ".md").pdf"
     echo "$IN => $(basename $ON)"
     # Generating PDF with working internal links requires
-    # - No Unicode chars (checkmark = &#10003)
+    # - No Unicode chars (checkmark = &#10003), ǂ = &ne; &#02260
     # - LaTex processor (html handles Unicode, but not links)
     # This work-around seems OK, at least for hp2100, for now.
     # Remove <!-- notpdf --> blocks (replaced with yaml meta
@@ -33,7 +33,7 @@ function dopdf () {
     if [ "$IN" -nt "$ON" ] || [ "$ME" -nt "$ON" ]; then
         IN="$(basename "$IN")"
         echo "  - Updating"
-        sed -e's/&#10003;/Y/g;/^<!-- notpdf -->/,/^<!-- \/notpdf -->/d;' "${IN}" >/tmp/pdfmaker/${IN}
+        LANG=en_US.UTF-8 sed -e's/&#10003;/Y/g;s/ǂ/\/=/g;/^<!-- notpdf -->/,/^<!-- \/notpdf -->/d;' "${IN}" >/tmp/pdfmaker/${IN}
         pandoc  "/tmp/pdfmaker/${IN}" -o "$ON" \
             || exit 97
     else
