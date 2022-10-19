@@ -65,8 +65,8 @@ theme: jekyll-theme-time-machine
 
 # Editor temporary files
 exclude:
-  - /*#
-  - /*~*
-  - /.*
-  - /*.swp
-
+  - "/*#"
+  - "/*~*"
+  - "/.*"
+  - "/*.swp"
+  - "/.#*"
