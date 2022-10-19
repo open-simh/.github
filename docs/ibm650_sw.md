@@ -12,4 +12,4 @@ IBM 650 software status:
 
 | Title   | Media                                                | Documents | HowTo | Origin | Owner | Status                                |
 | ------- | ---------------------------------------------------- | --------- | ----- | ------ | ----- | ------------------------------------- |
-| TBS |     |           |       | IBM    | IBM   | Unknown |
+| IBM manuals  | [Bitsavers](http://bitsavers.org/pdf/ibm/650/)    |           |       | IBM    | IBM   | Unknown |

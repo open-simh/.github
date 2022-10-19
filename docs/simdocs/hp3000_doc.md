@@ -217,7 +217,7 @@ machine being simulated. The files that make up this simulator are:
 ||hp\_tapelib.h       |  797x tape controller simulator library declarations|
 ||hp3000\_atc.c       |  Asynchronous Terminal Controller simulator|
 ||hp3000\_clk.c       |  System Clock simulator|
-||hp3000\_cpu.c       |  CPU simulator||
+||hp3000\_cpu.c       |  CPU simulator|
 ||hp3000\_cpu\_base.c |  CPU base instruction set simulator|
 ||hp3000\_cpu\_cis.c  |  CPU COBOL II Extended Instruction Set simulator|
 ||hp3000\_cpu\_fp.c   |  CPU floating point instruction set simulator|
@@ -229,7 +229,7 @@ machine being simulated. The files that make up this simulator are:
 ||hp3000\_ms.c        |  Magnetic Tape Controller Interface simulator|
 ||hp3000\_scmb.c      |  Selector Channel Maintenance Board simulator|
 ||hp3000\_sel.c       |  Selector Channel simulator|
-||hp3000\_sys.c       |  SCP interface||
+||hp3000\_sys.c       |  SCP interface|
 ||hp\_disclib.c       |  MAC/ICD disc controller simulator library|
 ||hp\_tapelib.c       |  797x tape controller simulator library|
 ||hp3000\_diag.txt    |  SIMH/HP 3000 diagnostics performance report|
