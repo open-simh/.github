@@ -3,30 +3,39 @@
 
 @import "{{ site.theme }}";
 
-  .markdown-body pre.lines {
-   display:none;
+.markdown-body div.highlight {
+   background-color: #f5f5f5;
+   color: #000000;
+}
+
+.markdown-body pre.lines {
+     display:none;
  }
  .markdown-body pre.highlight {
-  margin-left: auto;
-  padding-left: 10px;
-  color: #000000;
-  background-color:initial;
-  box-shadow: none;
+     margin-left: auto;
+    padding-left: 10px;
+    color: #000000;
+    background-color:initial;
+   box-shadow: none;
  }
 
 .wrapper {
-  width: 900px;
+    width: 900px;
 }
 .current-section {
-  width: 900px;
-  margin-left: -452px;
+    width: 900px;
+    margin-left: -452px;
 }
 .markdown-body table {
-  margin-left: initial;
-  margin-right:initial;
-  width: 858px;
-  border: solid 2px;
+    margin-left: initial;
+    margin-right:initial;
+    width: 858px;
+    border: solid 2px;
+}
+.markdown-body td:first-child,
+.markdown-body th:first-child {
+    width: initial;
 }
 .markdown-body th {
- border-left: 1px solid #557398;
+    border-left: 1px solid #557398;
 }
