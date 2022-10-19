@@ -12,7 +12,7 @@ In addition to what we provide, there are many e-mail discussion lists and websi
 
 | Type  | Name/link                                                       | Content                  |
 | ----- | --------------------------------------------------------------- | ------------------------ |
-| email | [simh-users](contacts)                                          | general                  |
+| email | [simh-users](../contacts)                                          | general                  |
 | web   | [tuhs](https://www.tuhs.org/)                                   | Unix history             |
 | email | [tuhs](https://minnie.tuhs.org/mailman/listinfo/tuhs)           | Unix history             |
 | web   | [Unix History](https://github.com/dspinellis/unix-history-repo) | 50 years of code commits |
