@@ -8,8 +8,12 @@ permalink: /ibm1620_sw/
 
 ---
 
-IBM 1620 software status:
+## IBM 1620 software status:
 
 | Title   | Media                                                | Documents | HowTo | Origin | Owner | Status                                |
 | ------- | ---------------------------------------------------- | --------- | ----- | ------ | ----- | ------------------------------------- |
 | TBS |     |           |       | IBM    | IBM   | Unknown |
+
+## Other resources
+
+**TBS**

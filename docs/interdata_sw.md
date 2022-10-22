@@ -8,7 +8,7 @@ permalink: /interdata_sw/
 ---
 
 
-Interdata software status:
+## Interdata software status:
 
 | Title                  | Media                                                                    | Documents | HowTo | Origin       | Owner    | Status                                |
 | ---------------------- | ------------------------------------------------------------------------ | --------- | ----- | ------------ | -------- | ------------------------------------- |
@@ -18,5 +18,7 @@ Interdata software status:
 | Paper tape diagnostics | [Bitsavers](http://bitsavers.org/bits/Interdata/diag/paperTape/)         | [Bitsavers](http://bitsavers.org/pdf/interdata/diag/)    |       | Interdata    | Concurrent/? | Unknown                           |
 | Interchange user library | [Bitsavers](http://bitsavers.org/bits/Interdata/interchange/)          |           |       | Interdata    | Concurrent/? | Unknown                           |
 
+## Other resources
 
+**TBS**
 

@@ -8,8 +8,12 @@ permalink: /ibm7000_sw/
 
 ---
 
-IBM 7000 series software status:
+## IBM 7000 series software status:
 
 | Title   | Media                                                | Documents | HowTo | Origin | Owner | Status                                |
 | ------- | ---------------------------------------------------- | --------- | ----- | ------ | ----- | ------------------------------------- |
 | TBS |     |           |       | IBM    | IBM   | Unknown |
+
+## Other resources
+
+**TBS**

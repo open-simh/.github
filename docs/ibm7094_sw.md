@@ -8,8 +8,12 @@ permalink: /ibm7094_sw/
 
 ---
 
-IBM 7094 software status:
+## IBM 7094 software status:
 
 | Title   | Media                                                | Documents | HowTo | Origin | Owner | Status                                |
 | ------- | ---------------------------------------------------- | --------- | ----- | ------ | ----- | ------------------------------------- |
 | TBS |     |           |       | IBM    | IBM   | Unknown |
+
+## Other resources
+
+**TBS**

@@ -8,8 +8,12 @@ permalink: /ibm1130_sw/
 
 ---
 
-IBM 1130 software status:
+## IBM 1130 software status:
 
 | Title   | Media                                                | Documents | HowTo | Origin | Owner | Status                                |
 | ------- | ---------------------------------------------------- | --------- | ----- | ------ | ----- | ------------------------------------- |
 | TBS |     |           |       | IBM    | IBM   | Unknown |
+
+## Other resources
+
+**TBS**
