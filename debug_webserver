@@ -6,7 +6,13 @@
 # for verifying edits.
 # Changes to _config.yml require restart.
 # If server doesn't start, check for open files (the name will be in the huge traceback)
+[ -n "$DEBUG" ] && DEBUG="-V --trace"
+
 cd "$(dirname "$0")"
 [ -d docs ] && cd docs
-# The server may crash randomly if LANG isn't set
-LANG=en_US.UTF-8 bundle exec jekyll serve -H "$SERVER" -P 4000 --livereload true
+# The server may crash randomly if LC_ALL isn't set
+# --incremental seems to have a ruby issue to be tracked-down later, maybe.
+ INCREMENTAL="--incremental"
+#INCREMENTAL=
+LC_ALL=en_US.UTF-8 bundle exec jekyll serve $INCREMENTAL -H "$SERVER" -P 4000 \
+    --livereload true --livereload-ignore "*#*,*~*,.*,*.swp" $DEBUG
