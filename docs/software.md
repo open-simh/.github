@@ -28,6 +28,7 @@ Explicit licenses that organizations have generously granted for use of "Ancient
 - [PDP-11 RT-11, RSX-11, RSTS-11 (Mentec)](../mentec_license)
 - [HP1000 & HP21XX (HP/HPE)](../HP1000-21XX_CHM_Source_Code_License_final.pdf)
 - [MCP Mark XIII (Burroughs/Unisys)](../Unisys-B5500-Software-License.pdf)
+- [DG Nova and Eclipse (Wild Hare)](../dg_nova_eclipse_license   )
 
 ## Curated repositories
 
