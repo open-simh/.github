@@ -6,7 +6,7 @@ author:
 date: 02-Dec-2013
 ---
 <!-- notpdf -->
-**ARPANET IMP and TIP Extensions for the H316 simulator**
+# **ARPANET IMP and TIP Extensions for the H316 simulator**
 
 **02-Dec-2013**
 

@@ -6,7 +6,7 @@ author:
 date: 14-May-2020
 ---
 <!-- notpdf -->
-**IBM 650 Simulator User's Guide**
+# **IBM 650 Simulator User's Guide**
 
 **14-May-2020**
 

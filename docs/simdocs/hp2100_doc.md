@@ -6,7 +6,7 @@ author:
 date: 5-Feb-2019
 ---
 <!-- notpdf -->
-**HP 2100 Simulator User's Guide**
+# **HP 2100 Simulator User's Guide**
 
 **5-Feb-2019**
 

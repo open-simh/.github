@@ -6,7 +6,7 @@ author:
 date: 5-Jan-2018
 ---
 <!-- notpdf -->
-**HP 300000 Simulator User's Guide**
+# **HP 3000 Simulator User's Guide**
 
 **5-Jan-2018**
 
