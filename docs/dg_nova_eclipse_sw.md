@@ -60,4 +60,11 @@ The following categories of software and documentation are available from Wild H
 
 ## Other resources
 
-TBS
+ - Lars Brinkhoff collection from the MIT Logo group.  Written by the MIT Logo group around 1972, mainly to drive vector
+displays for drawing turtle graphics.  A cross assembler running on ITS
+is included.
+   - [MIT Supernova software](https://github.com/larsbrinkhoff/mit-logo-and-sits-raw-files/tree/master/files/19751217_3of4_AI_KA_Arch_1180-1183_1184p/nova)
+   - [MIT Supernova software](https://github.com/larsbrinkhoff/mit-logo-and-sits-raw-files/tree/master/files/3100151/nova)
+   - [MIT Supernova software](https://github.com/larsbrinkhoff/mit-logo-and-sits-raw-files/tree/master/files/701436/nova)
+   - [MIT Supernova software](https://github.com/larsbrinkhoff/mit-logo-and-sits-raw-files/tree/master/files/7006940/nova)
+   - [MIT Supernova software](https://github.com/larsbrinkhoff/mit-logo-and-sits-raw-files/tree/master/files/19751217_3of4_AI_KA_Arch_1180-1183_1184p/nova)

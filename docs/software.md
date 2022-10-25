@@ -38,7 +38,7 @@ Explicit licenses that organizations have generously granted for use of "Ancient
 - [Paul Pierce collection](http://www.piercefuller.com/library/index.html)
 - [Brian Knittle's 1130 collection](http://ibm1130.org/sw/)
 - [Peter Schorn's Z80 collection](https://schorn.ch/altair.html)
-- **Lars Brinkhoff:** [PDP-6](https://github.com/PDP-6) [PDP-10](https://github.com/PDP-10) [PDP-11](https://github.com/PDP-11) [CLU(language)](https://github.com/get-a-clu) [Imlac](https://github.com/larsbrinkhoff/imlac-software)
+- **Lars Brinkhoff:** [PDP-6](https://github.com/PDP-6) [PDP-10](https://github.com/PDP-10) [PDP-11](https://github.com/pdp11) [CLU(language)](https://github.com/get-a-clu) [Imlac](https://github.com/larsbrinkhoff/imlac-software)
 - [HP Computer Museum software collection](https://www.hpmuseum.net/collection_document.php#CS)
 
 ## See also
