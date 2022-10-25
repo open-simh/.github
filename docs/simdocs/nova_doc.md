@@ -8,30 +8,30 @@ The following copyright notice applies to the SIMH source, binary, and
 documentation:
 
 > Original code published in 1993-2008, written by Robert M Supnik
->
+> 
 > Copyright (c) 1993-2008, Robert M Supnik
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN
->
+> 
 > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of Robert M Supnik shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
@@ -74,8 +74,7 @@ documentation:
 
 This memorandum documents the Nova simulator.
 
-Simulator Files
-===============
+# Simulator Files
 
 sim/ scp.h
 
@@ -133,48 +132,47 @@ nova\_tt.c
 
 nova\_tt1.c
 
-Nova Features
-=============
+# Nova Features
 
 The Nova simulator is configured as follows:
 
 > device names simulates
->
+> 
 > CPU Nova, Nova 3, Nova 4 CPU with 32KW of memory,
->
+> 
 > Or Keronix CPU with 64KW of memory
->
+> 
 > \- hardware multiply/divide
->
+> 
 > PTR,PTP paper tape reader/punch
->
+> 
 > TTI,TTO console terminal
->
+> 
 > TTI1,TTO1 second terminal
->
+> 
 > LPT line printer
->
+> 
 > PLT plotter
->
+> 
 > RTC real-time clock
->
+> 
 > DSK head-per-track disk controller
->
+> 
 > DKP moving head disk controller with four drives
->
+> 
 > MTA magnetic tape controller with eight drives
->
+> 
 > QTY 4060 multiplexer with up to 64 lines
->
+> 
 > ALM 4255 multiplexer with up to 64 lines
 
 The Nova simulator implements these unique stop conditions:
 
--   Reference to undefined I/O device, and STOP\_DEV is set
+  - Reference to undefined I/O device, and STOP\_DEV is set
 
--   More than INDMAX indirect addresses are detected during an interrupt
+  - More than INDMAX indirect addresses are detected during an interrupt
 
--   More than INDMAX indirect addresses are detected during memory
+  - More than INDMAX indirect addresses are detected during memory
     reference address decoding
 
 Note that indirect address loop detection does not exist on unmapped
@@ -193,8 +191,7 @@ SET \<dev\> ENABLED
 
 All devices except QTY are enabled by default.
 
-CPU
----
+## CPU
 
 The only CPU options are the presence of the optional instructions and
 the size of main memory.
@@ -260,8 +257,7 @@ truncated portion of memory is lost. Initial memory size is 32K.
 The CPU supports the BOOT command. BOOT CPU simulates the Nova hardware
 APL (automatic program load) feature. The switch register (SR) bits
 12:17 must contain the device code of the device to be booted. If the
-device is a \"high-speed\" (channel) device, SR bit 0 should also be
-set.
+device is a "high-speed" (channel) device, SR bit 0 should also be set.
 
 CPU registers include the visible state of the processor as well as the
 control registers for the interrupt system.
@@ -318,8 +314,7 @@ SHOW CPU HISTORY=n print first n entries of CPU history
 
 The maximum length for the history is 65536 entries.
 
-Programmed I/O Devices
-----------------------
+## Programmed I/O Devices
 
 ### Paper Tape Reader (PTR)
 
@@ -408,7 +403,7 @@ SET TTI ANSI normal mode
 SET TTI DASHER Dasher mode
 
 Setting either TTI or TTO changes both devices. In Dasher mode, carriage
-return is changed to newline on input, and \^X is changed to backspace.
+return is changed to newline on input, and ^X is changed to backspace.
 
 The terminal input implements these registers:
 
@@ -439,7 +434,7 @@ SET TTI ANSI normal mode
 SET TTI DASHER Dasher mode
 
 Setting either TTI or TTO changes both devices. In Dasher mode, carriage
-return is changed to newline on input, and \^X is changed to backspace.
+return is changed to newline on input, and ^X is changed to backspace.
 
 The terminal output implements these registers:
 
@@ -599,7 +594,7 @@ SET TTO1 ANSI normal mode
 SET TTO1 DASHER Dasher mode
 
 Setting either TTI1 or TTO1 changes both devices. In Dasher mode,
-carriage return is changed to newline on input, and \^X is changed to
+carriage return is changed to newline on input, and ^X is changed to
 backspace. TTO1 supports output logging. The SET TTO1 LOG command
 enables logging:
 
@@ -611,9 +606,9 @@ file, if any.
 Other special TTI1 commands:
 
 > SHOW TTI1 CONNECTIONS show current connections
->
+> 
 > SHOW TTI1 STATISTICS show statistics for active connections
->
+> 
 > SET TTO1 DISCONNECT disconnects the line.
 
 The second terminal input implements these registers:
@@ -654,7 +649,7 @@ The QTY and ALM are terminal multiplexers with up to 64 lines. Either
 the QTY or ALM can be enabled, but not both; the ALM is enabled by
 default. The number of lines can be changed with the command
 
-SET {QTY\|ALM} LINES=n set line count to n
+SET {QTY|ALM} LINES=n set line count to n
 
 The line count maximum is 64.
 
@@ -662,7 +657,7 @@ The QTY and ALM support 8-bit input and output of characters. 8-bit I/O
 may be incompatible with certain operating systems; 7-bit is the
 default. The command
 
-SET {QTY\|ALM} 8B
+SET {QTY|ALM} 8B
 
 enables 8-bit input and output.
 
@@ -670,7 +665,7 @@ The terminal lines perform input and output through Telnet sessions
 connected to a user-specified port. The ATTACH command specifies the
 port to be used:
 
-ATTACH {-am} {QTY\|ALM} \<port\> set up listening port
+ATTACH {-am} {QTY|ALM} \<port\> set up listening port
 
 where port is a decimal number between 1 and 65535 that is not being
 used for other TCP/IP activities. For the ALM multiplexer, the optional
@@ -685,15 +680,15 @@ Once the multiplexer is attached and the simulator is running, it
 listens for connections on the specified port. It assumes that the
 incoming connections are Telnet connections. The connection remains open
 until disconnected by the simulated program, the Telnet client, a SET
-{QTY\|ALM} DISCONNECT command, or a DETACH {QTY\|ALM} command.
+{QTY|ALM} DISCONNECT command, or a DETACH {QTY|ALM} command.
 
 Other special QTY/ALM commands:
 
-> SHOW {QTY\|ALM} CONNECTIONS show current connections
->
-> SHOW {QTY\|ALM} STATISTICS show statistics for active connections
->
-> SET {QTY\|ALM} DISCONNECT=n disconnects the specified line.
+> SHOW {QTY|ALM} CONNECTIONS show current connections
+> 
+> SHOW {QTY|ALM} STATISTICS show statistics for active connections
+> 
+> SET {QTY|ALM} DISCONNECT=n disconnects the specified line.
 
 The QTY/ALM implement these registers:
 
@@ -720,8 +715,7 @@ STOP\_IOE 1 stop on I/O error
 The multiplexers do not support save and restore. All open connections
 are lost when the simulator shuts down or the multiplexer is detached.
 
-Fixed Head Disk (DSK)
----------------------
+## Fixed Head Disk (DSK)
 
 Fixed head disk options include the ability to set the number of
 platters to a fixed value between 1 and 8, or to autosize the number of
@@ -783,8 +777,7 @@ not attached 1 report error and stop
 Fixed head disk data files are buffered in memory; therefore, end of
 file and OS I/O errors cannot occur.
 
-Moving Head Disk (DKP)
-----------------------
+## Moving Head Disk (DKP)
 
 Moving head disk options include the ability to make units write enabled
 or write locked, and to select the type of drive (or autosize):
@@ -888,8 +881,7 @@ end of file assume rest of disk is zero
 
 OS I/O error report error and stop
 
-Magnetic Tape (MTA)
--------------------
+## Magnetic Tape (MTA)
 
 Magnetic tape options include the ability to make units write enabled or
 write locked.
@@ -952,24 +944,23 @@ end of file bad tape
 
 OS I/O error report error and stop
 
-Symbolic Display and Input
-==========================
+# Symbolic Display and Input
 
 The Nova simulator implements symbolic display and input. Display is
 controlled by command line switches:
 
--a display as ASCII character
+\-a display as ASCII character
 
--c display as two packed ASCII characters
+\-c display as two packed ASCII characters
 
--m display instruction mnemonics
+\-m display instruction mnemonics
 
 Input parsing is controlled by the first character typed in or by
 command line switches:
 
-\' or -a ASCII character
+' or -a ASCII character
 
-\" or -c two packed ASCII characters
+" or -c two packed ASCII characters
 
 alphabetic instruction mnemonic
 
@@ -989,7 +980,7 @@ syntax mode displacement comments
 
 0 \<= n \< 0400 0 n
 
-{+/-}n \>= 0400 1 {+/-}n -- PC must be in range \[-200, 177\]
+{+/-}n \>= 0400 1 {+/-}n – PC must be in range \[-200, 177\]
 
 invalid on disk
 

@@ -8,30 +8,30 @@ The following copyright notice applies to the SIMH source, binary, and
 documentation:
 
 > Original code published in 1993-2016, written by Robert M Supnik
->
+> 
 > Copyright (c) 1993-2016, Robert M Supnik
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN
->
+> 
 > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of Robert M Supnik shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
@@ -115,8 +115,7 @@ documentation:
 
 This memorandum documents the DEC VAX-11/780 simulator.
 
-Simulator Files
-===============
+# Simulator Files
 
 To compile the VAX-11/780, you must define VM\_VAX, VAX780, and
 USE\_INT64 as part of the compilation command line. To enable extended
@@ -243,73 +242,72 @@ Additional files are:
 
 sim/vax/ vmb.exe standard boot code
 
-VAX780 Features
-===============
+# VAX780 Features
 
 The VAX780 simulator is configured as follows:
 
 > device name(s) simulates
->
+> 
 > CPU VAX-11/780 CPU
->
+> 
 > TLB translation buffer
->
+> 
 > SBI system bus controller
->
+> 
 > MCTL0,MTCL1 memory controllers, MS780C with 4MB memory each,
->
+> 
 > or MS780E with 8MB-64MB each
->
+> 
 > UBA DW780 Unibus adapter
->
+> 
 > MBA0,MBA1 RH780 Massbus adapters
->
+> 
 > TODR time-of-day clock
->
+> 
 > TMR interval timer
->
+> 
 > TTI,TTO console terminal
->
+> 
 > RXC console RX01 floppy disk
->
+> 
 > DZ DZ11 8-line terminal multiplexer (up to 32)
->
+> 
 > VH DHU11 16-line terminal multiplexer (up to 4)
->
+> 
 > CR CR11 card reader
->
+> 
 > LPT LP11 line printer
->
+> 
 > RP RP04/05/06/07, RM02/03/05/80 Massbus disks, up to
->
+> 
 > eight
->
+> 
 > HK RK611/RK06(7) cartridge disk controller with eight
->
+> 
 > drives
->
+> 
 > RL RL11/RL01(2) cartridge disk controller with four drives
->
+> 
 > RQ UDA50 MSCP controller with four drives
->
+> 
 > RQB second UDA50 MSCP controller with four drives
->
+> 
 > RQC third UDA50 MSCP controller with four drives
->
+> 
 > RQD fourth UDA50 MSCP controller with four drives
->
+> 
 > RY RX211 floppy disk controller with two drives
->
+> 
 > TS TS11 magnetic tape controller with one drive
->
+> 
 > TQ TUK50 TMSCP magnetic tape controller with four drives
->
+> 
 > TU TM03 tape formatter with eight TE16/TU45/TU77 drives
->
+> 
 > XU DEUNA/DELUA Ethernet controller
->
+> 
 > XUB second DEUNA/DELUA Ethernet controller
->
+> 
 > DMC DMC11/DMR11 Synchronous network controller
 
 The DZ, VH, LPT, RP, RL, RQ, RQB, RQC, RQD, RY, TS, TQ, TU, XU, XUB and
@@ -318,24 +316,23 @@ disabled by default.
 
 The VAX780 simulator implements several unique stop conditions:
 
--   Change mode to interrupt stack
+  - Change mode to interrupt stack
 
--   Illegal vector (bits\<1:0\> = 2 or 3)
+  - Illegal vector (bits\<1:0\> = 2 or 3)
 
--   Unexpected exception during interrupt or exception
+  - Unexpected exception during interrupt or exception
 
--   Process PTE in P0 or P1 space instead of system space
+  - Process PTE in P0 or P1 space instead of system space
 
--   Unknown IPL
+  - Unknown IPL
 
--   Infinite loop (BRB/W to self at IPL 1F)
+  - Infinite loop (BRB/W to self at IPL 1F)
 
 The LOAD command supports a simple binary format, consisting of a stream
 of binary bytes without origin or checksum, for loading memory. The DUMP
 command is not implemented.
 
-CPU and System Devices
-----------------------
+## CPU and System Devices
 
 ### CPU
 
@@ -369,54 +366,54 @@ SET CPU SIMHALT disable AUTORESTART
 
 Notes on memory size:
 
--   The first version of the VAX-11/780 used MS780C controllers, which
+  - The first version of the VAX-11/780 used MS780C controllers, which
     supported 1-4MB of memory per controller. This is the only memory
     controller recognized by VMS V1. MS780E controllers supported
     4MB-64MB per controller.
 
--   The controller type is set automatically based on memory size.
+  - The controller type is set automatically based on memory size.
 
 Initial memory size is 8MB.
 
 Memory can be loaded with a binary byte stream using the LOAD command.
 The LOAD command recognizes three switches:
 
--o origin argument follows file name
+\-o origin argument follows file name
 
--r load ROM in memory controller 0
+\-r load ROM in memory controller 0
 
--s load ROM in memory controller 1
+\-s load ROM in memory controller 1
 
 These switches are recognized when examining or depositing in CPU
 memory:
 
--b examine/deposit bytes
+\-b examine/deposit bytes
 
--w examine/deposit words
+\-w examine/deposit words
 
--l examine/deposit longwords
+\-l examine/deposit longwords
 
--d data radix is decimal
+\-d data radix is decimal
 
--o data radix is octal
+\-o data radix is octal
 
--h data radix is hexadecimal
+\-h data radix is hexadecimal
 
--m examine (only) VAX instructions
+\-m examine (only) VAX instructions
 
--p examine/deposit PDP-11 (compatibility mode) instructions
+\-p examine/deposit PDP-11 (compatibility mode) instructions
 
--r examine (only) RADIX50 encoded data
+\-r examine (only) RADIX50 encoded data
 
--v interpret address as virtual, current mode
+\-v interpret address as virtual, current mode
 
--k interpret address as virtual, kernel mode
+\-k interpret address as virtual, kernel mode
 
--e interpret address as virtual, executive mode
+\-e interpret address as virtual, executive mode
 
--s interpret address as virtual, supervisor mode
+\-s interpret address as virtual, supervisor mode
 
--u interpret address as virtual, user mode
+\-u interpret address as virtual, user mode
 
 CPU registers include the visible state of the processor as well as the
 control registers for the interrupt system.
@@ -487,11 +484,11 @@ The CPU attempts to detect when the simulator is idle. When idle, the
 simulator does not use any resources on the host system. Idle detection
 is controlled by the SET IDLE and SET NOIDLE commands:
 
-SET CPU IDLE{=VMS\|ULTRIX\| ULTRIXOLD\|ULTRIX-1.X\|
+SET CPU IDLE{=VMS|ULTRIX| ULTRIXOLD|ULTRIX-1.X|
 
-3BSD\|4.0BSD\|4.1BSD\|4.2BSD\|QUASIJARUS
+3BSD|4.0BSD|4.1BSD|4.2BSD|QUASIJARUS
 
-NETBSD\|NETBSDOLD\|OPENBSD\|OPENBSDOLD\|32V\|ELN}{:n}
+NETBSD|NETBSDOLD|OPENBSD|OPENBSDOLD|32V|ELN}{:n}
 
 enable idle detection
 
@@ -499,8 +496,8 @@ SET CPU NOIDLE disable idle detection
 
 Idle detection is disabled by default. If idle detection is enabled with
 an incorrect operating system setting, simulator performance could be
-impacted. The default operating system setting is VMS. The value 'n', if
-present in the "SET CPU IDLE={OS}:n" command, indicates the number of
+impacted. The default operating system setting is VMS. The value ‘n’, if
+present in the “SET CPU IDLE={OS}:n” command, indicates the number of
 seconds the simulator must run before idling starts.
 
 The CPU can maintain a history of the most recently executed
@@ -517,9 +514,9 @@ SHOW CPU HISTORY print CPU history
 
 SHOW CPU HISTORY=n print first n entries of CPU history
 
-The --T switch causes simulator time to be recorded (and displayed) with
+The –T switch causes simulator time to be recorded (and displayed) with
 each history entry. When writing history to a file (SET CPU
-HISTORY=n:file), 'n' specifies the buffer flush frequency. Warning:
+HISTORY=n:file), ‘n’ specifies the buffer flush frequency. Warning:
 prodigious amounts of disk space may be consumed. The maximum length for
 the history is 250000 entries.
 
@@ -608,7 +605,7 @@ There are two modes of TODR operation.
 1.  Default VMS mode. Without initializing the TODR it returns the
     current time of year offset which VMS would set the clock to if VMS
     knew the correct time (i.e. by manual input). This is correct almost
-    all the time unless a VMS disk hadn't been booted from in the
+    all the time unless a VMS disk hadn’t been booted from in the
     current year. This mode produces strange time results for non VMS
     OSes on each system boot.
 
@@ -619,7 +616,7 @@ There are two modes of TODR operation.
     will initially start counting from 0 and be adjusted differently
     when an OS specifically writes to the TODR. VMS determines if the
     TODR currently contains a valid time if the value it sees is less
-    than about 1 month. If the time isn\'t valid VMS will prompt to set
+    than about 1 month. If the time isn't valid VMS will prompt to set
     the time during the system boot. While prompting for the time it
     will wait for an answer to the prompt for up to the SYSGEN parameter
     TIMEPROMPTWAIT seconds. A value of 0 for TIMEPROMPTWAIT will disable
@@ -726,7 +723,7 @@ UITIME 24 Unibus initialization time
 
 ### Massbus Adapters (MBA0, MBA1)
 
-The Massbus adapters (MBA0, MBA1) simulate RH780\'s. MBA0 is assigned to
+The Massbus adapters (MBA0, MBA1) simulate RH780's. MBA0 is assigned to
 the RP disk drives, MBA1 to the TU tape drives. Each MBA has these
 registers:
 
@@ -750,8 +747,7 @@ MAP\[0:255\] 32 map registers
 
 NEXINT 1 MBA Nexus interrupt request
 
-I/O Device Addressing
----------------------
+## I/O Device Addressing
 
 Unibus I/O space is not large enough to allow all possible devices to be
 configured simultaneously at fixed addresses. Instead, many devices have
@@ -771,7 +767,7 @@ MSCP disk first instance has fixed address, rest floating
 TMSCP tape first instance has fixed address, rest floating
 
 To maintain addressing consistency as the configuration changes, the
-simulator implements DEC\'s standard I/O address and vector
+simulator implements DEC's standard I/O address and vector
 autoconfiguration algorithms for all Unibus devices. This allows the
 user to enable or disable devices without needing to manage I/O
 addresses and vectors.
@@ -801,8 +797,7 @@ All devices support the SHOW \<device\> ADDRESS and SHOW \<device\>
 VECTOR commands, which display the device address and vector,
 respectively.
 
-Programmed I/O Devices
-----------------------
+## Programmed I/O Devices
 
 ### Console Input (TTI)
 
@@ -967,8 +962,7 @@ not attached 1 report error and stop
 
 OS I/O error x report error and stop
 
-Disks
------
+## Disks
 
 All VAX-11/780 disks, and the TUK50 MSCP tape, support a special form of
 the boot command, with the following syntax:
@@ -1254,15 +1248,15 @@ SET RQn RA92 set type to RA92
 
 SET RQn RRD40 set type to RRD40 (CD ROM)
 
-SET RQn RAUSER{=n} set type to RA82 with n MB\'s
+SET RQn RAUSER{=n} set type to RA82 with n MB's
 
-SET -L RQn RAUSER{=n} set type to RA82 with n LBN\'s
+SET -L RQn RAUSER{=n} set type to RA82 with n LBN's
 
 The type options can be used only when a unit is not attached to a file.
-RAUSER is a \"user specified\" disk; the user can specify the size of
-the disk in either MB (1000000 bytes) or logical block numbers (LBN\'s,
-512 bytes each). The minimum size is 5MB; the maximum size is 2GB
-without extended file support, 1TB with extended file support.
+RAUSER is a "user specified" disk; the user can specify the size of the
+disk in either MB (1000000 bytes) or logical block numbers (LBN's, 512
+bytes each). The minimum size is 5MB; the maximum size is 2GB without
+extended file support, 1TB with extended file support.
 
 Units can be set ENABLED or DISABLED. The RQ controllers support the
 BOOT command.
@@ -1345,7 +1339,7 @@ ITIME 1 response time for initialization steps
 
 (except for step 4)
 
-QTIME 24 response time for \'immediate\' packets
+QTIME 24 response time for 'immediate' packets
 
 XTIME 24 response time for data transfers
 
@@ -1365,8 +1359,7 @@ end of file assume rest of disk is zero
 
 OS I/O error report error and stop
 
-Tapes
------
+## Tapes
 
 ### TM03/TE16/TU45/TU77 Magnetic Tapes (TU)
 
@@ -1625,7 +1618,7 @@ ITIME 1 response time for initialization steps
 
 (except for step 4)
 
-QTIME 24 response time for \'immediate\' packets
+QTIME 24 response time for 'immediate' packets
 
 XTIME 24 response time for data transfers
 
@@ -1641,12 +1634,11 @@ end of file end of medium
 
 OS I/O error fatal tape error
 
-Communications Devices
-----------------------
+## Communications Devices
 
 ### DZ11 Terminal Multiplexer (DZ)
 
-The DZ11 is an 8-line terminal multiplexer. Up to 32 DZ11\'s (256 lines)
+The DZ11 is an 8-line terminal multiplexer. Up to 32 DZ11's (256 lines)
 are supported. The default number of lines is 32. The number of lines
 can be changed with the command
 
@@ -1692,7 +1684,7 @@ ATTACH {-am} DZ \<port\> set up listening port
 
 where port is a decimal number between 1 and 65535 that is not being
 used for other TCP/IP activities. The optional switch -m turns on the
-DZ11\'s modem controls; the optional switch -a turns on active
+DZ11's modem controls; the optional switch -a turns on active
 disconnects (disconnect session if computer clears Data Terminal Ready).
 Without modem control, the DZ behaves as though terminals were directly
 connected; disconnecting the Telnet session does not cause any operating
@@ -1707,9 +1699,9 @@ DISCONNECT command, or a DETACH DZ command.
 Other special DZ commands:
 
 > SHOW DZ CONNECTIONS show current connections
->
+> 
 > SHOW DZ STATISTICS show statistics for active connections
->
+> 
 > SET DZ DISCONNECT=linenumber disconnects the specified line.
 
 The DZ11 implements these registers:
@@ -1744,7 +1736,7 @@ lost when the simulator shuts down or the DZ is detached.
 ### DHU11 Terminal Multiplexer (VH)
 
 The DHU11 is an 16-line terminal multiplexer for Unibus systems. Up to 4
-DHU11\'s are supported.
+DHU11's are supported.
 
 The number of active DHU11 devices is configured by setting the number
 of multiplexer lines desired. The number of DHU11 lines can be set as
@@ -1807,9 +1799,9 @@ DISCONNECT command, or a DETACH VH command.
 Other special VH commands:
 
 > SHOW VH CONNECTIONS show current connections
->
+> 
 > SHOW VH STATISTICS show statistics for active connections
->
+> 
 > SET VH DISCONNECT=linenumber disconnects the specified line.
 
 The DHU11 implements these registers, though not all can be examined
@@ -1846,16 +1838,16 @@ These commands are used to change or display the MAC address.
 \<mac-address\> is a valid ethernet MAC, delimited by dashes or periods.
 The controller defaults to 08-00-2B-CC-DD-EE, which should be sufficient
 if there is only one SIMH controller on your LAN. Two cards with the
-same MAC address will see each other\'s packets, resulting in a serious
+same MAC address will see each other's packets, resulting in a serious
 mess.
 
-SET XU TYPE={DEUNA\|\[DELUA\]}
+SET XU TYPE={DEUNA|\[DELUA\]}
 
 SHOW XU TYPE
 
 These commands are used to change or display the controller mode. DELUA
 mode is better and faster but may not be usable by older or non-DEC
-OS\'s.
+OS's.
 
 SHOW XU STATS
 
@@ -1872,14 +1864,14 @@ attached
 
 to a real Ethernet interface:
 
-ATTACH XU {ethX\|\<device\_name\>} ex. eth0 or /dev/era0
+ATTACH XU {ethX|\<device\_name\>} ex. eth0 or /dev/era0
 
 SHOW XU ETH
 
-where X in \'ethX\' is the number of the Ethernet controller to attach,
-or the real device name. The X number is system dependent. If you only
-have one Ethernet controller, the number will probably be 0. To find out
-what your system thinks the Ethernet numbers are, use the SHOW XQ ETH
+where X in 'ethX' is the number of the Ethernet controller to attach, or
+the real device name. The X number is system dependent. If you only have
+one Ethernet controller, the number will probably be 0. To find out what
+your system thinks the Ethernet numbers are, use the SHOW XQ ETH
 command. The device list can be quite cryptic, depending on the host
 system, but is probably better than guessing. If you do not attach the
 device, the controller will behave as though the Ethernet cable were
@@ -1888,7 +1880,7 @@ unplugged.
 One final note: because of its asynchronous nature, the XU controller is
 not limited to the \~1.5Mbit/sec of the real DEUNA/DELUA controllers,
 nor the 10Mbit/sec of a standard Ethernet. Attach it to a Fast Ethernet
-(100 Mbit/sec) card, and \"Feel the Power!\" :-)
+(100 Mbit/sec) card, and "Feel the Power\!" :-)
 
 ###  DMC11/DMR11 Unibus DDCMP Controllers
 
@@ -1929,25 +1921,25 @@ sync line unit.
 
 The DMC device implements these registers:
 
-  --------------------- ---------- --------------------------
-  **Name**              **Size**   **Description**
-  DMC RXINT             32         input interrupt summary
-  DMC TXINT             32         output interrupt summary
-  DMC POLL              32         connect poll interval
-  DMC SEL0\[0:7\]       16         Select 0 CSR
-  DMC SEL2\[0:7\]       16         Select 2 CSR
-  DMC SEL4\[0:7\]       16         Select 4 CSR
-  DMC SEL6\[0:7\]       16         Select 6 CSR
-  DMC SPEED\[0:7\]      32         line speed
-  DMC PEER\[0:5119\]    8          peer address:port
-  DMC PORT\[0:5119\]    8          listen port
-  DMC BASEADDR\[0:7\]   32         program set base address
-  DMC BASESIZE\[0:7\]   16         program set base size
-  DMC MODEM\[0:7\]      8          modem control bits
-  --------------------- ---------- --------------------------
+|                     |          |                          |
+| ------------------- | -------- | ------------------------ |
+| **Name**            | **Size** | **Description**          |
+| DMC RXINT           | 32       | input interrupt summary  |
+| DMC TXINT           | 32       | output interrupt summary |
+| DMC POLL            | 32       | connect poll interval    |
+| DMC SEL0\[0:7\]     | 16       | Select 0 CSR             |
+| DMC SEL2\[0:7\]     | 16       | Select 2 CSR             |
+| DMC SEL4\[0:7\]     | 16       | Select 4 CSR             |
+| DMC SEL6\[0:7\]     | 16       | Select 6 CSR             |
+| DMC SPEED\[0:7\]    | 32       | line speed               |
+| DMC PEER\[0:5119\]  | 8        | peer address:port        |
+| DMC PORT\[0:5119\]  | 8        | listen port              |
+| DMC BASEADDR\[0:7\] | 32       | program set base address |
+| DMC BASESIZE\[0:7\] | 16       | program set base size    |
+| DMC MODEM\[0:7\]    | 8        | modem control bits       |
 
 These registers contain the emulated state of the device. These values
-don\'t necessarily relate to any detail of the original device being
+don't necessarily relate to any detail of the original device being
 emulated but are merely internal details of the emulation.
 
 #### Configuration
@@ -1956,24 +1948,24 @@ A DMC device is configured with various simh SET and ATTACH commands
 
 ##### Set commands
 
-  --------------------------------------------------------------------------- -----------------------------------------------
-  set DMC LINES=n                                                             Sets the number of DMC devices being emulated
-  set DMC CONNECTPOLL=seconds                                                 Sets the connection poll frequency
-  set DMC ADDRESS=val                                                         Bus address
-  set DMC VECTOR=val                                                          Interrupt vector
-  set DMC ENABLE                                                              Enables device DMC
-  set DMC DISABLE                                                             Disables device DMC
-  set DMC DEBUG                                                               Enables debugging for device DMC
-  set DMC NODEBUG                                                             Disables debugging for device DMC
-  set DMC DEBUG=TRACE;WARN;REG;INTREG;INFO;DATA;DATASUM;MODEM;CONNECT;INT     
-                                                                              Enables specific debugging for device DMC
-  set DMC NODEBUG=TRACE;WARN;REG;INTREG;INFO;DATA;DATASUM;MODEM;CONNECT;INT   
-                                                                              Disables specific debugging for device DMC
-  set DMCn PEER=address:port                                                  
-  set DMCn SPEED=bits/sec (0=unrestricted)                                    
-  set DMCn TYPE={DMR,DMC}                                                     
-  set DMCn STATS                                                              Display/Clear statistics
-  --------------------------------------------------------------------------- -----------------------------------------------
+|                                                                           |                                               |
+| ------------------------------------------------------------------------- | --------------------------------------------- |
+| set DMC LINES=n                                                           | Sets the number of DMC devices being emulated |
+| set DMC CONNECTPOLL=seconds                                               | Sets the connection poll frequency            |
+| set DMC ADDRESS=val                                                       | Bus address                                   |
+| set DMC VECTOR=val                                                        | Interrupt vector                              |
+| set DMC ENABLE                                                            | Enables device DMC                            |
+| set DMC DISABLE                                                           | Disables device DMC                           |
+| set DMC DEBUG                                                             | Enables debugging for device DMC              |
+| set DMC NODEBUG                                                           | Disables debugging for device DMC             |
+| set DMC DEBUG=TRACE;WARN;REG;INTREG;INFO;DATA;DATASUM;MODEM;CONNECT;INT   |                                               |
+|                                                                           | Enables specific debugging for device DMC     |
+| set DMC NODEBUG=TRACE;WARN;REG;INTREG;INFO;DATA;DATASUM;MODEM;CONNECT;INT |                                               |
+|                                                                           | Disables specific debugging for device DMC    |
+| set DMCn PEER=address:port                                                |                                               |
+| set DMCn SPEED=bits/sec (0=unrestricted)                                  |                                               |
+| set DMCn TYPE={DMR,DMC}                                                   |                                               |
+| set DMCn STATS                                                            | Display/Clear statistics                      |
 
 ###### Lines
 
@@ -2059,19 +2051,19 @@ with one of the available show commands.
 
 ##### Show commands
 
-  ---------------------- ------------------------------------------
-  show DMC LINES         Display number of devices
-  show DMC CONNECTPOLL   Display connection poll interval
-  show DMC ADDRESS       Bus address
-  show DMC VECTOR        Interrupt vector
-  show DMC DEBUG         Displays debugging status for device DMC
-  show DMCn PEER         Display destination/source
-  show DMCn SPEED        Display rate limit
-  show DMCn TYPE         Set/Display device type
-  show DMCn STATS        Display/Clear statistics
-  show DMCn QUEUES       Display Queue state
-  show DMCn DDCMP        Display DDCMP state information
-  ---------------------- ------------------------------------------
+|                      |                                          |
+| -------------------- | ---------------------------------------- |
+| show DMC LINES       | Display number of devices                |
+| show DMC CONNECTPOLL | Display connection poll interval         |
+| show DMC ADDRESS     | Bus address                              |
+| show DMC VECTOR      | Interrupt vector                         |
+| show DMC DEBUG       | Displays debugging status for device DMC |
+| show DMCn PEER       | Display destination/source               |
+| show DMCn SPEED      | Display rate limit                       |
+| show DMCn TYPE       | Set/Display device type                  |
+| show DMCn STATS      | Display/Clear statistics                 |
+| show DMCn QUEUES     | Display Queue state                      |
+| show DMCn DDCMP      | Display DDCMP state information          |
 
 #### Restrictions
 
@@ -2101,19 +2093,19 @@ DECnet and other types of networking, e.g. from ULTRIX or DSM.
 
 The simulator has a number of debug options, these are:
 
-  --------- --------------------------------------------------------------------------------
-  REG       Shows whenever a CSR is programatically read or written and the current value.
-  INTREG    Shows internal register value changes.
-  INFO      Shows higher-level tracing only.
-  WARN      Shows any warnings.
-  TRACE     Shows more detailed trace information.
-  DATASUM   Brief summary of each received and transmitted buffer. Ignored if DATA is set.
-  DATA      Shows the actual data sent and received.
-  MODEM     Shows modem signal transitions details.
-  CONNECT   Shows sockets connection activity.
-  INT       Shows Interrupt activity.
-            
-  --------- --------------------------------------------------------------------------------
+|         |                                                                                |
+| ------- | ------------------------------------------------------------------------------ |
+| REG     | Shows whenever a CSR is programatically read or written and the current value. |
+| INTREG  | Shows internal register value changes.                                         |
+| INFO    | Shows higher-level tracing only.                                               |
+| WARN    | Shows any warnings.                                                            |
+| TRACE   | Shows more detailed trace information.                                         |
+| DATASUM | Brief summary of each received and transmitted buffer. Ignored if DATA is set. |
+| DATA    | Shows the actual data sent and received.                                       |
+| MODEM   | Shows modem signal transitions details.                                        |
+| CONNECT | Shows sockets connection activity.                                             |
+| INT     | Shows Interrupt activity.                                                      |
+|         |                                                                                |
 
 To get a full trace use
 
@@ -2143,7 +2135,7 @@ DMP11 Unibus PDP11 simulators and Unibus VAX simulators
 
 DMV11 Qbus VAX simulators
 
--   Indicates systems which have OS provided DDCMP implementations.The
+  - Indicates systems which have OS provided DDCMP implementations.The
     DMC11 is a synchronous serial point-to-point communications device.
     A real DMC11 transports data using DDCMP, the emulated device makes
     a TCP/IP connection to another emulated device and sends
@@ -2152,8 +2144,7 @@ DMV11 Qbus VAX simulators
     used for point-to-point DDCMP connections carrying DECnet and other
     types of networking, e.g. from ULTRIX or DSM.
 
-CR11 Card Reader (CR)
----------------------
+## CR11 Card Reader (CR)
 
 The card reader (CR) implements a single controller (the CR11) and card
 reader (e.g., Documation M200, GDI Model 100) by reading a file and
@@ -2168,7 +2159,7 @@ files have a much richer information carrying capacity than plain ASCII
 files. Card Image files can contain such interchange information as
 card-stock color, corner cuts, special artwork, as well as the binary
 punch data representing all 12 columns. Complete details on the format,
-as well as sample code, are available at Prof. Jones\'s site:
+as well as sample code, are available at Prof. Jones's site:
 http://www.cs.uiowa.edu/\~jones/cards/.
 
 Examples of the CR11 include the M8290 and M8291 (CMS11). All card
@@ -2177,18 +2168,18 @@ CR11 is normally configured as a BR6 device, it is configured for BR4 in
 this simulation.
 
 The card reader supports ASCII, card image, and column binary format
-card "decks." When reading plain ASCII files, lines longer than 80
+card “decks.” When reading plain ASCII files, lines longer than 80
 characters are silently truncated. Card image support is included for 80
 column Hollerith, 82 column Hollerith (silently ignoring columns 0 and
 81), and 40 column Hollerith (mark-sense) cards. Column binary supports
 80 column card images only. All files are attached read-only (as if the
 -R switch were given).
 
-ATTACH --A CR \<file\> file is ASCII text
+ATTACH –A CR \<file\> file is ASCII text
 
-ATTACH --B CR \<file\> file is column binary
+ATTACH –B CR \<file\> file is column binary
 
-ATTACH --I CR \<file\> file is card image format
+ATTACH –I CR \<file\> file is card image format
 
 If no flags are given, the file extension is evaluated. If the filename
 ends in .TXT, the file is treated as ASCII text. If the filename ends in
@@ -2204,7 +2195,7 @@ and how the card data will be read and used, the translation must be set
 correctly so that the proper character set is used by the driver. Use
 the following command to explicitly set the correct translation:
 
-SET TRANSLATION={DEFAULT\|026\|026FTN\|029\|EBCDIC}
+SET TRANSLATION={DEFAULT|026|026FTN|029|EBCDIC}
 
 This command should be given after a deck is attached to the simulator.
 The mappings above are completely described at
@@ -2212,7 +2203,7 @@ http://www.cs.uiowa.edu/\~jones/cards/codes.html. Note that DEC
 typically used 029 or 026FTN mappings.
 
 DEC operating systems used a variety of methods to determine the end of
-a deck (recognizing that \'hopper empty\' does not necessarily mean the
+a deck (recognizing that 'hopper empty' does not necessarily mean the
 end of a deck. Below is a summary of the various operating system
 conventions for signaling end of deck:
 
@@ -2241,7 +2232,7 @@ The default card reader rate for the CR11 is 285 cpm. The reader rate
 can be set to its default value or to anywhere in the range 200 to 1200
 cpm. This rate may be changed while the unit is attached.
 
-SET CR RATE={DEFAULT\|200 to 1200}
+SET CR RATE={DEFAULT|200 to 1200}
 
 It is standard operating procedure for operators to load a card deck and
 press the momentary action RESET button to clear any error conditions
@@ -2295,28 +2286,27 @@ POS 32 file position - do not alter
 
 TIME 24 delay time between columns
 
-Symbolic Display and Input
-==========================
+# Symbolic Display and Input
 
 The VAX simulator implements symbolic display and input. Display is
 controlled by command line switches:
 
--a,-c display as ASCII data
+\-a,-c display as ASCII data
 
--m display instruction mnemonics
+\-m display instruction mnemonics
 
--p display compatibility mode mnemonics
+\-p display compatibility mode mnemonics
 
--r display RADIX50 encoding
+\-r display RADIX50 encoding
 
 Input parsing is controlled by the first character typed in or by
 command line switches:
 
-\' or -a ASCII characters (determined by length)
+' or -a ASCII characters (determined by length)
 
-\" or -c ASCII string (maximum 60 characters)
+" or -c ASCII string (maximum 60 characters)
 
--p compatibility mode instruction mnemonic
+\-p compatibility mode instruction mnemonic
 
 alphabetic instruction mnemonic
 
@@ -2329,7 +2319,7 @@ The syntax for VAX specifiers is as follows:
 
 syntax specifier displacement comments
 
-\#s\^n, \#n 0n - short literal, integer only
+\#s^n, \#n 0n - short literal, integer only
 
 \[Rn\] 4n - indexed, second specifier follows
 
@@ -2337,40 +2327,40 @@ Rn 5n - PC illegal
 
 (Rn) 6n - PC illegal
 
--(Rn) 7n - PC illegal
+\-(Rn) 7n - PC illegal
 
 (Rn)+ 8n -
 
-\#i\^n, \#n 8F n immediate
+\#i^n, \#n 8F n immediate
 
 @(Rn)+ 9n -
 
 @\#addr 9F addr absolute
 
-{+/-}b\^d(Rn) An {+/-}d byte displacement
+{+/-}b^d(Rn) An {+/-}d byte displacement
 
-b\^d AF d - PC byte PC relative
+b^d AF d - PC byte PC relative
 
-@{+/-}b\^d(Rn) Bn {+/-}d byte displacement deferred
+@{+/-}b^d(Rn) Bn {+/-}d byte displacement deferred
 
-\@b\^d BF d - PC byte PC relative deferred
+@b^d BF d - PC byte PC relative deferred
 
-{+/-}w\^d(Rn) Cn {+/-}d word displacement
+{+/-}w^d(Rn) Cn {+/-}d word displacement
 
-w\^d CF d - PC word PC relative
+w^d CF d - PC word PC relative
 
-@{+/-}w\^d(Rn) Dn {+/-}d word displacement deferred
+@{+/-}w^d(Rn) Dn {+/-}d word displacement deferred
 
-\@w\^d DF d - PC word PC relative deferred
+@w^d DF d - PC word PC relative deferred
 
-{+/-}l\^d(Rn) En {+/-}d long displacement
+{+/-}l^d(Rn) En {+/-}d long displacement
 
-l\^d EF d - PC long PC relative
+l^d EF d - PC long PC relative
 
-@{+/-}l\^d(Rn) Fn {+/-}d long displacement deferred
+@{+/-}l^d(Rn) Fn {+/-}d long displacement deferred
 
-\@l\^d FF d - PC long PC relative deferred
+@l^d FF d - PC long PC relative deferred
 
-If no override is given for a literal (s\^ or i\^) or for a displacement
-or PC relative address (b\^, w\^, or l\^), the simulator chooses the
-mode automatically.
+If no override is given for a literal (s^ or i^) or for a displacement
+or PC relative address (b^, w^, or l^), the simulator chooses the mode
+automatically.

@@ -8,30 +8,30 @@ The following copyright notice applies to the SIMH source, binary, and
 documentation:
 
 > Original code published in 1993-2017, written by Robert M Supnik
->
+> 
 > Copyright (c) 1993-2017 Robert M Supnik
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN
->
+> 
 > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of Robert M Supnik shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
@@ -86,8 +86,7 @@ documentation:
 This memorandum documents the DEC PDP-4, PDP-7, PDP-9, and PDP-15
 simulators.
 
-Simulator Files
-===============
+# Simulator Files
 
 To compile a particular model in the 18b family, you must include the
 appropriate
@@ -154,10 +153,9 @@ pdp18b\_tt1.c x x
 
 pdp18b\_dr15.c x
 
-18b PDP Features
-================
+# 18b PDP Features
 
-The four 18b PDP\'s (PDP-4, PDP-7, PDP-9, PDP-15) are very similar and
+The four 18b PDP's (PDP-4, PDP-7, PDP-9, PDP-15) are very similar and
 are configured as follows:
 
 system device name(s) simulates
@@ -284,35 +282,35 @@ However, devices can only be booted with their default device numbers.
 
 The 18b PDP simulators implement several unique stop conditions:
 
--   An unimplemented instruction is decoded, and register STOP\_INST is
+  - An unimplemented instruction is decoded, and register STOP\_INST is
     set
 
--   More than XCT\_MAX nested executes are detected during instruction
+  - More than XCT\_MAX nested executes are detected during instruction
     execution
 
--   An FP15 instruction is decoded, the FP15 is disabled, and register
+  - An FP15 instruction is decoded, the FP15 is disabled, and register
     STOP\_FPP is set
 
--   A simulated DECtape runs off the end of its reel, and register
+  - A simulated DECtape runs off the end of its reel, and register
     STOP\_OFFR is set
 
 The LOAD command supports three different file formats:
 
--   PDP-7/9/15 hardware read-in RIM format files (data only loaded into
+  - PDP-7/9/15 hardware read-in RIM format files (data only loaded into
     sequential addresses)
 
--   PDP-4/7 \"second stage\" RIM format files (alternating DAC address
+  - PDP-4/7 "second stage" RIM format files (alternating DAC address
     instructions and data)
 
--   PDP-9/15 binary loader format files
+  - PDP-9/15 binary loader format files
 
 The load file format can be specified by switches:
 
--   --R: hardware read-in RIM format
+  - –R: hardware read-in RIM format
 
--   --S: second stage RIM format
+  - –S: second stage RIM format
 
--   --B: binary loader format
+  - –B: binary loader format
 
 If no switch is specified, the load file format is determined from the
 file extension. Files ending in .RIM are assumed to be RIM format
@@ -336,8 +334,7 @@ If no address is given for a RIM format load, a starting address of 200
 
 The DUMP command is not supported.
 
-CPU
----
+## CPU
 
 The CPU options are the presence of the EAE, the presence of the API and
 memory protection (for the PDP-9 and PDP-15), the presence of relocation
@@ -490,12 +487,12 @@ interrupt; most recent PC change first
 
 all STOP\_INST 1 stop on undefined instruction
 
-all XCT\_MAX 8 max number of chained XCT\'s allowed
+all XCT\_MAX 8 max number of chained XCT's allowed
 
 all WRU 8 interrupt character
 
-\"addr\" signifies the address width of the system (13b for the PDP-4,
-15b for the PDP-7 and PDP-9, 17b for the PDP-15).
+"addr" signifies the address width of the system (13b for the PDP-4, 15b
+for the PDP-7 and PDP-9, 17b for the PDP-15).
 
 The CPU attempts to detect when the simulator is idle. When idle, the
 simulator does not use any resources on the host system. Idle detection
@@ -526,8 +523,7 @@ SHOW CPU HISTORY=n print first n entries of CPU history
 
 The maximum length for the history is 65536 entries.
 
-Floating Point Processor (FPP)
-------------------------------
+## Floating Point Processor (FPP)
 
 The PDP-15 features an optional floating point processor, the FP15
 (FPP). The FPP can be enabled and disabled; by default it is disabled.
@@ -566,8 +562,7 @@ STOP\_FPP 1 stop if FP15 instruction decoded
 
 while FP15 is disabled
 
-Programmed I/O Devices
-----------------------
+## Programmed I/O Devices
 
 ### Paper Tape Reader (PTR)
 
@@ -596,8 +591,8 @@ given by address switches (ASW)
 
 The PDP-4 does not have a hardware read-in mode load capability.
 
-The ATTACH PTR command recognizes two switches, -A for ASCII mode and
---K for KSR mode. In ASCII mode, data returned by the read alphabetic
+The ATTACH PTR command recognizes two switches, -A for ASCII mode and –K
+for KSR mode. In ASCII mode, data returned by the read alphabetic
 command has even parity. This allows normal text files to be used as
 input to the paper tape reader on the PDP-9 and PDP-15. In KSR mode,
 data returned by the read alphabetic command has forced ones parity.
@@ -681,7 +676,7 @@ OS I/O error x report error and stop
 
 On the PDP-7, PDP-9, and PDP-15, the terminal interfaces (TTI, TTO) can
 be set to one of four modes, KSR, 7P, 7B, or 8B. On the PDP-7 and PDP-9,
-"Unix v0" mode is also available:
+“Unix v0” mode is also available:
 
 mode input characters output characters
 
@@ -756,10 +751,10 @@ changing POS, the user can backspace or advance the printer. The default
 position after ATTACH is to position at the end of an existing file. A
 new file can be created if you attach with the -N switch.
 
-LPT is the \"default\" line printer for a CPU: Type 62 for the PDP-4,
-Type 647 for the PDP-7 and PDP-9, and LP15 for the PDP-15. LP9 is the
-LP09 line printer controller for the PDP-9. It may be needed on the
-PDP-15 to run certain software packages. LP9 is disabled by default.
+LPT is the "default" line printer for a CPU: Type 62 for the PDP-4, Type
+647 for the PDP-7 and PDP-9, and LP15 for the PDP-15. LP9 is the LP09
+line printer controller for the PDP-9. It may be needed on the PDP-15 to
+run certain software packages. LP9 is disabled by default.
 
 The LP15 is a 3-cycle data break device. The current address register is
 in memory. It can be examined and modified with SET and SHOW commands:
@@ -948,9 +943,9 @@ command, or a DETACH TTIX command.
 Other special commands:
 
 > SHOW TTIX CONNECTIONS show current connections
->
+> 
 > SHOW TTIX STATISTICS show statistics for active connections
->
+> 
 > SET TTOXn DISCONNECT disconnects the specified line.
 
 The input device (TTIX) implements these registers:
@@ -979,8 +974,7 @@ TIME\[0:3/0:15\] 24 time from I/O initiation to interrupt,
 
 lines 0 to 3/15
 
-RP15/RP02/RP03 Disk Pack (RP)
------------------------------
+## RP15/RP02/RP03 Disk Pack (RP)
 
 RP15 options include the ability to make units write enabled or write
 locked and to select the type of disk drive:
@@ -1031,8 +1025,7 @@ end of file x assume rest of disk is zero
 
 OS I/O error x report error and stop
 
-Type 24/RM09 Serial Drum (DRM)
-------------------------------
+## Type 24/RM09 Serial Drum (DRM)
 
 The serial drum (DRM) implements these registers:
 
@@ -1065,8 +1058,7 @@ not attached 1 report error and stop
 Drum data files are buffered in memory; therefore, end of file and OS
 I/O errors cannot occur.
 
-RB09 Fixed Head Disk (RB)
--------------------------
+## RB09 Fixed Head Disk (RB)
 
 The RB09 was an early fixed-head disk for the PDP-7 and PDP-9. It was
 superceded by the RF09/RS09. It is disabled by default.
@@ -1110,8 +1102,7 @@ not attached 1 report error and stop
 RB09 data files are buffered in memory; therefore, end of file and OS
 I/O errors cannot occur.
 
-RF09/RF15/RS09 Fixed Head Disk (RF)
------------------------------------
+## RF09/RF15/RS09 Fixed Head Disk (RF)
 
 RF09/RF15 options include the ability to set the number of platters to a
 fixed value between 1 and 8, or to autosize the number of platters from
@@ -1180,8 +1171,7 @@ not attached 1 report error and stop
 RF15/RF09 data files are buffered in memory; therefore, end of file and
 OS I/O errors cannot occur.
 
-Type 550/555, TC02/TU55, and TC15/TU56 DECtape (DT)
----------------------------------------------------
+## Type 550/555, TC02/TU55, and TC15/TU56 DECtape (DT)
 
 The PDP-4 and PDP-7 use the Type 550 DECtape, a programmed I/O
 controller. The PDP-9 uses the TC02, and the PDP-15 uses the TC15. The
@@ -1205,11 +1195,11 @@ The Type 550, TC02, and TC15 support PDP-8 format, PDP-11 format, and
 18b format DECtape images. . ATTACH assumes the image is in 18b format;
 the user can force other choices with switches:
 
--t PDP-8 format
+\-t PDP-8 format
 
--s PDP-11 format
+\-s PDP-11 format
 
--a autoselect based on file size
+\-a autoselect based on file size
 
 The DECtape controller is a data-only simulator; the timing and mark
 track, and block header and trailer, are not stored. Thus, the WRITE
@@ -1261,14 +1251,13 @@ It is critically important to maintain certain timing relationships
 among the DECtape parameters, or the DECtape simulator will fail to
 operate correctly.
 
--   LTIME must be at least 6
+  - LTIME must be at least 6
 
--   DCTIME needs to be at least 100 times LTIME
+  - DCTIME needs to be at least 100 times LTIME
 
 Acceleration time is set to 75% of deceleration time.
 
-TC59/TU10 Magnetic Tape (MT)
-----------------------------
+## TC59/TU10 Magnetic Tape (MT)
 
 Magnetic tape options include the ability to make units write enabled or
 or write locked.
@@ -1322,8 +1311,7 @@ end of file bad tape
 
 OS I/O error parity error; if STOP\_IOE, stop
 
-DR15C Parallel Interface (PDP-15/76 only)
------------------------------------------
+## DR15C Parallel Interface (PDP-15/76 only)
 
 The DR15C is a parallel interface that provides the PDP-15 side of the
 UC15 control interface in a PDP-15/76 system. It is disabled by default.
@@ -1351,44 +1339,43 @@ POLL 8 polling interval for shared state changes
 Usage of the DR15C is covered in a separate document on running a
 PDP-15/76 configuration.
 
-Symbolic Display and Input
-==========================
+# Symbolic Display and Input
 
 The 18b PDP simulators implement symbolic display and input. Display is
 controlled by command line switches:
 
--a display as ASCII character
+\-a display as ASCII character
 
--b display as three DECsys Baudot packed characters
+\-b display as three DECsys Baudot packed characters
 
--c display as three SIXBIT packed characters
+\-c display as three SIXBIT packed characters
 
--f display as three FIODEC packed character
+\-f display as three FIODEC packed character
 
--m display instruction mnemonics
+\-m display instruction mnemonics
 
 The PDP-7 and PDP-9 recognize one additional switch:
 
--u display as Unix v0 ASCII (two 7b ASCII characters
+\-u display as Unix v0 ASCII (two 7b ASCII characters
 
 in 9b bytes, big-endian)
 
 The PDP-15 recognizes two additional switches:
 
--u display as PDP11 ASCII (two 7b ASCII characters
+\-u display as PDP11 ASCII (two 7b ASCII characters
 
 in 8b bytes, little-endian); 16b devices only
 
--p display as packed ASCII (five 7b ASCII characters
+\-p display as packed ASCII (five 7b ASCII characters
 
 > in two 18b words)
 
 Input parsing is controlled by the first character typed in or by
 command line switches:
 
-\' or -a ASCII character
+' or -a ASCII character
 
-\" or -c three packed SIXBIT characters
+" or -c three packed SIXBIT characters
 
 alphabetic instruction mnemonic
 
@@ -1396,13 +1383,13 @@ numeric octal number
 
 The PDP-7 and PDP-9 recognize one additional input mode:
 
--u Unix v0 ASCII (two 7b ASCII characters in 9b bytes)
+\-u Unix v0 ASCII (two 7b ASCII characters in 9b bytes)
 
 The PDP-15 also recognizes an additional input mode:
 
--p five character packed ASCII string in two 18b words
+\-p five character packed ASCII string in two 18b words
 
--u PDP11 ASCII (two 7b ASCII in 8b bytes, little-endian)
+\-u PDP11 ASCII (two 7b ASCII in 8b bytes, little-endian)
 
 Instruction input uses standard 18b PDP assembler syntax. There are
 eight instruction classes: memory reference, EAE, index (PDP-15 only),
@@ -1423,29 +1410,29 @@ octal number in the range 0 - 017777 (PDP-4, PDP-7, PDP-9, and PDP-15 in
 bank mode) or 0 - 07777 (PDP-15 in page mode).
 
 IOT instructions consist of single mnemonics, eg, KRB, TLS. IOT
-instructions may be or\'d together
+instructions may be or'd together
 
-iot iot iot\...
+iot iot iot...
 
-IOT\'s may also include the number 10, signifying clear the accumulator
+IOT's may also include the number 10, signifying clear the accumulator
 
 iot 10
 
-The simulator does not check the legality of IOT combinations. IOT\'s
-for which there is no opcode may be specified as IOT n, where n is an
-octal number in the range 0 - 07777.
+The simulator does not check the legality of IOT combinations. IOT's for
+which there is no opcode may be specified as IOT n, where n is an octal
+number in the range 0 - 07777.
 
 EAE instructions have the format
 
 eae {+/- shift count}
 
-EAE instructions may be or\'d together
+EAE instructions may be or'd together
 
-eae eae eae\...
+eae eae eae...
 
-The simulator does not check the legality of EAE combinations. EAE\'s
-for which there is no opcode may be specified as EAE n, where n is an
-octal number in the range 0 - 037777.
+The simulator does not check the legality of EAE combinations. EAE's for
+which there is no opcode may be specified as EAE n, where n is an octal
+number in the range 0 - 037777.
 
 Index instructions (PDP-15 only) have the format
 
@@ -1455,7 +1442,7 @@ The immediate, if allowed, must be in the range of -0400 to +0377.
 
 Operate instructions have the format
 
-opr opr opr\...
+opr opr opr...
 
 The simulator does not check the legality of the proposed combination.
 The operands for MUY and DVI must be deposited explicitly.
@@ -1481,16 +1468,15 @@ fpop
 
 The second word is ignored on output and set to 0 on input.
 
-Character Sets
-==============
+# Character Sets
 
-The PDP-4\'s console was an ASR-28 Teletype; its character encoding was
-Baudot. The PDP-4\'s line printer used a modified Hollerith character
-set. The PDP-7\'s and PDP-9\'s consoles were KSR-33 Teletypes; their
-character sets were basically ASCII. The PDP-7\'s and PDP-9\'s line
+The PDP-4's console was an ASR-28 Teletype; its character encoding was
+Baudot. The PDP-4's line printer used a modified Hollerith character
+set. The PDP-7's and PDP-9's consoles were KSR-33 Teletypes; their
+character sets were basically ASCII. The PDP-7's and PDP-9's line
 printers used sixbit encoding (ASCII codes 040 - 0137 masked to six
-bits). The PDP-15\'s I/O devices were all ASCII. The following table
-provides equivalences between ASCII characters and the PDP-4\'s I/O
+bits). The PDP-15's I/O devices were all ASCII. The following table
+provides equivalences between ASCII characters and the PDP-4's I/O
 devices. In the console table, FG stands for figures (upper case).
 
 PDP-4 PDP-4
@@ -1513,19 +1499,19 @@ cr 002 none
 
 space 004 000
 
-! FG+026 none
+\! FG+026 none
 
-\" FG+021 none
+" FG+021 none
 
 \# FG+005 none
 
-\$ FG+062 none
+$ FG+062 none
 
-\% none none
+% none none
 
 & FG+013 none
 
-\' FG+032 none
+' FG+032 none
 
 ( FG+036 057
 
@@ -1569,7 +1555,7 @@ space 004 000
 
 \< none 034
 
-= none 053
+\= none 053
 
 \> none 034
 
@@ -1635,7 +1621,7 @@ Z 021 031
 
 \] none none
 
-\^ none {UP ARROW} 035
+^ none {UP ARROW} 035
 
 \_ none UC+040
 

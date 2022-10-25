@@ -8,30 +8,30 @@ The following copyright notice applies to the SIMH source, binary, and
 documentation:
 
 > Original code published in 1993-2021, written by Robert M Supnik
->
+> 
 > Copyright (c) 1993-2021, Robert M Supnik
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN
->
+> 
 > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of Robert M Supnik shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
@@ -93,8 +93,7 @@ documentation:
 
 This memorandum documents the PDP-8 simulator.
 
-Simulator Files
-===============
+# Simulator Files
 
 sim/ scp.h
 
@@ -164,51 +163,50 @@ pdp8\_tt.c
 
 pdp8\_ttx.c
 
-PDP-8 Features
-==============
+# PDP-8 Features
 
 The PDP-8 simulator is configured as follows:
 
 > device names(s) simulates
->
+> 
 > CPU PDP-8/E CPU with 4KW-32KW of memory
->
+> 
 > \- KE8E extended arithmetic element (EAE)
->
+> 
 > \- KM8E memory management and timeshare control
->
+> 
 > TSC TSC8-75 ETOS operating system timeshare control
->
+> 
 > FPP FPP8A floating point unit
->
+> 
 > PTR,PTP PC8E paper tape reader/punch
->
+> 
 > TTI,TTO KL8E console terminal
->
+> 
 > TTIX,TTOX KL8JA additional terminals, up to 16
->
+> 
 > LPT LE8E line printer
->
+> 
 > CLK DK8E line frequency clock (also PDP-8/A compatible)
->
+> 
 > RK RK8E/RK05 cartridge disk controller with four drives
->
+> 
 > RF RF08/RS08 fixed head disk controller with 1-4 platters
->
+> 
 > DF DF32/DS32 fixed head disk controller with 1-4 platters
->
+> 
 > RL RL8A/RL01 cartridge disk controller with four drives
->
+> 
 > RX RX8E/RX01, RX28/RX02 floppy disk controller with two
->
+> 
 > drives
->
+> 
 > DT TC08/TU56 DECtape controller with eight drives
->
+> 
 > TD TD8E/TU56 DECtape controller with two drives
->
+> 
 > MT TM8E/TU10 magnetic tape controller with eight drives
->
+> 
 > CT TA8E/TU60 cassette tape controller with two drives
 
 Most devices can be disabled or enabled, by the commands:
@@ -266,23 +264,22 @@ However, devices can only be BOOTed with their default device numbers.
 
 The PDP-8 simulator implements several unique stop conditions:
 
--   If an undefined instruction (unimplemented IOT or OPR) is decoded,
+  - If an undefined instruction (unimplemented IOT or OPR) is decoded,
     and STOP\_INST is set
 
--   If a simulated DECtape runs off the end of its reel
+  - If a simulated DECtape runs off the end of its reel
 
 The LOAD command supports both RIM format and BIN format tapes. If the
 file extension is .RIM, or the r switch is specified with LOAD, the file
 is assumed to be RIM format; if the file extension is not .RIM, or the
 -b switch is specified, the file is assumed to be BIN format. For BIN
 format tape loading will stop at the first trailer code (0x80). If the
-tape contains multiple sections specify the --a flag to load all
-sections on the tape. The number of sections loaded will be printed. If
-the tape had non BIN format data following the last valid leader it may
-cause checksum errors or load unwanted data into memory.
+tape contains multiple sections specify the –a flag to load all sections
+on the tape. The number of sections loaded will be printed. If the tape
+had non BIN format data following the last valid leader it may cause
+checksum errors or load unwanted data into memory.
 
-CPU
----
+## CPU
 
 The only CPU options are the presence of the EAE and the size of main
 memory; the memory extension and time-share control is always included,
@@ -397,8 +394,7 @@ SHOW CPU HISTORY=n print first n entries of CPU history
 
 The maximum length for the history is 65536 entries.
 
-TSC8-75 ETOS Timeshare Control (TSC)
-------------------------------------
+## TSC8-75 ETOS Timeshare Control (TSC)
 
 ETOS is a timeshared operating system for the PDP-8, providing multiple
 virtual OS/8 environments for up to 32 users. It requires a special
@@ -423,8 +419,7 @@ INT 1 interrupt pending flag
 
 Except for operation of ETOS, the TSC8-75 should be left disabled.
 
-FPP8A Floating Point Unit (FPP)
--------------------------------
+## FPP8A Floating Point Unit (FPP)
 
 The floating point unit (FPP) is an add-on device that provides floating
 point capabilities. It operates as a coprocessor to the main CPU, with
@@ -466,8 +461,7 @@ FLAG 1 FPP flag
 Except for environments that explicitly support it, the FPP8A should be
 left disabled.
 
-Programmed I/O Devices
-----------------------
+## Programmed I/O Devices
 
 ### PC8E Paper Tape Reader (PTR)
 
@@ -587,8 +581,8 @@ POS 32 number of characters input
 TIME 24 input polling interval
 
 The terminal input is normally polled synchronously with the real-time
-clock. To avoid data loss, a poll is scheduled \'TIME\' instructions
-after the CPU reads a character.
+clock. To avoid data loss, a poll is scheduled 'TIME' instructions after
+the CPU reads a character.
 
 ### KL8E Terminal Output (TTO)
 
@@ -728,9 +722,9 @@ or a DETACH TTIX command.
 Other special commands:
 
 > SHOW TTIX CONNECTIONS show current connections
->
+> 
 > SHOW TTIX STATISTICS show statistics for active connections
->
+> 
 > SET TTOXn DISCONNECT disconnects the specified line.
 
 The input device (TTIX) implements these registers:
@@ -746,8 +740,8 @@ ENABLE 16 interrupt enable flag
 TIME 24 initial polling interval
 
 The input device is normally polled synchronously with the real-time
-clock. To avoid data loss, a poll is scheduled \'TIME\' instructions
-after the CPU reads a character from any line.
+clock. To avoid data loss, a poll is scheduled 'TIME' instructions after
+the CPU reads a character from any line.
 
 The output device (TTOX) implements these registers:
 
@@ -788,11 +782,11 @@ The TD8E supports supports PDP-8 format, PDP-11 format, and 18b format
 DECtape images. ATTACH assumes the image is in PDP-8 format; the user
 can force other choices with switches:
 
--s PDP-11 format
+\-s PDP-11 format
 
--f 18b format
+\-f 18b format
 
--a autoselect based on file on file size
+\-a autoselect based on file on file size
 
 The TD8E controller is a data-only simulator; the timing and mark track,
 and block header and trailer, are not stored. Thus, read always produces
@@ -891,8 +885,7 @@ end of file bad tape
 
 OS I/O error CRC error; if STOP\_IOE, stop
 
-Moving Head Disks
------------------
+## Moving Head Disks
 
 ### RK8E Cartridge Disk (RK)
 
@@ -1000,8 +993,7 @@ end of file x assume rest of disk is zero
 
 OS I/O error x report error and stop
 
-RX8E/RX01, RX28/RX02 Floppy Disk (RX)
--------------------------------------
+## RX8E/RX01, RX28/RX02 Floppy Disk (RX)
 
 The RX can be configured as an RX8E with two RX01 drives, or an RX28
 with two RX02 drives:
@@ -1082,8 +1074,7 @@ not attached 1 report error and stop
 RX01 and RX02 data files are buffered in memory; therefore, end of file
 and OS I/O errors cannot occur.
 
-Fixed Head Disks
-----------------
+## Fixed Head Disks
 
 With default device addressing, either the RF08 or the DF32 can be
 present in a configuration, but not both.
@@ -1206,8 +1197,7 @@ not attached 1 report error and stop
 DF32 data files are buffered in memory; therefore, end of file and OS
 I/O errors cannot occur.
 
- TC08/TU56 DECtape (DT)
-----------------------
+##  TC08/TU56 DECtape (DT)
 
 DT implements the TC08 DECtape controller and TU56 drives. TC08 options
 include the ability to make units write enabled or write locked.
@@ -1223,11 +1213,11 @@ The TC08 supports supports PDP-8 format, PDP-11 format, and 18b format
 DECtape images. ATTACH assumes the image is in PDP-8 format; the user
 can force other choices with switches:
 
--s PDP-11 format
+\-s PDP-11 format
 
--f 18b format
+\-f 18b format
 
--a autoselect based on file on file size
+\-a autoselect based on file on file size
 
 The TC08 controller is a data-only simulator; the timing and mark track,
 and block header and trailer, are not stored. Thus, the WRITE TIMING AND
@@ -1271,14 +1261,13 @@ It is critically important to maintain certain timing relationships
 among the DECtape parameters, or the DECtape simulator will fail to
 operate correctly.
 
--   LTIME must be at least 6
+  - LTIME must be at least 6
 
--   DCTIME needs to be at least 100 times LTIME
+  - DCTIME needs to be at least 100 times LTIME
 
 Acceleration time is set to 75% of deceleration time.
 
- TM8E Magnetic Tape (MT)
------------------------
+##  TM8E Magnetic Tape (MT)
 
 Magnetic tape options include the ability to make units write enabled or
 write locked.
@@ -1336,26 +1325,25 @@ end of file bad tape
 
 OS I/O error parity error; if STOP\_IOE, stop
 
-Symbolic Display and Input
-==========================
+# Symbolic Display and Input
 
 The PDP-8 simulator implements symbolic display and input. Display is
 controlled by command line switches:
 
--a display as ASCII character
+\-a display as ASCII character
 
--c display as two packed sixbit characters
+\-c display as two packed sixbit characters
 
--t display as two packed TSS/8 sixbit characters
+\-t display as two packed TSS/8 sixbit characters
 
--m display instruction mnemonics
+\-m display instruction mnemonics
 
 Input parsing is controlled by the first character typed in or by
 command line switches:
 
-\' or -a ASCII character
+' or -a ASCII character
 
-\" or -c two packed sixbit characters
+" or -c two packed sixbit characters
 
 \# or -t two packed TSS/8 sixbit characters
 
@@ -1379,24 +1367,24 @@ CPU (eg, disks), there is no valid PC, and C must be used to specify
 current page addressing.
 
 IOT instructions consist of single mnemonics, eg, KRB, TLS. IOT
-instructions may be or\'d together
+instructions may be or'd together
 
-iot iot iot\...
+iot iot iot...
 
 The simulator does not check the legality of the proposed combination.
-IOT\'s for which there is no opcode may be specified as IOT n, where n
-is an octal number in the range 0 - 0777.
+IOT's for which there is no opcode may be specified as IOT n, where n is
+an octal number in the range 0 - 0777.
 
 Field change instructions (CIF, CDF) have the format
 
 fldchg field
 
 where field is an octal number in the range 0 - 7. Field change
-instructions may be or\'d together.
+instructions may be or'd together.
 
 Operate instructions have the format
 
-opr opr opr\...
+opr opr opr...
 
 The simulator does not check the legality of the proposed combination.
 EAE mode A and B mnemonics may be specified regardless of the EAE mode.

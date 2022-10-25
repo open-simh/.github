@@ -8,30 +8,30 @@ The following copyright notice applies to the SIMH source, binary, and
 documentation:
 
 > Original code published in 1993-2016, written by Robert M Supnik
->
+> 
 > Copyright (c) 1993-2016, Robert M Supnik
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN
->
+> 
 > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of Robert M Supnik shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
@@ -74,8 +74,7 @@ documentation:
 
 This memorandum documents the PDP-1 simulator.
 
-Simulator Files
-===============
+# Simulator Files
 
 sim/ scp.h
 
@@ -123,52 +122,51 @@ pdp1\_stddev.c
 
 pdp1\_sys.c
 
-PDP-1 Features
-==============
+# PDP-1 Features
 
 The PDP-1 is configured as follows:
 
 > device name(s) simulates
->
+> 
 > CPU PDP-1 CPU with up to 64KW of memory
->
+> 
 > optional automatic multiply/divide
->
+> 
 > optional 16-channel sequence break system
->
+> 
 > optional PDP-1D extended features
->
+> 
 > CLK 1Khz time-sharing clock (PDP-1D)
->
+> 
 > PTR,PTP integral paper tape reader/punch
->
+> 
 > TTI,TTO console typewriter
->
+> 
 > LPT Type 62 line printer
->
+> 
 > DRM Type 24 serial drum
->
+> 
 > DRP Type 23 parallel drum
->
+> 
 > DT Type 550 Microtape (DECtape)
->
+> 
 > DCS,DCSL Type 630 Data Communications Subsystem
 
 The PDP-1 simulator implements the following unique stop conditions:
 
--   An unimplemented instruction is decoded, and register STOP\_INST is
+  - An unimplemented instruction is decoded, and register STOP\_INST is
     set
 
--   More than IND\_MAX indirect addresses are detected during memory
+  - More than IND\_MAX indirect addresses are detected during memory
     reference address decoding
 
--   More than XCT\_MAX nested executes are detected during instruction
+  - More than XCT\_MAX nested executes are detected during instruction
     execution
 
--   I/O wait, and no I/O operations outstanding (i.e, no I/O completion
+  - I/O wait, and no I/O operations outstanding (i.e, no I/O completion
     will ever occur)
 
--   A simulated DECtape runs off the end of its reel
+  - A simulated DECtape runs off the end of its reel
 
 The LOAD command supports RIM format tapes and BLK format tapes. If the
 file to be loaded has an extension of .BIN, or switch -B is specified,
@@ -186,8 +184,7 @@ LOAD -B macro.blk load BLK format file macro.blk
 
 The DUMP command is not implemented.
 
-CPU
----
+## CPU
 
 The only CPU options are the presence of hardware multiply/divide and
 the size of main memory.
@@ -326,8 +323,7 @@ SET \<dev\> SBSLVL=n assign device to sequence break level n
 Because each PDP-1 configuration was unique, there are no default
 assignments for the 16-channel sequence break system.
 
-Programmed I/O Devices
-----------------------
+## Programmed I/O Devices
 
 ### Paper Tape Reader (PTR)
 
@@ -343,7 +339,7 @@ switches).
 
 The paper tape reader recognizes one switch at ATTACH time:
 
-ATT --A PTR \<file\> convert input characters from ASCII
+ATT –A PTR \<file\> convert input characters from ASCII
 
 By default, the paper tape reader does no conversions on input
 characters.
@@ -387,9 +383,9 @@ position after ATTACH is to position at the end of an existing file.
 
 The paper tape punch recognizes two switches at ATTACH time:
 
-ATT --A PTP \<file\> output characters as ASCII text
+ATT –A PTP \<file\> output characters as ASCII text
 
-ATT --N PTP \<file\> create a new (empty) output file
+ATT –N PTP \<file\> create a new (empty) output file
 
 By default, the paper tape punch punches files with no conversions.
 
@@ -534,11 +530,11 @@ The Type 550 supports PDP-8 format, PDP-11 format, and 18b format
 DECtape images. ATTACH assumes the image is in 18b format; the user can
 other choices with switches:
 
--t PDP-8 format
+\-t PDP-8 format
 
--s PDP-11 format
+\-s PDP-11 format
 
--a autoselect based on file size
+\-a autoselect based on file size
 
 The DECtape controller is a data-only simulator; the timing and mark
 track, and block header and trailer, are not stored. Thus, the WRITE
@@ -578,9 +574,9 @@ It is critically important to maintain certain timing relationships
 among the DECtape parameters, or the DECtape simulator will fail to
 operate correctly.
 
--   LTIME must be at least 6
+  - LTIME must be at least 6
 
--   DCTIME needs to be at least 100 times LTIME
+  - DCTIME needs to be at least 100 times LTIME
 
 Acceleration time is set to 75% of deceleration time.
 
@@ -595,7 +591,7 @@ The clock implements these registers:
 
 name size comments
 
-CNTR 16 clock counter, range 0-59999~10~
+CNTR 16 clock counter, range 0-59999<sub>10</sub>
 
 The clock requires the 16-channel sequence break system and is assigned
 to two different SBS levels:
@@ -657,9 +653,9 @@ command, or a DETACH DCS command.
 Other special commands:
 
 > SHOW DCS CONNECTIONS show current connections
->
+> 
 > SHOW DCS STATISTICS show statistics for active connections
->
+> 
 > SET DCSLn DISCONNECT disconnects the specified line.
 
 The multiplexer scanner (DCS) implements these registers:
@@ -687,8 +683,7 @@ lines 0 to 31
 The multiplexer does not support save and restore. All open connections
 are lost when the simulator shuts down or DSC is detached.
 
-Drums
------
+## Drums
 
 The PDP-1 supports two drums: the Type 23 parallel drum (DRP) and the
 Type 24 serial drum (DRM). Both use device addresses 061-064;
@@ -767,24 +762,23 @@ not attached 1 report error and stop
 Drum data files are buffered in memory; therefore, end of file and OS
 I/O errors cannot occur.
 
-Symbolic Display and Input
-==========================
+# Symbolic Display and Input
 
 The PDP-1 simulator implements symbolic display and input. Display is
 controlled by command line switches:
 
--a display as ASCII character
+\-a display as ASCII character
 
--c display as three packed FIODEC characters
+\-c display as three packed FIODEC characters
 
--m display instruction mnemonics
+\-m display instruction mnemonics
 
 Input parsing is controlled by the first character typed in or by
 command line switches:
 
-\' or -a ASCII character
+' or -a ASCII character
 
-\" or -c three packed FIODEC characters
+" or -c three packed FIODEC characters
 
 alphabetic instruction mnemonic
 
@@ -808,16 +802,16 @@ shift shift\_count
 The shift count is an octal number in the range 0-9.
 
 Skip instructions consist of single mnemonics, eg, SZA, SZS4. Skip
-instructions may be or\'d together
+instructions may be or'd together
 
-skip skip skip\...
+skip skip skip...
 
 The sense of a skip can be inverted by including the mnemonic I.
 
 Operate instructions consist of single mnemonics, eg, CLA, CLI. Operate
-instructions may be or\'d together
+instructions may be or'd together
 
-opr opr opr\...
+opr opr opr...
 
 IOT instructions consist of single mnemonics, eg, TYI, TYO. IOT
 instructions may include an octal numeric modifier or the modifier I:
@@ -833,13 +827,12 @@ LAW {I} immediate
 
 where immediate is in the range 0 to 07777.
 
-Character Sets
-==============
+# Character Sets
 
-The PDP-1\'s first console was a Frieden Flexowriter; its character
-encoding was known as FIODEC. The PDP-1\'s line printer used a modified
+The PDP-1's first console was a Frieden Flexowriter; its character
+encoding was known as FIODEC. The PDP-1's line printer used a modified
 Hollerith character set. The following table provides equivalences
-between ASCII characters and the PDP-1\'s I/O devices. In the console
+between ASCII characters and the PDP-1's I/O devices. In the console
 table, UC stands for upper case. The console table also applies to ASCII
 mode for the paper tape reader and punch.
 
@@ -863,19 +856,19 @@ cr 077 none
 
 space 000 000
 
-! {OR} UC+005 none
+\! {OR} UC+005 none
 
-\" UC+001 none
+" UC+001 none
 
 \# {IMPLIES} UC+004 none
 
-\$ none none
+$ none none
 
-\% none none
+% none none
 
 & {AND} UC+006 none
 
-\' UC+002 none
+' UC+002 none
 
 ( 057 057
 
@@ -919,7 +912,7 @@ space 000 000
 
 \< UC+007 034
 
-= UC+033 053
+\= UC+033 053
 
 \> UC+010 034
 
@@ -985,7 +978,7 @@ Z UC+031 031
 
 \] UC+055 none
 
-\^ {UP ARROW} UC+011 {UP ARROW} 035
+^ {UP ARROW} UC+011 {UP ARROW} 035
 
 \_ UC+040 UC+040
 
@@ -1045,7 +1038,7 @@ z 031 none
 
 { none none
 
-\| UC+056 076
+| UC+056 076
 
 } none none
 

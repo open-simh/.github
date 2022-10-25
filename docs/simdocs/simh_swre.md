@@ -8,30 +8,30 @@ The following copyright notice applies to the SIMH source, binary, and
 documentation:
 
 > Original code published in 1993-2006, written by Robert M Supnik
->
+> 
 > Copyright (c) 1993-2006, Robert M Supnik
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN
->
+> 
 > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of Robert M Supnik shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
@@ -91,7 +91,7 @@ documentation:
 
 [7 IBM 1401 11](#ibm-1401)
 
-[7.1 Single Card \"Koans\" 11](#single-card-koans)
+[7.1 Single Card "Koans" 11](#single-card-koans)
 
 [7.2 Diagnostic Tape 11](#diagnostic-tape)
 
@@ -115,11 +115,9 @@ with the SIMH simulators. Many of these packages are available under
 limited use licenses; please read the license terms included with the
 software.
 
-PDP-8
-=====
+# PDP-8
 
-ESI-X
------
+## ESI-X
 
 ESI-X is an interactive program for technical computation. It can
 execute both immediate commands and stored programs (like BASIC). ESI-X
@@ -139,8 +137,7 @@ sim\> run 5400
 
 2+2 = 4
 
-FOCAL69
--------
+## FOCAL69
 
 FOCAL69 is an interactive program for technical computations. It can
 execute both immediate commands and stored programs (like BASIC).
@@ -153,12 +150,11 @@ sim\> run 200
 
 \*TYPE 2+2
 
-= 4.000\*
+\= 4.000\*
 
-PDP-8 OS/8
-----------
+## PDP-8 OS/8
 
-OS/8 is the PDP-8\'s mass storage-based operating system. It provides a
+OS/8 is the PDP-8's mass storage-based operating system. It provides a
 program development and execution environment for assembler, BASIC, and
 FORTRAN programs. OS/8 is provided under license, as is, without fee, by
 Digital Equipment Corporation, for non-commercial use only. Please read
@@ -186,10 +182,9 @@ Note that OS/8 only recognizes upper case characters. The first disk
 (drive 0) is the system disk; it also includes BASIC. The second disk
 (drive 1) includes FORTRAN.
 
-PDP-8 TSS/8
------------
+## PDP-8 TSS/8
 
-TSS/8 is the PDP-8\'s timesharing system. It provides a program
+TSS/8 is the PDP-8's timesharing system. It provides a program
 development and execution environment for assembler, BASIC, and FORTRAN
 programs. TSS/8 is provided as is, without fee, by Digital Equipment
 Corporation, for non-commercial use only. My thanks to John Wilson of
@@ -200,23 +195,23 @@ SIMH sockets library.
 
 To load and run TSS/8:
 
--   Load the paper-tape bootstrap:
+  - Load the paper-tape bootstrap:
 
 sim\> load tss8\_init.bin
 
--   Mount the TSS/8 disk image of the RF08:
+  - Mount the TSS/8 disk image of the RF08:
 
 sim\> attach rf tss8\_rf.dsk
 
--   Assign a TCP/IP port to the Telnet listener for the extra terminals:
+  - Assign a TCP/IP port to the Telnet listener for the extra terminals:
 
 sim\> attach ttix \<port \#\> 4000 typically works
 
--   Run the bootstrap:
+  - Run the bootstrap:
 
 sim\> run 24200
 
--   TSS/8 will boot and go through its startup dialog
+  - TSS/8 will boot and go through its startup dialog
 
 LOAD, DUMP, START, ETC? START
 
@@ -228,7 +223,7 @@ HR:MIN - hh:mm numeric, 24 hour format
 
 .
 
--   and is now ready for login. The list of accounts and passwords:
+  - and is now ready for login. The list of accounts and passwords:
 
 > PPN Password
 
@@ -254,7 +249,7 @@ HR:MIN - hh:mm numeric, 24 hour format
 
 \[1,50\] JERK
 
--   Login using one of the existing accounts. The login command won\'t
+  - Login using one of the existing accounts. The login command won't
     echo:
 
 .LOGIN 2 LXHE privileged library account
@@ -263,18 +258,16 @@ TSS/8.24 JOB 01 \[00,02\] K00 23:23:06
 
 SYSTEM IS DOWN, INC.
 
--   The system is now ready for commands. To get a directory listing:
+  - The system is now ready for commands. To get a directory listing:
 
 .R CAT
 
 Other users can log in by connecting, from a Telnet client, to localhost
 on the port specified in the ATTACH TTIX command.
 
-PDP-11
-======
+# PDP-11
 
-UNIX V5, V6, V7
----------------
+## UNIX V5, V6, V7
 
 UNIX was first developed on the PDP-7; its first widespread usage was on
 the PDP-11. UNIX provides a program development and execution
@@ -296,7 +289,7 @@ sim\> att rk0 unix\_v5\_rk.dsk
 
 sim\> boot rk
 
-\@unix
+@unix
 
 login: root
 
@@ -318,7 +311,7 @@ sim\> att rk3 unix3\_v6\_rk.dsk
 
 sim\> boot rk0
 
-\@unix
+@unix
 
 login: root
 
@@ -336,7 +329,7 @@ sim\> att rl0 unix\_v7\_rl.dsk
 
 sim\> boot rl0
 
-\@boot
+@boot
 
 New Boot, known devices are hp ht rk rl rp tm vt
 
@@ -352,7 +345,7 @@ sim\> att rk0 unix\_v7\_rk.dsk
 
 sim\> boot rk0
 
-\@boot
+@boot
 
 New Boot, known devices are hp ht rk rl rp tm vt
 
@@ -362,10 +355,9 @@ New Boot, known devices are hp ht rk rl rp tm vt
 
 \#
 
-RT-11
------
+## RT-11
 
-RT-11 is the PDP-11\'s single user operating system. It provides a
+RT-11 is the PDP-11's single user operating system. It provides a
 program development and execution environment for assembler, BASIC, and
 FORTRAN programs. RT-11 is provided under license, as is, without fee,
 by Mentec Corporation, for non-commercial use ONLY ON THIS SIMULATOR.
@@ -385,10 +377,10 @@ sim\> att rk0 rtv4\_rk.dsk
 sim\> boot rk0
 
 For RL, HK, RM, and RP series disks, RT-11 expects to find a
-manufacturer\'s bad block table in the last track of the disk.
-Therefore, INITialization of a new (all zero\'s) disk fails, because
-there is no valid bad block table. To create a minimal bad block table,
-use the SET \<unit\> BADBLOCK command.
+manufacturer's bad block table in the last track of the disk. Therefore,
+INITialization of a new (all zero's) disk fails, because there is no
+valid bad block table. To create a minimal bad block table, use the SET
+\<unit\> BADBLOCK command.
 
 ### RT-11 V5.3
 
@@ -405,10 +397,9 @@ distribution pack and generate a new system. This requires mounting a
 blank pack on RL1. When a blank pack is attached to the simulator, a bad
 block table must be created with the SET \<unit\> BADBLOCK command.
 
-Nova and Eclipse RDOS
-=====================
+# Nova and Eclipse RDOS
 
-RDOS is the Nova\'s real-time mass storage operating system. It provides
+RDOS is the Nova's real-time mass storage operating system. It provides
 a program development and execution environment for assembler, BASIC,
 and FORTRAN programs. RDOS is provided under license, as is, without
 fee, by Data General Corporation, for non-commercial use only. Please
@@ -453,11 +444,9 @@ R
 
 list/e
 
-PDP-1
-=====
+# PDP-1
 
-PDP-1 LISP
-----------
+## PDP-1 LISP
 
 PDP-1 LISP is an interactive interpreter for the Lisp language. It can
 execute both interactive commands and stored programs. The startup
@@ -467,19 +456,16 @@ thanks to Peter Deutsch, who wrote the program, to Gordon Greene, who
 typed it in from a printed listing, and to Paul McJones, who helped with
 the final debug process.
 
-PDP-1 DDT
----------
+## PDP-1 DDT
 
 PDP-1 DDT is an interactive debugging tool for the PDP-1. It provides
 symbolic debugging capabilities for PDP-1 programs. The documentation
 included with the program provides information on loading and operating
 DDT. My thanks to Derek Peschel, who transcribed and debugged DDT.
 
-PDP-7
-=====
+# PDP-7
 
- SIM8
-----
+##  SIM8
 
 PDP-7 SIM8 is a PDP-8 simulator for the PDP-7. It implements an 8K
 PDP-8/I with keyboard, teleprinter, reader, punch, and line printer. It
@@ -499,10 +485,9 @@ sim\> run
 
 AC/ 0000
 
-DECsys
-------
+## DECsys
 
-PDP-7 DECsys was Digital Equipment Corporation's first mass
+PDP-7 DECsys was Digital Equipment Corporation’s first mass
 storage-based operating system. Designed for an 8KW PDP-7 with two or
 three DECtape drives, it provided an interactive program development
 environment for Fortran and assembly language programs. My thanks to
@@ -512,7 +497,7 @@ forty years made possible the recovery of this software.
 
 To load and run DECsys:
 
-sim\> att --e dt2 decsys.dtp
+sim\> att –e dt2 decsys.dtp
 
 sim\> att dt3 scratch.dtp
 
@@ -522,11 +507,9 @@ sim\> run
 
 GA
 
-PDP-9/PDP-15
-============
+# PDP-9/PDP-15
 
-FOCAL
------
+## FOCAL
 
 FOCAL15 is an interactive program for technical computations. It can
 execute both immediate commands and stored programs (like BASIC).
@@ -538,87 +521,85 @@ sim\> load focal15.bin
 
 sim\> run
 
-\*TYPE FSQT(2),!
+\*TYPE FSQT(2),\!
 
-= 1.4142
+\= 1.4142
 
 \*
 
-Advanced Software System/Keyboard Monitor
------------------------------------------
+## Advanced Software System/Keyboard Monitor
 
 The Advanced Software System Keyboard Monitor is the simplest mass
 storage monitor for the PDP-15. It offers single-user program
 development and execution capabilities. My thanks to David Gesswein, who
 provided the DECtape images of ADSS/KM. To load and run ADSS/KM-15:
 
--   On the PDP-9 (only), initialize extend mode to on:
+  - On the PDP-9 (only), initialize extend mode to on:
 
 sim\> d extm\_init 1
 
--   Load the paper-tape bootstrap into upper memory:
+  - Load the paper-tape bootstrap into upper memory:
 
 sim\> load dec-15u.rim 77637
 
 You *must* specify the load address.
 
--   Verify that the bootstrap loaded correctly:
+  - Verify that the bootstrap loaded correctly:
 
 sim\> ex pc
 
 PC: 077646
 
--   Change the default line printer to be the LP09 rather than the Type
+  - Change the default line printer to be the LP09 rather than the Type
     647 (PDP-9) or LP15 (PDP-15):
 
 sim\> set lpt disabled
 
 sim\> set lp9 enabled
 
--   Mount the Advanced Software System DECtape image on DECtape unit 0:
+  - Mount the Advanced Software System DECtape image on DECtape unit 0:
 
 sim\> attach dt adss15\_32k.dtp
 
--   Run the bootstrap:
+  - Run the bootstrap:
 
 sim\> run
 
--   The DECtape will boot and print out
+  - The DECtape will boot and print out
 
 > KMS9-15 V5B000
->
-> \$
->
+> 
+> $
+> 
 > and is now ready for commands. Recognized commands include:
->
+> 
 > D list system device directory
->
+> 
 > I list available commands
->
+> 
 > R list device assignments
->
+> 
 > SCOM list systems communication region
 
--   To run Focal, assign unused DAT slot 10 and then load Focal:
+  - To run Focal, assign unused DAT slot 10 and then load Focal:
 
-> \$A LPA0 10
->
-> \$GLOAD
->
+> $A LPA0 10
+> 
+> $GLOAD
+> 
 > LOADER V5B000
->
+> 
 > \>\_FOCAL\<altmode = control-\[\>
->
+> 
 > FOCAL V9A
->
-> \*TYPE 2+2,!
->
+> 
+> \*TYPE 2+2,\!
+> 
 > 4.0000
->
+> 
 > \*
 
-Advanced Software System/Foreground Background
-----------------------------------------------
+## Advanced Software System/Foreground Background
 
 The Advanced Software System/Foreground Background is a real-time
 monitor for the PDP-15. It offers foreground and background execution of
@@ -631,93 +612,92 @@ support the SIMH sockets library.
 
 To load and run ADSS/FB:
 
--   Load the paper-tape bootstrap into upper memory:
+  - Load the paper-tape bootstrap into upper memory:
 
 sim\> load dec-15u.rim 77637
 
 You *must* specify the load address.
 
--   Verify that the bootstrap loaded correctly:
+  - Verify that the bootstrap loaded correctly:
 
 > sim\> ex pc
->
+> 
 > PC: 077646
 
--   Mount the Foreground/Background DECtape image on DECtape unit 0:
+  - Mount the Foreground/Background DECtape image on DECtape unit 0:
 
 sim\> attach dt fb15\_32k.dtp
 
--   Assign a TCP/IP port to the Telnet listener for the second terminal:
+  - Assign a TCP/IP port to the Telnet listener for the second terminal:
 
 sim\> assign tti1 \<port \#\> 4000 typically works
 
--   Start a Telnet client to act as the second terminal and connect to
+  - Start a Telnet client to act as the second terminal and connect to
     localhost on the specified port.
 
--   Run the bootstrap:
+  - Run the bootstrap:
 
 sim\> run
 
--   The DECtape will boot, and the Foreground/Background Monitor will
+  - The DECtape will boot, and the Foreground/Background Monitor will
     print on the second terminal
 
 > F9/15 V4A
->
-> \$
+> 
+> $
 
 and is now ready for commands. Recognized commands include:
 
 > D 0 list system device directory
->
+> 
 > R list device assignments
 
--   To activate the background, load IDLE into the foreground:
+  - To activate the background, load IDLE into the foreground:
 
-> \$A DTA0 -4
->
-> \$GLOAD
->
+> $A DTA0 -4
+> 
+> $GLOAD
+> 
 > FGLOAD V2A
->
+> 
 > \>\_IDLE\<altmode = control-\[\>
 
--   Background terminal responds with
+  - Background terminal responds with
 
 > B9/15 V4A
->
-> \$
+> 
+> $
 
 and is now ready for commands.
 
-DOS-15
-------
+## DOS-15
 
 DOS-15 is a more polished version of ADSS-15 using the RF15 or RP15 as
 its system device. My thanks to Hans Pufal, who recovered DOS-15 from
 DECtape and deduced how to reconstruct disk images from DECtapes. To
 load and run DOS-15:
 
--   Load the DOS-15 paper tape bootstrap into upper memory:
+  - Load the DOS-15 paper tape bootstrap into upper memory:
 
 sim\> load rfsboot.rim 77637
 
 You *must* specify the load address.
 
--   Mount the DOS-15 RF disk image on the RF15:
+  - Mount the DOS-15 RF disk image on the RF15:
 
 sim\> att rf dosv2a\_4p.rf
 
--   Run the bootstrap:
+  - Run the bootstrap:
 
 sim\> run
 
--   The RF disk will boot and print out
+  - The RF disk will boot and print out
 
 > DOS-15 V2A
->
+> 
 > ENTER DATE (MM/DD/YY) -
 
--   Enter the date (the year must be between 70 and 99). DOS-15 will
+  - Enter the date (the year must be between 70 and 99). DOS-15 will
     print its prompt and is now ready for commands. Recognized commands
     include:
 
@@ -727,11 +707,9 @@ S system configuration
 
 R system device assignments
 
-IBM 1401 
-========
+# IBM 1401 
 
-Single Card \"Koans\"
----------------------
+## Single Card "Koans"
 
 One of the art forms for the IBM 1401 was packing useful programs into a
 single punched card. Three samples are included:
@@ -740,15 +718,14 @@ i1401\_ctolp.cd prints a card deck on the line printer
 
 i1401\_ctopu.cd copies a card deck to the card punch
 
-i1401\_hello.cd prints \"HELLO WORLD\" on the line printer and stops
+i1401\_hello.cd prints "HELLO WORLD" on the line printer and stops
 
 To use the reproduction cards, simply insert them at the beginning of a
 text file, terminated by newline. Attach the modified file to the card
 reader, attach a blank file to the output device, and boot the card
 reader.
 
-Diagnostic Tape
----------------
+## Diagnostic Tape
 
 The software and writeup were provided by Charles Owens.
 
@@ -767,10 +744,10 @@ sim\> boot mt1
 The simulator will halt with IS = 433. At this point, you can set
 options through the sense switches and memory.
 
-D 1252 \"1\" Will cause headings to print for each test run.
+D 1252 "1" Will cause headings to print for each test run.
 
 > Otherwise no printing will occur unless there are
->
+> 
 > errors.
 
 D SSB 1 Loop if an error is detected.
@@ -785,26 +762,25 @@ When you continue from this halt (use C to CON), the simulator will halt
 at 3001. Enter C again and the tape will spin thru a series of basic CPU
 diagnostics.
 
-SPS
----
+## SPS
 
 The software and writeup were provided by Charles Owens.
 
-sps1.obj and sps2.obj are the object card decks for the \"Symbolic
-Programming System\", a primitive assembler for the 1401 that predates
+sps1.obj and sps2.obj are the object card decks for the "Symbolic
+Programming System", a primitive assembler for the 1401 that predates
 the better known and more functional Autocoder.
 
 To use SPS, write an SPS program using your favorite editor (two
 examples are provided, hello.sps and diaglist.sps). SPS decks are not
 free-format, but operands must be placed in columns:
 
-1 -- 5 Line Count (optional)
+1 – 5 Line Count (optional)
 
 6 - Count (number of characters when defining a constant).
 
-8 -- 13 Label (six characters must start with alphabetic).
+8 – 13 Label (six characters must start with alphabetic).
 
-14 -- 16 Opcode: Examples:
+14 – 16 Opcode: Examples:
 
 A = Add
 
@@ -884,23 +860,23 @@ CU %UX R Rewind Tape
 
 CU %UX U Rewind and Unlaod tape
 
-17 -- 22 Address for A-operand (label or 4-digit actual address)
+17 – 22 Address for A-operand (label or 4-digit actual address)
 
-23 -- 23 blank, + or - to adjust A-operand by a constant
+23 – 23 blank, + or - to adjust A-operand by a constant
 
-24 -- 26 3-digit number to adjust A-operand by if 23 is + or -
+24 – 26 3-digit number to adjust A-operand by if 23 is + or -
 
-27 -- 27 Index (?)
+27 – 27 Index (?)
 
-28 -- 33 Address for B-operand
+28 – 33 Address for B-operand
 
-34 -- 34 Blank, + or -
+34 – 34 Blank, + or -
 
-35 -- 37 3-digit number of adjust B-address by if 34 is + or -
+35 – 37 3-digit number of adjust B-address by if 34 is + or -
 
-38 -- 38 Index (?)
+38 – 38 Index (?)
 
-39 -- 39 D-modifier for this instruction. Notes:
+39 – 39 D-modifier for this instruction. Notes:
 
 / = Compare is unequal
 
@@ -914,7 +890,7 @@ L = Tape read error
 
 K = Tape end of reel
 
-40 -- 55 Comments
+40 – 55 Comments
 
 The SPS deck should start with an ORG operation to specify where in
 storage the program starts, and end with an END card, with an optional
@@ -925,13 +901,12 @@ and the SPS2.OBJ deck, and another copy of the same source after the
 SPS2.OBJ deck (SPS is a two-pass assembler). SPS prints a listing on LPT
 and punches an object deck on CDP, ready to run.
 
-A UNIX command script to assemble an SPS deck painlessly is in \"sps\".
-To use the script, enter \"sps programname\". The script creates
+A UNIX command script to assemble an SPS deck painlessly is in "sps". To
+use the script, enter "sps programname". The script creates
 programname.lst for the listing and programname.obj for the object deck.
 Windows users are out of luck, for now.
 
-HP2116 16K BASIC
-================
+# HP2116 16K BASIC
 
 HP BASIC is a paper-tape centric implementation of BASIC for a 16KW
 HP2116. Device numbers correspond to the default simulator settings:
@@ -962,19 +937,16 @@ RUN
 
 1.41421
 
-PDP-10 TOPS-10 7.03, TOPS-10 7.04, TOPS-20 V4.1
-===============================================
+# PDP-10 TOPS-10 7.03, TOPS-10 7.04, TOPS-20 V4.1
 
 TOPS-10 was the primary time-shared operating system for the PDP-10.
 TOPS-20 was a popular alternative derived from the BBN TENEX system.
 Installation and distribution tapes for TOPS-10 7.03, TOPS-10 7.04, and
 TOPS-20 4.1 are available at http://pdp-10.trailing-edge.com.
 
- Interdata 32b Systems
-=====================
+#  Interdata 32b Systems
 
-Interdata 7/32 UNIX
--------------------
+## Interdata 7/32 UNIX
 
 Interdata UNIX V6 was the first port of UNIX from its native environment
 on the PDP-11. The port was done by Richard Miller and his colleagues at
@@ -1029,4 +1001,4 @@ Boot
 
 \#
 
-Type \^D to enable multiuser mode. The root password is root.
+Type ^D to enable multiuser mode. The root password is root.

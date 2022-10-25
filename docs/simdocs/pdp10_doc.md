@@ -8,30 +8,30 @@ The following copyright notice applies to the SIMH source, binary, and
 documentation:
 
 > Original code published in 1993-2016, written by Robert M Supnik
->
+> 
 > Copyright (c) 1993-2016, Robert M Supnik
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN
->
+> 
 > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of Robert M Supnik shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
@@ -81,8 +81,7 @@ documentation:
 
 This memorandum documents the DEC PDP-10 simulator.
 
-Simulator Files
-===============
+# Simulator Files
 
 To compile the PDP-10, you must define VM\_PDP10 and USE\_INT64 as part
 of the compilation command line.
@@ -163,45 +162,44 @@ pdp11\_pt.c
 
 pdp11\_ry.c
 
-PDP-10 Features
-===============
+# PDP-10 Features
 
 The PDP-10 simulator is configured as follows:
 
 > device name(s) simulates
->
+> 
 > CPU KS10 CPU with 1MW of memory
->
+> 
 > PAG paging unit (translation maps)
->
+> 
 > UBA Unibus adapters (translation maps)
->
+> 
 > FE console
->
+> 
 > TIM timer
->
+> 
 > PTR,PTP PC11 paper tape reader/punch
->
+> 
 > RY RX211/RX02 floppy disk and two drives
->
+> 
 > DZ DZ11 8-line terminal multiplexer (up to 4)
->
+> 
 > LP20 LP20 line printer
->
+> 
 > CR CD20 (CD11) card reader
->
+> 
 > RP RH11 controller with eight RP04/RP05/RP06/RP07,
->
+> 
 > RM03/RM05/RM80 drives
->
+> 
 > TU RH11/TM02 controller with eight TU45 drives
->
+> 
 > DMR0 first DMR11 Synchronous network controller
->
+> 
 > DMR1 second DMR11 Synchronous network controller
->
+> 
 > DMR2 third DMR11 Synchronous network controller
->
+> 
 > DMR3 fourth DMR11 Synchronous network controller
 
 The PTR, PTP, RX211, CR, DMR0, DMR1, DMR2 and DMR3 are initially set
@@ -214,21 +212,21 @@ commands, which display the device address and vector, respectively.
 
 The PDP-10 simulator implements several unique stop condition:
 
--   Illegal instruction (000) in kernel mode
+  - Illegal instruction (000) in kernel mode
 
--   Indirect addressing nesting exceeds limit (if enabled)
+  - Indirect addressing nesting exceeds limit (if enabled)
 
--   Execute chaining exceeds limit (if enabled)
+  - Execute chaining exceeds limit (if enabled)
 
--   Page fail or other error in interrupt sequence
+  - Page fail or other error in interrupt sequence
 
--   Illegal instruction in interrupt sequence
+  - Illegal instruction in interrupt sequence
 
--   Invalid vector pointer in interrupt sequence
+  - Invalid vector pointer in interrupt sequence
 
--   Invalid Unibus adapter number
+  - Invalid Unibus adapter number
 
--   Non-existent exec or user page table address
+  - Non-existent exec or user page table address
 
 The LOAD command supports RIM10B format paper tapes, SAV binary files,
 and EXE binary files. LOAD switches -r, -s, -e specify RIM10, SAV, EXE
@@ -237,8 +235,7 @@ the file extension; .RIM, .SAV, .EXE specify RIM10, SAV, EXE format,
 respectively. If no switch is specified, and no extension matches, the
 LOAD command checks the file format to try to determine the file type.
 
-CPU
----
+## CPU
 
 The CPU options allow the user to specify the operating system to be
 run. This in turn controls the microcode feature set, how system idling
@@ -363,8 +360,7 @@ SHOW CPU HISTORY=n print first n entries of CPU history
 
 The maximum length for the history is 65536 entries.
 
-Pager
------
+## Pager
 
 The pager contains the page maps for executive and user mode. The
 executive page map is the memory space for unit 0, the user page map the
@@ -385,12 +381,11 @@ bit content
 
 The pager has no registers.
 
-Unibus Adapters
----------------
+## Unibus Adapters
 
 The Unibus adapters link the system I/O devices to the CPU. Unibus
 adapter 1 (UBA1) is unit 0, and Unibus adapter 3 is unit 1. The
-adapter\'s Unibus map is the memory space of the corresponding unit.
+adapter's Unibus map is the memory space of the corresponding unit.
 
 The Unibus adapter has the following registers:
 
@@ -424,7 +419,7 @@ DEUNA/DELUA first instance has fixed address, rest floating
 DMR11 all instances have floating addresses
 
 To maintain addressing consistency as the configuration changes, the
-simulator implements DEC\'s standard I/O address and vector
+simulator implements DEC's standard I/O address and vector
 autoconfiguration algorithms for all Unibus devices. This allows the
 user to enable or disable devices without needing to manage I/O
 addresses and vectors.
@@ -449,8 +444,7 @@ All devices support the SHOW \<device\> ADDRESS and SHOW \<device\>
 VECTOR commands, which display the device address and vector,
 respectively.
 
-Front End (FE)
---------------
+## Front End (FE)
 
 The front end is the system console. The keyboard input is unit 0, the
 console output is unit 1. It supports one option:
@@ -468,7 +462,7 @@ This is used by some versions of the OS to obtain crash dumps.
 
 If a reload request fails (e.g. because the boot disk has been detached
 in the interim, or because the original boot was from tape), the
-processor halt with the stop code \"Console FE halt\".
+processor halt with the stop code "Console FE halt".
 
 The front end has the following registers:
 
@@ -488,8 +482,7 @@ OCOUNT 32 count of output characters
 
 OTIME 24 console output response time
 
-Timer (TIM)
------------
+## Timer (TIM)
 
 The timer (TIM) implements the system timer, the interval timer, and the
 time of day clock used to get the date and time at system startup.
@@ -521,8 +514,7 @@ tick delay is adjusted up or down so that the time base tracks actual
 elapsed time. This may cause time-dependent diagnostics to report
 errors.
 
-PC11 Paper Tape Reader (PTR)
-----------------------------
+## PC11 Paper Tape Reader (PTR)
 
 The paper tape reader (PTR) reads data from a disk file. The POS
 register specifies the number of the next data item to be read. Thus, by
@@ -569,8 +561,7 @@ end of file 1 report error and stop
 
 OS I/O error x report error and stop
 
-PC11 Paper Tape Punch (PTP)
----------------------------
+## PC11 Paper Tape Punch (PTP)
 
 The paper tape punch (PTP) writes data to a disk file. The POS register
 specifies the number of the next data item to be written. Thus, by
@@ -613,10 +604,9 @@ not attached 1 report error and stop
 
 OS I/O error x report error and stop
 
-DZ11 Terminal Multiplexer (DZ)
-------------------------------
+## DZ11 Terminal Multiplexer (DZ)
 
-The DZ11 is an 8-line terminal multiplexer. Up to 4 DZ11\'s (32 lines)
+The DZ11 is an 8-line terminal multiplexer. Up to 4 DZ11's (32 lines)
 are supported. The number of lines can be changed with the command
 
 SET DZ LINES=n set line count to n
@@ -661,7 +651,7 @@ ATTACH {-am} DZ \<port\> set up listening port
 
 where port is a decimal number between 1 and 65535 that is not being
 used for other TCP/IP activities. The optional switch -m turns on the
-DZ11\'s modem controls; the optional switch -a turns on active
+DZ11's modem controls; the optional switch -a turns on active
 disconnects (disconnect session if computer clears Data Terminal Ready).
 Without modem control, the DZ behaves as though terminals were directly
 connected; disconnecting the Telnet session does not cause any operating
@@ -676,9 +666,9 @@ DISCONNECT command, or a DETACH DZ command.
 Other special DZ commands:
 
 > SHOW DZ CONNECTIONS show current connections
->
+> 
 > SHOW DZ STATISTICS show statistics for active connections
->
+> 
 > SET DZ DISCONNECT=linenumber disconnects the specified line.
 
 The DZ11 implements these registers:
@@ -710,8 +700,7 @@ AUTODS 1 autodisconnect enabled
 The DZ11 does not support save and restore. All open connections are
 lost when the simulator shuts down or the DZ is detached.
 
-Network controllers
--------------------
+## Network controllers
 
 ### KDP-11 (KMC/DUP COMM IOP-DUP)
 
@@ -733,9 +722,9 @@ address is fixed and only one KDP is supported by DEC software. The only
 commands are:
 
 > SET KDP ENABLE
->
+> 
 > SET KDP DISABLE
->
+> 
 > SHOW KDP STATUS
 
 The OS determines which DUP11s are controlled by the KMC. Two lines is
@@ -744,29 +733,29 @@ with any SimH DDCMP networking device. The dup configuration commands
 are:
 
 > SET DUP ENABLE LINES={1 or 2}
->
+> 
 > SET DUP DISABLE
->
-> SET DUP SPEED={0 (unrestricted) \| n (bits/sec)}
->
+> 
+> SET DUP SPEED={0 (unrestricted) | n (bits/sec)}
+> 
 > ATTACH DUPn remote
->
+> 
 > DETACH DUPn
 
 The destination parameter determines how the virtual connection to
 another system is established. There are two modes, which effect only
 the establishment of the virtual connection; DDCMP itself is symmetric.
 
--   Passive: The DUP listens for a TCP connection from another system
-
-    -   Specify remote as ip\_address:port or port This is the
+  - Passive: The DUP listens for a TCP connection from another system
+    
+      - Specify remote as ip\_address:port or port This is the
         interface/port on which the DUP will accept connections.
         ip\_address defaults to the ip wildcard address (any interface).
 
--   Active: The DUP actively establishes a connection with another
+  - Active: The DUP actively establishes a connection with another
     system
-
-    -   Specify remote as connect=ip\_address:port or port. This is the
+    
+      - Specify remote as connect=ip\_address:port or port. This is the
         address of the remote virtual host. ip\_address defaults to
         localhost.
 
@@ -790,8 +779,7 @@ TOPS-20 does not support either.
 The DMR is configured similarly to the KDP; the two devices can
 interoperate.
 
-RH11 Adapter, RP04/05/06/07, RM02/03/05/80 drives (RP)
-------------------------------------------------------
+## RH11 Adapter, RP04/05/06/07, RM02/03/05/80 drives (RP)
 
 The RP controller implements the Massbus 18b (RH11) direct interface for
 large disk drives. RP options include the ability to set units write
@@ -890,8 +878,7 @@ end of file x assume rest of disk is zero
 
 OS I/O error x report error and stop
 
-RH11 Adapter, TM02 Formatter, TU45 Magnetic Tape (TU)
------------------------------------------------------
+## RH11 Adapter, TM02 Formatter, TU45 Magnetic Tape (TU)
 
 The magnetic tape simulator simulates an RH11 Massbus adapter with one
 TM02 formatter and up to eight TU45 drives. Magnetic tape options
@@ -961,27 +948,26 @@ end of file operation incomplete
 
 OS I/O error parity error; if STOP\_IOE, stop
 
-LP20 DMA Line Printer (LP20)
-----------------------------
+## LP20 DMA Line Printer (LP20)
 
 The LP20 is a DMA-based line printer controller. There is one line
 printer option to clear the vertical forms unit (VFU):
 
-SET LP20 VFUCLEAR clear the vertical forms unit and\
+SET LP20 VFUCLEAR clear the vertical forms unit and  
 translation table
 
 Additionally:
 
 > SET LP20 VFUTYPE=DAVFU (Default) Printer has an electronic VFU
->
+> 
 > SET LP20 VFUTYPE=OPTICAL Printer has an optically-read paper tape VFU
->
+> 
 > SET LP20 VFUTYPE=OPTICAL=file Specifies an ASCII VFU file that defines
 > the paper tape.
->
-> SET LP20 LPI={6-LPI\|8-LPI} Specifies the vertical pitch of the
-> printer (6 is default)
->
+> 
+> SET LP20 LPI={6-LPI|8-LPI} Specifies the vertical pitch of the printer
+> (6 is default)
+> 
 > SET LP20 TOPOFFORM Advances the VFU to the top-of-form channel,
 > aligning it with the output.
 
@@ -993,16 +979,16 @@ the host OS is responsible for loading one.
 
 The VFU file for optical VFUs has the following format:
 
--   \# anything - a comment
+  - \# anything - a comment
 
--   ; anything - alternate comment
+  - ; anything - alternate comment
 
--   ! anything - also a comment
+  - \! anything - also a comment
 
--   ll:\
+  - ll:  
     Defines the line number ll (decimal) to have no channels punched
 
--   ll: c1 c2\...\
+  - ll: c1 c2...  
     Defines line ll to have channel(s) c1 c2 (decimal) punched. Channels
     are 1-12
 
@@ -1018,25 +1004,25 @@ A tape has a minimum form length of two inches and a maximum length of
 Sample VFU file (partial):
 
 > \# Sample Optical VFU tape for LP20
->
+> 
 > 0: 8 7 6 5 4 3 2 1
->
+> 
 > 1: 8 5
->
+> 
 > 2: 8 6 5 3
->
+> 
 > 3: 8 5 4
->
+> 
 > 4: 8 6 5 3
->
+> 
 > 5: 8 7 5
->
+> 
 > 6: 8 6 5 4 3
->
+> 
 > 7: 8 5
->
+> 
 > 8: 8 6 5 3 2
->
+> 
 > 9: 8 5 4
 
 Output goes to a file specified with
@@ -1107,8 +1093,7 @@ not attached 1 report error and stop
 
 OS I/O error x report error and stop
 
-RX211/RX02 Floppy Disk (RY)
----------------------------
+## RX211/RX02 Floppy Disk (RY)
 
 RX211 options include the ability to set units write enabled or write
 locked, single or double density, or autosized:
@@ -1179,8 +1164,7 @@ not attached 1 report error and stop
 RX02 data files are buffered in memory; therefore, end of file and OS
 I/O errors cannot occur.
 
-CD20 Card Reader (CR)
----------------------
+## CD20 Card Reader (CR)
 
 The card reader (CR) implements a single controller (CD20) and card
 reader (e.g., Documation M200, GDI Model 100) by reading a file and
@@ -1194,22 +1178,22 @@ files have a much richer information carrying capacity than plain ASCII
 files. Card Image files can contain such interchange information as
 card-stock color, corner cuts, special artwork, as well as the binary
 punch data representing all 12 columns. Complete details on the format,
-as well as sample code, are available at Prof. Jones\'s site:
+as well as sample code, are available at Prof. Jones's site:
 http://www.cs.uiowa.edu/\~jones/cards/.
 
 The card reader supports ASCII, card image, and column binary format
-card "decks." When reading plain ASCII files, lines longer than 80
+card “decks.” When reading plain ASCII files, lines longer than 80
 characters are silently truncated. Card image support is included for 80
 column Hollerith, 82 column Hollerith (silently ignoring columns 0 and
 81), and 40 column Hollerith (mark-sense) cards. Column binary supports
 80 column card images only. All files are attached read-only (as if the
 -R switch were given).
 
-ATTACH --A CR \<file\> file is ASCII text
+ATTACH –A CR \<file\> file is ASCII text
 
-ATTACH --B CR \<file\> file is column binary
+ATTACH –B CR \<file\> file is column binary
 
-ATTACH --I CR \<file\> file is card image format
+ATTACH –I CR \<file\> file is card image format
 
 If no flags are given, the file extension is evaluated. If the filename
 ends in .TXT, the file is treated as ASCII text. If the filename ends in
@@ -1225,8 +1209,7 @@ and how the card data will be read and used, the translation must be set
 correctly so that the proper character set is used by the driver. Use
 the following command to explicitly set the correct translation:
 
-SET
-TRANSLATION={DEFAULT\|026\|026FTN\|029\|EBCDIC\|026DECASCII\|029DECASCII}
+SET TRANSLATION={DEFAULT|026|026FTN|029|EBCDIC|026DECASCII|029DECASCII}
 
 This command should be given after a deck is attached to the simulator.
 The mappings above are completely described at
@@ -1237,7 +1220,7 @@ subsystem, which uses the DECASCII translations. (These include codes
 for full 7-bit ASCII translation.)
 
 DEC operating systems used a variety of methods to determine the end of
-a deck (recognizing that \'hopper empty\' does not necessarily mean the
+a deck (recognizing that 'hopper empty' does not necessarily mean the
 end of a deck. Below is a summary of the various operating system
 conventions for signaling end of deck:
 
@@ -1266,7 +1249,7 @@ The default card reader rate for the CD11 is 1000 cpm. The reader rate
 can be set to its default value or to anywhere in the range 200..1200
 cpm. This rate may be changed while the unit is attached.
 
-SET CR RATE={DEFAULT\|200..1200}
+SET CR RATE={DEFAULT|200..1200}
 
 It is standard operating procedure for operators to load a card deck and
 press the momentary action RESET button to clear any error conditions
@@ -1337,32 +1320,31 @@ TIME 24 delay time between columns
 The CD11 simulation includes the Rev. J modification to make the CDDB
 act as a second status register during non-data transfer periods.
 
-Symbolic Display and Input
-==========================
+# Symbolic Display and Input
 
 The PDP-10 simulator implements symbolic display and input. Display is
 controlled by command line switches:
 
--a display as ASCII character
+\-a display as ASCII character
 
--c display as six sixbit packed characters
+\-c display as six sixbit packed characters
 
--p display as five packed ASCII (7b) characters
+\-p display as five packed ASCII (7b) characters
 
--m display instruction mnemonics
+\-m display instruction mnemonics
 
--v interpret address as virtual
+\-v interpret address as virtual
 
--e force executive mode
+\-e force executive mode
 
--u force user mode
+\-u force user mode
 
 Input parsing is controlled by the first character typed in or by
 command line switches:
 
-\' or -a ASCII character
+' or -a ASCII character
 
-\" or -c six sixbit packed characters
+" or -c six sixbit packed characters
 
 \# or -p five packed ASCII (7b) characters
 

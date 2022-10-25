@@ -34,33 +34,33 @@ Open SIMH provides a large (and growing) number of simulators:
 | Ibm1130       | IBM 1130                     | [\[Catalog\]](../ibm1130_sw)                        | [\[sim\]](../simdocs/ibm1130_doc) [(pdf)](../simdocs/ibm1130_doc.pdf)                                                                                               |
 | imlac         | IMLAC PDS-1                  |                                                     |
 | Intel-Systems | MDS PC XT SCELBI             |                                                     |
-| Interdata     | Interdata 16b/32b            | [\[Catalog\]](../interdata_sw)                      | [\[sim\]](../simdocs/id_doc)                                                                                                                                        
-| LGP           | Royal-Mcbee LGP-21,30        |                                                     | [\[sim\]](../simdocs/lgp_doc)                                                                                                                                       |
-| NOVA          | Data General Nova            | [\[Catalog\]](../dg_nova_eclipse_sw)                | [\[sim\]](../simdocs/nova_doc)                                                                                                                                      |
-| PDP1          | DEC PDP-1                    |                                                     | [\[sim\]](../simdocs/pdp1_doc)                                                                                                                                      |
-| PDP4          | DEC PDP-4                    |                                                     | [\[sim\]](../simdocs/pdp18b_doc)                                                                                                                                    |
-| PDP6          | DEC PDP-6                    |                                                     | [\[sim\]](../simdocs/pdp6_doc)                                                                                                                                      |
-| PDP7          | DEC PDP-7                    |                                                     | [\[sim\]](../simdocs/pdp18b_doc)                                                                                                                                    |
-| PDP8          | DEC PDP-8                    |                                                     | [\[sim\]](../simdocs/pdp8_doc)                                                                                                                                      |
-| PDP9          | DEC PDP-9                    |                                                     | [\[sim\]](../simdocs/pdp18b_doc)                                                                                                                                    |
-| PDP15         | DEC PDP-15                   |                                                     | [\[sim\]](../simdocs/pdp18b_doc)                                                                                                                                    |
-| PDP10         | DEC PDP-10 (KS)              | [\[Catalog\]](../pdp-10_sw)                         | [\[sim\]](../simdocs/pdp10_doc)                                                                                                                                         |
-| KA10          | DEC PDP-10 (KA10)            | [\[Catalog\]](../pdp-10_sw)                         | [\[sim\]](../simdocs/ka10_doc)                                                                                                                                          |
-| KI10          | DEC PDP-10 (KI10)            | [\[Catalog\]](../pdp-10_sw)                         | [\[sim\]](../simdocs/ki10_doc)                                                                                                                                          |
-| KL10          | DEC PDP-10 (KL10)            | [\[Catalog\]](../pdp-10_sw)                         | [\[sim\]](../simdocs/kl10_doc)                                                                                                                                          |
-| KS10          | DEC PDP-10 (KS10)            | [\[Catalog\]](../pdp-10_sw)                         | [\[sim\]](../simdocs/ks10_doc)                                                                                                                                          |
-| PDP11         | DEC PDP-11                   | [\[Catalog\]](../pdp-11_sw)                         | [\[sim\]](../simdocs/pdp11_doc)                                                                                                                                         |
+| Interdata     | Interdata 16b/32b            | [\[Catalog\]](../interdata_sw)                      |                                                                                                                                         |
+| LGP           | Royal-Mcbee LGP-21,30        |                                                     |                                                                                                                                        |
+| NOVA          | Data General Nova            | [\[Catalog\]](../dg_nova_eclipse_sw)                |                                                                                                                                       |
+| PDP1          | DEC PDP-1                    |                                                     |                                                                                                                                       |
+| PDP4          | DEC PDP-4                    |                                                     |                                                                                                                                     |
+| PDP6          | DEC PDP-6                    |                                                     |                                                                                                                                       |
+| PDP7          | DEC PDP-7                    |                                                     |                                                                                                                                     |
+| PDP8          | DEC PDP-8                    |                                                     |                                                                                                                                       |
+| PDP9          | DEC PDP-9                    |                                                     |                                                                                                                                     |
+| PDP15         | DEC PDP-15                   |                                                     |                                                                                                                                     |
+| PDP10         | DEC PDP-10 (KS)              | [\[Catalog\]](../pdp-10_sw)                         |                                                                                                                                          |
+| KA10          | DEC PDP-10 (KA10)            | [\[Catalog\]](../pdp-10_sw)                         |                                                                                                                                           |
+| KI10          | DEC PDP-10 (KI10)            | [\[Catalog\]](../pdp-10_sw)                         |                                                                                                                                           |
+| KL10          | DEC PDP-10 (KL10)            | [\[Catalog\]](../pdp-10_sw)                         |                                                                                                                                           |
+| KS10          | DEC PDP-10 (KS10)            | [\[Catalog\]](../pdp-10_sw)                         |                                                                                                                                           |
+| PDP11         | DEC PDP-11                   | [\[Catalog\]](../pdp-11_sw)                         |                                                                                                                                          |
 | PDQ-3         | Advanced Computer PQD-3      |                                                     |
 | S3            | IBM System/3 model 10        |                                                     |
 | SAGE          | SAGE Inc. 68000              |                                                     |
-| SDS           | SDS 940                      |                                                     | [\[sim\]](../simdocs/sds_doc)                                                                                                                                           |
-| SEL32         | SEL 32/27, 67,77,87,97,V7,V9 |                                                     | [\[sim\]](../simdocs/sel32_doc)                                                                                                                                         |
-| sigma         | XDS Sigma 32b                |                                                     | [\[sim\]](../simdocs/sigma_doc)                                                                                                                                         |
-| SSEM          | Manchester SSEM              |                                                     | [\[sim\]](../simdocs/ssem_doc)                                                                                                                                          |
-| swtp6800      | SWTP 6800                    |                                                     | [\[sim\]](../simdocs/swtp6800_doc)                                                                                                                                      |
+| SDS           | SDS 940                      |                                                     |                                                                                                                                            |
+| SEL32         | SEL 32/27, 67,77,87,97,V7,V9 |                                                     |                                                                                                                                          |
+| sigma         | XDS Sigma 32b                |                                                     |                                                                                                                                          |
+| SSEM          | Manchester SSEM              |                                                     |                                                                                                                                           |
+| swtp6800      | SWTP 6800                    |                                                     |                                                                                                                                       |
 | tt2500        | General Turtle tt2500        |                                                     |
-| TX-0          | MIT TX-0                     |                                                     | [\[sim\]](../simdocs/tx0_doc)                                                                                                                                           |
-| VAX           | DEC VAX                      | [\[Catalog\]](../vax_sw)                            | [\[sim-780\]](../simdocs/vax780_doc) [\[sim-3900\]](../simdocs/vax_doc)                                                                                                     |
+| TX-0          | MIT TX-0                     |                                                     |                                                                                                                                            |
+| VAX           | DEC VAX                      | [\[Catalog\]](../vax_sw)                            |                                                                                                      |
 
 ### Abbreviations used above
 
@@ -76,11 +76,12 @@ Open SIMH provides a large (and growing) number of simulators:
 
 ## Other documents
 
-- [Writing a simulator for SIMH](../simdocs/simh)
-- [SIMH Breakpoints](../simdocs/simh_breakpoints)
-- [SIMH Users guide](../simdocs/simh_doc)
-- [SIMH FAQ](../simdocs/simh_faq)
-- [SIMH Magtape](../simdocs/simh_magtape)
-- [SIMH Sample software packages](../simdocs/simh_swre)
-- [Adding IO devices](../simdocs/simh_vmio)
-- [ACM Queue article draft 2004](../simdocs/simulators_acm_queue_2004)
+These are in the code repository, but not (yet) here:
+- simh.doc
+- simh_breakpoints.doc
+- simh_doc.doc
+- simh_faq.doc
+- simh_magtape.doc
+- simh_swre.doc
+- simh_vmio.doc
+- simulators_acm_queue_2004.doc

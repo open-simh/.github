@@ -13,7 +13,7 @@ Copyright (c) 1993-2008, Robert M Supnik
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
-\"Software\"), to deal in the Software without restriction, including
+"Software"), to deal in the Software without restriction, including
 without limitation the rights to use, copy, modify, merge, publish,
 distribute, sublicense, and/or sell copies of the Software, and to
 permit persons to whom the Software is furnished to do so, subject to
@@ -22,8 +22,8 @@ the following conditions:
 The above copyright notice and this permission notice shall be included
 in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
 OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
@@ -44,7 +44,7 @@ Copyright (c) 2011, William A Beech
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
-\"Software\"), to deal in the Software without restriction, including
+"Software"), to deal in the Software without restriction, including
 without limitation the rights to use, copy, modify, merge, publish,
 distribute, sublicense, and/or sell copies of the Software, and to
 permit persons to whom the Software is furnished to do so, subject to
@@ -53,8 +53,8 @@ the following conditions:
 The above copyright notice and this permission notice shall be included
 in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 IN NO EVENT SHALL WILLIAM A BEECH BE LIABLE FOR ANY CLAIM, DAMAGES OR
 OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
@@ -94,17 +94,16 @@ William A Beech.
 
 [2.4.1 MP-S Serial I/O Board 9](#mp-s-serial-io-board)
 
-[2.4.2 DC-4 Quad Double-Sided Single-/Double-Density 5-1/4" Floppy Disk
+[2.4.2 DC-4 Quad Double-Sided Single-/Double-Density 5-1/4” Floppy Disk
 Controller Board
 10](#dc-4-quad-double-sided-single-double-density-5-14-floppy-disk-controller-board)
 
-[2.4.3 LFD-400 Quad Single-Density 5-1/4" Floppy Disk Controller Board
+[2.4.3 LFD-400 Quad Single-Density 5-1/4” Floppy Disk Controller Board
 10](#lfd-400-quad-single-density-5-14-floppy-disk-controller-board)
 
 This memorandum documents the SWTP 6800 simulator.
 
-Simulator Files
-===============
+# Simulator Files
 
 sim/ scp.h
 
@@ -173,8 +172,7 @@ swtp6800mp-a.ini Initialization for MP-A CPU
 
 swtp6800mp-a2.ini Initialization for MP-A2 CPU
 
-SWTP 6800 Features
-==================
+# SWTP 6800 Features
 
 The SWTP 6800 simulator is configured as follows:
 
@@ -200,9 +198,9 @@ Motherboard MP-B2 with 8 SS-30 plugs and 7 SS-50 plugs
 
 MP-8M 6 each 8K byte memory board (0-7FFFH & A000-DFFFH)
 
-DC-4 SS-30 5-1/4" Dual Floppy disk controller
+DC-4 SS-30 5-1/4” Dual Floppy disk controller
 
-LFD-400 SS-30 5-1/4" Dual Floppy disk controller
+LFD-400 SS-30 5-1/4” Dual Floppy disk controller
 
 MP-S SS-30 Serial I/O Port
 
@@ -217,12 +215,12 @@ SET \<dev\> ENABLED
 
 The SWTP 6800 simulator implements several unique stop conditions:
 
--   If an undefined instruction is decoded, a STOP\_INST is set
+  - If an undefined instruction is decoded, a STOP\_INST is set
 
--   If an undefined memory or I/O address is selected and MTRAP is
+  - If an undefined memory or I/O address is selected and MTRAP is
     enabled, a STOP\_INST is set
 
--   If an undefined interrupt occurs and ITRAP is enabled, a STOP\_INST
+  - If an undefined interrupt occurs and ITRAP is enabled, a STOP\_INST
     is set
 
 The LOAD command supports both S19 format and BIN format tapes. If the
@@ -230,8 +228,7 @@ file extension is .S19, or the h switch is specified with LOAD, the file
 is assumed to be S19 format; if the file extension is .BIN, or the -b
 switch is specified, the file is assumed to be BIN format.
 
-Motherboard
------------
+## Motherboard
 
 The current simulator supports the MP-B2 motherboard. This board allows
 for inserting of the selected CPU, up to 6 MP-8M 8K byte memory boards,
@@ -261,13 +258,12 @@ standard layout of memory in a SWTP 6800.
 If the LFD-400 FDC is enabled, then the bd5 MP-8M must be disabled. The
 LFD-400 used CC00-CC0FH for its I/O address space.
 
-MP-A CPU Card
--------------
+## MP-A CPU Card
 
 The simulator for the SWTP 6800 MP-A uses several files. The simulator
 is depicted in Figure 1.
 
-![](media/image1.png){width="6.66875in" height="5.573611111111111in"}
+![](media/image1.png)
 
 **Figure 1. MP-A Simulator**
 
@@ -303,11 +299,11 @@ references to unimplemented memory.
 
 SET CPU ITRAP Trap interrupts
 
-SET CPU NOITRAP Don't trap interrupts
+SET CPU NOITRAP Don’t trap interrupts
 
 SET CPU MTRAP Trap unimplemented memory
 
-SET CPU NOMTRAP Don't trap unimplemented memory
+SET CPU NOMTRAP Don’t trap unimplemented memory
 
 SET CPU HISTORY Enable the collection of history
 
@@ -343,13 +339,12 @@ The current CPU display radix can be found with:
 
 SHOW CPU RADIX
 
-MP-A2 CPU Card
---------------
+## MP-A2 CPU Card
 
 The simulator for the SWTP 6800 MP-A uses several files. The simulator
 is depicted in Figure 2.
 
-![](media/image2.png){width="6.66875in" height="6.0472222222222225in"}
+![](media/image2.png)
 
 **Figure 2. MP-A2 Simulator**
 
@@ -395,11 +390,11 @@ references to unimplemented memory.
 
 SET CPU ITRAP Trap interrupts
 
-SET CPU NOITRAP Don't trap interrupts
+SET CPU NOITRAP Don’t trap interrupts
 
 SET CPU MTRAP Trap unimplemented memory
 
-SET CPU NOMTRAP Don't trap unimplemented memory
+SET CPU NOMTRAP Don’t trap unimplemented memory
 
 ### M6800 Registers
 
@@ -433,8 +428,7 @@ The current CPU display radix can be found with:
 
 SHOW CPU RADIX
 
-Programmed I/O Devices
-----------------------
+## Programmed I/O Devices
 
 ### MP-S Serial I/O Board
 
@@ -474,10 +468,10 @@ SHOW PTP
 
 SHOW PTR
 
-### DC-4 Quad Double-Sided Single-/Double-Density 5-1/4" Floppy Disk Controller Board
+### DC-4 Quad Double-Sided Single-/Double-Density 5-1/4” Floppy Disk Controller Board
 
 This driver simulates the DC-4 floppy disk controller board. Normally
-this board connects to a dual drive DSDD 5-1/4" floppy system. In this
+this board connects to a dual drive DSDD 5-1/4” floppy system. In this
 emulation, I have provided for 4 drives, the maximum the WD1797 can
 support and the emulated drive images are also increased in size to 1.44
 MB. FLEX can handle this size drive with no problems.
@@ -495,10 +489,10 @@ Current DC-4 status can be displayed with the following command:
 
 SHOW DC-4
 
-### LFD-400 Quad Single-Density 5-1/4" Floppy Disk Controller Board
+### LFD-400 Quad Single-Density 5-1/4” Floppy Disk Controller Board
 
 This driver simulates the LFD-400 floppy disk controller board. Normally
-this board connects to a dual drive SSSD 5-1/4" floppy system. In this
+this board connects to a dual drive SSSD 5-1/4” floppy system. In this
 emulation, I have provided for 4 drives, the maximum the WD1791 can
 support.
 
@@ -520,4 +514,4 @@ Current DC-4 status can be displayed with the following command:
 
 SHOW LDF-4000
 
-###  {#section .list-paragraph}
+###

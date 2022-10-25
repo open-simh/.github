@@ -8,30 +8,30 @@ The following copyright notice applies to the SIMH source, binary, and
 documentation:
 
 > Original code published in 1993-2020, written by Robert M Supnik
->
+> 
 > Copyright (c) 1993-2020, Robert M Supnik
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN
->
+> 
 > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of Robert M Supnik shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
@@ -162,8 +162,7 @@ documentation:
 
 This memorandum documents the DEC PDP-11 simulator.
 
-Simulator Files
-===============
+# Simulator Files
 
 To compile the PDP-11, you must define VM\_PDP11 as part of the
 compilation command line. If you want expanded file support, you must
@@ -296,39 +295,38 @@ pdp11\_xq.c
 
 pdp11\_xu.c
 
-PDP-11 Features
-===============
+# PDP-11 Features
 
 The PDP-11 simulator is configured as follows:
 
 > device name(s) simulates
->
+> 
 > CPU PDP-11 CPU with 256KB of memory
->
+> 
 > PTR,PTP PC11 paper tape reader/punch
->
+> 
 > TTI,TTO DL11 console terminal
->
+> 
 > CR CR11/CD11 card reader
->
+> 
 > LPT LP11 line printer
->
+> 
 > CLK KW11-L line frequency clock
->
+> 
 > PCLK KW11-P programmable clock
->
+> 
 > DCI,DCO DC11 additional serial lines (up to 16)
->
+> 
 > DLI,DLO KL11/DL11 additional serial lines (up to 16)
->
+> 
 > DZ DZ11 8-line terminal multiplexer (up to 4)
->
+> 
 > VH DHU11/DHQ11 8-line terminal multiplexer (up to 4)
->
+> 
 > RK RK11/RK05 cartridge disk controller with eight drives
->
+> 
 > HK RK611/RK06,RK07 cartridge disk controller with eight
->
+> 
 > Drives
 
 RC RC11 fixed head disk
@@ -336,51 +334,51 @@ RC RC11 fixed head disk
 RF RF11/RS11 fixed head disk
 
 > RL RL11(RLV12)/RL01,RL02 cartridge disk controller with
->
+> 
 > four drives
->
+> 
 > RH RH11/RH70 Massbus adapter (up to 3)
->
+> 
 > RP RP04/05/06/07, RM02/03/05/80 Massbus disks with eight
->
+> 
 > drives
->
+> 
 > RQ RQDX3/UDA50 MSCP controller with four drives
->
+> 
 > RQB second RQDX3/UDA50 MSCP controller with four drives
->
+> 
 > RQC third RQDX3/UDA50 MSCP controller with four drives
->
+> 
 > RQD fourth RQDX3/UDA50 MSCP controller with four drives
->
+> 
 > RX RX11/RX01 floppy disk controller with two drives
->
+> 
 > RY RX211/RX01 floppy disk controller with two drives
->
+> 
 > TA TA11/TU60 cassette controller with two drives
->
+> 
 > TC TC11/TU56 DECtape controller with eight drives
->
+> 
 > TM TM11/TU10 magnetic tape controller with eight drives
->
+> 
 > TS TS11/TSV05 magnetic tape controller with one drive
->
+> 
 > TQ TQK50/TU81 TMSCP magnetic tape controller with four
->
+> 
 > drives
->
+> 
 > TU TM02/TM03 magnetic tape formatter with eight drives
->
+> 
 > XQ DELQA/DEQNA Qbus Ethernet controller
->
+> 
 > XQB second DELQA/DEQNA Qbus Ethernet controller
->
+> 
 > XU DELUA/DEUNA Unibus Ethernet controller
->
+> 
 > XUB Second DELUA/DEUNA Unibus Ethernet controller
->
+> 
 > KE KE11A extended arithmetic option
->
+> 
 > KG KG11A communications arithmetic option
 
 The DZ, VH, CR, LPT, DCI/DCO, DLI/DLO, RK, HK, RC, RF, RL, RP, RQ, RQB,
@@ -390,23 +388,22 @@ RY, TA, TS, VH, XQB, XU, XUB, KE, and KG are disabled by default.
 
 The PDP-11 simulator implements several unique stop conditions:
 
--   Abort during exception vector fetch, and register STOP\_VEC is set
+  - Abort during exception vector fetch, and register STOP\_VEC is set
 
--   Abort during exception stack push, and register STOP\_SPA is set
+  - Abort during exception stack push, and register STOP\_SPA is set
 
--   Trap condition \'n\' occurs, and register STOP\_TRAP\<n\> is set
+  - Trap condition 'n' occurs, and register STOP\_TRAP\<n\> is set
 
--   Wait state entered, and no I/O operations outstanding (i.e., no
+  - Wait state entered, and no I/O operations outstanding (i.e., no
     interrupt can ever occur)
 
--   A simulated DECtape runs off the end of its reel, and flag
+  - A simulated DECtape runs off the end of its reel, and flag
     STOP\_OFFR is set
 
 The LOAD command supports standard binary format tapes. The DUMP command
 is not implemented.
 
-CPU and System
---------------
+## CPU and System
 
 ### CPU
 
@@ -518,45 +515,45 @@ SET CPU 4096K (or 4M) set memory size = 4096KB
 The CPU types and their capabilities are shown in the following table:
 
 > type bus mem MMU? Umap? EIS? FIS? FPP? CIS? BEVENT?
->
+> 
 > 11/03 Q 64K no no std opt no no opt
->
+> 
 > 11/04 U 64K no no no no no no no
->
+> 
 > 11/05 U 64K no no no no no no no
->
+> 
 > 11/20 U 64K no no no no no no no
->
+> 
 > 11/23 Q 4M std no std no opt opt opt
->
+> 
 > 11/23+ Q 4M std no std no opt opt no
->
+> 
 > 11/24 U 4M std std std no opt opt no
->
+> 
 > 11/34 U 256K std no std no opt no no
->
+> 
 > 11/40 U 256K std no std opt no no no
->
+> 
 > 11/44 U 4M std std std no opt opt no
->
+> 
 > 11/45 U 256K std no std no opt no no
->
+> 
 > 11/53 Q 4M std no std no std opt no
->
+> 
 > 11/60 U 256K std no std no std no no
->
+> 
 > 11/70 U 4M std std std no opt no no
->
+> 
 > 11/73 Q 4M std no std no std opt no
->
+> 
 > 11/73B Q 4M std no std no std opt no
->
+> 
 > 11/83 Q 4M std no std no std opt no
->
+> 
 > 11/84 U 4M std std std no std opt no
->
+> 
 > 11/93 Q 4M std no std no std opt no
->
+> 
 > 11/94 U 4M std std std no std opt no
 
 If a capability is standard, it cannot be disabled; if a capability is
@@ -571,25 +568,25 @@ If memory size is being reduced, and the memory being truncated contains
 non-zero data, the simulator asks for confirmation. Data in the
 truncated portion of memory is lost. Initial memory size is 256KB. If
 memory size is increased to more than 256KB, or the bus structure is
-changed, the simulator disables peripherals that can\'t run in the
+changed, the simulator disables peripherals that can't run in the
 current bus structure.
 
 These switches are recognized when examining or depositing in CPU
 memory:
 
--v interpret address as virtual
+\-v interpret address as virtual
 
--t if mem mgt enabled, force data space
+\-t if mem mgt enabled, force data space
 
--k if mem mgt enabled, force kernel mode
+\-k if mem mgt enabled, force kernel mode
 
--s if mem mgt enabled, force supervisor mode
+\-s if mem mgt enabled, force supervisor mode
 
--u if mem mgt enabled, force user mode
+\-u if mem mgt enabled, force user mode
 
--p if mem mgt enabled, force previous mode
+\-p if mem mgt enabled, force previous mode
 
--b display a byte at a time rather than a word
+\-b display a byte at a time rather than a word
 
 CPU registers include the architectural state of the PDP-11 processor as
 well as the control registers for the interrupt system.
@@ -703,17 +700,17 @@ The maximum length for the history is 262144 entries.
 The CPU supports a number of different breakpoint types. The default is
 type -e, the usual break on instruction virtual address (PC) match.
 
--e Instruction virtual address
+\-e Instruction virtual address
 
--p Instruction physical address
+\-p Instruction physical address
 
--r Memory read virtual address
+\-r Memory read virtual address
 
--s Memory read physical address
+\-s Memory read physical address
 
--w Memory write virtual address
+\-w Memory write virtual address
 
--x Memory write physical address
+\-x Memory write physical address
 
 Instruction fetches are treated as memory reads, so a read breakpoint
 will trigger for an instruction fetched from that address, not just for
@@ -836,13 +833,12 @@ ULAST 11/24 23 last Unibus map result
 For the 11/83, 11/84, 11/93, and 11/94, the user can set the default
 value of the clock frequency:
 
-SET SYSTEM JCLK\_DEFAULT={LINE\|50Hz\|60HZ\|800HZ}
+SET SYSTEM JCLK\_DEFAULT={LINE|50Hz|60HZ|800HZ}
 
 The user can check the default value with the SHOW SYSTEM JCLK\_DEFAULT
 command.
 
-I/O Devices
------------
+## I/O Devices
 
 ### Unibus and Qbus DMA Devices
 
@@ -852,7 +848,7 @@ direct memory access (11/70 with RH70 controllers):
 
 peripheral 11/70 all Qbus
 
-+RH70 other
+\+RH70 other
 
 Unibus
 
@@ -922,13 +918,12 @@ In addition, some devices with fixed I/O space addresses have floating
 vector addresses. DCI/DCO and DLI/DLO have floating vector addresses.
 
 To maintain addressing consistency as the configuration changes, the
-simulator implements DEC\'s standard I/O address and vector
+simulator implements DEC's standard I/O address and vector
 autoconfiguration. This allows the user to enable or disable devices
 without needing to manage I/O addresses and vectors. For example, if RY
 is enabled while RX is present, RY is assigned an I/O address in the
 floating I/O space range; but if RX is disabled and then RY is enabled,
-RY is assigned the fixed \"first instance\" I/O address for floppy
-disks.
+RY is assigned the fixed "first instance" I/O address for floppy disks.
 
 Autoconfiguration cannot solve address conflicts between devices with
 overlapping fixed addresses. For example, with default I/O page
@@ -956,8 +951,7 @@ All devices support the SHOW \<device\> ADDRESS and SHOW \<device\>
 VECTOR commands, which display the device address and vector,
 respectively.
 
-Programmed I/O Devices
-----------------------
+## Programmed I/O Devices
 
 ### PC11 Paper Tape Reader (PTR)
 
@@ -1283,8 +1277,7 @@ end of file bad tape
 
 OS I/O error CRC error; if STOP\_IOE, stop
 
-Floppy Disk Drives
-------------------
+## Floppy Disk Drives
 
 ### RX11/RX01 Floppy Disk (RX)
 
@@ -1419,8 +1412,7 @@ not attached 1 report error and stop
 RX02 data files are buffered in memory; therefore, end of file and OS
 I/O errors cannot occur.
 
-Cartridge Disk Drives
----------------------
+## Cartridge Disk Drives
 
 ### RK11/RK05 Cartridge Disk (RK)
 
@@ -1634,8 +1626,7 @@ end of file x assume rest of disk is zero
 
 OS I/O error x report error and stop
 
-Massbus Subsystems
-------------------
+## Massbus Subsystems
 
 ### RH70/RH11 Massbus Adapters (RHA, RHB, RHC)
 
@@ -1875,8 +1866,7 @@ not attached 1 report error and stop
 RS data files are buffered in memory; therefore, end of file and OS I/O
 errors cannot occur.
 
-RQDX3/UDA50 MSCP Disk Controllers (RQ, RQB, RQC, RQD)
------------------------------------------------------
+## RQDX3/UDA50 MSCP Disk Controllers (RQ, RQB, RQC, RQD)
 
 The simulator implements four MSCP disk controllers, RQ, RQB, RQC, RQD.
 Initially, RQB, RQC, and RQD are disabled. Each RQ controller simulates
@@ -1918,15 +1908,15 @@ SET RQn RA92 set type to RA92
 
 SET RQn RRD40 set type to RRD40 (CD ROM)
 
-SET RQn RAUSER{=n} set type to RA82 with n MB\'s
+SET RQn RAUSER{=n} set type to RA82 with n MB's
 
-SET -L RQn RAUSER{=n} set type to RA82 with n LBN\'s
+SET -L RQn RAUSER{=n} set type to RA82 with n LBN's
 
 The type options can be used only when a unit is not attached to a file.
-RAUSER is a \"user specified\" disk; the user can specify the size of
-the disk in either MB (1000000 bytes) or logical block numbers (LBN\'s,
-512 bytes each). The minimum size is 5MB; the maximum size is 2GB
-without extended file support, 1TB with extended file support.
+RAUSER is a "user specified" disk; the user can specify the size of the
+disk in either MB (1000000 bytes) or logical block numbers (LBN's, 512
+bytes each). The minimum size is 5MB; the maximum size is 2GB without
+extended file support, 1TB with extended file support.
 
 Units can be set ENABLED or DISABLED. Each RQ controller supports the
 BOOT command. In a Unibus system, an RQ supports 18b addressing and
@@ -2015,7 +2005,7 @@ ITIME 1 response time for initialization steps
 
 (except for step 4)
 
-QTIME 24 response time for \'immediate\' packets
+QTIME 24 response time for 'immediate' packets
 
 XTIME 24 response time for data transfers
 
@@ -2035,8 +2025,7 @@ end of file assume rest of disk is zero
 
 OS I/O error report error and stop
 
-Fixed Head Disks
-----------------
+## Fixed Head Disks
 
 ### RC11 Fixed Head Disk (RC)
 
@@ -2182,8 +2171,7 @@ not attached 1 report error and stop
 RF11 data files are buffered in memory; therefore, end of file and OS
 I/O errors cannot occur.
 
-TC11/TU56 DECtape (DT)
-----------------------
+## TC11/TU56 DECtape (DT)
 
 The DT controller implements the TC11 DECtape controller and TU56
 drives.
@@ -2202,11 +2190,11 @@ The TC11 supports supports PDP-8 format, PDP-11 format, and 18b format
 DECtape images. ATTACH assumes the image is in PDP-11 format; the user
 can force other choices with switches:
 
--t PDP-8 format
+\-t PDP-8 format
 
--f 18b format
+\-f 18b format
 
--a autoselect based on file size
+\-a autoselect based on file size
 
 The DECtape controller is a data-only simulator; the timing and mark
 track, and block header and trailer, are not stored. Thus, the WRITE
@@ -2255,14 +2243,13 @@ It is critically important to maintain certain timing relationships
 among the DECtape parameters, or the DECtape simulator will fail to
 operate correctly.
 
--   LTIME must be at least 6
+  - LTIME must be at least 6
 
--   DCTIME needs to be at least 100 times LTIME
+  - DCTIME needs to be at least 100 times LTIME
 
 Acceleration time is set to 75% of deceleration time.
 
-Magnetic Tape Controllers
--------------------------
+## Magnetic Tape Controllers
 
 ### TM11 Magnetic Tape (TM)
 
@@ -2287,8 +2274,8 @@ and DEC standard boot formats. Originally, a tape bootstrap read and
 executed the first record on tape. To allow for ANSI labels, the DEC
 standard bootstrap skipped the first record and read and executed the
 second. The DEC standard is the default; to bootstrap an original format
-tape, use the command BOOT --O MTn. The TM11 is automatically disabled
-in a Qbus system with more than 256KB of memory.
+tape, use the command BOOT –O MTn. The TM11 is automatically disabled in
+a Qbus system with more than 256KB of memory.
 
 The TM controller implements these registers:
 
@@ -2530,7 +2517,7 @@ ITIME 1 response time for initialization steps
 
 (except for step 4)
 
-QTIME 24 response time for \'immediate\' packets
+QTIME 24 response time for 'immediate' packets
 
 XTIME 24 response time for data transfers
 
@@ -2550,8 +2537,7 @@ end of file end of medium
 
 OS I/O error fatal tape error
 
-Communications Devices
-----------------------
+## Communications Devices
 
 ### DC11 Additional Terminal Interfaces (DCI/DCO)
 
@@ -2617,9 +2603,9 @@ or a DETACH DCI command.
 Other special commands:
 
 > SHOW DCI CONNECTIONS show current connections
->
+> 
 > SHOW DCI STATISTICS show statistics for active connections
->
+> 
 > SET DCOn DISCONNECT disconnects the specified line.
 
 The input device (DCI) implements these registers:
@@ -2721,9 +2707,9 @@ or a DETACH DLI command.
 Other special commands:
 
 > SHOW DLI CONNECTIONS show current connections
->
+> 
 > SHOW DLI STATISTICS show statistics for active connections
->
+> 
 > SET DLOn DISCONNECT disconnects the specified line.
 
 The input device (DLI) implements these registers:
@@ -2757,7 +2743,7 @@ connections are lost when the simulator shuts down or DLO is detached.
 
 ### DZ11 Terminal Multiplexer (DZ)
 
-The DZ11 is an 8-line terminal multiplexer. Up to 4 DZ11\'s (32 lines)
+The DZ11 is an 8-line terminal multiplexer. Up to 4 DZ11's (32 lines)
 are supported. The number of lines can be changed with the command
 
 SET DZ LINES=n set line count to n
@@ -2802,7 +2788,7 @@ ATTACH {-am} DZ \<port\> set up listening port
 
 where port is a decimal number between 1 and 65535 that is not being
 used for other TCP/IP activities. The optional switch -m turns on the
-DZ11\'s modem controls; the optional switch -a turns on active
+DZ11's modem controls; the optional switch -a turns on active
 disconnects (disconnect session if computer clears Data Terminal Ready).
 Without modem control, the DZ behaves as though terminals were directly
 connected; disconnecting the Telnet session does not cause any operating
@@ -2817,9 +2803,9 @@ DISCONNECT command, or a DETACH DZ command.
 Other special DZ commands:
 
 > SHOW DZ CONNECTIONS show current connections
->
+> 
 > SHOW DZ STATISTICS show statistics for active connections
->
+> 
 > SET DZ DISCONNECT=linenumber disconnects the specified line.
 
 The DZ11 implements these registers:
@@ -2854,7 +2840,7 @@ lost when the simulator shuts down or the DZ is detached.
 ### DHQ11 Terminal Multiplexer (VH)
 
 The DHQ11 is an 8-line terminal multiplexer for Qbus systems. Up to 4
-DHQ11\'s are supported.
+DHQ11's are supported.
 
 The DHQ11 is a programmable asynchronous terminal multiplexer. It has
 two programming modes: DHV11 and DHU11. The register sets are compatible
@@ -2921,9 +2907,9 @@ DISCONNECT command, or a DETACH VH command.
 Other special VH commands:
 
 > SHOW VH CONNECTIONS show current connections
->
+> 
 > SHOW VH STATISTICS show statistics for active connections
->
+> 
 > SET VH DISCONNECT=linenumber disconnects the specified line.
 
 The DHQ11 implements these registers, though not all can be examined
@@ -2941,13 +2927,12 @@ RXINT 4 receive interrupts, boards 3..0
 
 TXINT 4 transmit interrupts, boards 3..0
 
-\[more to be described\...\]
+\[more to be described...\]
 
 The DHQ11 does not support save and restore. All open connections are
 lost when the simulator shuts down or the VH is detached.
 
-Ethernet Controllers
---------------------
+## Ethernet Controllers
 
 ### DELQA-T/DELQA/DEQNA Qbus Ethernet Controllers (XQ, XQB)
 
@@ -2964,22 +2949,22 @@ These commands are used to change or display the MAC address.
 \<mac-address\> is a valid Ethernet MAC, delimited by dashes or periods.
 The controller defaults to 08-00-2B-AA-BB-CC, which should be sufficient
 if there is only one SIMH controller on your LAN. Two cards with the
-same MAC address will see each other\'s packets, resulting in a serious
+same MAC address will see each other's packets, resulting in a serious
 mess.
 
-SET XQ TYPE={DEQNA\|\[DELQA\]\|DELQA-T}
+SET XQ TYPE={DEQNA|\[DELQA\]|DELQA-T}
 
 SHOW XQ TYPE
 
 These commands are used to change or display the controller mode. DELQA
 mode is better and faster but may not be usable by older or non-DEC
-OS\'s. Also, be aware that DEQNA mode is not supported by many modern
-OS\'s. The DEQNA-LOCK mode of the DELQA card is emulated by setting the
-the controller to DEQNA \-- there is no need for a separate mode.
+OS's. Also, be aware that DEQNA mode is not supported by many modern
+OS's. The DEQNA-LOCK mode of the DELQA card is emulated by setting the
+the controller to DEQNA -- there is no need for a separate mode.
 DEQNA-LOCK mode behaves exactly like a DEQNA, except for the operation
 of the VAR and MOP processing.
 
-SET XQ SANITY={ON\|\[OFF\]}
+SET XQ SANITY={ON|\[OFF\]}
 
 SHOW XQ SANITY
 
@@ -2988,10 +2973,10 @@ jumper W3/DELQA switch S4). The INITIALIZATION sanity timer has a
 default timeout of 4 minutes, and cannot be turned off, just reset. The
 normal sanity timer can be set by operating system software regardless
 of the state of this switch. Note that only the DEQNA (or the DELQA in
-DEQNA-LOCK mode (=DEQNA)) supports the sanity timer \-- it is ignored by
+DEQNA-LOCK mode (=DEQNA)) supports the sanity timer -- it is ignored by
 a DELQA in Normal mode, which uses switch S4 for a different purpose.
 
-SET XQ POLL={DEFAULT\|4..2500}
+SET XQ POLL={DEFAULT|4..2500}
 
 SHOW XQ POLL
 
@@ -3008,14 +2993,14 @@ Ethernet controller.
 To access the network, the simulated Ethernet controller must be
 attached to a real Ethernet interface:
 
-ATTACH XQ0 {ethX\|\<device\_name\>} ex. eth0 or /dev/era0
+ATTACH XQ0 {ethX|\<device\_name\>} ex. eth0 or /dev/era0
 
 SHOW XQ ETH
 
-where X in \'ethX\' is the number of the Ethernet controller to attach,
-or the real device name. The X number is system-dependent. If you only
-have one Ethernet controller, the number will probably be 0. To find out
-what your system thinks the Ethernet numbers are, use the SHOW XQ ETH
+where X in 'ethX' is the number of the Ethernet controller to attach, or
+the real device name. The X number is system-dependent. If you only have
+one Ethernet controller, the number will probably be 0. To find out what
+your system thinks the Ethernet numbers are, use the SHOW XQ ETH
 command. The device list can be quite cryptic, depending on the host
 system, but is probably better than guessing. If you do not attach the
 device, the controller will behave as though the Ethernet cable were
@@ -3050,15 +3035,14 @@ INT 1 interrupt request flag
 One final note: because of its asynchronous nature, the XQ controller is
 not limited to the \~1.5Mbit/sec of the real DEQNA/DELQA controllers,
 nor the 10Mbit/sec of a standard Ethernet. Attach it to a Fast Ethernet
-(100 Mbit/sec) card, and \"Feel the Power!\" :-)
+(100 Mbit/sec) card, and "Feel the Power\!" :-)
 
 ### DELUA/DEUNA Unibus Ethernet Controllers (XU, XUB)
 
 The simulator implements two DELUA/DEUNA Unibus Ethernet controllers
 (XU, XUB). Its operation is analogous to the DELQA/DEQNA controller.
 
-CR11/CD11 Card Reader (CR)
---------------------------
+## CR11/CD11 Card Reader (CR)
 
 The card reader (CR) implements a single controller (either the CR11 or
 the CD11) and card reader (e.g., Documation M200, GDI Model 100) by
@@ -3073,7 +3057,7 @@ files have a much richer information carrying capacity than plain ASCII
 files. Card Image files can contain such interchange information as
 card-stock color, corner cuts, special artwork, as well as the binary
 punch data representing all 12 columns. Complete details on the format,
-as well as sample code, are available at Prof. Jones\'s site:
+as well as sample code, are available at Prof. Jones's site:
 http://www.cs.uiowa.edu/\~jones/cards/.
 
 The card reader can be configured to support either of the two
@@ -3109,18 +3093,18 @@ Examples of the CR11 include the M8290 and M8291 (CMS11). All card
 readers use a common vector at 0230 and CSR at 177160.
 
 The card reader supports ASCII, card image, and column binary format
-card "decks." When reading plain ASCII files, lines longer than 80
+card “decks.” When reading plain ASCII files, lines longer than 80
 characters are silently truncated. Card image support is included for 80
 column Hollerith, 82 column Hollerith (silently ignoring columns 0 and
 81), and 40 column Hollerith (mark-sense) cards. Column binary supports
 80 column card images only. All files are attached read-only (as if the
 -R switch were given).
 
-ATTACH --A CR \<file\> file is ASCII text
+ATTACH –A CR \<file\> file is ASCII text
 
-ATTACH --B CR \<file\> file is column binary
+ATTACH –B CR \<file\> file is column binary
 
-ATTACH --I CR \<file\> file is card image format
+ATTACH –I CR \<file\> file is card image format
 
 If no flags are given, the file extension is evaluated. If the filename
 ends in .TXT, the file is treated as ASCII text. If the filename ends in
@@ -3136,7 +3120,7 @@ and how the card data will be read and used, the translation must be set
 correctly so that the proper character set is used by the driver. Use
 the following command to explicitly set the correct translation:
 
-SET TRANSLATION={DEFAULT\|026\|026FTN\|029\|EBCDIC}
+SET TRANSLATION={DEFAULT|026|026FTN|029|EBCDIC}
 
 This command should be given after a deck is attached to the simulator.
 The mappings above are completely described at
@@ -3144,7 +3128,7 @@ http://www.cs.uiowa.edu/\~jones/cards/codes.html. Note that DEC
 typically used 029 or 026FTN mappings.
 
 DEC operating systems used a variety of methods to determine the end of
-a deck, recognizing that \'hopper empty\' does not necessarily mean the
+a deck, recognizing that 'hopper empty' does not necessarily mean the
 end of a deck. Below is a summary of the various operating system
 conventions for signaling end of deck:
 
@@ -3174,7 +3158,7 @@ rate for the CD11 is 1000 cpm. The reader rate can be set to its default
 value or to anywhere in the range 200..1200 cpm. This rate may be
 changed while the unit is attached.
 
-SET CR RATE={DEFAULT\|200..1200}
+SET CR RATE={DEFAULT|200..1200}
 
 It is standard operating procedure for operators to load a card deck and
 press the momentary action RESET button to clear any error conditions
@@ -3233,13 +3217,12 @@ TIME 24 delay time between columns
 The CD11 simulation includes the Rev. J modification to make the CDDB
 act as a second status register during non-data transfer periods.
 
-Arithmetic Options
-------------------
+## Arithmetic Options
 
 ### KE11A Extended Arithmetic Option (KE)
 
 The KE11A extended arithmetic option (KE) provides multiply, divide,
-normalization, and multi-bit shift capability on Unibus PDP-11's that
+normalization, and multi-bit shift capability on Unibus PDP-11’s that
 lack the EIS instruction set. In practice, it was only sold with the
 PDP-11/20. The KE is disabled by default.
 
@@ -3266,46 +3249,46 @@ Redundancy Checks (LRC, Exclusive-OR; LRC-8, LRC-16).  Up to eight units
 may be contiguously present in a single machine and are all located at
 fixed addresses.  This simulation implements all functionality of the
 device including the ability to single step computation of the BCC. The
-KG is disabled by default.\
-\
-The KG11 supports the following options:\
-\
-        SET KG UNITS=n            set the number of units \[0-8\]\
-        SET KG DEBUG={opt,opt...}   set the debugging options\
+KG is disabled by default.  
+  
+The KG11 supports the following options:  
+  
+        SET KG UNITS=n            set the number of units \[0-8\]  
+        SET KG DEBUG={opt,opt…}   set the debugging options  
                                     REG - any time a register is
-touched\
+touched  
                                     POLY - any time the polynomial is
-changed\
+changed  
                                     CYCLE - each cycle computing the
-polynomial\
-\
-The KG11 implements the following registers, replicated for each unit:\
-\
-        name            size        comments\
-\
-        SR\[0:7\]         16          control and status register; R/W\
-        BCC\[0:7\]        16          result block check character; R/O\
-        DR\[0:7\]         16          input data register; W/O\
+polynomial  
+  
+The KG11 implements the following registers, replicated for each unit:  
+  
+        name            size        comments  
+  
+        SR\[0:7\]         16          control and status register; R/W  
+        BCC\[0:7\]        16          result block check character;
+R/O  
+        DR\[0:7\]         16          input data register; W/O  
         PULSCNT\[0:7\]    16          polynomial cycle stage
 
-Symbolic Display and Input
-==========================
+# Symbolic Display and Input
 
 The PDP-11 simulator implements symbolic display and input. Display is
 controlled by command line switches:
 
--a display as ASCII character
+\-a display as ASCII character
 
--c display as two packed ASCII characters
+\-c display as two packed ASCII characters
 
--m display instruction mnemonics
+\-m display instruction mnemonics
 
 Input parsing is controlled by the first character typed in or by
 command line switches:
 
-\' or -a ASCII character
+' or -a ASCII character
 
-\" or -c two packed ASCII characters
+" or -c two packed ASCII characters
 
 alphabetic instruction mnemonic
 
@@ -3361,13 +3344,13 @@ Fn 0n - only in flt reg classes
 
 (Rn) 1n -
 
-@(Rn) 7n 0 equivalent to \@0(Rn)
+@(Rn) 7n 0 equivalent to @0(Rn)
 
 (Rn)+ 2n -
 
 @(Rn)+ 3n -
 
--(Rn) 4n -
+\-(Rn) 4n -
 
 @-(Rn) 5n -
 
@@ -3387,29 +3370,28 @@ Fn 0n - only in flt reg classes
 
 @{+/-}n 77 {+/-}n - PC - 4 if on disk, invalid
 
-The UC15
-========
+# The UC15
 
 The UC15 is a special, limited configuration of the PDP-11 simulator for
 use as the I/O processor in a PDP-15/76 system. It is configured as
 follows:
 
 > device name(s) simulates
->
+> 
 > CPU PDP-11/05 CPU with 8KB-24KB of memory
->
+> 
 > PTR,PTP PC11 paper tape reader/punch
->
+> 
 > TTI,TTO DL11 console terminal
->
+> 
 > CR CR11 card reader
->
+> 
 > LPT LP11 line printer
->
+> 
 > CLK KW11-L line frequency clock
->
+> 
 > RK RK11/RK05 cartridge disk controller with eight drives
->
+> 
 > UCA,UCB DR11-C parallel interfaces
 
 The card reader is disabled initially and is not supported by the
@@ -3421,10 +3403,9 @@ is configured for 16KB of memory.
 The PDP-15/76 configuration requires the shared memory facility, which
 is presently implemented only for Windows and Linux.
 
-DR11 Parallel Interfaces (UCA, UCB)
------------------------------------
+## DR11 Parallel Interfaces (UCA, UCB)
 
-The UC15 talks to the PDP-15's DR15 interface over a pair of DR11-C
+The UC15 talks to the PDP-15’s DR15 interface over a pair of DR11-C
 interfaces called UCA and UCB. UCA implements these registers:
 
 name size comments
@@ -3455,4 +3436,4 @@ UCA and UCB implement the SET/SHOW ADDRESS and SET/SHOW VECTOR commands,
 but if the address or vector of either interface is changed, PIREX will
 not run correctly.
 
- {#section .list-paragraph}
+#

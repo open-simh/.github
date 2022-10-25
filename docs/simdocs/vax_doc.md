@@ -8,30 +8,30 @@ The following copyright notice applies to the SIMH source, binary, and
 documentation:
 
 > Original code published in 1993-2016, written by Robert M Supnik
->
+> 
 > Copyright (c) 1993-2016, Robert M Supnik
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN
->
+> 
 > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of Robert M Supnik shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
@@ -97,12 +97,11 @@ documentation:
 
 [3 Symbolic Display and Input 23](#symbolic-display-and-input)
 
-[Appendix - The KA655\"X\" 24](#appendix---the-ka655x)
+[Appendix - The KA655"X" 24](#appendix---the-ka655x)
 
 This memorandum documents the DEC VAX (MicroVAX 3900) simulator.
 
-Simulator Files
-===============
+# Simulator Files
 
 To compile the VAX, you must define VM\_VAX and USE\_INT64 as part of
 the compilation command line. To enable extended file support (files
@@ -215,53 +214,52 @@ Additional files are:
 
 sim/vax/ ka655x.bin extended memory boot ROM code
 
-VAX Features
-============
+# VAX Features
 
 The VAX simulator is configured as follows:
 
 > device name(s) simulates
->
-> CPU KA655"X" CPU with 16MB-512MB of memory
->
+> 
+> CPU KA655”X” CPU with 16MB-512MB of memory
+> 
 > TLB translation buffer
->
+> 
 > ROM read-only memory
->
+> 
 > NVR non-volatile memory
->
+> 
 > QBA Qbus adapter
->
+> 
 > SYSD system devices
->
+> 
 > TTI,TTO console terminal
->
+> 
 > CLK real-time clock
->
+> 
 > DZ DZV11 4-line terminal multiplexer (up to 32)
->
+> 
 > VH DHQ11 8-line terminal multiplexer (up to 4)
->
+> 
 > CR CR11 card reader
->
+> 
 > LPT LPV11 line printer
->
+> 
 > RL RLV12/RL01(2) cartridge disk controller with four drives
->
+> 
 > RQ RQDX3 MSCP controller with four drives
->
+> 
 > RQB second RQDX3 MSCP controller with four drives
->
+> 
 > RQC third RQDX3 MSCP controller with four drives
->
+> 
 > RQD fourth RQDX3 MSCP controller with four drives
->
+> 
 > TS TSV11/TSV05 magnetic tape controller with one drive
->
+> 
 > TQ TQK50 TMSCP magnetic tape controller with four drives
->
+> 
 > XQ DELQA/DEQNA Ethernet controller
->
+> 
 > XQB second DELQA/DEQNA Ethernet controller
 
 The CR, DZ, VH, LPT, RL, RQ, RQB, RQC, RQD, RY, TS, TQ, XQ, and XQB
@@ -270,24 +268,23 @@ default.
 
 The VAX simulator implements several unique stop conditions:
 
--   Change mode to interrupt stack
+  - Change mode to interrupt stack
 
--   Illegal vector (bits\<1:0\> = 2 or 3)
+  - Illegal vector (bits\<1:0\> = 2 or 3)
 
--   Unexpected exception during interrupt or exception
+  - Unexpected exception during interrupt or exception
 
--   Process PTE in P0 or P1 space instead of system space
+  - Process PTE in P0 or P1 space instead of system space
 
--   Unknown IPL
+  - Unknown IPL
 
--   Infinite loop (BRB/W to self at IPL 1F)
+  - Infinite loop (BRB/W to self at IPL 1F)
 
 The LOAD command supports a simple binary format, consisting of a stream
 of binary bytes without origin or checksum, for loading memory, the boot
 ROM, or the non-volatile memory. The DUMP command is not implemented.
 
-CPU and System Devices
-----------------------
+## CPU and System Devices
 
 ### CPU
 
@@ -321,28 +318,28 @@ in kernel/exec/supervisor/user mode
 
 Notes on memory size:
 
--   The real KA655 CPU only supported 16MB to 64MB of memory. The
-    simulator implements a KA655\"X\", which increases supported memory
-    to 512MB.
+  - The real KA655 CPU only supported 16MB to 64MB of memory. The
+    simulator implements a KA655"X", which increases supported memory to
+    512MB.
 
--   The firmware (ka655x.bin) contains code to determine the size of
+  - The firmware (ka655x.bin) contains code to determine the size of
     extended memory and set up the PFN bit map accordingly. Other than
     setting up the PFN bit map, the firmware does not recognize extended
     memory and will behave as though memory size was 64MB.
 
--   If memory size is being reduced, and the memory being truncated
+  - If memory size is being reduced, and the memory being truncated
     contains non-zero data, the simulator asks for confirmation. Data in
     the truncated portion of memory is lost.
 
--   If the simulator is running VMS, the operating system may have a
-    SYSGEN parameter set called PHYSICAL PAGES (viewable from \"MCR
-    SYSGEN SHOW PHYSICALPAGES\"). PHYSICALPAGES limits the maximum
-    number of physical pages of memory the OS will recognize. If it is
-    set to a lower value than the new memory size of the machine, then
-    only the first PHYSICALPAGES of memory will be recognized, otherwise
-    the actual size of the extended memory will be realized by VMS upon
-    each boot. Some users and/or sites may specify the PHYSICALPAGES
-    parameter in the input file to AUTOGEN (SYS\$SYSTEM:MODPARAMS.DAT).
+  - If the simulator is running VMS, the operating system may have a
+    SYSGEN parameter set called PHYSICAL PAGES (viewable from "MCR
+    SYSGEN SHOW PHYSICALPAGES"). PHYSICALPAGES limits the maximum number
+    of physical pages of memory the OS will recognize. If it is set to a
+    lower value than the new memory size of the machine, then only the
+    first PHYSICALPAGES of memory will be recognized, otherwise the
+    actual size of the extended memory will be realized by VMS upon each
+    boot. Some users and/or sites may specify the PHYSICALPAGES
+    parameter in the input file to AUTOGEN (SYS$SYSTEM:MODPARAMS.DAT).
     If PHYSICALPAGES is specified there, it will have to be adjusted
     before running AUTOGEN to recognize more memory. The default value
     for PHYSICALPAGES is 1048576, which describes 512MB of RAM.
@@ -352,11 +349,11 @@ Initial memory size is 16MB.
 Memory can be loaded with a binary byte stream using the LOAD command.
 The LOAD command recognizes three switches:
 
--o origin argument follows file name
+\-o origin argument follows file name
 
--r load the boot ROM
+\-r load the boot ROM
 
--n load the non-volatile RAM
+\-n load the non-volatile RAM
 
 The CPU supports the BOOT command and is the only VAX device to do so.
 Note that the behavior of the bootstrap depends on the capabilities of
@@ -368,33 +365,33 @@ default to English.
 These switches are recognized when examining or depositing in CPU
 memory:
 
--b examine/deposit bytes
+\-b examine/deposit bytes
 
--w examine/deposit words
+\-w examine/deposit words
 
--l examine/deposit longwords
+\-l examine/deposit longwords
 
--d data radix is decimal
+\-d data radix is decimal
 
--o data radix is octal
+\-o data radix is octal
 
--h data radix is hexadecimal
+\-h data radix is hexadecimal
 
--m examine (only) VAX instructions
+\-m examine (only) VAX instructions
 
--p examine/deposit PDP-11 (compatibility mode) instructions
+\-p examine/deposit PDP-11 (compatibility mode) instructions
 
--r examine (only) RADIX50 encoded data
+\-r examine (only) RADIX50 encoded data
 
--v interpret address as virtual, current mode
+\-v interpret address as virtual, current mode
 
--k interpret address as virtual, kernel mode
+\-k interpret address as virtual, kernel mode
 
--e interpret address as virtual, executive mode
+\-e interpret address as virtual, executive mode
 
--s interpret address as virtual, supervisor mode
+\-s interpret address as virtual, supervisor mode
 
--u interpret address as virtual, user mode
+\-u interpret address as virtual, user mode
 
 CPU registers include the visible state of the processor as well as the
 control registers for the interrupt system.
@@ -465,11 +462,11 @@ The CPU attempts to detect when the simulator is idle. When idle, the
 simulator does not use any resources on the host system. Idle detection
 is controlled by the SET IDLE and SET NOIDLE commands:
 
-SET CPU IDLE{=VMS\|ULTRIX\| ULTRIXOLD\|ULTRIX-1.X\|
+SET CPU IDLE{=VMS|ULTRIX| ULTRIXOLD|ULTRIX-1.X|
 
-3BSD\|4.0BSD\|4.1BSD\|4.2BSD\|QUASIJARUS
+3BSD|4.0BSD|4.1BSD|4.2BSD|QUASIJARUS
 
-NETBSD\|NETBSDOLD\|OPENBSD\|OPENBSDOLD\|32V\|ELN}{:n}
+NETBSD|NETBSDOLD|OPENBSD|OPENBSDOLD|32V|ELN}{:n}
 
 enable idle detection
 
@@ -477,8 +474,8 @@ SET CPU NOIDLE disable idle detection
 
 Idle detection is disabled by default. If idle detection is enabled with
 an incorrect operating system setting, simulator performance could be
-impacted. The default operating system setting is VMS. The value 'n', if
-present in the "SET CPU IDLE={OS}:n" command, indicates the number of
+impacted. The default operating system setting is VMS. The value ‘n’, if
+present in the “SET CPU IDLE={OS}:n” command, indicates the number of
 seconds the simulator must run before idling starts.
 
 The CPU can maintain a history of the most recently executed
@@ -495,10 +492,10 @@ SHOW CPU HISTORY print CPU history
 
 SHOW CPU HISTORY=n print first n entries of CPU history
 
-The --T switch causes simulator time to be recorded (and displayed) with
+The –T switch causes simulator time to be recorded (and displayed) with
 each history entry.
 
-When writing history to a file (SET CPU HISTORY=n:file), 'n' specifies
+When writing history to a file (SET CPU HISTORY=n:file), ‘n’ specifies
 the buffer flush frequency. Warning: prodigious amounts of disk space
 may be consumed. The maximum length for the history is 250000 entries.
 
@@ -654,12 +651,11 @@ set), or a console halt (BREAK typed on the console terminal). If
 BDR\<7\> is set, the console firmware responds to all these conditions
 by entering its interactive command mode. If BDR\<7\> is clear, the
 console firmware boots the operating system in response to these
-conditions. This bit can be set and cleared by the command "SET CPU
-AUTOBOOT" (clearing the flag) and "SET CPU NOAUTOBOOT" setting the flag.
+conditions. This bit can be set and cleared by the command “SET CPU
+AUTOBOOT” (clearing the flag) and “SET CPU NOAUTOBOOT” setting the flag.
 The default value is set.
 
-I/O Device Addressing
----------------------
+## I/O Device Addressing
 
 Qbus I/O space is not large enough to allow all possible devices to be
 configured simultaneously at fixed addresses. Instead, many devices have
@@ -679,7 +675,7 @@ MSCP disk first instance has fixed address, rest floating
 TMSCP tape first instance has fixed address, rest floating
 
 To maintain addressing consistency as the configuration changes, the
-simulator implements DEC\'s standard I/O address and vector
+simulator implements DEC's standard I/O address and vector
 autoconfiguration algorithms for all Qbus devices. This allows the user
 to enable or disable devices without needing to manage I/O addresses and
 vectors.
@@ -704,8 +700,7 @@ All devices support the SHOW \<device\> ADDRESS and SHOW \<device\>
 VECTOR commands, which display the device address and vector,
 respectively.
 
-Programmed I/O Devices
-----------------------
+## Programmed I/O Devices
 
 ### Terminal Input (TTI)
 
@@ -842,7 +837,7 @@ There are two modes of TODR operation.
 1.  Default VMS mode. Without initializing the TODR it returns the
     current time of year offset which VMS would set the clock to if VMS
     knew the correct time (i.e. by manual input). This is correct almost
-    all the time unless a VMS disk hadn't been booted from in the
+    all the time unless a VMS disk hadn’t been booted from in the
     current year. This mode produces strange time results for non VMS
     OSes on each system boot.
 
@@ -853,14 +848,13 @@ There are two modes of TODR operation.
     will initially start counting from 0 and be adjusted differently
     when an OS specifically writes to the TODR. VMS determines if the
     TODR currently contains a valid time if the value it sees is less
-    than about 1 month. If the time isn\'t valid VMS will prompt to set
+    than about 1 month. If the time isn't valid VMS will prompt to set
     the time during the system boot. While prompting for the time it
     will wait for an answer to the prompt for up to the SYSGEN parameter
     TIMEPROMPTWAIT seconds. A value of 0 for TIMEPROMPTWAIT will disable
     the clock setting prompt.
 
-Disks
------
+## Disks
 
 ### RLV12/RL01,RL02 Cartridge Disk (RL)
 
@@ -969,15 +963,15 @@ SET RQn RA92 set type to RA92
 
 SET RQn RRD40 set type to RRD40 (CD ROM)
 
-SET RQn RAUSER{=n} set type to RA82 with n MB\'s
+SET RQn RAUSER{=n} set type to RA82 with n MB's
 
-SET -L RQn RAUSER{=n} set type to RA82 with n LBN\'s
+SET -L RQn RAUSER{=n} set type to RA82 with n LBN's
 
 The type options can be used only when a unit is not attached to a file.
-RAUSER is a \"user specified\" disk; the user can specify the size of
-the disk in either MB (1000000 bytes) or logical block numbers (LBN\'s,
-512 bytes each). The minimum size is 5MB; the maximum size is 2GB
-without extended file support, 1TB with extended file support
+RAUSER is a "user specified" disk; the user can specify the size of the
+disk in either MB (1000000 bytes) or logical block numbers (LBN's, 512
+bytes each). The minimum size is 5MB; the maximum size is 2GB without
+extended file support, 1TB with extended file support
 
 Units can also be set ENABLED or DISABLED.
 
@@ -1059,7 +1053,7 @@ ITIME 1 response time for initialization steps
 
 (except for step 4)
 
-QTIME 24 response time for \'immediate\' packets
+QTIME 24 response time for 'immediate' packets
 
 XTIME 24 response time for data transfers
 
@@ -1079,8 +1073,7 @@ end of file assume rest of disk is zero
 
 OS I/O error report error and stop
 
-Tapes
------
+## Tapes
 
 ### TSV11/TSV05 Magnetic Tape (TS)
 
@@ -1275,7 +1268,7 @@ ITIME 1 response time for initialization steps
 
 (except for step 4)
 
-QTIME 24 response time for \'immediate\' packets
+QTIME 24 response time for 'immediate' packets
 
 XTIME 24 response time for data transfers
 
@@ -1291,12 +1284,11 @@ end of file end of medium
 
 OS I/O error fatal tape error
 
-Communications Devices
-----------------------
+## Communications Devices
 
 ### DZV11 Terminal Multiplexer (DZ)
 
-The DZV11 is a 4-line terminal multiplexor. Up to 4 DZ11\'s (16 lines)
+The DZV11 is a 4-line terminal multiplexor. Up to 4 DZ11's (16 lines)
 are supported. The number of lines can be changed with the command
 
 SET DZ LINES=n set line count to n
@@ -1341,7 +1333,7 @@ ATTACH {-am} DZ \<port\> set up listening port
 
 where port is a decimal number between 1 and 65535 that is not being
 used for other TCP/IP activities. The optional switch -m turns on the
-DZV11\'s modem controls; the optional switch -a turns on active
+DZV11's modem controls; the optional switch -a turns on active
 disconnects (disconnect session if computer clears Data Terminal Ready).
 Without modem control, the DZV11 behaves as though terminals were
 directly connected; disconnecting the Telnet session does not cause any
@@ -1356,9 +1348,9 @@ DISCONNECT command, or a DETACH DZ command.
 Other special DZ commands:
 
 > SHOW DZ CONNECTIONS show current connections
->
+> 
 > SHOW DZ STATISTICS show statistics for active connections
->
+> 
 > SET DZ DISCONNECT=linenumber disconnects the specified line.
 
 The DZV11 implements these registers:
@@ -1397,7 +1389,7 @@ down or the DZ is detached.
 ### DHQ11 Terminal Multiplexer (VH)
 
 The DHQ11 is an 8-line terminal multiplexer for Qbus systems. Up to 4
-DHQ11\'s are supported.
+DHQ11's are supported.
 
 The DHQ11 is a programmable asynchronous terminal multiplexer. It has
 two programming modes: DHV11 and DHU11. The register sets are compatible
@@ -1464,9 +1456,9 @@ DISCONNECT command, or a DETACH VH command.
 Other special VH commands:
 
 > SHOW VH CONNECTIONS show current connections
->
+> 
 > SHOW VH STATISTICS show statistics for active connections
->
+> 
 > SET VH DISCONNECT=linenumber disconnects the specified line.
 
 The DHQ11 implements these registers, though not all can be examined
@@ -1484,7 +1476,7 @@ RXINT 4 receive interrupts, boards 3..0
 
 TXINT 4 transmit interrupts, boards 3..0
 
-\[more to be described\...\]
+\[more to be described...\]
 
 The DHQ11 does not support save and restore. All open connections are
 lost when the simulator shuts down or the VH is detached.
@@ -1504,22 +1496,22 @@ These commands are used to change or display the MAC address.
 \<mac-address\> is a valid Ethernet MAC, delimited by dashes or periods.
 The controller defaults to 08-00-2B-AA-BB-CC, which should be sufficient
 if there is only one SIMH controller on your LAN. Two cards with the
-same MAC address will see each other\'s packets, resulting in a serious
+same MAC address will see each other's packets, resulting in a serious
 mess.
 
-SET XQ TYPE={DEQNA\|\[DELQA\]\|DELQA-T}
+SET XQ TYPE={DEQNA|\[DELQA\]|DELQA-T}
 
 SHOW XQ TYPE
 
 These commands are used to change or display the controller mode. DELQA
 mode is better and faster but may not be usable by older or non-DEC
-OS\'s. Also, be aware that DEQNA mode is not supported by many modern
-OS\'s. The DEQNA-LOCK mode of the DELQA card is emulated by setting the
-the controller to DEQNA \-- there is no need for a separate mode.
+OS's. Also, be aware that DEQNA mode is not supported by many modern
+OS's. The DEQNA-LOCK mode of the DELQA card is emulated by setting the
+the controller to DEQNA -- there is no need for a separate mode.
 DEQNA-LOCK mode behaves exactly like a DEQNA, except for the operation
 of the VAR and MOP processing.
 
-SET XQ SANITY={ON\|\[OFF\]}
+SET XQ SANITY={ON|\[OFF\]}
 
 SHOW XQ SANITY
 
@@ -1528,10 +1520,10 @@ jumper W3/DELQA switch S4). The INITIALIZATION sanity timer has a
 default timeout of 4 minutes, and cannot be turned off, just reset. The
 normal sanity timer can be set by operating system software regardless
 of the state of this switch. Note that only the DEQNA (or the DELQA in
-DEQNA-LOCK mode (=DEQNA)) supports the sanity timer \-- it is ignored by
+DEQNA-LOCK mode (=DEQNA)) supports the sanity timer -- it is ignored by
 a DELQA in Normal mode, which uses switch S4 for a different purpose.
 
-SET XQ POLL={DEFAULT\|4..2500}
+SET XQ POLL={DEFAULT|4..2500}
 
 SHOW XQ POLL
 
@@ -1550,14 +1542,14 @@ attached
 
 to a real Ethernet interface:
 
-ATTACH XQ0 {ethX\|\<device\_name\>} ex. eth0 or /dev/era0
+ATTACH XQ0 {ethX|\<device\_name\>} ex. eth0 or /dev/era0
 
 SHOW XQ ETH
 
-where X in \'ethX\' is the number of the Ethernet controller to attach,
-or the real device name. The X number is system-dependant. If you only
-have one Ethernet controller, the number will probably be 0. To find out
-what your system thinks the Ethernet numbers are, use the SHOW XQ ETH
+where X in 'ethX' is the number of the Ethernet controller to attach, or
+the real device name. The X number is system-dependant. If you only have
+one Ethernet controller, the number will probably be 0. To find out what
+your system thinks the Ethernet numbers are, use the SHOW XQ ETH
 command. The device list can be quite cryptic, depending on the host
 system, but is probably better than guessing. If you do not attach the
 device, the controller will behave as though the Ethernet cable were
@@ -1592,10 +1584,9 @@ INT 1 interrupt request flag
 One final note: because of its asynchronous nature, the XQ controller is
 not limited to the \~1.5Mbit/sec of the real DEQNA/DELQA controllers,
 nor the 10Mbit/sec of a standard Ethernet. Attach it to a Fast Ethernet
-(100 Mbit/sec) card, and \"Feel the Power!\" :-)
+(100 Mbit/sec) card, and "Feel the Power\!" :-)
 
-CR11 Card Reader (CR)
----------------------
+## CR11 Card Reader (CR)
 
 The card reader (CR) implements a single controller (the CR11) and card
 reader (e.g., Documation M200, GDI Model 100) by reading a file and
@@ -1610,7 +1601,7 @@ files have a much richer information carrying capacity than plain ASCII
 files. Card Image files can contain such interchange information as
 card-stock color, corner cuts, special artwork, as well as the binary
 punch data representing all 12 columns. Complete details on the format,
-as well as sample code, are available at Prof. Jones\'s site:
+as well as sample code, are available at Prof. Jones's site:
 http://www.cs.uiowa.edu/\~jones/cards/.
 
 Examples of the CR11 include the M8290 and M8291 (CMS11). All card
@@ -1619,18 +1610,18 @@ CR11 is normally configured as a BR6 device, it is configured for BR4 in
 this simulation.
 
 The card reader supports ASCII, card image, and column binary format
-card "decks." When reading plain ASCII files, lines longer than 80
+card “decks.” When reading plain ASCII files, lines longer than 80
 characters are silently truncated. Card image support is included for 80
 column Hollerith, 82 column Hollerith (silently ignoring columns 0 and
 81), and 40 column Hollerith (mark-sense) cards. Column binary supports
 80 column card images only. All files are attached read-only (as if the
 -R switch were given).
 
-ATTACH --A CR \<file\> file is ASCII text
+ATTACH –A CR \<file\> file is ASCII text
 
-ATTACH --B CR \<file\> file is column binary
+ATTACH –B CR \<file\> file is column binary
 
-ATTACH --I CR \<file\> file is card image format
+ATTACH –I CR \<file\> file is card image format
 
 If no flags are given, the file extension is evaluated. If the filename
 ends in .TXT, the file is treated as ASCII text. If the filename ends in
@@ -1646,7 +1637,7 @@ and how the card data will be read and used, the translation must be set
 correctly so that the proper character set is used by the driver. Use
 the following command to explicitly set the correct translation:
 
-SET TRANSLATION={DEFAULT\|026\|026FTN\|029\|EBCDIC}
+SET TRANSLATION={DEFAULT|026|026FTN|029|EBCDIC}
 
 This command should be given after a deck is attached to the simulator.
 The mappings above are completely described at
@@ -1654,7 +1645,7 @@ http://www.cs.uiowa.edu/\~jones/cards/codes.html. Note that DEC
 typically used 029 or 026FTN mappings.
 
 DEC operating systems used a variety of methods to determine the end of
-a deck (recognizing that \'hopper empty\' does not necessarily mean the
+a deck (recognizing that 'hopper empty' does not necessarily mean the
 end of a deck. Below is a summary of the various operating system
 conventions for signaling end of deck:
 
@@ -1683,7 +1674,7 @@ The default card reader rate for the CR11 is 285 cpm. The reader rate
 can be set to its default value or to anywhere in the range 200..1200
 cpm. This rate may be changed while the unit is attached.
 
-SET CR RATE={DEFAULT\|200..1200}
+SET CR RATE={DEFAULT|200..1200}
 
 It is standard operating procedure for operators to load a card deck and
 press the momentary action RESET button to clear any error conditions
@@ -1737,28 +1728,27 @@ POS 32 file position - do not alter
 
 TIME 24 delay time between columns
 
-Symbolic Display and Input
-==========================
+# Symbolic Display and Input
 
 The VAX simulator implements symbolic display and input. Display is
 controlled by command line switches:
 
--a,-c display as ASCII data
+\-a,-c display as ASCII data
 
--m display instruction mnemonics
+\-m display instruction mnemonics
 
--p display compatibility mode mnemonics
+\-p display compatibility mode mnemonics
 
--r display RADIX50 encoding
+\-r display RADIX50 encoding
 
 Input parsing is controlled by the first character typed in or by
 command line switches:
 
-\' or -a ASCII characters (determined by length)
+' or -a ASCII characters (determined by length)
 
-\" or -c ASCII string (maximum 60 characters)
+" or -c ASCII string (maximum 60 characters)
 
--p compatibility mode instruction mnemonic
+\-p compatibility mode instruction mnemonic
 
 alphabetic instruction mnemonic
 
@@ -1771,7 +1761,7 @@ The syntax for VAX specifiers is as follows:
 
 syntax specifier displacement comments
 
-\#s\^n, \#n 0n - short literal, integer only
+\#s^n, \#n 0n - short literal, integer only
 
 \[Rn\] 4n - indexed, second specifier follows
 
@@ -1779,46 +1769,45 @@ Rn 5n - PC illegal
 
 (Rn) 6n - PC illegal
 
--(Rn) 7n - PC illegal
+\-(Rn) 7n - PC illegal
 
 (Rn)+ 8n -
 
-\#i\^n, \#n 8F n immediate
+\#i^n, \#n 8F n immediate
 
 @(Rn)+ 9n -
 
 @\#addr 9F addr absolute
 
-{+/-}b\^d(Rn) An {+/-}d byte displacement
+{+/-}b^d(Rn) An {+/-}d byte displacement
 
-b\^d AF d - PC byte PC relative
+b^d AF d - PC byte PC relative
 
-@{+/-}b\^d(Rn) Bn {+/-}d byte displacement deferred
+@{+/-}b^d(Rn) Bn {+/-}d byte displacement deferred
 
-\@b\^d BF d - PC byte PC relative deferred
+@b^d BF d - PC byte PC relative deferred
 
-{+/-}w\^d(Rn) Cn {+/-}d word displacement
+{+/-}w^d(Rn) Cn {+/-}d word displacement
 
-w\^d CF d - PC word PC relative
+w^d CF d - PC word PC relative
 
-@{+/-}w\^d(Rn) Dn {+/-}d word displacement deferred
+@{+/-}w^d(Rn) Dn {+/-}d word displacement deferred
 
-\@w\^d DF d - PC word PC relative deferred
+@w^d DF d - PC word PC relative deferred
 
-{+/-}l\^d(Rn) En {+/-}d long displacement
+{+/-}l^d(Rn) En {+/-}d long displacement
 
-l\^d EF d - PC long PC relative
+l^d EF d - PC long PC relative
 
-@{+/-}l\^d(Rn) Fn {+/-}d long displacement deferred
+@{+/-}l^d(Rn) Fn {+/-}d long displacement deferred
 
-\@l\^d FF d - PC long PC relative deferred
+@l^d FF d - PC long PC relative deferred
 
-If no override is given for a literal (s\^ or i\^) or for a displacement
-or PC relative address (b\^, w\^, or l\^), the simulator chooses the
-mode automatically.
+If no override is given for a literal (s^ or i^) or for a displacement
+or PC relative address (b^, w^, or l^), the simulator chooses the mode
+automatically.
 
-Appendix - The KA655\"X\" {#appendix---the-ka655x .list-paragraph}
-=========================
+# Appendix - The KA655"X"
 
 The real KA655 is limited to 64MB of memory, and the KA655 firmware is
 coded to this limit. However, the VAX operating systems (VMS, Ultrix,

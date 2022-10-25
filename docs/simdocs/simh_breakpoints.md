@@ -1,5 +1,4 @@
-The SIMH Breakpoint Subsystem
-=============================
+# The SIMH Breakpoint Subsystem
 
 Bob Supnik, 26-Jul-2003 (revised 9-Sep-2016)
 
@@ -9,72 +8,70 @@ The following copyright notice applies to the SIMH source, binary, and
 documentation:
 
 > Original code published in 1993-2006, written by Robert M Supnik
->
+> 
 > Copyright (c) 1993-2006, Robert M Supnik
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN
->
+> 
 > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of Robert M Supnik shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
 > from Robert M Supnik.
 
-Summary
--------
+## Summary
 
 SIMH provides a highly flexible and extensible breakpoint subsystem to
 assist in debugging simulated code. Its features include:
 
--   Up to 26 different kinds of breakpoints (\*)
+  - Up to 26 different kinds of breakpoints (\*)
 
--   Unlimited numbers of breakpoints
+  - Unlimited numbers of breakpoints
 
--   Proceed counts for each breakpoint
+  - Proceed counts for each breakpoint
 
--   Automatic execution of commands when a breakpoint is taken
+  - Automatic execution of commands when a breakpoint is taken
 
 If debugging is going to be a major activity on a simulator,
 implementation of a full-featured breakpoint facility will be of immense
 help to users.
 
-\* Breakpoint type C should probably be avoided since the --C switch is
-used by the "SHOW BREAK --C" command to display currently defined
+\* Breakpoint type C should probably be avoided since the –C switch is
+used by the “SHOW BREAK –C” command to display currently defined
 breakpoints as commands which can be entered in a subsequent invocation
 of the simulator to recreate the same breakpoint set.
 
-Breakpoint Basics
------------------
+## Breakpoint Basics
 
 SIMH breakpoints are characterized by a type, an address, a class, a
 proceed count, and an action string. Breakpoint types are arbitrary and
 are defined by the virtual machine. Each breakpoint type is assigned a
-unique letter. All simulators to date provide execution ("E")
+unique letter. All simulators to date provide execution (“E”)
 breakpoints. A useful extension would be to provide breakpoints on read
-("R") and write ("W") data access. Even finer gradations are possible,
+(“R”) and write (“W”) data access. Even finer gradations are possible,
 e.g., physical versus virtual addressing, DMA versus CPU access, and so
 on.
 
 Breakpoints can be assigned to devices other than the CPU, but
-breakpoints don't contain a device pointer. Thus, each device must have
+breakpoints don’t contain a device pointer. Thus, each device must have
 its own unique set of breakpoint types. For example, if a simulator
 contained a programmable graphics processor, it would need a separate
 instruction breakpoint type (e.g., type G rather than E).
@@ -82,17 +79,17 @@ instruction breakpoint type (e.g., type G rather than E).
 The virtual machine defines the valid breakpoint types to SIMH through
 two variables:
 
-**sim\_brk\_types** -- initialized by the VM (usually in the CPU reset
+**sim\_brk\_types** – initialized by the VM (usually in the CPU reset
 routine) to a mask of all supported breakpoints; bit 0 (low order bit)
-corresponds to type 'A', bit 1 to type 'B', etc.
+corresponds to type ‘A’, bit 1 to type ‘B’, etc.
 
-> **sim\_brk\_dflt** -- initialized by the VM to the mask for the
-> default breakpoint type.
+> **sim\_brk\_dflt** – initialized by the VM to the mask for the default
+> breakpoint type.
 
 SIMH in turn provides the virtual machine with a summary of all the
 breakpoint types that currently have active breakpoints:
 
-> **sim\_brk\_summ** -- maintained by SIMH; provides a bit mask summary
+> **sim\_brk\_summ** – maintained by SIMH; provides a bit mask summary
 > of whether any breakpoints of a particular type have been defined.
 
 When the virtual machine reaches the point in its execution cycle
@@ -104,9 +101,9 @@ breakpoint:
 
 /\* Test for breakpoint before fetching next instruction \*/
 
-if ((sim\_brk\_summ & SWMASK ('E')) &&
+if ((sim\_brk\_summ & SWMASK (‘E’)) &&
 
-sim\_brk\_test (PC, SWMASK ('E'))) \<execution break\>
+sim\_brk\_test (PC, SWMASK (‘E’))) \<execution break\>
 
 If the virtual machine implements only one kind of breakpoint, then
 testing sim\_brk\_summ for non-zero suffices. Even if there are multiple
@@ -123,17 +120,17 @@ example:
 
 BRKTYPTAB cpu\_breakpoints \[\] = {
 
-BRKTYPE(\'E\',\"Execute Instruction at Virtual Address\"),
+BRKTYPE('E',"Execute Instruction at Virtual Address"),
 
-BRKTYPE(\'P\',\"Execute Instruction at Physical Address\"),
+BRKTYPE('P',"Execute Instruction at Physical Address"),
 
-BRKTYPE(\'R\',\"Read from Virtual Address\"),
+BRKTYPE('R',"Read from Virtual Address"),
 
-BRKTYPE(\'S\',\"Read from Physical Address\"),
+BRKTYPE('S',"Read from Physical Address"),
 
-BRKTYPE(\'W\',\"Write to Virtual Address\"),
+BRKTYPE('W',"Write to Virtual Address"),
 
-BRKTYPE(\'X\',\"Write to Physical Address\"),
+BRKTYPE('X',"Write to Physical Address"),
 
 { 0 }
 
@@ -143,19 +140,19 @@ t\_stat cpu\_reset (DEVICE \*dptr)
 
 {
 
-\...
+...
 
-sim\_brk\_dflt = SWMASK (\'E\');
+sim\_brk\_dflt = SWMASK ('E');
 
-sim\_brk\_types = sim\_brk\_dflt\|SWMASK (\'P\')\|
+sim\_brk\_types = sim\_brk\_dflt|SWMASK ('P')|
 
-SWMASK (\'R\')\|SWMASK (\'S\')\|
+SWMASK ('R')|SWMASK ('S')|
 
-SWMASK (\'W\')\|SWMASK (\'X\');
+SWMASK ('W')|SWMASK ('X');
 
 sim\_brk\_type\_desc = cpu\_breakpoints;
 
-\...
+...
 
 }
 
@@ -163,7 +160,7 @@ In the breakpoint dispatch code something like:
 
 reason = STOP\_IBKPT;
 
-sim\_messagef (reason, \"%s\", sim\_brk\_message());
+sim\_messagef (reason, "%s", sim\_brk\_message());
 
 \[and then sim\_instr() returns with:\]
 
@@ -174,7 +171,7 @@ returning to SCP, the following may be used:
 
 reason = STOP\_IBKPT;
 
-reason = sim\_messagef (reason, \"%s\\n\", sim\_brk\_message());
+reason = sim\_messagef (reason, "%s\\n", sim\_brk\_message());
 
 \[and then sim\_instr() returns with:\]
 
@@ -186,8 +183,7 @@ breakpoint type and the matched breakpoint address (if
 description as indicated in the BRKTYPTAB pointed to by
 **sim\_brk\_typ\_desc**.
 
-Testing For Breakpoints
------------------------
+## Testing For Breakpoints
 
 Breakpoint testing must be done at every point in the instruction decode
 and execution cycle where an event relating to a breakpoint type occurs.
@@ -215,9 +211,9 @@ t\_stat Read (uint32 addr, uint32 \*dat, uint32 acctyp)
 
 static uint32 bkpt\_type\[4\] = {
 
-SWMASK ('E'), SWMASK ('N'),
+SWMASK (‘E’), SWMASK (‘N’),
 
-SWMASK ('R'), SWMASK ('W') };
+SWMASK (‘R’), SWMASK (‘W’) };
 
 If ((sim\_brk\_summ & bkpt\_type\[acctyp\]) &&
 
@@ -234,8 +230,7 @@ return SCPE\_OK;
 This routine provides differentiated breakpoints for execution, indirect
 addresses, and data reads, with a single test.
 
-The Replay Problem
-------------------
+## The Replay Problem
 
 When a breakpoint is taken, control returns to the SimH control package.
 Depending on the code structure of the simulated system and the
@@ -267,7 +262,7 @@ Most simulators will implement a CPU execution breakpoint concept such
 that the breakpoint appears to be taken prior to the instruction at the
 breakpoint address having executed. This allows for the user to continue
 execution from breakpoint and the simulator will produce precisely the
-same results as if the breakpoint hadn't been there. In order for this
+same results as if the breakpoint hadn’t been there. In order for this
 to be true, when a breakpoint is taken, not only must **sim\_interval**
 be restored to its value prior to the breakpoint, but all other
 simulator specific state must also be retained. This state includes
@@ -289,7 +284,7 @@ restored. If fully restoring the visible state is impractical for some
 reason, it may be acceptable to restore less. If so, this needs to be
 clearly documented in the user documentation for the simulator. Also, in
 every case enough state must be restored that the instruction can be
-replayed correctly. For example, an "add carry" instruction that may
+replayed correctly. For example, an “add carry” instruction that may
 encounter a breakpoint must preserve the carry, otherwise the replay
 will produce the wrong answer.
 
@@ -314,8 +309,7 @@ simulation, the history may already include that instruction by the time
 some of the possible breakpoints are recognized. If so, the history
 buffer pointer should be backed up and that record marked as empty.
 
-Breakpoint Classes
-------------------
+## Breakpoint Classes
 
 SimH implements up to 8 breakpoint classes. Each breakpoint class has
 its own state. Thus, if the E, R, and W breakpoints are assigned to
@@ -333,7 +327,7 @@ breakpoint type in the call to **sim\_brk\_test**:
 
 Note that breakpoint classes and breakpoint types are orthogonal. Thus,
 classes can be used to distinguish different cases of the same
-breakpoint type. For example, in an SMP system with 'n' processors,
+breakpoint type. For example, in an SMP system with ‘n’ processors,
 classes 0..n-1 could be used for E-breakpoints for processors 0..n-1. Or
 in a VAX, classes 1..6 could be used for data breakpoints on operands
-1..6, with 0 reserved for the CPU's E-breakpoints.
+1..6, with 0 reserved for the CPU’s E-breakpoints.

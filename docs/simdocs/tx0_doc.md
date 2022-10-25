@@ -8,30 +8,30 @@ The following copyright notice applies to the SIMH source, binary, and
 documentation:
 
 > Original code published in 1993-2008, written by Robert M Supnik
->
+> 
 > TX-0 Simulator Copyright (c) 2009-2012, Howard M. Harte
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL HOWARD M HARTE BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN
->
+> 
 > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of Howard M Harte shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
@@ -65,8 +65,7 @@ documentation:
 
 This memorandum documents the TX-0 simulator.
 
-Simulator Files
-===============
+# Simulator Files
 
 sim/ scp.h
 
@@ -106,31 +105,30 @@ tx0\_sys.c
 
 tx0\_sys\_orig.c
 
-TX-0 Features
-=============
+# TX-0 Features
 
 The TX-0 is configured as follows:
 
 > device name(s) simulates
->
+> 
 > CPU TX-0 CPU with up to 64KW of memory
->
+> 
 > PETR Photo Electric Tape Rader
->
+> 
 > PTP Paper Tape Punch
->
+> 
 > TTI FlexoWriter input
->
+> 
 > TTO FlexoWriter output
->
-> DPY 512x512 7" high-persistence phosphor CRT Display
+> 
+> DPY 512x512 7” high-persistence phosphor CRT Display
 
 The TX-0 simulator implements the following unique stop conditions:
 
--   An unimplemented operator is referenced, and register STOP\_OPR is
+  - An unimplemented operator is referenced, and register STOP\_OPR is
     set
 
--   An invalid interrupt request is made
+  - An invalid interrupt request is made
 
 The LOAD commands has an optional argument to specify the load address:
 
@@ -140,11 +138,10 @@ The LOAD command loads a paper-tape bootstrap format file at the
 specified address. If no address is specified, loading starts at
 location 200. The DUMP command is not supported.
 
-CPU
----
+## CPU
 
-The TX-0 was upgraded over the years from the original 1956 "Standard"
-instruction set to a later "Extended" instruction set completed in 1962.
+The TX-0 was upgraded over the years from the original 1956 “Standard”
+instruction set to a later “Extended” instruction set completed in 1962.
 In addition, the TX-0 CPU can operate in one of three operating modes:
 
 Read In Mode Instruction words are fetched from the tape.
@@ -156,9 +153,9 @@ Normal Mode Instruction words are fetched from memory.
 only CPU options are the presence of the extended arithmetic operator
 and the size of main memory.
 
-SET CPU TX0STD set CPU model to TX-0 "Standard."
+SET CPU TX0STD set CPU model to TX-0 “Standard.”
 
-SET CPU TX0EXT set CPU model to TX-0 "Extended."
+SET CPU TX0EXT set CPU model to TX-0 “Extended.”
 
 SET CPU NORMAL set CPU mode to Normal Mode
 
@@ -208,8 +205,7 @@ R 1 Read In Mode flip-flop (Read Only)
 
 LP 2 Light Pen / Light Gun flip-flops.
 
-I/O Devices
------------
+## I/O Devices
 
 The TX-0 includes several I/O devices, and unlike more modern machines,
 these devices are not memory or I/O mapped, but rather have specific CPU
@@ -335,8 +331,7 @@ AC positions 0 and 1 respectively.
 In simulation, the light pen is implemented using a computer mouse or
 touch screen.
 
-TX-0 Usage Examples
-===================
+# TX-0 Usage Examples
 
 Several example tapes can be used to test the TX-0 simulation.
 
@@ -345,19 +340,19 @@ Several example tapes can be used to test the TX-0 simulation.
 The tic-tac-toe game can be run using the tic.simh startup script:
 
 > ; TX-0 Initialization file for the tic-tac-toe game
->
+> 
 > set dpy enable
->
+> 
 > att petr bin\_tic-tac-toe\_new\_code\_12-16-61.bin
->
+> 
 > boot petr
->
+> 
 > g
 
 In this game, you simply use the light pen (mouse) to select where you
-want to place the "X" (the TX-0 is "O."). You must click right on top of
+want to place the “X” (the TX-0 is “O.”). You must click right on top of
 or very close to the dot in the center of the square you want to place
-your "X" into.
+your “X” into.
 
 ### MOUSE Game
 
@@ -370,54 +365,54 @@ modes.
 Here is the configuration file, mouse.simh:
 
 > ; TX-0 Initialization file for the Mouse Maze Game
->
+> 
 > set dpy enable
->
+> 
 > att petr bin\_newMouse\_3-22-66.bin
->
+> 
 > ; The mouse maze game mode is manipulated under TAC control.
->
+> 
 > ; 400014 = Erase Wall mode.
->
+> 
 > ; 400024 = Write Wall mode.
->
+> 
 > ; 400011 = Erase Cheese mode.
->
+> 
 > ; 400021 = Write Cheese mode.
->
+> 
 > ; 400012 = Erase Mouse mode.
->
+> 
 > ; 400022 = Write Mouse mode.
->
-> ; 400002 = \"do mouse\" (start the mouse searching.)
->
-> ; 400017 = \"do over\"
->
-> ; Start in \"Erase Wall\" mode
->
+> 
+> ; 400002 = "do mouse" (start the mouse searching.)
+> 
+> ; 400017 = "do over"
+> 
+> ; Start in "Erase Wall" mode
+> 
 > d tac 400014
->
+> 
 > boot petr
 
-When this game starts, it is in "Erase Wall" mode. Use this mode to
+When this game starts, it is in “Erase Wall” mode. Use this mode to
 create the maze, by using the computer mouse to erase unwanted walls
 from the grid. When done, press Control-E to get to the simulator
-command prompt, and change to "Write Cheese" mode:
+command prompt, and change to “Write Cheese” mode:
 
 > C:\\\>TX-0.exe mouse.simh
->
+> 
 > TX-0 simulator V4.0-0
->
+> 
 > mouse.simh-16\> boot petr
->
+> 
 > Simulation stopped, PC: 000161 (trn 00275 (Transfer Negative))
->
+> 
 > sim\> d tac 400021
->
+> 
 > sim\> g
 
 Next place the cheese with the computer mouse, and then repeat the
-procedure above to change the TAC to "do mouse" mode. The TX-0 should
+procedure above to change the TAC to “do mouse” mode. The TX-0 should
 then solve the maze. Sometimes the mouse gets stuck and is not able to
 find the cheese. I tend to believe this is a bug in the simulation, but
 I have not been able to find it yet.

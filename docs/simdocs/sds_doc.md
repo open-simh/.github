@@ -11,30 +11,30 @@ The following copyright notice applies to the SIMH source, binary, and
 documentation:
 
 > Original code published in 1993-2008, written by Robert M Supnik
->
+> 
 > Copyright (c) 1993-2008, Robert M Supnik
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN
->
+> 
 > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of Robert M Supnik shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
@@ -75,8 +75,7 @@ documentation:
 
 This memorandum documents the SDS 940 simulator.
 
-Simulator Files
-===============
+# Simulator Files
 
 sim/ scp.h
 
@@ -132,37 +131,36 @@ sds\_stddev.c
 
 sds\_sys.c
 
-SDS 940 Features
-================
+# SDS 940 Features
 
 The SDS-940 simulator is configured as follows:
 
 > device name(s) simulates
->
+> 
 > CPU SDS-940 CPU with 16KW to 64KW of memory
->
+> 
 > CHAN I/O channels
->
+> 
 > PTR paper tape reader
->
+> 
 > PTP paper tape punch
->
+> 
 > TTI console input
->
+> 
 > TTO console output
->
+> 
 > LPT line printer
->
+> 
 > RTC real-time clock
->
+> 
 > MUX terminal multiplexor
->
+> 
 > DRM Project Genie drum
->
+> 
 > RAD fixed head disk
->
+> 
 > DSK 9164/9165 rapid access (moving head) disk
->
+> 
 > MT magnetic tape
 
 Most devices can be disabled or enabled with the SET \<dev\> DISABLED
@@ -171,8 +169,7 @@ and SET \<dev\> ENABLED commands, respectively.
 The LOAD command is used to load a line printer carriage-control tape.
 The DUMP command is not implemented.
 
-CPU
----
+## CPU
 
 The CPU options set the size of main memory and the configuration of
 peripherals.
@@ -276,24 +273,24 @@ was executed (normal, monitor or user). The SET CPU HISTORY command
 accepts one switch value to optionally suppress recording of
 instructions in a particular CPU mode:
 
-SET --n CPU HISTORY=n don't record if in normal mode
+SET –n CPU HISTORY=n don’t record if in normal mode
 
-SET --m CPU HISTORY=n don't record if in monitor mode
+SET –m CPU HISTORY=n don’t record if in monitor mode
 
-SET --u CPU HISTORY=n don't record if in user mode
+SET –u CPU HISTORY=n don’t record if in user mode
 
 The SDS 940 simulator implements four types of execution breakpoints,
 controlled by command line switches:
 
--e break if P equals address, unqualified by machine mode
+\-e break if P equals address, unqualified by machine mode
 
--m break if P equals address, machine in monitor mode
+\-m break if P equals address, machine in monitor mode
 
--n break if P equals address, machine in normal (SDS 930) mode
+\-n break if P equals address, machine in normal (SDS 930) mode
 
--u break if P equals address, machine in user mode
+\-u break if P equals address, machine in user mode
 
-Breakpoint commands default to --e behavior if no switch is specified.
+Breakpoint commands default to –e behavior if no switch is specified.
 
 ### Next Command
 
@@ -306,21 +303,21 @@ reason. For other instructions, Next is converted to a Step command.
 Like the Step command, the Next command accepts a repeat count as an
 argument. Given this code sequence:
 
-1532: BRM 1220 \<\-- P
+1532: BRM 1220 \<-- P
 
 1533: LDA 4663
 
 1534: POP 3214
 
-1535: BRU 4436 \<\-- non-skip return from POP
+1535: BRU 4436 \<-- non-skip return from POP
 
-1536: BRM 3260 \<\-- skip return from POP
+1536: BRM 3260 \<-- skip return from POP
 
-1537: ZRO 3455 \<\-- argument to subroutine
+1537: ZRO 3455 \<-- argument to subroutine
 
-1540: BRU 1600 \<\-- error return
+1540: BRU 1600 \<-- error return
 
-1541: STA 4652 \<\-- normal return
+1541: STA 4652 \<-- normal return
 
 The following behavior would be observed for various Next commands
 executed when P=1532:
@@ -348,24 +345,24 @@ routine.
 Next command accepts two mutually exclusive switches to modify its
 behavior.
 
-The --f switch ("forward") instructs the Next command to set temporary
+The –f switch (“forward”) instructs the Next command to set temporary
 breakpoint(s) following the current location regardless of instruction
 type. This is useful at the bottom of loops or to avoid going off into
 unrelated code should an interrupt or memory paging trap occur. In this
 example:
 
-1532: BRX 1220 \<\-- P
+1532: BRX 1220 \<-- P
 
 1533: LDA 4663
 
 a normal Next would advance to either location 1220 or 1533 depending
 upon the value in the X register (it is converted to a Step). However,
-Next --f would only advance to location 1533, allowing the loop code at
+Next –f would only advance to location 1533, allowing the loop code at
 1220 to be executed as many times as specified by X. Note that if the
 loop code branches elsewhere, rather than make the BRX test, control
 will be lost unless caught by another breakpoint.
 
-The --a switch ("atomic") alters Next behavior to be more like a Step
+The –a switch (“atomic”) alters Next behavior to be more like a Step
 command, but using temporary breakpoints. That is, it will plant a
 breakpoint at the effective address of a BRM or BRX instruction to catch
 any transfer there. Its primary use is to step through code ignoring
@@ -373,35 +370,34 @@ interrupts and traps.
 
 The behavior of various alternative forms of Next are illustrated in
 this table for different opcodes, showing where temporary breakpoints
-are placed. "Step" means Next is converted to a Step command. "LDA,
-etc." means all non-skipping, non-branching opcodes, including I/O
-instructions. "SKx" means all Skip instructions. The behavior of Next
+are placed. “Step” means Next is converted to a Step command. “LDA,
+etc.” means all non-skipping, non-branching opcodes, including I/O
+instructions. “SKx” means all Skip instructions. The behavior of Next
 with an EXU (execute) instruction is dependent on the instruction that
 is eventually executed.
 
-  --------------- --------------- ---------------------- -----------------------
-  **Opcode**      **Next**        **Next -a (Atomic)**   **Next -f (forward)**
-  **Bad op**      Step            Step                   Step
-  **BRI**         Step            EA                     Step
-  **BRM, SBRM**   P+1, P+2, P+3   EA+1, P+1, P+2, P+3    P+1, P+2, P+3
-  **BRR**         Step            EA                     Step
-  **BRU**         Step            EA                     Step
-  **BRX**         Step            EA, P+1                P+1
-  **EXU**         ?               ?                      ?
-  **HLT**         Step            Step                   Step
-  **LDA, etc**    Step            P+1                    P+1
-  **SKx**         Step            P+1, P+2               P+1, P+2
-  **POP**         P+1, P+2        100+OP, P+1, P+2       P+1, P+2
-  **SYSPOP**      P+1, P+2        100+OP, P+1, P+2       P+1, P+2
-  --------------- --------------- ---------------------- -----------------------
+|               |               |                      |                       |
+| ------------- | ------------- | -------------------- | --------------------- |
+| **Opcode**    | **Next**      | **Next -a (Atomic)** | **Next -f (forward)** |
+| **Bad op**    | Step          | Step                 | Step                  |
+| **BRI**       | Step          | EA                   | Step                  |
+| **BRM, SBRM** | P+1, P+2, P+3 | EA+1, P+1, P+2, P+3  | P+1, P+2, P+3         |
+| **BRR**       | Step          | EA                   | Step                  |
+| **BRU**       | Step          | EA                   | Step                  |
+| **BRX**       | Step          | EA, P+1              | P+1                   |
+| **EXU**       | ?             | ?                    | ?                     |
+| **HLT**       | Step          | Step                 | Step                  |
+| **LDA, etc**  | Step          | P+1                  | P+1                   |
+| **SKx**       | Step          | P+1, P+2             | P+1, P+2              |
+| **POP**       | P+1, P+2      | 100+OP, P+1, P+2     | P+1, P+2              |
+| **SYSPOP**    | P+1, P+2      | 100+OP, P+1, P+2     | P+1, P+2              |
 
 Note that these temporary breakpoints are CPU-mode insensitive, so there
 is the potential for conflict if execution in a different CPU mode
 should encounter an instruction address numerically equal to any of
 these temporary breakpoints.
 
-Channels (CHAN)
----------------
+## Channels (CHAN)
 
 The SDS 940 has up to eight I/O channels, designated W, Y, C, D, E, F,
 G, and H. W, Y, C, and D are time-multiplexed communications channels
@@ -450,8 +446,7 @@ The user can display all the registers in a channel with the command:
 
 SHOW CHAN channel-letter
 
-Console Input (TTI)
--------------------
+## Console Input (TTI)
 
 The console input (TTI) polls the console keyboard for input. It
 implements these registers:
@@ -468,8 +463,7 @@ TIME 24 polling interval
 
 By default, the console input is assigned to channel W.
 
-Console Output (TTO)
---------------------
+## Console Output (TTO)
 
 The console output (TTO) writes to the simulator console window. It
 implements these registers:
@@ -486,8 +480,7 @@ TIME 24 time from I/O initiation to interrupt
 
 By default, the console output is assigned to channel W.
 
-Paper Tape Reader (PTR)
------------------------
+## Paper Tape Reader (PTR)
 
 The paper tape reader (PTR) reads data from a disk file. The POS
 register specifies the number of the next data item to be read. Thus, by
@@ -530,8 +523,7 @@ OS I/O error x report error and stop
 
 By default, the paper tape reader is assigned to channel W.
 
-Paper Tape Punch (PTP)
-----------------------
+## Paper Tape Punch (PTP)
 
 The paper tape punch (PTP) writes data to a disk file. The POS register
 specifies the number of the next data item to be written. Thus, by
@@ -567,8 +559,7 @@ OS I/O error x report error and stop
 
 By default, the paper tape punch is assigned to channel W.
 
-Line Printer (LPT)
-------------------
+## Line Printer (LPT)
 
 The line printer (LPT) writes data to a disk file. The POS register
 specifies the number of the next data item to be written. Thus, by
@@ -618,8 +609,7 @@ OS I/O error x report error and stop
 
 By default, the line printer is assigned to channel W.
 
-Real-Time Clock (RTC)
----------------------
+## Real-Time Clock (RTC)
 
 The real-time clock (RTC) frequency can be adjusted as follows:
 
@@ -640,8 +630,7 @@ TIME 24 tick interval
 The real-time clock autocalibrates; the clock interval is adjusted up or
 down so that the clock tracks actual elapsed time.
 
-Terminal Multiplexer (MUX)
---------------------------
+## Terminal Multiplexer (MUX)
 
 The terminal multiplexer provides 32 asynchronous interfaces. In Genie
 mode, the interfaces are hard-wired; in SDS mode, they implement modem
@@ -676,9 +665,9 @@ or a DETACH MUX command.
 Other special multiplexer commands:
 
 > SHOW MUX CONNECTIONS show current connections
->
+> 
 > SHOW MUX STATISTICS show statistics for active connections
->
+> 
 > SET MUXLn DISCONNECT disconnects the specified line.
 
 The controller (MUX) implements these registers:
@@ -710,8 +699,7 @@ TIME\[0:31\] 24 transmit time, lines 0 to 31
 The terminal multiplexor does not support save and restore. All open
 connections are lost when the simulator shuts down or MUX is detached.
 
-Project Genie Drum (DRM)
-------------------------
+## Project Genie Drum (DRM)
 
 The Project Genie drum (DRM) implements these registers:
 
@@ -749,8 +737,7 @@ Drum data files are buffered in memory; therefore, end of file and OS
 I/O errors cannot occur. Unlike conventional SDS 940 devices, the
 Project Genie drum does not use a channel.
 
-Rapid Access (Fixed Head) Disk (RAD)
-------------------------------------
+## Rapid Access (Fixed Head) Disk (RAD)
 
 The rapid access disk (RAD) implements these registers:
 
@@ -789,8 +776,7 @@ errors cannot occur. If it is assigned to channel W, bootstrap fill from
 the device is permitted. By default, the rapid access disk is assigned
 to channel E and bootstrapping is not permitted.
 
-Moving Head Disk (DSK)
-----------------------
+## Moving Head Disk (DSK)
 
 DSK options include the ability to make the drive write enabled or write
 locked:
@@ -839,8 +825,7 @@ OS I/O error x report error and stop
 
 By default, the moving head disk is assigned to channel F.
 
-Magnetic Tape (MT)
-------------------
+## Magnetic Tape (MT)
 
 MT options include the ability to make units write enabled or write
 locked.
@@ -902,24 +887,23 @@ OS I/O error end of tape; if STOP\_IOE, stop
 
 By default, the magnetic tape is assigned to channel W.
 
-Symbolic Display and Input
-==========================
+# Symbolic Display and Input
 
 The SDS 940 simulator implements symbolic display and input. Display is
 controlled by command line switches:
 
--a display as three SDS internal ASCII characters
+\-a display as three SDS internal ASCII characters
 
--c display as four packed SDS 6b characters
+\-c display as four packed SDS 6b characters
 
--m display instruction mnemonics
+\-m display instruction mnemonics
 
 Input parsing is controlled by the first character typed in or by
 command line switches:
 
-\' or -a three packed SDS internal ASCII characters
+' or -a three packed SDS internal ASCII characters
 
-\" or -c four packed SDS 6b characters
+" or -c four packed SDS 6b characters
 
 alphabetic instruction mnemonic
 
@@ -929,31 +913,31 @@ Instruction input uses (more or less) standard SDS 940 assembler syntax.
 There are ten instruction classes:
 
 > class operands examples comments
->
+> 
 > no operand none EIR
->
+> 
 > POP (prog op) op,addr{,tag} POP 66,100
->
+> 
 > I/O addr{,tag} EOM 1266
->
+> 
 > mem reference addr{,tag} LDA 400,2
->
+> 
 > STA\* 300 indirect addr
->
-> reg change op op op\... CLA CLB opcodes OR
->
+> 
+> reg change op op op... CLA CLB opcodes OR
+> 
 > shift cnt{,tag} LSH 10
->
+> 
 > operand ignored any NOP
->
+> 
 > chan command chan ALC W
->
+> 
 > chan test chan CAT Y
->
+> 
 > SYSPOP (prog op) op,addr{,tag} BRS 42
->
+> 
 > SBRM 500
->
+> 
 > CIN\* 400,2
 
 All numbers are octal. Channel designators can be alphabetic (W, Y, C,
@@ -963,14 +947,14 @@ indexing.
 In addition, all display and input commands may specify how the address
 is mapped to main memory via a command line switch:
 
--n normal, address is an absolute physical address
+\-n normal, address is an absolute physical address
 
--x monitor, map address through the monitor memory map
+\-x monitor, map address through the monitor memory map
 
--u user, map address through the user memory map
+\-u user, map address through the user memory map
 
--v current, map address through the monitor or user map
+\-v current, map address through the monitor or user map
 
 depending upon current machine mode
 
-Memory mapping defaults to --n behavior if no switch is specified.
+Memory mapping defaults to –n behavior if no switch is specified.

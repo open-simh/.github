@@ -1,4 +1,4 @@
-**SIMH Users' Guide, V4.0**
+**SIMH Users’ Guide, V4.0**
 
 **14-Feb-2022**
 
@@ -8,30 +8,30 @@ The following copyright notice applies to the SIMH source, binary, and
 documentation:
 
 > Original code published in 1993-2017, written by Robert M Supnik
->
+> 
 > Copyright (c) 1993-2017, Robert M Supnik
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN
->
+> 
 > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of Robert M Supnik shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
@@ -189,8 +189,7 @@ documentation:
 
 [Acknowledgements 47](#acknowledgements)
 
-Introduction {#introduction .list-paragraph}
-============
+# Introduction
 
 This memorandum documents the SIMH simulators. These simulators are
 freeware; refer to the license terms above for conditions of use.
@@ -203,8 +202,7 @@ The simulators use a common command interface. This memorandum describes
 the features of the command interface. The details of each simulator are
 documented in separate, machine-specific memoranda.
 
-Running A Simulator
-===================
+# Running A Simulator
 
 To start the simulator, simply type its name. (On VMS the simulators
 must then be defined as foreign commands in order to be started by
@@ -216,7 +214,7 @@ in Section 3.13.
 The simulator interprets the arguments on the command line, if any, as
 the file name and arguments for a DO command:
 
-\% pdp10 {switches} {\<startup file\> {arg,arg,\...}}
+% pdp10 {switches} {\<startup file\> {arg,arg,...}}
 
 If no file is specified on the command line, the simulator looks for a
 startup file consisting of the simulator name (including its path
@@ -232,8 +230,7 @@ prompts for input with:
 
 sim\>
 
-Compiling A Simulator
-=====================
+# Compiling A Simulator
 
 The simulators have been tested on VAX VMS, Alpha VMS, IA64 VMS, Alpha
 UNIX, NetBSD, FreeBSD, OpenBSD, Linux, Solaris, Windows
@@ -249,41 +246,40 @@ individual subdirectories. Note that the include files in the top level
 directory are referenced from the subdirectories, without path
 identifiers. Your build tool needs to search the top level directory for
 include files not present in the simulator-specific directory. File
-manifests for each simulator are given in that simulator\'s
+manifests for each simulator are given in that simulator's
 documentation.
 
 The simulators recognize or require a few compile-time \#defines:
 
--   The 18b simulators require that the model name be defined as part of
-    > the compilation command line (i.e., PDP4 for the PDP-4, PDP7 for
-    > the PDP-7, PDP9 for the PDP-9, PDP15 for the PDP-15).
+  - > The 18b simulators require that the model name be defined as part
+    > of the compilation command line (i.e., PDP4 for the PDP-4, PDP7
+    > for the PDP-7, PDP9 for the PDP-9, PDP15 for the PDP-15).
 
--   The PDP-10 and IBM 7094 simulators use 64b integer variables,
+  - > The PDP-10 and IBM 7094 simulators use 64b integer variables,
     > requiring that USE\_INT64 be defined as part of the compilation
     > command line. Since 64b integer declarations vary, sim\_defs.h has
     > conditional declarations for Windows (\_int64) and Digital UNIX
     > (long). The default is GNU C (long long). If your compiler uses a
     > different convention, you will have to modify sim\_defs.h.
 
--   The PDP-10, PDP-11, and VAX simulators share common peripherals. To
-    > distinguish the target system, one of three variables must be
+  - > The PDP-10, PDP-11, and VAX simulators share common peripherals.
+    > To distinguish the target system, one of three variables must be
     > defined on the command line: VM\_PDP10 for the PDP-10; VM\_PDP11
     > for the PDP-11; or VM\_VAX for the VAX.
 
--   The PDP-11, and VAX simulators optionally support Ethernet. At
+  - > The PDP-11, and VAX simulators optionally support Ethernet. At
     > present, Ethernet support has been tested only on Windows, Linux,
     > OSX, NetBSD, OpenBSD, FreeBSD, Solaris, Alpha and IA64 VMS, but it
     > should work in any host environment that supports the Pcap library
     > (see the Ethernet readme file).
 
--   The PDP-11 and VAX simulators support disks and sequential tape
+  - > The PDP-11 and VAX simulators support disks and sequential tape
     > files greater than 2GB when the host OS is capable of manipulating
     > files greater than 2GB.
 
-```{=html}
-<!-- -->
-```
--   The HP2100 Fast FORTRAN Processor (FFP) and 1000-F CPU options
+<!-- end list -->
+
+  - The HP2100 Fast FORTRAN Processor (FFP) and 1000-F CPU options
     require 64b integer support. Define HAVE\_INT64 (not USE\_INT64) as
     part of the compilation command line if your host compiler supports
     64b integers. On systems without 64b support, the 1000 F-Series CPU
@@ -291,8 +287,7 @@ The simulators recognize or require a few compile-time \#defines:
     XADD) will be disabled; the remainder of the FFP instructions will
     work normally. There may be some compilation warnings.
 
-Compiling Under UNIX/Linux/Mac OS-X
------------------------------------
+## Compiling Under UNIX/Linux/Mac OS-X
 
 The sources originate on a Windows system and have CR-LF line endings.
 For use on other systems, the sources may need to be converted to LF
@@ -310,36 +305,35 @@ the simh source.
 
 To compile with or without Ethernet support:
 
-gmake {target\|ALL\|clean}
+gmake {target|ALL|clean}
 
 Notes for hand compilation:
 
--   The default UNIX terminal handling model is the POSIX TERMIOS
+  - > The default UNIX terminal handling model is the POSIX TERMIOS
     > interface, which is supported by Linux, Mac OS/X, and Alpha UNIX.
     > If your UNIX only supports the BSD terminal interface, BSDTTY must
     > be defined as part of the compilation command line.
 
--   The PDP-8, PDP-11, 18b PDP, PDP-10, and Nova simulators use the math
-    > library. If your UNIX does not link the math library
+  - > The PDP-8, PDP-11, 18b PDP, PDP-10, and Nova simulators use the
+    > math library. If your UNIX does not link the math library
     > automatically, you must add -lm to the compilation command line.
 
 Examples:
 
--   PDP-11 under TERMIOS UNIX:
+  - > PDP-11 under TERMIOS UNIX:
 
-> \% cc -DVM\_PDP11 pdp11\_\*.c scp.c sim\_\*.c -lm -o pdp11
+> % cc -DVM\_PDP11 pdp11\_\*.c scp.c sim\_\*.c -lm -o pdp11
 
--   PDP-9 under TERMIOS UNIX:
+  - > PDP-9 under TERMIOS UNIX:
 
-> \% cc -DPDP9 pdp18b\_\*.c scp.c sim\_\*.c -lm -o pdp9
+> % cc -DPDP9 pdp18b\_\*.c scp.c sim\_\*.c -lm -o pdp9
 
--   PDP-10 under BSD terminal UNIX:
+  - > PDP-10 under BSD terminal UNIX:
 
-> \% cc -DVM\_PDP10 -DUSE\_INT64 -DBSDTTY pdp10\_\*.c scp.c sim\_\*.c
-> -lm -o pdp10
+> % cc -DVM\_PDP10 -DUSE\_INT64 -DBSDTTY pdp10\_\*.c scp.c sim\_\*.c -lm
+> -o pdp10
 
-Compiling Under Windows
------------------------
+## Compiling Under Windows
 
 ### Compiling with Ethernet Support
 
@@ -363,10 +357,10 @@ working Ethernet functionality at run time, npcap WinPCAP must be
 installed on the system. In order to install the npcap or WinPcap
 package the following should be performed:
 
--   Download npcap from https://npcap.com/\#download or WinPcap
+  - > Download npcap from https://npcap.com/\#download or WinPcap
     > http://www.winpcap.org.
 
--   Install the package as directed.
+  - > Install the package as directed.
 
 ### Compiling Under Visual C++
 
@@ -377,12 +371,12 @@ this simulator release.
 
 #### Using the predefined project definitions
 
-The current simh source includes a directory "Visual Studio Projects"
+The current simh source includes a directory “Visual Studio Projects”
 which contains the visual studio projects for all supported simulators.
 This directory contains a file named 0ReadMe\_Projects.txt which
 explains how to locate simh source files with respect to the related
 required build components provide in the windows\_build.zip file
-mentioned above in "Compiling with Ethernet Support".
+mentioned above in “Compiling with Ethernet Support”.
 
 These projects produce executables in the BIN\\NT\\Win32-Debug or
 BIN\\NT\\Win32-Release directories. All intermediate build files are
@@ -393,31 +387,31 @@ kept in BIN\\NT\\Project\\{simulator-name} directories.
 Each simulator must be organized as a separate Visual C++ project.
 Starting from an empty console application,
 
--   Add all the files from the simulator file manifest to the project.
+  - Add all the files from the simulator file manifest to the project.
 
--   Open the Properties (Visual Studio Express 2008) box.
+  - Open the Properties (Visual Studio Express 2008) box.
 
--   Under C/C++, Category: General, add any required preprocessor
+  - Under C/C++, Category: General, add any required preprocessor
     definitions (for example, USE\_INT64).
 
--   Under C/C++, Category: Preprocessor, add the top level simulation
+  - Under C/C++, Category: Preprocessor, add the top level simulation
     directory to the Additional Include Directories. For the VAX and
     PDP-10, you must also add the PDP-11 directory.
 
--   Under Link, add wsock32.lib and winmm.lib at the end of the list of
+  - Under Link, add wsock32.lib and winmm.lib at the end of the list of
     Object/Module Libraries.
 
--   If you are building the PDP-11 and VAX with Ethernet support, you
+  - If you are building the PDP-11 and VAX with Ethernet support, you
     must also add the WinPCAP libraries (packet.lib, wpcap.lib) to the
     list of Object/Module libraries.
 
 If you are using Visual C++ .NET, you must turn off /Wp64 (warn about
 potential 64b incompatibilities) and disable Unicode processing. You
-will also have to turn off warning 4996 ("deprecated" string functions),
+will also have to turn off warning 4996 (“deprecated” string functions),
 or lower the warning level to /W1. Otherwise, the compilations will
 generate a lot of spurious conversion warnings.
 
-Alternatively, you can 'start' from a preexisting Visual Studio project
+Alternatively, you can ‘start’ from a preexisting Visual Studio project
 which may have similar components to the project you are trying to
 create. Starting from such a project is done by copying the existing
 .vcproj file to a project file with a new name. The MOST IMPORTANT step
@@ -450,22 +444,20 @@ Ethernet support if the necessary Winpcap components are available at
 build time. The compiled executables will be produced in the BIN
 directory which will be created if needed.
 
-Compiling Under OpenVMS
------------------------
+## Compiling Under OpenVMS
 
 Compiling on OpenVMS requires DEC C. The simulators that require 64b
 (PDP-10, VAX and others) will not compile on OpenVMS/VAX. The SIMH
 distribution includes an MMS command file descrip.mms that will build
 all the simulators from source. An example of hand compilation:
 
--   PDP-8 under VMS:
+  - > PDP-8 under VMS:
 
-> \$ cc scp.c,sim\_\*.c,\[.pdp8\]pdp8\*.c
->
-> \$ link/exec=pdp8 scp.obj,sim\_\*.obj,\[.pdp8\]pdp8\*.obj
+> $ cc scp.c,sim\_\*.c,\[.pdp8\]pdp8\*.c
+> 
+> $ link/exec=pdp8 scp.obj,sim\_\*.obj,\[.pdp8\]pdp8\*.obj
 
-Simulator Conventions
-=====================
+# Simulator Conventions
 
 A simulator consists of a series of devices, the first of which is
 always the CPU. A device consists of named registers and one or more
@@ -485,13 +477,12 @@ simulated events are scheduled to occur. Even asynchronous events, like
 keyboard input, are handled by polling at synchronous intervals. The
 SHOW QUEUE command displays the simulator event queue.
 
-Commands
-========
+# Commands
 
 Simulator commands consist of a command verb, optional switches, and
 optional arguments. Switches take the form:
 
--\<letter\>{\<letter\>\...}
+\-\<letter\>{\<letter\>...}
 
 Multiple switches may be specified separately or together: -abcd and -a
 -b -c -d are treated identically. Verbs, switches, and other input
@@ -500,8 +491,7 @@ Multiple switches may be specified separately or together: -abcd and -a
 Any command beginning with semicolon (;) is considered a comment and
 ignored.
 
-Loading and Saving Programs
----------------------------
+## Loading and Saving Programs
 
 The LOAD command (abbreviation LO) loads a file in binary loader format:
 
@@ -519,8 +509,7 @@ The types of formats supported are simulator specific. Options (such as
 dump within range) are also simulator specific. The dump command may not
 be meaningful or supported at all in some simulators.
 
-Saving and Restoring State
---------------------------
+## Saving and Restoring State
 
 The SAVE command (abbreviation SA) save the complete state of the
 simulator to a file. This includes the contents of main memory and all
@@ -537,19 +526,18 @@ Notes:
 
 1)  SAVE file format compresses zeroes to minimize file size.
 
-2)  The simulator can't restore active incoming telnet sessions to
+2)  The simulator can’t restore active incoming telnet sessions to
     multiplexer devices, but the listening ports will be restored across
     a save/restore.
 
-3)  --d switch avoids detaching and reattaching devices during a restore
+3)  –d switch avoids detaching and reattaching devices during a restore
 
-4)  --f switch overrides the date timestamp check for attached files
+4)  –f switch overrides the date timestamp check for attached files
     during a restore
 
-5)  --q suppresses warning messages about save file version information
+5)  –q suppresses warning messages about save file version information
 
-Resetting Devices
------------------
+## Resetting Devices
 
 The RESET command (abbreviation RE) resets a device or the entire
 simulator to a predefined condition. If switch -p is specified, the
@@ -567,8 +555,7 @@ Typically, RESET stops any in-progress I/O operation, clears any
 interrupt request, and returns the device to a quiescent state. It does
 not clear main memory or affect I/O connections.
 
-Connecting and Disconnecting Devices
-------------------------------------
+## Connecting and Disconnecting Devices
 
 Except for main memory and network devices, units are simulated as
 unstructured binary disk files in the host file system. Before using a
@@ -583,7 +570,7 @@ created, and an appropriate message is printed.
 If the file does not exist, and the -e switch was not specified, a new
 file is created, and an appropriate message is printed. If the -e switch
 was specified, a new file is not created, and an error message is
-printed. If the --n switch was specified, a new file is created or the
+printed. If the –n switch was specified, a new file is created or the
 existing file is truncated to zero length.
 
 If the -r switch is specified, or the file is write protected, ATTACH
@@ -594,7 +581,7 @@ switches, such as disks and tapes, support read only operation; other
 devices do not. If a file is attached read only, its contents can be
 examined but not modified.
 
-If the --a switch is specified, is a sequential output only device (like
+If the –a switch is specified, is a sequential output only device (like
 a line printer, paper tape punch, etc.), the file being attached will be
 opened in append mode thus adding to any existing file data beyond what
 may have already been there.
@@ -646,19 +633,18 @@ DETACH \<unit\> detach specified unit
 
 The EXIT command performs an automatic DETACH ALL.
 
-Examining and Changing State
-----------------------------
+## Examining and Changing State
 
 There are four commands to examine and change state:
 
--   EXAMINE (abbreviated E) examines state
+  - > EXAMINE (abbreviated E) examines state
 
--   DEPOSIT (abbreviated D) changes state
+  - > DEPOSIT (abbreviated D) changes state
 
--   IEXAMINE (interactive examine, abbreviated IE) examines state and
+  - > IEXAMINE (interactive examine, abbreviated IE) examines state and
     > allows the user to interactively change it
 
--   IDEPOSIT (interactive deposit, abbreviated ID) allows the user to
+  - > IDEPOSIT (interactive deposit, abbreviated ID) allows the user to
     > interactively change state
 
 All four commands take the form
@@ -681,8 +667,8 @@ by spaces.
 
 {\<logical op\> \<value\>} \<relational op\> \<value\>
 
-where the logical operator is & (and), \| (or), or \^ (exclusive or),
-and the relational operator is = or == (equal), ! or != (not equal), \>=
+where the logical operator is & (and), | (or), or ^ (exclusive or), and
+the relational operator is = or == (equal), \! or \!= (not equal), \>=
 (greater than or equal), \> (greater than), \<= (less than or equal), or
 \< (less than). If a logical operator is specified without a relational
 operator, it is ignored. If a relational operator is specified without a
@@ -699,8 +685,8 @@ Note that if the device/unit name comes after the search specifier, the
 search values will interpreted in the radix of the CPU, rather than of
 the device/unit.
 
-The \"object list\" consists of one or more of the following, separated
-by commas:
+The "object list" consists of one or more of the following, separated by
+commas:
 
 register the specified register
 
@@ -738,7 +724,7 @@ STATE all registers in the device
 
 ALL all locations in the unit
 
-\$ use the most recently referenced value as
+$ use the most recently referenced value as
 
 an address to reference (indirect)
 
@@ -748,24 +734,24 @@ again.
 
 Switches can be used to control the format of display information:
 
--o or -8 display as octal
+\-o or -8 display as octal
 
--d or -10 display as decimal
+\-d or -10 display as decimal
 
--h or -16 display as hexadecimal
+\-h or -16 display as hexadecimal
 
--2 display as binary
+\-2 display as binary
 
 Simulators typically provide these additional switches for address
 locations:
 
--a display as ASCII
+\-a display as ASCII
 
--c display as character string
+\-c display as character string
 
--m display as instruction mnemonic
+\-m display as instruction mnemonic
 
-\...and accept symbolic input (see documentation with each simulator).
+...and accept symbolic input (see documentation with each simulator).
 
 Examples:
 
@@ -785,7 +771,7 @@ ex rx0 50060 examine 50060, RX unit 0
 
 ex rx sbuf\[3-6\] examine SBUF\[3\] to SBUF\[6\] in RX
 
-ex r4,\$ examine R4 and where it points
+ex r4,$ examine R4 and where it points
 
 de all 0 set main memory to 0
 
@@ -793,13 +779,12 @@ de &77\>0 0 set all addresses whose low order
 
 bits are non-zero to 0
 
-ex -m \@memdump.txt 0-7777 dump memory to file
+ex -m @memdump.txt 0-7777 dump memory to file
 
 Note: to terminate an interactive command, simply type a bad value (eg,
 XYZ) when input is requested.
 
-Evaluating Instructions
------------------------
+## Evaluating Instructions
 
 The EVAL command evaluates a symbolic instruction and returns the
 equivalent numeric value. This is useful for obtaining numeric arguments
@@ -821,7 +806,7 @@ sim\> eval addl2 \#ff,6(r0)
 
 4: 06A00000
 
-sim\> eval \'AB
+sim\> eval 'AB
 
 0: 00004241
 
@@ -835,15 +820,13 @@ sim\> eval tad 300
 
 tad 300
 
-Can\'t be parsed as an instruction or data
+Can't be parsed as an instruction or data
 
-\'tad 300\' fails, because with an implicit PC of 0, location 300 can\'t
-be
+'tad 300' fails, because with an implicit PC of 0, location 300 can't be
 
 reached with direct addressing.
 
-Running a Simulated Program
----------------------------
+## Running a Simulated Program
 
 The RUN command (abbreviated RU) resets all devices, deposits its
 argument (if given) in the PC, and starts execution. If no argument is
@@ -873,19 +856,19 @@ commands are recommended instead of RUN. If RUN is entered a second time
 without an explicit RESET preceding it, a warning is printed on the
 simulation console:
 
-Resetting all devices\... This may not have been your intention.
+Resetting all devices... This may not have been your intention.
 
 The GO and CONTINUE commands do not reset devices.
 
-\...before execution is resumed. The warning may be suppressed by adding
-the --Q switch to the RUN command.
+...before execution is resumed. The warning may be suppressed by adding
+the –Q switch to the RUN command.
 
 ### Controlling the Simulation Rate
 
 By default, the simulator runs as fast as possible (although at lower
 than normal priority) and will consume all available processing
 resources on the host system. This will raise power consumption (and the
-operating temperature) of many PC's and drain the battery of a laptop.
+operating temperature) of many PC’s and drain the battery of a laptop.
 
 The SET THROTTLE command allows the user to reduce the effective
 execution rate to a specified number of instructions per second, or to a
@@ -897,9 +880,9 @@ SET THROTTLE xK set execution rate to x kips
 
 SET THROTTLE x% limit simulator to x% of host time
 
-SET THROTTLE insts/delay execute 'insts' instructions and
+SET THROTTLE insts/delay execute ‘insts’ instructions and
 
-> then sleep for 'delay' milliseconds
+> then sleep for ‘delay’ milliseconds
 
 Throttling is only available on host systems that implement a precision
 real-time delay function.
@@ -918,8 +901,7 @@ idling. Idling suspends simulated execution whenever the program running
 on the simulator is doing nothing, and runs the simulator at full speed
 when there is work to do. Throttling and idling are mutually exclusive.
 
-Stopping the Simulator
-----------------------
+## Stopping the Simulator
 
 Programs run until the simulator detects an error or stop condition, or
 until the user forces a stop condition.
@@ -928,23 +910,23 @@ until the user forces a stop condition.
 
 These simulator-detected conditions stop simulation:
 
--   HALT instruction. If a HALT instruction is decoded, simulation
+  - HALT instruction. If a HALT instruction is decoded, simulation
     stops.
 
--   Breakpoint. The simulator may support breakpoints (see below).
+  - Breakpoint. The simulator may support breakpoints (see below).
 
--   I/O error. If an I/O error occurs during simulation of an I/O
+  - I/O error. If an I/O error occurs during simulation of an I/O
     operation, and the device stop-on-I/O-error flag is set, simulation
     usually stops.
 
--   Processor condition. Certain processor conditions can stop
+  - Processor condition. Certain processor conditions can stop
     simulation; these are described with the individual simulators.
 
 ### User Specified Stop Conditions
 
 Typing the interrupt character stops simulation. The interrupt character
 is defined by the WRU (where are you) console option and is initially
-set to 005 (\^E).
+set to 005 (^E).
 
 ### Breakpoints
 
@@ -962,7 +944,7 @@ optional actions are automatically executed.
 A breakpoint is set by the BREAK command:
 
 BREAK {-types} {\<addr range\>{\[count\]},{addr
-range\...}}{;action;action\...}
+range...}}{;action;action...}
 
 If no type is specified, the simulator-specific default breakpoint type
 (usually E for execution) is used. If no address range is specified, the
@@ -984,7 +966,7 @@ BREAK 100; delete action on break at 100
 
 Currently set breakpoints can be displayed with the SHOW BREAK command:
 
-SHOW {-types} BREAK {ALL\|\<addr range\>{,\<addr range\>\...}}
+SHOW {-types} BREAK {ALL|\<addr range\>{,\<addr range\>...}}
 
 Locations with breakpoints of the specified type are displayed.
 
@@ -998,17 +980,17 @@ distinguished from the action separator.
 
 A simulator user may want to limit the maximum execution time that a
 simulator may run for. This might be appropriate to limit a runaway
-diagnostic which didn't achieve explicit success or failure within some
+diagnostic which didn’t achieve explicit success or failure within some
 user specified time. The RUNLIMIT command provides ways to limit
 execution.
 
-RUNLIMIT n {CYCLES\|MICROSECONDS\|SECONDS\|MINUTES\|HOURS}
+RUNLIMIT n {CYCLES|MICROSECONDS|SECONDS|MINUTES|HOURS}
 
 NORUNLIMIT
 
 Equivalently:
 
-SET RUNLIMIT n {CYCLES\|MICROSECONDS\|SECONDS\|MINUTES\|HOURS}
+SET RUNLIMIT n {CYCLES|MICROSECONDS|SECONDS|MINUTES|HOURS}
 
 SET NORUNLIMIT
 
@@ -1022,8 +1004,7 @@ RUN, CONTINUE, STEP or BOOT commands will cause the simulator to exit. A
 previously defined RUNLIMIT can be cleared with the NORUNLIMIT or the
 establishment of a new limit.
 
-Halt on Output Data
--------------------
+## Halt on Output Data
 
 In addition to breakpoints (halting the simulator on specific
 addresses), the simulator can halt when a
@@ -1032,15 +1013,15 @@ specific string has been output to the console. The EXPECT command
 provides a way to define a rule which will stop execution and take
 actions when specific output has been generated by the simulated system.
 
-EXPECT {dev:line} {\[count\]} {HALTAFTER=n,}"\<string\>" {actioncommand
-{; actioncommand} ...}
+EXPECT {dev:line} {\[count\]} {HALTAFTER=n,}”\<string\>” {actioncommand
+{; actioncommand} …}
 
 NOEXPECT {dev:line}
 
 SHOW EXPECT {dev:line}
 
 \<dev:line\> specifies a particular device a line in that simulated
-device. If it is not specified, the simulated system's console device is
+device. If it is not specified, the simulated system’s console device is
 the default device.
 
 If a \[count\] is specified, the rule will match after the match string
@@ -1054,8 +1035,8 @@ When expect rules are defined, they are evaluated against recently
 produced output as each character is output to the device. Since this
 evaluation processing is done on each output character, rule matching is
 not specifically line oriented. If line oriented matching is desired,
-then rules should be defined which contain the simulated system's line
-ending character sequence (i.e. "\\r\\n").
+then rules should be defined which contain the simulated system’s line
+ending character sequence (i.e. “\\r\\n”).
 
 Once data has matched any expect rule, that data is no longer eligible
 to match other expect rules which may already be defined. Data which is
@@ -1076,21 +1057,21 @@ distinguished from the action separator.
 
 Switches can be used to influence the behavior of EXPECT rules
 
-#### --p
+#### –p
 
 Expect rules default to be one shot activities. That is, a rule is
 automatically removed when a match occurs unless the rule is designated
-as a persistent rule by using a --p switch when the rule is defined.
+as a persistent rule by using a –p switch when the rule is defined.
 
-#### --c
+#### –c
 
-If an expect rule is defined with the --c switch, it will cause all
+If an expect rule is defined with the –c switch, it will cause all
 pending expect rules on the current device to be cleared when the rule
 matches data in the device output stream.
 
-#### --r
+#### –r
 
-If an expect rule is defined with the --r switch, the string is
+If an expect rule is defined with the –r switch, the string is
 interpreted as a regular expression applied to the output data stream.
 This regular expression may contain parentheses delimited sub-groups.
 
@@ -1099,15 +1080,15 @@ the Perl Compatible Regular Expression package (aka PCRE). As the name
 implies, the syntax is generally the same as Perl regular expressions.
 See <http://perldoc.perl.org/perlre.html> for more details.
 
-If the PCRE package isn't available in the environment when a simulator
-is built, the local system's regular expression package (if available)
+If the PCRE package isn’t available in the environment when a simulator
+is built, the local system’s regular expression package (if available)
 is used and the regular expression syntax is limited to what may be
 provided there.
 
-#### --i
+#### –i
 
-If a regular expression expect rule is defined with the --i switch,
-character matching for that expression will be case independent. The --i
+If a regular expression expect rule is defined with the –i switch,
+character matching for that expression will be case independent. The –i
 switch is only valid for regular expression expect rules (-r).
 
 #### Escaping String Data
@@ -1116,25 +1097,25 @@ The following character escapes are explicitly supported when expect
 rules are defined NOT using regular expression match patterns:
 
 > \\r Expect the ASCII Carriage Return character (Decimal value 13)
->
+> 
 > \\n Expect the ASCII Linefeed character (Decimal value 10)
->
+> 
 > \\f Expect the ASCII Formfeed character (Decimal value 12)
->
+> 
 > \\t Expect the ASCII Horizontal Tab character (Decimal value 9)
->
+> 
 > \\v Expect the ASCII Vertical Tab character (Decimal value 11)
->
+> 
 > \\b Expect the ASCII Backspace character (Decimal value 8)
->
+> 
 > \\\\ Expect the ASCII Backslash character (Decimal value 92)
->
-> \\\' Expect the ASCII Single Quote character (Decimal value 39)
->
-> \\\" Expect the ASCII Double Quote character (Decimal value 34)
->
+> 
+> \\' Expect the ASCII Single Quote character (Decimal value 39)
+> 
+> \\" Expect the ASCII Double Quote character (Decimal value 34)
+> 
 > \\? Expect the ASCII Question Mark character (Decimal value 63)
->
+> 
 > \\e Expect the ASCII Escape character (Decimal value 27)
 
 as well as octal character values of the form:
@@ -1156,13 +1137,12 @@ parentheses delimited sub-groups, the environment variables
 \_EXPECT\_MATCH\_GROUP\_1 thru \_EXPECT\_MATCH\_GROUP\_n are set to the
 values within the string which matched the respective sub-groups.
 
-Injecting Input Data
---------------------
+## Injecting Input Data
 
 The SEND command provides a way to insert input data in to the console
 device of a simulated system as if it were entered by a user:
 
-SEND {AFTER=n,} {DELAY=n,}"\<string\>"
+SEND {AFTER=n,} {DELAY=n,}”\<string\>”
 
 NOSEND
 
@@ -1175,7 +1155,7 @@ must match. Data in the string may contain escaped character strings.
 The SEND command can also insert input into any serial device on a
 simulated system as if it was entered by a user.
 
-SEND \<dev\>:line {AFTER=n,}{DELAY=n,}"\<string\>"
+SEND \<dev\>:line {AFTER=n,}{DELAY=n,}”\<string\>”
 
 NOSEND \<dev\>:line
 
@@ -1208,7 +1188,7 @@ parameter value can be set by itself with:
 
 SEND {\<dev\>:line} {AFTER=n}
 
-If the after parameter isn't explicitly set, it defaults to the value of
+If the after parameter isn’t explicitly set, it defaults to the value of
 the delay parameter.
 
 ### Escaping String Data
@@ -1216,25 +1196,25 @@ the delay parameter.
 The following character escapes are explicitly supported:
 
 > \\r Sends the ASCII Carriage Return character (Decimal value 13)
->
+> 
 > \\n Sends the ASCII Linefeed character (Decimal value 10)
->
+> 
 > \\f Sends the ASCII Formfeed character (Decimal value 12)
->
+> 
 > \\t Sends the ASCII Horizontal Tab character (Decimal value 9)
->
+> 
 > \\v Sends the ASCII Vertical Tab character (Decimal value 11)
->
+> 
 > \\b Sends the ASCII Backspace character (Decimal value 8)
->
+> 
 > \\\\ Sends the ASCII Backslash character (Decimal value 92)
->
-> \\\' Sends the ASCII Single Quote character (Decimal value 39)
->
-> \\\" Sends the ASCII Double Quote character (Decimal value 34)
->
+> 
+> \\' Sends the ASCII Single Quote character (Decimal value 39)
+> 
+> \\" Sends the ASCII Double Quote character (Decimal value 34)
+> 
 > \\? Sends the ASCII Question Mark character (Decimal value 63)
->
+> 
 > \\e Sends the ASCII Escape character (Decimal value 27)
 
 as well as octal character values of the form:
@@ -1245,17 +1225,16 @@ and hext character values of the form:
 
 \\xh{h} where each h is a hex digit (0-9A-Fa-f)
 
-Setting Device Parameters
--------------------------
+## Setting Device Parameters
 
 The SET command (abbreviated SE) changes the status of one or more
 device parameters:
 
-SET \<device\> \<parameter\>{=\<value},{\<parameter\>{=\<value\>},\...}
+SET \<device\> \<parameter\>{=\<value},{\<parameter\>{=\<value\>},...}
 
 or one or more unit parameters:
 
-SET \<unit\> \<parameter\>{=\<value\>},{\<parameter\>{=\<value\>},\...}
+SET \<unit\> \<parameter\>{=\<value\>},{\<parameter\>{=\<value\>},...}
 
 Most parameters are simulator and device specific. Disk drives, for
 example, can usually be set WRITEENABLED or write LOCKED; if a device
@@ -1270,21 +1249,20 @@ DEC sets the data radix = 10
 
 HEX sets the data radix = 16
 
-Displaying Parameters and Status
---------------------------------
+## Displaying Parameters and Status
 
 The SHOW command (abbreviated SH) displays the status of one or more
 device parameters:
 
 SHOW {\<modifiers} \<device\> \<parameter\>{=\<value\>},
 
-> {\<parameter\>{=\<value\>},\...}
+> {\<parameter\>{=\<value\>},...}
 
 or one or more unit parameters:
 
 SHOW {\<modifiers} \<unit\> \<parameter\>{=\<value\>},
 
-{\<parameter\>{=\<value\>},\...}
+{\<parameter\>{=\<value\>},...}
 
 There are two kinds of modifiers: switches and output file. Switches
 have been described previously. The output file modifier redirects
@@ -1343,14 +1321,13 @@ SHOW LOG shows the logging state of the simulator
 
 The SHOW DEVICES, SHOW CONFIGURATION, SHOW FEATURES will normally
 display all devices which exist in the simulator. These commands can
-optionally only display the enabled devices when the --E switch is on
-the command line (i.e. SHOW --E DEVICES).
+optionally only display the enabled devices when the –E switch is on the
+command line (i.e. SHOW –E DEVICES).
 
 SHOW QUEUE and SHOW TIME display time in simulator-specific units;
 typically, one time unit represents one instruction execution.
 
-Altering the Simulated Configuration
-------------------------------------
+## Altering the Simulated Configuration
 
 In most simulators, the SET \<device\> DISABLED command removes the
 specified device from the configuration. A DISABLED device is invisible
@@ -1385,8 +1362,7 @@ To show all logical names:
 
 SHOW NAMES
 
-Console Options
----------------
+## Console Options
 
 Console options are controlled by the SET CONSOLE command.
 
@@ -1403,13 +1379,12 @@ SET CONSOLE NOTELNET disable console Telnet
 
 Connections to the specified port, by default, will be unrestricted.
 Connections from particular IPv4 or IPv6 addresses can be restricted or
-allowed based on rules you can add to the \"port\" specifier on the
-attach command. You can add as many rules as you need to the attach
-command specified with \";ACCEPT=rule-detail\" or
-\";REJECT=rule-detail\" where rule-detail can be an IP address, hostname
-or network block in CIDR form. Rules are interpreted in order and if,
-while processing the list, the end is reached the connection will be
-rejected.
+allowed based on rules you can add to the "port" specifier on the attach
+command. You can add as many rules as you need to the attach command
+specified with ";ACCEPT=rule-detail" or ";REJECT=rule-detail" where
+rule-detail can be an IP address, hostname or network block in CIDR
+form. Rules are interpreted in order and if, while processing the list,
+the end is reached the connection will be rejected.
 
 Normally a console terminal configured to listen to on a telnet port
 requires that a telnet connection be active for the simulator to run. A
@@ -1424,7 +1399,7 @@ SET CONSOLE TELNET=BUFFERED{=bufsiz}
 
 enable console buffering and optionally
 
-> set the buffer size to 'bufsiz'. The default buffer size is 32768.
+> set the buffer size to ‘bufsiz’. The default buffer size is 32768.
 
 SET CONSOLE TELNET=NOBUFFER disable console buffering
 
@@ -1477,7 +1452,7 @@ This will connect at 2400 with 8 bit characters, no parity and 1 stop
 bit. The default serial speed, character size, parity and stop bits is
 9600-8N1.
 
-Values are hexadecimal on hex CPU\'s, octal on all others.
+Values are hexadecimal on hex CPU's, octal on all others.
 
 The SHOW CONSOLE command displays the current state of console options:
 
@@ -1498,11 +1473,10 @@ by commas, e.g.,
 
 SET CONSOLE WRU=5,DEL=177 set code values for WRU and DEL
 
-Remote Console
---------------
+## Remote Console
 
 During simulator execution, it may occasionally be useful to enter
-commands to query or adjust some internal details of the simulator's
+commands to query or adjust some internal details of the simulator’s
 configuration or operation. These activities could be achieved directly
 through the initiating session which started the simulator. However, a
 simulator may be running in the context of a background process and not
@@ -1533,13 +1507,12 @@ SET REMOTE TIMEOUT=secs specify the remote console idle command
 
 Connections to the specified port, by default, will be unrestricted.
 Connections from particular IPv4 or IPv6 addresses can be restricted or
-allowed based on rules you can add to the \"port\" specifier on the
-attach command. You can add as many rules as you need to the attach
-command specified with \";ACCEPT=rule-detail\" or
-\";REJECT=rule-detail\" where rule-detail can be an IP address, hostname
-or network block in CIDR form. Rules are interpreted in order and if,
-while processing the list, the end is reached the connection will be
-rejected.
+allowed based on rules you can add to the "port" specifier on the attach
+command. You can add as many rules as you need to the attach command
+specified with ";ACCEPT=rule-detail" or ";REJECT=rule-detail" where
+rule-detail can be an IP address, hostname or network block in CIDR
+form. Rules are interpreted in order and if, while processing the list,
+the end is reached the connection will be rejected.
 
 The remote console configuration details can be viewed with the command:
 
@@ -1549,18 +1522,16 @@ The remote console facility has two modes of command input and
 execution:
 
 Single Command Mode: In single command mode you enter one command at a
-time and aren\'t concerned about what the simulated system is doing
-while you enter that command. The command is executed once you\'ve hit
-return.
+time and aren't concerned about what the simulated system is doing while
+you enter that command. The command is executed once you've hit return.
 
 Multiple Command Mode: In multiple command mode you initiate your
-activities by entering the WRU character (usually \^E). This will
-suspend the current simulator execution. You then enter commands as
-needed and when you are done you enter a CONTINUE command. While
-entering Multiple Command commands, if you fail to enter a complete
-command before the timeout (specified by \"SET REMOTE
-TIMEOUT=seconds\"), a CONTINUE command is automatically processed and
-simulation proceeds.
+activities by entering the WRU character (usually ^E). This will suspend
+the current simulator execution. You then enter commands as needed and
+when you are done you enter a CONTINUE command. While entering Multiple
+Command commands, if you fail to enter a complete command before the
+timeout (specified by "SET REMOTE TIMEOUT=seconds"), a CONTINUE command
+is automatically processed and simulation proceeds.
 
 A subset of normal simh commands are available for use in remote console
 sessions.
@@ -1573,23 +1544,23 @@ EVALUATE, ATTACH, DETACH, ASSIGN, DEASSIGN, STEP, CONTINUE, PWD, SAVE,
 SET, SHOW, DIR, LS, ECHO, HELP
 
 A remote console session will close when a EOF character is entered
-(i.e. \^D or \^Z).
+(i.e. ^D or ^Z).
 
 ### Master Mode
 
 Remote Console Master mode allows full control of simulator operation to
 performed over a remote TCP session. This mode is potentially useful for
 applications like a simulated CPU front panel interface or remote
-debugging with a GDB "Serial Stub".
+debugging with a GDB “Serial Stub”.
 
 Master mode is entered from a simulator command file with the following
 command:
 
 SET REMOTE MASTER enter master mode
 
-Operation in Remote Console Master mode requires that the simulator's
-console port be serviced via a telnet connect with a "SET CONSOLE
-TELNET=port" command. Both a telnet connection to the console port AND
+Operation in Remote Console Master mode requires that the simulator’s
+console port be serviced via a telnet connect with a “SET CONSOLE
+TELNET=port” command. Both a telnet connection to the console port AND
 to the Remote Console port is required be a simulator will enter Master
 Mode.
 
@@ -1602,12 +1573,11 @@ The Remote Console Master Mode commands are: EXAMINE, IEXAMINE, DEPOSIT,
 EVALUATE, ATTACH, DETACH, ASSIGN, DEASSIGN, STEP, CONTINUE, PWD, SAVE,
 CD, SET, SHOW, DIR, LS, ECHO, HELP, RUN, GO, BOOT, BREAK, NOBREAK, EXIT
 
-Executing Command Files
------------------------
+## Executing Command Files
 
 The simulator can execute command files with the DO command:
 
-DO \<filename\> {arguments\...} execute commands in file
+DO \<filename\> {arguments...} execute commands in file
 
 The DO command allows command files to contain substitutable arguments.
 The string %n, where n is between 1 and 9, is replaced with argument n
@@ -1639,7 +1609,7 @@ command files are executed if they are found:
 1\_ If a file named **simh.ini** is located in your HOME directory, it
 is executed.
 
-2\. If the simh.ini file in your HOME directory isn't found, a file
+2\. If the simh.ini file in your HOME directory isn’t found, a file
 named **simh.ini** in your current working directory is executed if it
 exists.
 
@@ -1666,10 +1636,10 @@ GOTO command:
 GOTO \<label\>
 
 Labels are lines in a command file which the first non whitespace
-character is a \":\". The target of a GOTO is the first matching label
-in the current do command file which is encountered. Since labels don\'t
-do anything else besides being the targets of goto\'s, they could also
-be used to provide comments in do command files.
+character is a ":". The target of a GOTO is the first matching label in
+the current do command file which is encountered. Since labels don't do
+anything else besides being the targets of goto's, they could also be
+used to provide comments in do command files.
 
 ### Subroutine Calls
 
@@ -1689,13 +1659,13 @@ RETURN
 
 A simulator command file may wait for a specific period of time with:
 
-SLEEP NUMBER\[SUFFIX\]\...
+SLEEP NUMBER\[SUFFIX\]...
 
-Pause for NUMBER seconds. SUFFIX may be \'s\' for seconds (the default),
-\'m\' for minutes, \'h\' for hours or \'d\' for days. NUMBER may be an
+Pause for NUMBER seconds. SUFFIX may be 's' for seconds (the default),
+'m' for minutes, 'h' for hours or 'd' for days. NUMBER may be an
 arbitrary floating point number. Given two or more arguments, pause for
 the amount of time specified by the sum of their values. Note: A SLEEP
-command is interruptible with SIGINT (\^C).
+command is interruptible with SIGINT (^C).
 
 ### Displaying Arbitrary Text
 
@@ -1716,11 +1686,11 @@ may be used to provide spacing in the console display or log.
 ECHOF prints out its argument on the console (and log) followed by a
 newline.
 
-ECHOF {-n} "string"\|\<string\> output to console
+ECHOF {-n} “string”|\<string\> output to console
 
-ECHOF {-n} dev:line "string"\|\<string\> output to specified line
+ECHOF {-n} dev:line “string”|\<string\> output to specified line
 
-If there is no argument, ECHOF prints a blank line. The --n switch
+If there is no argument, ECHOF prints a blank line. The –n switch
 suppresses the output of a newline character. If the string to be output
 is surrounded by quotes, the string within the quotes is interpreted as
 described in 4.10.3 prior to being output (without the surrounding
@@ -1736,21 +1706,21 @@ halts command file execution if the condition is false:
 
 ASSERT \<condition-expression\>
 
-If the result of the condition is false, an \"Assertion failed\" message
+If the result of the condition is false, an "Assertion failed" message
 is printed, and any running command file is aborted. Otherwise, the
 command has no effect.
 
 The IF command tests a simulator state condition expression and executes
 one or more commands if the condition is true:
 
-IF \<condition-expression\> \<action\>{; \<action\>...}
+IF \<condition-expression\> \<action\>{; \<action\>…}
 
-{ELSE \<action\>{; \<action\>...}}
+{ELSE \<action\>{; \<action\>…}}
 
 If the result of the condition is true, the action command(s) are
 executed. Otherwise, the command has no effect. An optional ELSE command
 immediately following an IF command will have its command arguments
-executed if the IF condition wasn't satisfied.
+executed if the IF condition wasn’t satisfied.
 
 If an action command must contain a semicolon, that action command
 should be enclosed in quotes so that the entire action command can be
@@ -1766,7 +1736,7 @@ distinguished from the action separator.
 If \<dev\> is not specified, CPU is assumed. \<reg\> is a register
 (scalar or subscripted) belonging to the indicated device. The
 \<conditional-op\> and optional \<logical-op\> are the same as those
-used for \"search specifiers\" by the EXAMINE and DEPOSIT commands (see
+used for "search specifiers" by the EXAMINE and DEPOSIT commands (see
 above). The \<value\>s are expressed in the radix specified for \<reg\>,
 not in the radix for the device.
 
@@ -1784,41 +1754,41 @@ contained in environment variables or simulator registers. C style
 expression evaluation is initiated by enclosing the expression in
 parenthesis.
 
-  ------ -----------------------
-  (      Open Parenthesis
-  )      Close Parenthesis
-  \-     Subtraction
-  \+     Addition
-  \*     Multiplication
-  /      Division
-  \%     Modulus
-  &&     Logical AND
-  \|\|   Logical OR
-  &      Bitwise AND
-  \|     Bitwise Inclusive OR
-  \^     Bitwise Exclusive OR
-  \>\>   Bitwise Right Shift
-  \<\<   Bitwise Left Shift
-  ==     Equality
-  !=     Inequality
-  \<=    Less than or Equal
-  \<     Less than
-  \>=    Greater than or Equal
-  \>     Greater than
-  !      Logical Negation
-  \~     Bitwise Compliment
-  ------ -----------------------
+|      |                       |
+| ---- | --------------------- |
+| (    | Open Parenthesis      |
+| )    | Close Parenthesis     |
+| \-   | Subtraction           |
+| \+   | Addition              |
+| \*   | Multiplication        |
+| /    | Division              |
+| %    | Modulus               |
+| &&   | Logical AND           |
+| ||   | Logical OR            |
+| &    | Bitwise AND           |
+| |    | Bitwise Inclusive OR  |
+| ^    | Bitwise Exclusive OR  |
+| \>\> | Bitwise Right Shift   |
+| \<\< | Bitwise Left Shift    |
+| \==  | Equality              |
+| \!=  | Inequality            |
+| \<=  | Less than or Equal    |
+| \<   | Less than             |
+| \>=  | Greater than or Equal |
+| \>   | Greater than          |
+| \!   | Logical Negation      |
+| \~   | Bitwise Compliment    |
 
-#####  {#section .list-paragraph}
+##### 
 
 ##### String Comparison Expressions
 
 String Values can be compared with:
 
-> {-i} {NOT} "\<string1\>"\|EnvVarName1 \<compare-op\>
-> "\<string2\>"\|EnvVarName2
+> {-i} {NOT} “\<string1\>”|EnvVarName1 \<compare-op\>
+> “\<string2\>”|EnvVarName2
 
-The --i switch, if present, causes comparisons to be case insensitive.
+The –i switch, if present, causes comparisons to be case insensitive.
 The -w switch, if present, causes comparisons to allow arbitrary runs of
 whitespace to be equivalent to a single space. The -i and -w switches
 may be combined. \<string1\> and \<string2\> are quoted string values
@@ -1827,40 +1797,40 @@ string may be an environment variable name whose expanded value will be
 used in place of the explicitly quoted string. \<compare-op\> may be one
 of:
 
-> == - equal
->
+> \== - equal
+> 
 > EQU - equal
->
-> != - not equal
->
+> 
+> \!= - not equal
+> 
 > NEQ - not equal
->
+> 
 > \< - less than
->
+> 
 > LSS - less than
->
+> 
 > \<= - less than or equal
->
+> 
 > LEQ - less than or equal
->
+> 
 > \> - greater than
->
+> 
 > GTR - greater than
->
+> 
 > \>= - greater than or equal
->
+> 
 > GEQ - greater than or equal
 
 Comparisons are generic. This means that if both string1 and string2 are
 comprised of all numeric digits, then the strings are converted to
-numbers and a numeric comparison is performed. For example: "+1" EQU "1"
+numbers and a numeric comparison is performed. For example: “+1” EQU “1”
 will be true.
 
 ##### File Existence Test
 
 File existence can be determined with:
 
-{NOT} EXIST \"\<filespec\>\"
+{NOT} EXIST "\<filespec\>"
 
 {NOT} EXIST \<filespec\>
 
@@ -1870,7 +1840,7 @@ Specifies a true (false {NOT}) condition if the file exists.
 
 Files can have their contents compared with:
 
--F{W} {NOT} \"\<filespec1\>\" == \"\<filespec2\>\"
+\-F{W} {NOT} "\<filespec1\>" == "\<filespec2\>"
 
 Specifies a true (false {NOT}) condition if the indicated files have the
 same contents. If the -W switch is present, allows arbitrary runs of
@@ -1881,8 +1851,8 @@ comparison.
 
 A command file might be used to bootstrap an operating system that halts
 after the initial load from disk. The ASSERT command is then used to
-confirm that the load completed successfully by examining the CPU\'s
-\"A\" register for the expected value:
+confirm that the load completed successfully by examining the CPU's "A"
+register for the expected value:
 
 ; OS bootstrap command file
 
@@ -1902,9 +1872,9 @@ ATTACH MT1 user.tape
 
 RUN
 
-In the example, if the A register is not 0, the \"ASSERT A=0\" command
-will be echoed, the command file will be aborted with an \"Assertion
-failed\" message. Otherwise, the command file will continue to bring up
+In the example, if the A register is not 0, the "ASSERT A=0" command
+will be echoed, the command file will be aborted with an "Assertion
+failed" message. Otherwise, the command file will continue to bring up
 the operating system.
 
 Alternative, the IF command could be used to solve the same problem:
@@ -2039,19 +2009,19 @@ NOON commands.
 
 ### Command arguments
 
-Token \"%0\" expands to the command file name.
+Token "%0" expands to the command file name.
 
-Token %n (n being a single digit) expands to the n\'th argument
+Token %n (n being a single digit) expands to the n'th argument
 
-Token %\* expands to the whole set of arguments (%1 \... %9)
+Token %\* expands to the whole set of arguments (%1 ... %9)
 
-The input sequence \"%%\" represents a literal \"%\". All other
-character combinations are rendered literally.
+The input sequence "%%" represents a literal "%". All other character
+combinations are rendered literally.
 
 Omitted parameters result in null-string substitutions.
 
 Tokens preceeded and followed by % characters are expanded as
-environment variables, and if an environment variable isn\'t found then
+environment variables, and if an environment variable isn't found then
 it can be one of the available Build-In variables.
 
 #### DO command argument manipulation
@@ -2138,12 +2108,12 @@ SET ENV variablename=value
 
 Input from a user can be obtained by:
 
-SET ENV -p \"Prompt String\" name=default
+SET ENV -p "Prompt String" name=default
 
 The -p switch indicates that the user should be prompted with the
 indicated prompt string and the input provided will be saved in the
-environment variable \'name\'. If no input is provided, the value
-specified as \'default\' will be used.
+environment variable 'name'. If no input is provided, the value
+specified as 'default' will be used.
 
 ##### Arithmetic Expressions
 
@@ -2153,30 +2123,30 @@ SET ENVIRONMENT -A name=expression
 
 Expression can contain any of these C language operators:
 
-  ------ -----------------------
-  (      Open Parenthesis
-  )      Close Parenthesis
-  \-     Subtraction
-  \+     Addition
-  \*     Multiplication
-  /      Division
-  \%     Modulus
-  &&     Logical AND
-  \|\|   Logical OR
-  &      Bitwise AND
-  \|     Bitwise Inclusive OR
-  \^     Bitwise Exclusive OR
-  \>\>   Bitwise Right Shift
-  \<\<   Bitwise Left Shift
-  ==     Equality
-  !=     Inequality
-  \<=    Less than or Equal
-  \<     Less than
-  \>=    Greater than or Equal
-  \>     Greater than
-  !      Logical Negation
-  \~     Bitwise Compliment
-  ------ -----------------------
+|      |                       |
+| ---- | --------------------- |
+| (    | Open Parenthesis      |
+| )    | Close Parenthesis     |
+| \-   | Subtraction           |
+| \+   | Addition              |
+| \*   | Multiplication        |
+| /    | Division              |
+| %    | Modulus               |
+| &&   | Logical AND           |
+| ||   | Logical OR            |
+| &    | Bitwise AND           |
+| |    | Bitwise Inclusive OR  |
+| ^    | Bitwise Exclusive OR  |
+| \>\> | Bitwise Right Shift   |
+| \<\< | Bitwise Left Shift    |
+| \==  | Equality              |
+| \!=  | Inequality            |
+| \<=  | Less than or Equal    |
+| \<   | Less than             |
+| \>=  | Greater than or Equal |
+| \>   | Greater than          |
+| \!   | Logical Negation      |
+| \~   | Bitwise Compliment    |
 
 Operator precedence is consistent with C language precedence.
 
@@ -2202,23 +2172,21 @@ Commands can be aliases with environment variables. For example:
 
 sim\> set env echo=echof
 
-sim\> echo "Hello there"
+sim\> echo “Hello there”
 
 Hello there
 
-Executing System Commands
--------------------------
+## Executing System Commands
 
-The simulator can execute operating system commands with the ! (spawn)
+The simulator can execute operating system commands with the \! (spawn)
 command:
 
-! \<host operating system command\>
+\! \<host operating system command\>
 
 If no operating system command is provided, the simulator attempts to
-launch the host operating system\'s command shell.
+launch the host operating system's command shell.
 
-Getting Help
-------------
+## Getting Help
 
 The HELP command prints out information about a command or about all
 commands:
@@ -2237,10 +2205,9 @@ HELP \<device\> SET print HELP for device specific SET commands
 
 HELP \<device\> SHOW print HELP for device specific SHOW commands
 
- Recording Simulator activities
-------------------------------
+##  Recording Simulator activities
 
-The interactions performed with the simulator (at the "sim\>" prompt)
+The interactions performed with the simulator (at the “sim\>” prompt)
 and the output that those interactions produce can be recorded to a log
 file/
 
@@ -2262,11 +2229,10 @@ SET CONSOLE TELNET=LOG=LOG direct log output to log file
 ### Switches
 
 By default, log output is written at the end of the specified log file.
-A new log file can be created if the --N switch is used on the command
+A new log file can be created if the –N switch is used on the command
 line.
 
-Controlling Debugging
----------------------
+## Controlling Debugging
 
 Some simulated devices may provide debug printouts to help in diagnosing
 complicated problems. Debug output may be sent to a variety of places,
@@ -2291,45 +2257,45 @@ event.
 Debug message output can be enhanced to contain additional, potentially
 useful information.
 
-#### --f
+#### –f
 
 The -F switch suppresses the internal logic which coalesces successive
 identical debug output lines into one followed by an indicator of how
 many times the same line was output. This mode is most appropriate when
 output is being displayed in real time to STDOUT or STDERR.
 
-#### --t
+#### –t
 
 The -T switch causes debug output to contain a time of day displayed as
 hh:mm:ss.msec.
 
-#### -a
+#### \-a
 
 The -A switch causes debug output to contain a time of day displayed as
 seconds.msec.
 
-#### -r
+#### \-r
 
-The -R switch causes the time of day displayed due to the -T or --A
+The -R switch causes the time of day displayed due to the -T or –A
 switches to be relative to the start time of debugging. If neither -T or
 -A is explicitly specified, -T is implied.
 
-#### --p
+#### –p
 
 The -P switch adds the output of the PC (Program Counter) to each debug
 message.
 
-#### -n
+#### \-n
 
 The -N switch causes a new/empty file to be written to. The default is
 to append to an existing debug log file.
 
-#### -d
+#### \-d
 
 The -D switch causes data blob output to also display the data as
 RADIX-50 characters.
 
-#### -e
+#### \-e
 
 The -E switch causes data blob output to also display the data as EBCDIC
 characters.
@@ -2347,9 +2313,9 @@ If the device has individual, named debug flags:
 
 SET \<device\> DEBUG enable all debug flags
 
-SET \<device\> DEBUG=n1;n2;\... enable debug flags n1, n2, \...
+SET \<device\> DEBUG=n1;n2;... enable debug flags n1, n2, ...
 
-SET \<device\> NODEBUG=n1;n2;\... disable debug flags n1, n2, \...
+SET \<device\> NODEBUG=n1;n2;... disable debug flags n1, n2, ...
 
 SET \<device\> NODEBUG disable all debug flags
 
@@ -2363,8 +2329,7 @@ specific debug settings can be displayed with:
 
 > SHOW DEBUG display the current debug settings
 
-Exiting the Simulator
----------------------
+## Exiting the Simulator
 
 EXIT (synonyms QUIT and BYE) returns control to the operating system. An
 optional numeric exit status may be provided on the EXIT command line
@@ -2372,8 +2337,7 @@ that an operating system script may act on.
 
 > EXIT {status} return to the operating system
 
-Manipulating Files within the Simulator
----------------------------------------
+## Manipulating Files within the Simulator
 
 Tools to manipulate file containers and to transfer files/data into or
 out of a simulated environment are provided.
@@ -2388,24 +2352,22 @@ users.
 The **tar** command is provided to pack unpack archives as needed.
 
 > tar -czf xyz.tar.gz \*.dsk archive disk image files
->
+> 
 > tar -xf xyz.tar extract files from an archive
 
 ### Transferring data from the web
 
 The **curl** command is provided to access data across the web.
 
-> curl -L <https://github.com/simh/simh/archive/master.zip> \--output
+> curl -L <https://github.com/simh/simh/archive/master.zip> --output
 > master.zip
 
-Appendix 1: File Representations {#appendix-1-file-representations .list-paragraph}
-================================
+# Appendix 1: File Representations
 
 All file representations are little-endian. On big-endian hosts, the
 simulator automatically performs any required byte swapping.
 
-A.1 Hard Disks {#a.1-hard-disks .list-paragraph}
---------------
+## A.1 Hard Disks
 
 Hard disks are represented as unstructured binary files of 16b data
 items for the 12b and 16b simulators, of 32b data items for the 18b,
@@ -2418,16 +2380,14 @@ beyond the emulated capacity of the drive. If present, the metadata
 describes details about the actual drive being emulated and potential
 additional parameters which may be useful in simulation.
 
-A.2 Floppy Disks {#a.2-floppy-disks .list-paragraph}
-----------------
+## A.2 Floppy Disks
 
 Floppy disks are represented as unstructured binary files of 8b data
 items. They are nearly identical to the floppy disk images for Doug
-Jones\' PDP-8 simulator but lack the initial 256 byte header. A utility
+Jones' PDP-8 simulator but lack the initial 256 byte header. A utility
 for converting between the two formats is easily written.
 
-A.3 Magnetic Tapes {#a.3-magnetic-tapes .list-paragraph}
-------------------
+## A.3 Magnetic Tapes
 
 SIMH format magnetic tapes are represented as unstructured binary files
 of 8b data items. Each record starts with a 32b record header, in little
@@ -2473,12 +2433,12 @@ flag tape marks, and 0xA0 for data records.
 SIMH can directly read from TAR files. TAR files are read directly and
 presented through the tape interface as tape records of a fixed size.
 The default TAR record size is 10240. A specific record size can be
-specified by using the --B switch on the ATTACH command. Since the
+specified by using the –B switch on the ATTACH command. Since the
 specified input file is merely presented as fixed sized records to the
 simulated system reading from a tape, other data could also be presented
 via this same mechanism. For example, if a system was able to read 80
 byte card images from a tape drive, a binary input file could be
-attached with a --B 80 and it would be read 80 bytes at a time.
+attached with a –B 80 and it would be read 80 bytes at a time.
 
 SIMH can present the content of local text and binary files on a pseudo
 tape device. This is achieved by using one of ANSI-VMS, ANSI-RT11,
@@ -2491,21 +2451,19 @@ endings and they will be visible to an operating system which can read
 an ANSI tape as normal data in the expected form. Binary files are
 presented as fixed sized 512 byte records.
 
-A.4 Line Printers {#a.4-line-printers .list-paragraph}
------------------
+## A.4 Line Printers
 
 Line printer output is represented by an ASCII file of lines separated
 by the newline character. Overprinting is represented by a line ending
 in return rather than newline.
 
-A.5 DECtapes {#a.5-dectapes .list-paragraph}
-------------
+## A.5 DECtapes
 
 DECtapes are structured as fixed length blocks. PDP-1/4/7/9/15 DECtapes
 use 578 blocks of 256 32b words. Each 32b word contains 18b (6 lines) of
 data. PDP-11 DECtapes use 578 blocks of 256 16b words. Each 16b word
 contains 6 lines of data, with 2b omitted. This is compatible with
-native PDP-11 DECtape dump facilities, and with John Wilson\'s PUTR
+native PDP-11 DECtape dump facilities, and with John Wilson's PUTR
 Program. PDP-8 DECtapes use 1474 blocks of 129 16b words. Each 16b word
 contains 12b (4 lines) of data. PDP-8 OS/8 does not use the 129th word
 of each block, and OS/8 DECtape dumps contain only 128 words per block.
@@ -2534,8 +2492,7 @@ will generate data in normal form for blocks written forward, and
 complement obverse data for blocks written in reverse, corresponding to
 the simulator format.
 
-Appendix 2: Debug Status {#appendix-2-debug-status .list-paragraph}
-========================
+# Appendix 2: Debug Status
 
 The debug status of each simulated CPU and device is as follows:
 
@@ -2685,627 +2642,625 @@ DECtape - - -
 
 mag tape - y y
 
-Revision History (covering Rev 2.0 to Rev 3.5) {#revision-history-covering-rev-2.0-to-rev-3.5 .list-paragraph}
-==============================================
+# Revision History (covering Rev 2.0 to Rev 3.5)
 
 Starting with Rev 2.7, detailed revision histories can be found in file
 sim\_rev.h.
 
 Rev 3.5, Sep, 05
 
--   Overhauled sources for readability
+  - Overhauled sources for readability
 
--   Added VAX-11/780
+  - Added VAX-11/780
 
 Rev 3.4, May, 05
 
--   Revised memory interaction model
+  - > Revised memory interaction model
 
 Rev 3.3, Nov, 04
 
--   Added PDP-11/VAX DHQ11 support
+  - Added PDP-11/VAX DHQ11 support
 
--   Added PDP-11/VAX TM02/TM03 support
+  - Added PDP-11/VAX TM02/TM03 support
 
--   Added PDP-11 model-specific emulation support
+  - Added PDP-11 model-specific emulation support
 
--   Added full VAX support
+  - Added full VAX support
 
--   Replaced SET ONLINE/OFFLINE with SET ENABLED/DISABLED
+  - Replaced SET ONLINE/OFFLINE with SET ENABLED/DISABLED
 
 Rev 3.2, Apr, 04
 
--   Added LGP-30/LGP-21 simulator
+  - Added LGP-30/LGP-21 simulator
 
--   Added global SHOW modifier capability
+  - Added global SHOW modifier capability
 
--   Added global SET DEBUG modifier
+  - Added global SET DEBUG modifier
 
--   Added global SHOW DEBUG,RADIX,MODIFIERS,NAME modifiers
+  - Added global SHOW DEBUG,RADIX,MODIFIERS,NAME modifiers
 
--   Added VAX extended physical memory support (Mark Pizzolato)
+  - Added VAX extended physical memory support (Mark Pizzolato)
 
--   Added VAX RXV21 support
+  - Added VAX RXV21 support
 
--   Revised terminal multiplexer library to support variable number of
+  - Revised terminal multiplexer library to support variable number of
     lines per multiplexer
 
--   Added PDP-15 LT19 support (1-16 terminals)
+  - Added PDP-15 LT19 support (1-16 terminals)
 
 Rev 3.1, Dec, 03
 
--   Added Alpha/VMS, FreeBSD, Mac OS/X Ethernet library support
+  - Added Alpha/VMS, FreeBSD, Mac OS/X Ethernet library support
 
--   Added Eclipse floating point and interval timer support (from
+  - Added Eclipse floating point and interval timer support (from
     Charles Owen)
 
--   Added PDP-1 parallel drum support
+  - Added PDP-1 parallel drum support
 
--   Added PDP-8 TSC8-75 and TD8E support
+  - Added PDP-8 TSC8-75 and TD8E support
 
--   Added H316/516 DMA/DMC, magtape, fixed head disk support
+  - Added H316/516 DMA/DMC, magtape, fixed head disk support
 
--   Added PDP-8, PDP-15, 32b Interdata instruction history support
+  - Added PDP-8, PDP-15, 32b Interdata instruction history support
 
 Rev 3.0, May, 03
 
--   Added logical name support
+  - Added logical name support
 
--   Added instruction history support
+  - Added instruction history support
 
--   Added multiple tape format support
+  - Added multiple tape format support
 
--   Added 64b address support
+  - Added 64b address support
 
--   Added PDP-4 EAE support
+  - Added PDP-4 EAE support
 
--   Added PDP-15 FP15 and XVM support
+  - Added PDP-15 FP15 and XVM support
 
 Rev 2.10, Nov, 02
 
--   Added Telnet console capability, removed VT emulation
+  - Added Telnet console capability, removed VT emulation
 
--   Added DO with substitutable arguments (from Brian Knittel)
+  - Added DO with substitutable arguments (from Brian Knittel)
 
--   Added .ini initialization file (from Hans Pufal)
+  - Added .ini initialization file (from Hans Pufal)
 
--   Added quiet mode (from Brian Knittel)
+  - Added quiet mode (from Brian Knittel)
 
--   Added ! command (from Mark Pizzolato)
+  - Added \! command (from Mark Pizzolato)
 
--   Added Telnet BREAK support (from Mark Pizzolato)
+  - Added Telnet BREAK support (from Mark Pizzolato)
 
--   Added device enable/disable support
+  - Added device enable/disable support
 
--   Added optional simulator hooks for input, output, commands
+  - Added optional simulator hooks for input, output, commands
 
--   Added breakpoint actions
+  - Added breakpoint actions
 
--   Added magnetic tape simulation library
+  - Added magnetic tape simulation library
 
--   Added PDP-11 KW11P programmable clock
+  - Added PDP-11 KW11P programmable clock
 
--   Added PDP-11 RK611/RK06/RK07 disk
+  - Added PDP-11 RK611/RK06/RK07 disk
 
--   Added PDP-11/VAX TMSCP tape
+  - Added PDP-11/VAX TMSCP tape
 
--   Added PDP-11/VAX DELQA Ethernet support (from David Hittner)
+  - Added PDP-11/VAX DELQA Ethernet support (from David Hittner)
 
--   Added PDP-11/PDP-10 RX211/RX02 floppy disk
+  - Added PDP-11/PDP-10 RX211/RX02 floppy disk
 
--   Added PDP-11/VAX autoconfiguration support
+  - Added PDP-11/VAX autoconfiguration support
 
--   Added PDP-10/PDP-11/VAX variable vector support
+  - Added PDP-10/PDP-11/VAX variable vector support
 
--   Added PDP-1 DECtape
+  - Added PDP-1 DECtape
 
--   Added PDP-1, PDP-4 Type 24 serial drum support
+  - Added PDP-1, PDP-4 Type 24 serial drum support
 
--   Added PDP-8 RX28 support
+  - Added PDP-8 RX28 support
 
--   Added PDP-9 RB09 fixed head disk, LP09 line printer
+  - Added PDP-9 RB09 fixed head disk, LP09 line printer
 
--   Added HP2100 12845A line printer
+  - Added HP2100 12845A line printer
 
--   Added HP2100 13183 magtape support
+  - Added HP2100 13183 magtape support
 
--   Added HP2100 boot ROM support
+  - Added HP2100 boot ROM support
 
--   Added HP2100 interprocessor link support
+  - Added HP2100 interprocessor link support
 
--   Added IBM 1620
+  - Added IBM 1620
 
--   Added SDS 940
+  - Added SDS 940
 
--   Added Interdata 16b and 32b systems
+  - Added Interdata 16b and 32b systems
 
--   Added 16b DECtape file format support
+  - Added 16b DECtape file format support
 
--   Added support for statically buffered devices
+  - Added support for statically buffered devices
 
--   Added magnetic tape end of medium support
+  - Added magnetic tape end of medium support
 
--   Added 50/60Hz support to line frequency clocks
+  - Added 50/60Hz support to line frequency clocks
 
--   Added 7B/8B support to terminals and multiplexers
+  - Added 7B/8B support to terminals and multiplexers
 
--   Added BREAK support to terminals and multiplexers
+  - Added BREAK support to terminals and multiplexers
 
 Rev 2.9, Jan, 02
 
--   Added circular register arrays
+  - Added circular register arrays
 
--   Replaced ENABLE/DISABLE with SET ENABLED/DISABLED
+  - Replaced ENABLE/DISABLE with SET ENABLED/DISABLED
 
--   Replaced LOG/NOLOG with SET LOG/NOLOG
+  - Replaced LOG/NOLOG with SET LOG/NOLOG
 
--   Generalized the timer calibration package
+  - Generalized the timer calibration package
 
--   Added additional routines to the multiplexer library
+  - Added additional routines to the multiplexer library
 
--   Added SET DISCONNECT, SHOW STATISTICS commands to multiplexers
+  - Added SET DISCONNECT, SHOW STATISTICS commands to multiplexers
 
--   Re-implemented PDP-8 TTX as a unified multiplexer
+  - Re-implemented PDP-8 TTX as a unified multiplexer
 
--   Implemented a PC queue in most simulators
+  - Implemented a PC queue in most simulators
 
--   Added VAX simulator
+  - Added VAX simulator
 
--   Added GRI-909 simulator
+  - Added GRI-909 simulator
 
--   Added Peter Schorn\'s MITS 8080/Z80 simulator
+  - Added Peter Schorn's MITS 8080/Z80 simulator
 
--   Added Brian Knittel\'s IBM 1130 simulator
+  - Added Brian Knittel's IBM 1130 simulator
 
--   Added HP2100 DQ, DR, MS, MUX devices
+  - Added HP2100 DQ, DR, MS, MUX devices
 
--   Added SET VT/NOVT commands
+  - Added SET VT/NOVT commands
 
 Rev 2.8, Dec, 01
 
--   Added DO command
+  - Added DO command
 
--   Added general breakpoint facility
+  - Added general breakpoint facility
 
--   Added extended SET/SHOW capability
+  - Added extended SET/SHOW capability
 
--   Replaced ADD/REMOVE with SET ONLINE/OFFLINE
+  - Replaced ADD/REMOVE with SET ONLINE/OFFLINE
 
--   Added global register name recognition
+  - Added global register name recognition
 
--   Added unit-based register arrays
+  - Added unit-based register arrays
 
--   Added Charles Owen\'s System 3 simulator
+  - Added Charles Owen's System 3 simulator
 
--   Added PDP-11 I/O bus map
+  - Added PDP-11 I/O bus map
 
--   Added PDP-11/VAX RQDX3
+  - Added PDP-11/VAX RQDX3
 
--   Added PDP-8 RL8A
+  - Added PDP-8 RL8A
 
--   Revised 18b PDP interrupt structure
+  - Revised 18b PDP interrupt structure
 
--   Revised directory and documentation structure
+  - Revised directory and documentation structure
 
--   Added support for MINGW environment
+  - Added support for MINGW environment
 
 Rev 2.7, Sep, 01
 
--   Added DZ11 (from Thord Nilson and Art Krewat) to PDP-11, PDP-10
+  - Added DZ11 (from Thord Nilson and Art Krewat) to PDP-11, PDP-10
 
--   Added additional terminals to PDP-8
+  - Added additional terminals to PDP-8
 
--   Added TSS/8 packed character format to PDP-8
+  - Added TSS/8 packed character format to PDP-8
 
--   Added sim\_sock and sim\_tmxr libraries
+  - Added sim\_sock and sim\_tmxr libraries
 
--   Added sim\_qcount and simulator exit detach all facilities
+  - Added sim\_qcount and simulator exit detach all facilities
 
--   Added Macintosh sim\_sock support (from Peter Schorn)
+  - Added Macintosh sim\_sock support (from Peter Schorn)
 
--   Added simulator revision level, SHOW version
+  - Added simulator revision level, SHOW version
 
--   Changed int64/uint64 to t\_int64/t\_uint64 for Windows
+  - Changed int64/uint64 to t\_int64/t\_uint64 for Windows
 
--   Fixed bug in PDP-11 interrupt acknowledge
+  - Fixed bug in PDP-11 interrupt acknowledge
 
--   Fixed bugs in PDP-11 TS NXM check, boot code, error status; added
+  - Fixed bugs in PDP-11 TS NXM check, boot code, error status; added
     extended characteristics and status
 
--   Fixed bug in PDP-11 TC stop, stop all functions
+  - Fixed bug in PDP-11 TC stop, stop all functions
 
--   Fixed receive interrupt while disconnected bug in DZ11
+  - Fixed receive interrupt while disconnected bug in DZ11
 
--   Fixed multi-unit operation bugs, interrupt bugs in PDP-11
+  - Fixed multi-unit operation bugs, interrupt bugs in PDP-11
 
--   RP, PDP-10 RP, PDP-10 TU
+  - RP, PDP-10 RP, PDP-10 TU
 
--   Fixed carrier detect bug in PDP-11, PDP-10 DZ
+  - Fixed carrier detect bug in PDP-11, PDP-10 DZ
 
--   Fixed bug in PDP-8 reset routine
+  - Fixed bug in PDP-8 reset routine
 
--   Fixed conditional in PDP-18b CPU
+  - Fixed conditional in PDP-18b CPU
 
--   Fixed SC = 0 bug in PDP-18b EAE
+  - Fixed SC = 0 bug in PDP-18b EAE
 
--   Fixed bug in PDP-7 LPT
+  - Fixed bug in PDP-7 LPT
 
--   Upgraded Nova second terminal to use sim\_tmxr
+  - Upgraded Nova second terminal to use sim\_tmxr
 
--   Upgraded PDP-18b second terminal to use sim\_tmxr
+  - Upgraded PDP-18b second terminal to use sim\_tmxr
 
--   Upgraded PDP-11 LTC to full KW11-L
+  - Upgraded PDP-11 LTC to full KW11-L
 
--   Removed hack multiple console support
+  - Removed hack multiple console support
 
 Rev 2.6b, Aug, 01
 
--   Added H316/516 simulator
+  - > Added H316/516 simulator
 
--   Added Macintosh support from Louis Chrétien, Peter Schorn, and Ben
+  - > Added Macintosh support from Louis Chrétien, Peter Schorn, and Ben
     > Supnik
 
--   Added bad block table option to PDP-11 RL, RP
+  - > Added bad block table option to PDP-11 RL, RP
 
--   Removed register in declarations
+  - > Removed register in declarations
 
--   Fixed bugs found by Peter Schorn
+  - > Fixed bugs found by Peter Schorn
+    
+      - > endian error in PDP-10, PDP-11 RP
+    
+      - > space reverse error in PDP-11 TS
+    
+      - > symbolic input in 1401
 
-    -   endian error in PDP-10, PDP-11 RP
+  - > Fixed bug in PDP-1 RIM loader found by Derek Peschel
 
-    -   space reverse error in PDP-11 TS
-
-    -   symbolic input in 1401
-
--   Fixed bug in PDP-1 RIM loader found by Derek Peschel
-
--   Fixed bug in Nova fixed head disk
+  - > Fixed bug in Nova fixed head disk
 
 Rev 2.6a, Jun, 01
 
--   Added PDP-9, PDP-15 API option
+  - Added PDP-9, PDP-15 API option
 
--   Added PDP-9, PDP-15 second terminal
+  - Added PDP-9, PDP-15 second terminal
 
--   Added PDP-10 option for TOPS-20 V4.1 bug fix
+  - Added PDP-10 option for TOPS-20 V4.1 bug fix
 
--   Added PDP-10 FE CTRL-C option for Windows
+  - Added PDP-10 FE CTRL-C option for Windows
 
--   Added console logging
+  - Added console logging
 
--   Added multiple console support
+  - Added multiple console support
 
--   Added comment recognition
+  - Added comment recognition
 
--   Increased size of string buffers for long path names
+  - Increased size of string buffers for long path names
 
--   Fixed bug in big-endian I/O found by Dave Conroy
+  - Fixed bug in big-endian I/O found by Dave Conroy
 
--   Fixed DECtape reset in PDP-8, PDP-11, PDP-9/15
+  - Fixed DECtape reset in PDP-8, PDP-11, PDP-9/15
 
--   Fixed RIM loader PC handling in PDP-9/15
+  - Fixed RIM loader PC handling in PDP-9/15
 
--   Fixed indirect pointers in PDP-10 paging
+  - Fixed indirect pointers in PDP-10 paging
 
--   Fixed SSC handling in PDP-10 TM02/TU45
+  - Fixed SSC handling in PDP-10 TM02/TU45
 
--   Fixed JMS to non-existent memory in PDP-8
+  - Fixed JMS to non-existent memory in PDP-8
 
--   Fixed error handling on command file
+  - Fixed error handling on command file
 
 Rev 2.6, May, 01
 
--   Added ENABLE/DISABLE devices
+  - Added ENABLE/DISABLE devices
 
--   Added SHOW DEVICES
+  - Added SHOW DEVICES
 
--   Added examination/modification of register arrays
+  - Added examination/modification of register arrays
 
--   Added PDP-10 simulator
+  - Added PDP-10 simulator
 
--   Added clock autocalibration to SCP, Nova, PDP-8, PDP-11, PDP-18b
+  - Added clock autocalibration to SCP, Nova, PDP-8, PDP-11, PDP-18b
 
--   Added PDP-8, PDP-11, PDP-9/15 DECtape
+  - Added PDP-8, PDP-11, PDP-9/15 DECtape
 
--   Added PDP-8 DF32
+  - Added PDP-8 DF32
 
--   Added 4k Disk Monitor boot to PDP-8 RF08 and DF32
+  - Added 4k Disk Monitor boot to PDP-8 RF08 and DF32
 
--   Added PDP-4/7 funny format loader support
+  - Added PDP-4/7 funny format loader support
 
--   Added extension handling to the PDP-8 and -9/15 loaders
+  - Added extension handling to the PDP-8 and -9/15 loaders
 
--   Added PDP-11 TS11/TSV05
+  - Added PDP-11 TS11/TSV05
 
--   Added integer interval timer to SCP
+  - Added integer interval timer to SCP
 
--   Added filename argument to LOAD/DUMP
+  - Added filename argument to LOAD/DUMP
 
--   Revised magnetic tape and DECtape bootstraps to rewind before first
+  - Revised magnetic tape and DECtape bootstraps to rewind before first
     instruction
 
--   Fixed 3 cycle data break sequence in PDP-8 RF
+  - Fixed 3 cycle data break sequence in PDP-8 RF
 
--   Fixed 3 cycle data break sequence in 18b PDP LP, MT, RF
+  - Fixed 3 cycle data break sequence in 18b PDP LP, MT, RF
 
--   Fixed CS1.TRE write, CS2.MXF,UPE write, and CS2.UAI in PDP-11 RP
+  - Fixed CS1.TRE write, CS2.MXF,UPE write, and CS2.UAI in PDP-11 RP
 
--   Fixed 4M memory size definition in PDP-11
+  - Fixed 4M memory size definition in PDP-11
 
--   Fixed attach bug in RESTORE
+  - Fixed attach bug in RESTORE
 
--   Fixed detach bug for buffered devices
+  - Fixed detach bug for buffered devices
 
--   Updated copyright notices, fixed comments
+  - Updated copyright notices, fixed comments
 
 Rev 2.5a, Dec, 00
 
--   Added CMD flop to HP paper tape and line printer
+  - > Added CMD flop to HP paper tape and line printer
 
--   Added status input for HP paper tape punch and TTY
+  - > Added status input for HP paper tape punch and TTY
 
--   Added Charles Owen\'s 1401 mag tape boot routine
+  - > Added Charles Owen's 1401 mag tape boot routine
 
--   Added Bruce Ray\'s Nova plotter and second terminal modules
+  - > Added Bruce Ray's Nova plotter and second terminal modules
 
--   Added Charles Owen\'s Eclipse CPU support
+  - > Added Charles Owen's Eclipse CPU support
 
--   Added PDP-9/PDP-15 RIM/BIN loader support
+  - > Added PDP-9/PDP-15 RIM/BIN loader support
 
--   Added PDP-9/PDP-15 extend/bank initial state registers
+  - > Added PDP-9/PDP-15 extend/bank initial state registers
 
--   Added PDP-9/PDP-15 half/full duplex support
+  - > Added PDP-9/PDP-15 half/full duplex support
 
--   Moved software documentation to a separate file
+  - > Moved software documentation to a separate file
 
--   Fixed SCP handling of devices without units
+  - > Fixed SCP handling of devices without units
 
--   Fixed FLG, FBF initialization in many HP peripherals
+  - > Fixed FLG, FBF initialization in many HP peripherals
 
--   Fixed 1401 bugs found by Charles Owen
+  - > Fixed 1401 bugs found by Charles Owen
+    
+      - > 4, 7 char NOPs are legal
+    
+      - > 1 char B is chained BCE
+    
+      - > MCE moves whole character, not digit, after first
 
-    -   4, 7 char NOPs are legal
+  - > Fixed Nova bugs found by Bruce Ray
+    
+      - > traps implemented on Nova 3 as well as Nova 4
+    
+      - > DIV and DIVS 0/0 set carry
+    
+      - > RETN sets SP from FP at outset
+    
+      - > IORST does not clear carry
+    
+      - > Nova 4 implements two undocumented instructions
 
-    -   1 char B is chained BCE
-
-    -   MCE moves whole character, not digit, after first
-
--   Fixed Nova bugs found by Bruce Ray
-
-    -   traps implemented on Nova 3 as well as Nova 4
-
-    -   DIV and DIVS 0/0 set carry
-
-    -   RETN sets SP from FP at outset
-
-    -   IORST does not clear carry
-
-    -   Nova 4 implements two undocumented instructions
-
--   Fixed bugs in 18b PDP\'s
-
-    -   XCT indirect address calculation
-
-    -   missing index instructions in PDP-15
-
-    -   bank mode handling in PDP-15
+  - > Fixed bugs in 18b PDP's
+    
+      - > XCT indirect address calculation
+    
+      - > missing index instructions in PDP-15
+    
+      - > bank mode handling in PDP-15
 
 Rev 2.5, Nov, 00
 
--   Removed Digital and Compaq from copyrights, as authorized by Compaq
+  - Removed Digital and Compaq from copyrights, as authorized by Compaq
     Sr VP Bill Strecker
 
--   Revised save/restore format for 64b simulators
+  - Revised save/restore format for 64b simulators
 
--   Added examine to file
+  - Added examine to file
 
--   Added unsigned integer data types to sim\_defs
+  - Added unsigned integer data types to sim\_defs
 
--   Added Nova 3 and Nova 4 instructions to Nova CPU
+  - Added Nova 3 and Nova 4 instructions to Nova CPU
 
--   Added HP2100
+  - Added HP2100
 
--   Fixed indirect loop through autoinc/dec in Nova CPU
+  - Fixed indirect loop through autoinc/dec in Nova CPU
 
--   Fixed MDV enabled test in Nova CPU
+  - Fixed MDV enabled test in Nova CPU
 
 Rev 2.4, Jan, 99
 
--   Placed all sources under X11-like open source license
+  - Placed all sources under X11-like open source license
 
--   Added DUMP command, revised sim\_load interface
+  - Added DUMP command, revised sim\_load interface
 
--   Added SHOW MODIFIERS command
+  - Added SHOW MODIFIERS command
 
--   Revised magnetic tape format to include record error flag
+  - Revised magnetic tape format to include record error flag
 
--   Fixed 64b problems in SCP
+  - Fixed 64b problems in SCP
 
--   Fixed big endian problem in PDP-11 bad block routine
+  - Fixed big endian problem in PDP-11 bad block routine
 
--   Fixed interrupt on error bug in PDP-11 RP/RM disks
+  - Fixed interrupt on error bug in PDP-11 RP/RM disks
 
--   Fixed ROL/ROR inversion in PDP-11 symbolic routines
+  - Fixed ROL/ROR inversion in PDP-11 symbolic routines
 
 Rev 2.3d, Sep, 98
 
--   Added BeOS support
+  - Added BeOS support
 
--   Added radix commands and switches
+  - Added radix commands and switches
 
--   Added PDP-11 CIS support
+  - Added PDP-11 CIS support
 
--   Added RT11 V5.3 to distribution kits
+  - Added RT11 V5.3 to distribution kits
 
--   Fixed \"shift 32\" bugs in SCP, PDP-11 floating point
+  - Fixed "shift 32" bugs in SCP, PDP-11 floating point
 
--   Fixed bug in PDP-11 paper tape reader
+  - Fixed bug in PDP-11 paper tape reader
 
--   Fixed bug in \^D handling
+  - Fixed bug in ^D handling
 
 Rev 2.3c, May, 98
 
--   Fixed bug in PDP-11 DIV overflow check
+  - Fixed bug in PDP-11 DIV overflow check
 
--   Fixed bugs in PDP-11 magnetic tape bootstrap
+  - Fixed bugs in PDP-11 magnetic tape bootstrap
 
--   Fixed bug in PDP-11 magnetic tape unit select
+  - Fixed bug in PDP-11 magnetic tape unit select
 
--   Replaced UNIX V7 disk images
+  - Replaced UNIX V7 disk images
 
 Rev 2.3b, May, 98
 
--   Added switch recognition to all simulator commands
+  - Added switch recognition to all simulator commands
 
--   Added RIM loader to PDP-8 paper tape reader and loader
+  - Added RIM loader to PDP-8 paper tape reader and loader
 
--   Added second block bootstrap to PDP-11 magnetic tape
+  - Added second block bootstrap to PDP-11 magnetic tape
 
--   Fixed bug in PDP-8 RF bootstrap
+  - Fixed bug in PDP-8 RF bootstrap
 
--   Fixed bug in PDP-11 symbolic display
+  - Fixed bug in PDP-11 symbolic display
 
--   Fixed bugs in PDP-11 floating point (LDEXP, STEXP, MODf, STCfi,
+  - Fixed bugs in PDP-11 floating point (LDEXP, STEXP, MODf, STCfi,
     overflow handling)
 
 Rev 2.3a, Nov, 97
 
--   Added search capability
+  - Added search capability
 
--   Added bad block table command to PDP-11 disks
+  - Added bad block table command to PDP-11 disks
 
--   Added bootstrap to PDP-11 magnetic tape
+  - Added bootstrap to PDP-11 magnetic tape
 
--   Added additional Nova moving head disks
+  - Added additional Nova moving head disks
 
--   Added RT-11 sample software
+  - Added RT-11 sample software
 
--   Fixed bugs in PDP-11 RM/RP disks
+  - Fixed bugs in PDP-11 RM/RP disks
 
--   Fixed bugs in Nova moving head disks
+  - Fixed bugs in Nova moving head disks
 
--   Fixed endian dependence in 18b PDP RIM loader
+  - Fixed endian dependence in 18b PDP RIM loader
 
 Rev 2.3, Mar, 97
 
--   Added PDP-11 RP
+  - Added PDP-11 RP
 
--   Added PDP-1
+  - Added PDP-1
 
--   Changed UNIX terminal I/O to TERMIOS
+  - Changed UNIX terminal I/O to TERMIOS
 
--   Changed magnetic tape format to double ended
+  - Changed magnetic tape format to double ended
 
--   Changed PDP-8 current page mnemonic from T to C
+  - Changed PDP-8 current page mnemonic from T to C
 
--   Added endian independent I/O routines
+  - Added endian independent I/O routines
 
--   Added precise integer data types
+  - Added precise integer data types
 
--   Fixed bug in sim\_poll\_kbd
+  - Fixed bug in sim\_poll\_kbd
 
--   Fixed bug in PDP-8 binary loader
+  - Fixed bug in PDP-8 binary loader
 
--   Fixed bugs in TM11 magnetic tape
+  - Fixed bugs in TM11 magnetic tape
 
--   Fixed bug in RX11 bootstrap
+  - Fixed bug in RX11 bootstrap
 
--   Fixed bug in 18b PDP ADD
+  - Fixed bug in 18b PDP ADD
 
--   Fixed bug in 18b PDP paper tape reader
+  - Fixed bug in 18b PDP paper tape reader
 
--   Fixed bug in PDP-4 console
+  - Fixed bug in PDP-4 console
 
--   Fixed bug in PDP-4, 7 line printer
+  - Fixed bug in PDP-4, 7 line printer
 
 Rev 2.2d, Dec, 96
 
--   Added ADD/REMOVE commands
+  - Added ADD/REMOVE commands
 
--   Added unit enable/disable support to device simulators
+  - Added unit enable/disable support to device simulators
 
--   Added features for IBM 1401 project
+  - Added features for IBM 1401 project
 
--   Added switch recognition for symbolic input
+  - Added switch recognition for symbolic input
 
--   Fixed bug in variable length IEXAMINE
+  - Fixed bug in variable length IEXAMINE
 
--   Fixed LCD bug in RX8E
+  - Fixed LCD bug in RX8E
 
--   Initial changes for Win32
+  - Initial changes for Win32
 
--   Added IBM 1401
+  - Added IBM 1401
 
 Rev 2.2b, Apr, 96
 
--   Added PDP-11 dynamic memory size support
+  - > Added PDP-11 dynamic memory size support
 
 Rev 2.2a, Feb, 96
 
--   New endian independent magnetic tape format
+  - > New endian independent magnetic tape format
 
 Rev 2.2 Jan, 96
 
--   Added register buffers for save/restore
+  - > Added register buffers for save/restore
 
--   Added 18b PDP\'s
+  - > Added 18b PDP's
 
--   Guaranteed TTI, CLK times are non-zero
+  - > Guaranteed TTI, CLK times are non-zero
 
--   Fixed breakpoint/RUN interaction bug
+  - > Fixed breakpoint/RUN interaction bug
 
--   Fixed magnetic tape backspace to EOF bug
+  - > Fixed magnetic tape backspace to EOF bug
 
--   Fixed ISZ/DCA inversion in PDP-8 symbol table
+  - > Fixed ISZ/DCA inversion in PDP-8 symbol table
 
--   Fixed sixbit conversion in PDP-8 examine/deposit
+  - > Fixed sixbit conversion in PDP-8 examine/deposit
 
--   Fixed origin increment bug in PDP-11 binary loader
+  - > Fixed origin increment bug in PDP-11 binary loader
 
--   Fixed GCC longjmp optimization bug in PDP-11 CPU
+  - > Fixed GCC longjmp optimization bug in PDP-11 CPU
 
--   Fixed unit number calculation bug in SCP and in Nova, PDP-11, 18b
+  - > Fixed unit number calculation bug in SCP and in Nova, PDP-11, 18b
     > PDP moving head disks
 
 Rev 2.1 Dec, 95
 
--   Fixed PTR bug (setting done on EOF) in PDP-8, Nova
+  - > Fixed PTR bug (setting done on EOF) in PDP-8, Nova
 
--   Fixed RX bug (setting error on INIT if drive 1 is not attached) in
+  - > Fixed RX bug (setting error on INIT if drive 1 is not attached) in
     > PDP-8, PDP-11
 
--   Fixed RF treatment of photocell flag in PDP-8
+  - > Fixed RF treatment of photocell flag in PDP-8
 
--   Fixed autosize bug (always chose smallest disk if new file) in
+  - > Fixed autosize bug (always chose smallest disk if new file) in
     > PDP-11, Nova
 
--   Fixed not attached bug (reported as not attachable) in most mass
+  - > Fixed not attached bug (reported as not attachable) in most mass
     > storage devices
 
--   Fixed Nova boot ROMs
+  - > Fixed Nova boot ROMs
 
--   Fixed bug in RESTORE (didn\'t requeue if delay = 0)
+  - > Fixed bug in RESTORE (didn't requeue if delay = 0)
 
--   Fixed bug in RESTORE (clobbered device position)
+  - > Fixed bug in RESTORE (clobbered device position)
 
--   Declared static constant arrays as static const
+  - > Declared static constant arrays as static const
 
--   Added PDP-8, Nova magnetic tape simulators
+  - > Added PDP-8, Nova magnetic tape simulators
 
--   Added Dasher mode to Nova terminal simulator
+  - > Added Dasher mode to Nova terminal simulator
 
--   Added LINUX support
+  - > Added LINUX support
 
 Rev 2.0 May, 95
 
--   Added symbolic assembly/disassembly
+  - > Added symbolic assembly/disassembly
 
-Acknowledgements {#acknowledgements .list-paragraph}
-================
+# Acknowledgements
 
 SIMH would not have been possible without help from around the world. I
 would like to acknowledge the help of the following people, all of whom
-donated their time and talent to this \"computer archaeology\" project:
+donated their time and talent to this "computer archaeology" project:
 
 Bill Ackerman PDP-1 consulting
 

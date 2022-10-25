@@ -8,30 +8,30 @@ The following copyright notice applies to the SIMH source, binary, and
 documentation:
 
 > Original code published in 1993-2008, written by Robert M Supnik
->
+> 
 > Copyright (c) 1993-2008, Robert M Supnik
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN
->
+> 
 > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of Robert M Supnik shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
@@ -84,8 +84,7 @@ documentation:
 
 This memorandum documents the Interdata 16b and 32b simulators.
 
-Simulator Files
-===============
+# Simulator Files
 
 sim/ scp.h
 
@@ -151,8 +150,7 @@ id\_uvc.c
 
 id16\_sys.c \[id32\_sys.c\]
 
-Interdata Features
-==================
+# Interdata Features
 
 The Interdata simulator includes simulators for a variety of 16b (I3,
 I4, I5, 70, 80, 7/16, 8/16, 8/16E) and 32b (7/32, 8/32) models. This is
@@ -164,50 +162,50 @@ extension for virtual memory (3200 series).
 The Interdata simulator is configured as follows:
 
 > device names simulates
->
+> 
 > CPU - 16b Interdata 3, 4, 5, 70, 80, 7/16, or 8/16 CPU with 64KB
->
+> 
 > memory
->
+> 
 > Interdata 8/16E CPU with 256KB memory
->
+> 
 > CPU - 32b Interdata 7/32 or 8/32 CPU with 1MB memory;
->
+> 
 > 8/32 supports 2 or 8 register banks
->
+> 
 > SELCH selector channel (1-4)
->
+> 
 > PT paper tape reader/punch
->
+> 
 > TT console terminal, Teletype interface
->
+> 
 > TTP console terminal, PASLA interface
->
+> 
 > LFC line frequency clock
->
+> 
 > PIC programmable interval clock
->
+> 
 > LPT line printer
->
+> 
 > FD floppy disk
->
+> 
 > DP 2.5MB/10MB cartridge disk with four disk drives
->
+> 
 > DM mass storage module (MSM)/intelligent (IDC) disk
->
+> 
 > controller with four disk drives
->
+> 
 > MT magnetic tape
->
+> 
 > PAS programmable asynchronous line controller
->
+> 
 > PASL programmable asynchronous lines, up to 32
 
 The Interdata simulator implements two unique stop conditions:
 
--   Decode of an undefined instruction, and STOP\_INST is set
+  - Decode of an undefined instruction, and STOP\_INST is set
 
--   Runaway carriage control tape in the line printer
+  - Runaway carriage control tape in the line printer
 
 The LOAD command is used to load a carriage control tape for the line
 printer. The DUMP command is used to dump a contiguous portion of memory
@@ -216,7 +214,7 @@ is:
 
 DUMP \<filename\> lowaddr-highaddr
 
-The low address must be greater than or equal to X\'D0\'.
+The low address must be greater than or equal to X'D0'.
 
 Devices are assigned their default device numbers, as documented in the
 Interdata literature. Device numbers can be changed by the command:
@@ -242,8 +240,7 @@ SET \<dev\> ENABLED
 
 All devices are enabled by default.
 
-CPU (16b)
----------
+## CPU (16b)
 
 The CPU options include memory size and CPU type:
 
@@ -292,23 +289,23 @@ truncated portion of memory is lost. Initial memory size is 64KB.
 These switches are recognized when examining or depositing in CPU
 memory:
 
--a examine/deposit ASCII characters
+\-a examine/deposit ASCII characters
 
--b examine/deposit bytes
+\-b examine/deposit bytes
 
--c examine/deposit packed ASCII characters
+\-c examine/deposit packed ASCII characters
 
--f examine/deposit fullwords
+\-f examine/deposit fullwords
 
--d data radix is decimal
+\-d data radix is decimal
 
--o data radix is octal
+\-o data radix is octal
 
--h data radix is hexadecimal
+\-h data radix is hexadecimal
 
--m examine as instruction mnemonics
+\-m examine as instruction mnemonics
 
--v interpret address as virtual
+\-v interpret address as virtual
 
 Packed characters, halfwords, fullwords, and instructions must be
 aligned on a halfword (16b) boundary. If an odd address is specified,
@@ -390,8 +387,7 @@ SHOW CPU HISTORY=n print first n entries of CPU history
 
 The maximum length for the history is 65536 entries.
 
-CPU (32b)
----------
+## CPU (32b)
 
 The CPU options include memory size and CPU type:
 
@@ -430,23 +426,23 @@ truncated portion of memory is lost. Initial memory size is 1024KB.
 These switches are recognized when examining or depositing in CPU
 memory:
 
--a examine/deposit ASCII characters
+\-a examine/deposit ASCII characters
 
--b examine/deposit bytes
+\-b examine/deposit bytes
 
--c examine/deposit packed ASCII characters
+\-c examine/deposit packed ASCII characters
 
--w examine/deposit halfwords
+\-w examine/deposit halfwords
 
--d data radix is decimal
+\-d data radix is decimal
 
--o data radix is octal
+\-o data radix is octal
 
--h data radix is hexadecimal
+\-h data radix is hexadecimal
 
--m examine as instruction mnemonics
+\-m examine as instruction mnemonics
 
--v interpret address as virtual
+\-v interpret address as virtual
 
 Packed characters, halfwords, fullwords, and instructions must be
 aligned on a halfword (16b) boundary. If an odd address is specified,
@@ -534,8 +530,7 @@ SHOW CPU HISTORY=n print first n entries of CPU history
 
 The maximum length for the history is 65536 entries.
 
-Selector Channel (SELCH0, SELCH1, SELCH2, SELCH3)
--------------------------------------------------
+## Selector Channel (SELCH0, SELCH1, SELCH2, SELCH3)
 
 An Interdata system can have 1 to 4 selector channels (SELCH0, SELCH1,
 SELCH2, SELCH3). The default number of channels is 2. The number of
@@ -571,8 +566,7 @@ IENB 4 interrupt enables; right to left,
 
 channels 0 to 3
 
-Programmed I/O Devices
-----------------------
+## Programmed I/O Devices
 
 ### Paper Tape Reader/Punch (PT)
 
@@ -582,7 +576,7 @@ of the next data item to be read and written, respectively. Thus, by
 changing RPOS or PPOS, the user can backspace or advance these devices.
 
 The paper tape reader supports the BOOT command. BOOT PTR copies the
-so-called \'50 loader\' into memory and starts it running.
+so-called '50 loader' into memory and starts it running.
 
 The paper tape controller implements these registers:
 
@@ -657,9 +651,9 @@ non-printing characters suppressed
 
 Changing the mode of either unit changes both. The default mode is KSR.
 
-The Teletype has a BREAK key, which is not present on today\'s
-keyboards. To simulate pressing the break key, stop the simulator and
-use the command:
+The Teletype has a BREAK key, which is not present on today's keyboards.
+To simulate pressing the break key, stop the simulator and use the
+command:
 
 SET TT BREAK
 
@@ -813,7 +807,7 @@ specifications:
 
 \<blank line\> no punch
 
-\(5\) 5 lines with no punches
+(5) 5 lines with no punches
 
 1,5,7 columns 1, 5, 7 punched
 
@@ -1025,9 +1019,9 @@ or a DETACH PAS command.
 Other special PASLA commands:
 
 > SHOW PAS CONNECTIONS show current connections
->
+> 
 > SHOW PAS STATISTICS show statistics for active connections
->
+> 
 > SET PASLn DISCONNECT disconnects the specified line.
 
 The controller (PAS) implements these registers:
@@ -1069,8 +1063,7 @@ TIME\[0:31\] 24 transmit time, lines 0 to 31
 The additional terminals do not support save and restore. All open
 connections are lost when the simulator shuts down or PAS is detached.
 
-Cartridge Disk Controller (DP)
-------------------------------
+## Cartridge Disk Controller (DP)
 
 Cartridge disk options include the ability to make units write enabled
 or write locked, and to select the type of drive:
@@ -1086,7 +1079,7 @@ SET DPn 5440 set unit n to 5440 (10MB)
 Units can also be set ENABLED or DISABLED.
 
 The cartridge disk supports the BOOT command. To boot OS16/32, the hex
-form of the operating system file\'s extension must be placed in
+form of the operating system file's extension must be placed in
 locations 7E:7F. The disk bootstrap looks for a valid OS16/32 volume
 descriptor in block 0, and uses that to locate the volume directory. It
 then searches the directory for a filename of the form OS16xxxx.hhh or
@@ -1150,8 +1143,7 @@ end of file assume rest of disk is zero
 
 OS I/O error report error and stop
 
-Mass Storage Module/Intelligent Disk Controller (DM)
-----------------------------------------------------
+## Mass Storage Module/Intelligent Disk Controller (DM)
 
 MSM/IDC disk controller options include the ability to make units write
 enabled or write locked, and to select the type of drive:
@@ -1187,7 +1179,7 @@ SET DMn MSM330F set unit n to storage module, 330MB
 Units can also be set ENABLED or DISABLED.
 
 The MSM/IDC controller supports the BOOT command. To boot OS16/32, the
-hex form of the operating system file\'s extension must be placed in
+hex form of the operating system file's extension must be placed in
 locations 7E:7F. The disk bootstrap looks for a valid OS16/32 volume
 descriptor in block 0, and uses that to locate the volume directory. It
 then searches the directory for a filename of the form OS16xxxx.hhh or
@@ -1265,8 +1257,7 @@ end of file assume rest of disk is zero
 
 OS I/O error report error and stop
 
-Magnetic Tape Controller (MT)
------------------------------
+## Magnetic Tape Controller (MT)
 
 Magnetic tape options include the ability to make units write enabled or
 write locked.
@@ -1335,31 +1326,29 @@ end of file set error flag
 
 OS I/O error set error flag; if STOP\_IOE, stop
 
-Symbolic Display and Input
-==========================
+# Symbolic Display and Input
 
 The Interdata simulator implements symbolic display and input. Display
 is controlled by command line switches:
 
--a display byte as ASCII character
+\-a display byte as ASCII character
 
--c display halfword as two packed ASCII characters
+\-c display halfword as two packed ASCII characters
 
--m display instruction mnemonics
+\-m display instruction mnemonics
 
 Input parsing is controlled by the first character typed in or by
 command line switches:
 
-\' or -a ASCII character
+' or -a ASCII character
 
-\" or -c two packed ASCII characters
+" or -c two packed ASCII characters
 
 alphabetic instruction mnemonic
 
 numeric hexadecimal number
 
-16b Instruction Input
----------------------
+## 16b Instruction Input
 
 Instruction input uses standard Interdata assembler syntax. There are
 seven instruction classes: short branch, extended short branch, short
@@ -1420,8 +1409,7 @@ by R, between 0 and F (15), the address is a hex number between 0 and
 0xFFFF, and the index register is a hex (decimal) number, optionally
 preceded by R, between 1 and F (15).
 
-32b Instruction Input
----------------------
+## 32b Instruction Input
 
 Instruction input uses standard Interdata assembler syntax. There are
 nine instruction classes: short branch, extended short branch, short

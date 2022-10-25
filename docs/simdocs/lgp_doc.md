@@ -8,30 +8,30 @@ The following copyright notice applies to the SIMH source, binary, and
 documentation:
 
 > Original code published in 1993-2011, written by Robert M Supnik
->
+> 
 > Copyright (c) 1993-2008, Robert M Supnik
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL ROBERT M SUPNIK BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN
->
+> 
 > CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of Robert M Supnik shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
@@ -59,8 +59,7 @@ documentation:
 
 This memorandum documents the LGP-30 simulator.
 
-Simulator Files
-===============
+# Simulator Files
 
 sim/ scp.h
 
@@ -98,33 +97,31 @@ lgp\_stddev.c
 
 lgp\_sys.c
 
-LGP Features
-============
+# LGP Features
 
 The LGP is configured as follows:
 
 > device names simulates
->
+> 
 > CPU LGP-30 or LGP-21 CPU with 4096 words of memory
->
+> 
 > TTI Typewriter input (keyboard and reader)
->
+> 
 > TTO Typewriter output (printer and punch)
->
+> 
 > PTR high-speed paper tape reader
->
+> 
 > PTP high-speed paper tape punch
 
 The LGP simulator implements the following unique stop conditions:
 
--   LGP-30 only: arithmetic overflow
+  - LGP-30 only: arithmetic overflow
 
--   LGP-21 only: reference to undefined I/O device.
+  - LGP-21 only: reference to undefined I/O device.
 
 The LOAD and DUMP commands are not implemented.
 
-CPU
----
+## CPU
 
 The CPU implements either the LGP-30 or the LGP-21:
 
@@ -239,8 +236,7 @@ OUTDN 1 output done flag
 
 WRU 8 interrupt character
 
-Typewriter Input (TTI)
-----------------------
+## Typewriter Input (TTI)
 
 The Typewriter input consists of two units: the keyboard (unit 0) and
 the paper-tape reader (unit 1). The keyboard is permanently associated
@@ -313,8 +309,7 @@ end of file 1 report error and stop
 
 OS I/O error x report error and stop
 
-Typewriter Output (TTO)
------------------------
+## Typewriter Output (TTO)
 
 The Typewriter output consists of two units: the printer (unit 0) and
 the paper-tape punch (unit 1). The printer is permanently associated
@@ -332,7 +327,7 @@ Flex
 
 SET TTO1 FLEX default tape file format is transposed Flex
 
-SET TTO1 FEED=n punch \'n\' feed (0) characters
+SET TTO1 FEED=n punch 'n' feed (0) characters
 
 Transposed Flex has the tape channels in this order: 6-1-2-3-4-5. The
 default is ASCII-encoded Flex.
@@ -369,8 +364,7 @@ not attached 1 report error and stop
 
 OS I/O error x report error and stop
 
-High Speed Paper-Tape Reader (PTR)
-----------------------------------
+## High Speed Paper-Tape Reader (PTR)
 
 The paper tape reader (PTR) reads data from or a disk file. The POS
 register specifies the number of the next data item to be read. Thus, by
@@ -421,8 +415,7 @@ end of file 1 report error and stop
 
 OS I/O error x report error and stop
 
-High Speed Paper-Tape Punch (PTP)
----------------------------------
+## High Speed Paper-Tape Punch (PTP)
 
 The paper tape punch (PTP) writes data to a disk file. The POS register
 specifies the number of the next data item to be written. Thus, by
@@ -436,7 +429,7 @@ Flex
 
 SET PTP FLEX default tape file format is transposed Flex
 
-SET PTP FEED=n punch \'n\' feed (0) characters
+SET PTP FEED=n punch 'n' feed (0) characters
 
 Transposed Flex has the tape channels in this order: 6-1-2-3-4-5. The
 default is ASCII-encoded Flex.
@@ -469,32 +462,31 @@ not attached 1 report error and stop
 
 OS I/O error x report error and stop
 
-Symbolic Display and Input
-==========================
+# Symbolic Display and Input
 
 The LGP simulator implements symbolic display and input. Display is
 controlled by command line switches:
 
--a display as character (tape files only)
+\-a display as character (tape files only)
 
--h display as standard hexadecimal
+\-h display as standard hexadecimal
 
--l display as LGP hexadecimal
+\-l display as LGP hexadecimal
 
--m display instruction mnemonics
+\-m display instruction mnemonics
 
--n display addresses in normal format
+\-n display addresses in normal format
 
 (overrides SET CPU TRACK)
 
--t display addresses as track/sector
+\-t display addresses as track/sector
 
 (overrides SET CPU NORMAL)
 
 Input parsing is controlled by the first character typed in or by
 command line switches:
 
-\' or -a Flex character
+' or -a Flex character
 
 \- or opcode instruction mnemonic
 
@@ -521,8 +513,8 @@ There is only instruction format:
 
 {-}op address
 
-\'op\' is always a single letter. A track/sector address (specified by
-SET CPU TRACK or switch -t) is two decimal numbers between 0 and 63,
+'op' is always a single letter. A track/sector address (specified by SET
+CPU TRACK or switch -t) is two decimal numbers between 0 and 63,
 representing the track and sector. A linear address (specified by
 
 SET CPU NORMAL or switch -n) is one decimal number between 0 and 4095.
@@ -538,8 +530,7 @@ sim\> ex -mt 100
 
 0100: B 0616
 
-Character Set
-=============
+# Character Set
 
 The LGP Typewriter was a Friden Flexowriter. Input was always upper
 case; output could be either upper case or lower case. The following
@@ -577,7 +568,7 @@ code (hex)
 
 15 r or R r R
 
-16 3 or \" 3 \"
+16 3 or " 3 "
 
 17 ; or : ; :
 
@@ -585,7 +576,7 @@ code (hex)
 
 21 i or I i I
 
-22 4 or \^ 4 \^
+22 4 or ^ 4 ^
 
 23 / or ? / ?
 
@@ -601,7 +592,7 @@ code (hex)
 
 31 n or N n N
 
-32 6 or \$ 6 \$
+32 6 or $ 6 $
 
 33 , or \[ , \[
 
@@ -613,7 +604,7 @@ code (hex)
 
 37 v or V v V
 
-40 \' (cond stop) \' \'
+40 ' (cond stop) ' '
 
 41 p or P p P
 
@@ -677,10 +668,9 @@ code (hex)
 
 77 illegal illegal illegal
 
-Certain characters on the Flexowriter keyboard don\'t exist in ASCII.
-The following table provides ASCII substitution characters for the
-unique Flexowriter characters (this is compatible with the coding in the
-LGP30
+Certain characters on the Flexowriter keyboard don't exist in ASCII. The
+following table provides ASCII substitution characters for the unique
+Flexowriter characters (this is compatible with the coding in the LGP30
 
 paper tape archive):
 
@@ -688,12 +678,12 @@ Typewriter Flex ASCII
 
 Code (hex)
 
-UC 12 delta \^
+UC 12 delta ^
 
 UC 1E pi \~
 
 UC 22 sigma \#
 
 Certain Flexowriter codes have no character equivalent of any kind. For
-paper-tape reader and punch files, these are encoded as !dd, where dd is
-a decimal number between 0 and 63.
+paper-tape reader and punch files, these are encoded as \!dd, where dd
+is a decimal number between 0 and 63.

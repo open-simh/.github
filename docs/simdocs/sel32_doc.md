@@ -8,29 +8,29 @@ The following copyright notice applies to the SE32 source, binary, and
 documentation:
 
 > Copyright (c) 2018-2022, James C. Bevier
->
+> 
 > Portions provided by Richard Cornwell, Geert Rolf and other SIMH
 > contributers
->
+> 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
-> \"Software\"), to deal in the Software without restriction, including
+> "Software"), to deal in the Software without restriction, including
 > without limitation the rights to use, copy, modify, merge, publish,
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
->
+> 
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 > IN NO EVENT SHALL JAMES C. BEVIER BE LIABLE FOR ANY CLAIM, DAMAGES OR
 > OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 > ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 > OTHER DEALINGS IN THE SOFTWARE.
->
+> 
 > Except as contained in this notice, the name of James C. Bevier shall
 > not be used in advertising or otherwise to promote the sale, use or
 > other dealings in this Software without prior written authorization
@@ -83,8 +83,7 @@ documentation:
 
 This memorandum documents the SEL-32 simulator.
 
-Simulator Files
-===============
+# Simulator Files
 
 sim/ scp.h
 
@@ -248,47 +247,46 @@ makecode.c
 
 makefile
 
- SEL-32 Features
-===============
+#  SEL-32 Features
 
 The SEL-32 simulator is configured as follows:
 
 > device name(s) simulates
->
+> 
 > CPU 32/55, 32/75, 32/27, 32/67, 32/87, 32/97, V6, V9
->
+> 
 > IOP 8000/8001 IOP controller
->
+> 
 > MFP 8002 MFP controller
->
+> 
 > ITM IOP/MFP interval timer
->
+> 
 > CON IOP console terminal
->
+> 
 > LPR IOP/MFP line printer
->
+> 
 > RTC IOP/MFP real-time clock
->
+> 
 > COMC IOP/MFP 8-line character communications subsystem
->
+> 
 > DMA 2311/2314 disk processor with up to 8 drives
->
+> 
 > DMB 2311/2314 disk processor with up to 8 drives
->
+> 
 > DPA 8064 high speed disk processor with up to 8 drives
->
+> 
 > DPB 8064 high speed disk processor with up to 8 drives
->
+> 
 > SBA MFP SCSI bus A disk controller with up to 2 units
->
+> 
 > SBB MFP SCSI bus B tape controller with up to 2 units
->
+> 
 > SDA SCFI SCSI disk controller with up to 8 units
->
+> 
 > SDB SCFI SCSI disk controller with up to 8 units
->
+> 
 > MTA 8051 9-Trk Buffered tape processor with up to 8 drives
->
+> 
 > MTB 8051 9-Trk Buffered tape processor with up to 8 drives
 
 Most devices can be disabled or enabled with the SET \<dev\> DISABLED
@@ -299,8 +297,7 @@ configurations.
 
 The LOAD and DUMP commands are not implemented.
 
-Central Processor (CPU)
------------------------
+## Central Processor (CPU)
 
 Central processor options include the CPU model, the CPU features, and
 the size of main memory.
@@ -416,10 +413,9 @@ SHOW CPU HISTORY=n print first n entries of CPU history
 The maximum length for the history buffer is 10,000 entries before
 wrapping around..
 
-Memory Mapping
---------------
+## Memory Mapping
 
-Through the late 1970's to the early 1990's SEL computers used a variety
+Through the late 1970’s to the early 1990’s SEL computers used a variety
 of memory mapping schemes. The 32/55 was the first PC board SEL
 computer. Previous computers (8500/8600) had wire-wrapped backplanes to
 interconnect components. The 32/55 had no memory mapping and had a .5 mb
@@ -456,8 +452,7 @@ V6 2048 8kb 16384mb 32mb r/w/x protection
 
 V9 2048 8kb 16384mb 32mb r/w/x protection
 
-Interrupt System (INT)
-----------------------
+## Interrupt System (INT)
 
 The SEL32 implements a multi-level priority interrupt system, with a
 maximum of 112 interrupt levels. It also maintains interrupt status and
@@ -473,8 +468,7 @@ examine SPAD\[all\] display all SPAD data.
 
 examine SPAD\[24\] display word twenty-four of the SPAD.
 
-IOP/MFP
--------
+## IOP/MFP
 
 The IOP or MFP is an integrated controller controller that allows
 multiple controllers to be configured. At least one IOP or MFP must be
@@ -488,16 +482,15 @@ SET MFP enabled enable MFP or
 
 SET IOP enabled enable IOP
 
-IOP Console (CON)
------------------
+## IOP Console (CON)
 
 The console terminal (CON) consists of two units. Unit 0 is for console
 input, unit 1 for console output. The console shares the IOP channel
 controller and interrupt.
 
-The console attention sequence (@\@A) is supported via the attention
-trap at (0xB4). The trap code assigned to this trap level will determine
-the action that will take place. In MPX, this is usually the operator
+The console attention sequence (@@A) is supported via the attention trap
+at (0xB4). The trap code assigned to this trap level will determine the
+action that will take place. In MPX, this is usually the operator
 communications task.
 
 The console must be enabled for it to be active. Set active by:
@@ -508,8 +501,7 @@ By default, the console terminal is assigned to channel 0x7EFC (input)
 and 0x7EFD (output) . An IOP console must be defined for the simulator
 to operate.
 
-IOP Line Printer (LPR)
-----------------------
+## IOP Line Printer (LPR)
 
 The line printer is attached to the IOP at address 0x7EF8 and shares the
 IOP channel controller and interrupt. The line printer (LPR) writes data
@@ -535,8 +527,7 @@ SET LPR enabled enable line printer
 By default, the line printer is assigned to channel LP7EF8 with 66 lines
 per page.
 
-IOP Interval Timer (ITM)
-------------------------
+## IOP Interval Timer (ITM)
 
 The SEL32 computer implements an interval timer that can be loaded with
 a down count. When the count reaches zero, the CPU will be interrupted.
@@ -560,8 +551,7 @@ SET ITM enabled enable interval timer
 The default address of the interval timer is 0x7F04. The default
 interrupt level is 0x5f (95).
 
-Real-Time Clock (RTC)
----------------------
+## Real-Time Clock (RTC)
 
 The SEL32 computer implements a real-time clock. It can be set to a
 variety of frequencies, 50Hz, 60Hz, 100Hz, and 120hz. The frequency of
@@ -581,8 +571,7 @@ The real-time clock auto-calibrates; the clock interval is adjusted up
 or down so that the clock tracks actual elapsed time. The default
 address is 0x7F06. The default interrupt level is 0x18 (24).
 
-IOP 8-Line Asynchronous Controller (COM)
-----------------------------------------
+## IOP 8-Line Asynchronous Controller (COM)
 
 The character-oriented communications subsystem implements 8
 asynchronous interfaces per controller, with modem control. The
@@ -644,9 +633,9 @@ command.
 Other special multiplexer commands:
 
 > SHOW COMC CONNECTIONS show current connections
->
+> 
 > SHOW COMC STATISTICS show statistics for active connections
->
+> 
 > SET COMLn DISCONNECT disconnects the specified line.
 
 The terminal multiplexer does not support save and restore. All open
@@ -654,8 +643,7 @@ connections are lost when the simulator shuts down or COMC is detached.
 By default, the multiplexer is assigned to IOP channel 0x7e00 at devices
 0x7EC0-0x7EC8.
 
- 2311/2314 UDP Disk Processors (DMA, DMB)
-----------------------------------------
+##  2311/2314 UDP Disk Processors (DMA, DMB)
 
 The SEL-32 simulator can support up to two F-class moving head disk
 controllers (DMA, DMB). Each controller can control up to 8 disk drives.
@@ -674,7 +662,7 @@ SET DMA enabled enable UDP disk
 Use the following command to attach a specific drive:
 
 > SET DMA0 TYPE=MH300 sets MPX drive to 768 byte 300MB disk
->
+> 
 > SET DMA0 TYPE=9344 sets UTX drive to 1024 byte 300MB disk
 
 The default for DMA0 is MH300 with 768 byte sectors with 300MB capacity.
@@ -714,8 +702,7 @@ SET DPn \<drive\_type\> SET unit n to the specified drive type
 By default, DPA is assigned to channel 0x0800, and DPB is assigned to
 channel 0x0C00.
 
- 8064 High Speed Disk Processor (DPA, DPB)
------------------------------------------
+##  8064 High Speed Disk Processor (DPA, DPB)
 
 The SEL-32 simulator can support up to two F-class High Speed Disk
 Processors (DPA, DPB). Each controller can control up to 8 disk drives.
@@ -737,7 +724,7 @@ SET DPB enabled enable DPB HSDP disk
 Use the following command to attach a specific drive:
 
 > SET DPA0 TYPE=MH300 sets MPX drive to 768 byte 300MB disk
->
+> 
 > SET DPA0 TYPE=8887 sets UTX drive to 1024 byte 300MB disk
 
 The default for DPA0 is 8887 with 1024 byte sectors with 337MB capacity.
@@ -777,8 +764,7 @@ MH689 16 54 864 865 674MB
 By default, DPA is assigned to channel 0x0800, and DPB is assigned to
 channel 0x0C00.
 
- SCFI SCSI Disk Controller(SDA, SDB)
------------------------------------
+##  SCFI SCSI Disk Controller(SDA, SDB)
 
 The SEL-32 simulator can support up to two F-class SCFI SCSI Disk
 controllers (SDA, SDB). Each controller can control up to 8 disk drives.
@@ -821,8 +807,7 @@ By default, SDA is assigned to channel 0x0400, and SDB is assigned to
 channel 0x0C00. These channel addresses can be changed with the SET SDA0
 DEV=0800 command.
 
-MFP SCSI Disk/Tape Controller(SBA, SBB)
----------------------------------------
+## MFP SCSI Disk/Tape Controller(SBA, SBB)
 
 The SEL-32 simulator can support up to two SCSI BUS controllers (SBA,
 SBB). Each controller can control up to 8 disk drives. Drives can be
@@ -844,7 +829,7 @@ SET SBB enabled enable SBB SCSI disk
 Use the following command to attach a specific drive:
 
 > SET SBA0 TYPE=SD300 sets MPX drive to 768 byte 300MB disk
->
+> 
 > SET SBA0 TYPE=8821 sets UTX drive to 1024 byte 300MB disk
 
 The default for SBA0 is 8887 with 1024 byte sectors with 300MB capacity.
@@ -885,8 +870,7 @@ By default, SDA is assigned to channel 0x0400, and SDB is assigned to
 channel 0x0C00. These channel addresses can be changed with the SET SDA0
 DEV=0800 command.
 
-2.14 8051 Buffered Tape Processor (MTA & MTB) {#buffered-tape-processor-mta-mtb .list-paragraph}
----------------------------------------------
+## 2.14 8051 Buffered Tape Processor (MTA & MTB)
 
 The magnetic tape controller supports up to eight units. MT options
 include the ability to make units write enabled or write locked.
@@ -915,8 +899,7 @@ sequence for unit n.
 By default, the magnetic tape is assigned to channel 0x1000 but can be
 changed with the SET MTA0 DEV=1800 command.
 
-2.15 8516 Ethernet Controller {#ethernet-controller .list-paragraph}
------------------------------
+## 2.15 8516 Ethernet Controller
 
 The Ethernet controller allows the user to connect to the internet. The
 SetupNet script in the tests directory allows the network device to be
@@ -945,28 +928,26 @@ can be changed with the
 SET EC DEV=0e00 command. For UTX the MODE needs to be set to MODE=2 and
 the SET EC MAC = command should not be used.
 
-Symbolic Display
-================
+# Symbolic Display
 
 The SEL-32 simulator implements symbolic display and input when using
 the EXAMINE command. Display is controlled by command line switches:
 
--a display as ASCII character (byte addressing)
+\-a display as ASCII character (byte addressing)
 
--b display as byte (byte addressing)
+\-b display as byte (byte addressing)
 
--o display as octal value
+\-o display as octal value
 
--d display as decimal
+\-d display as decimal
 
--h display as hexadecimal
+\-h display as hexadecimal
 
--m display base register instruction mnemonics
+\-m display base register instruction mnemonics
 
--n display non-base register instruction mnemonics
+\-n display non-base register instruction mnemonics
 
-Diagnostics for SEL-32 Simulator
-================================
+# Diagnostics for SEL-32 Simulator
 
 The operation of the SEL-32 simulator can be verified using the standard
 SEL diagnostic suite. It is provided in the tests directory. The command
