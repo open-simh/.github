@@ -55,7 +55,18 @@ sensitive issues, the following e-mail addresses are available:
 
 - [The Steering Group Members](mailto:sg@opensimh.org)
 - [Administrative and/or technical issues](mailto:admin@opensimh.org)
-- [Website issues](mailto:webmaster@opensimh.org)
+
+## Website feedback
+
+This website is a work in progress, but all feedback is welcome.
+
+For website issues (missing, broken or inappropriate links, corrections, additional material):
+- Via [e-mail](mailto:webmaster@opensimh.org)
+- Via the public [issue tracker](https://github.com/open-simh/.github/issues)
+
+Website issues raised on the project's other issue trackers are welcome, but may be redirected.
+
+Please use the issue tracker when large amounts of material is involved.  Also please consult before proposing/investing in large changes.
 
 The Steering Group consists of: Clem Cole, Richard Cornwell, Paul Koning,
 Timothe Litt, Seth Morabito, and Bob Supnik
