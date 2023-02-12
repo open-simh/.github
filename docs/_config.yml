@@ -31,7 +31,7 @@ show_downloads: True
 # Debug server requires a git "remote" called "origin" for these
 # to work:
 github:
-  owner_url: https://github.com/open-simh
+  owner_url: https://opensimh.org
   repository_url: https://github.com/orgs/open-simh/repositories
   owner_name: The Open SIMH Steering Group
   repository_url: https://github.com/open-simh/simh
