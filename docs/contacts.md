@@ -56,6 +56,21 @@ sensitive issues, the following e-mail addresses are available:
 - [The Steering Group Members](mailto:sg@opensimh.org)
 - [Administrative and/or technical issues](mailto:admin@opensimh.org)
 
+The Steering Group consists of: Clem Cole, Richard Cornwell, Paul Koning,
+Timothe Litt, Seth Morabito, and Bob Supnik
+
+### PGP public keys
+
+Some Steering Group members may digitally certify Open SIMH project PGP keys with a personal key.
+
+To provide a chain of trust for the project keys, the keys that may be used for this are:
+
+- [2A5B AD87 D03D 9599 9355  D615 3C4D EA25 9EAC C2B3](/sg_gpg_pubkey_cole.asc) (Clement T Cole)
+- [30E5 BFA1 A5E0 7EDE BDCB  5934 4779 39B6 0719 18BF](/sg_gpg_pubkey_litt.asc) (Timothe Litt)
+
+Although the project keys are expected to be stable, you may prefer to verify them with
+the Steerng Group member's key.
+
 ## Website feedback
 
 This website is a work in progress, but all feedback is welcome.
@@ -67,6 +82,3 @@ For website issues (missing, broken or inappropriate links, corrections, additio
 Website issues raised on the project's other issue trackers are welcome, but may be redirected.
 
 Please use the issue tracker when large amounts of material is involved.  Also please consult before proposing/investing in large changes.
-
-The Steering Group consists of: Clem Cole, Richard Cornwell, Paul Koning,
-Timothe Litt, Seth Morabito, and Bob Supnik
