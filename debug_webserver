@@ -12,7 +12,10 @@ cd "$(dirname "$0")"
 [ -d docs ] && cd docs
 # The server may crash randomly if LC_ALL isn't set
 # --incremental seems to have a ruby issue to be tracked-down later, maybe.
- INCREMENTAL="--incremental"
-#INCREMENTAL=
-LC_ALL=en_US.UTF-8 bundle exec jekyll serve $INCREMENTAL -H "$SERVER" -P 4000 \
-    --livereload true --livereload-ignore "*#*,*~*,.*,*.swp" $DEBUG
+INCREMENTAL="--incremental"
+INCREMENTAL=
+# LIVE has issues with my version of Ruby
+LIVE='--livereload true --livereload-ignore "*#*,*~*,.*,*.swp"'
+LIVE=
+LC_ALL=en_US.utf8 LANG=en_US.utf8  bundle exec jekyll serve $INCREMENTAL -H "$SERVER" -P 4000 $LIVE $DEBUG
+

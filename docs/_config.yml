@@ -41,6 +41,8 @@ github:
 theme: jekyll-theme-time-machine
 #plugins:
 #  - jekyll-feed
+sass:
+  add_charset: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.

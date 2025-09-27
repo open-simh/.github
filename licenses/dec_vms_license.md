@@ -1,12 +1,14 @@
 ---
 layout: default
-title: DEC/HPE VMS Hobby license
+title: DEC/HPE VMS Hobby license (discontinued)
 permalink: /dec_vms_license/
 ---
 
 # DEC/HPE Personal use license for VMS
 
 ---
+
+See also: [DEC VMS licensing information][/dec_vms_licensing]
 
 These licenses were granted on request by HPE's "OpenVMS Customer Lab". They required
 an application, and resulted in time limited (1 year) Product Authorization Keys.
