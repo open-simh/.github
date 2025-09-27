@@ -22,9 +22,9 @@ The software distributions listed here may be of interest to some (or all) users
 
 Explicit licenses that organizations have generously granted for use of "Ancient" (formerly proprietary) software include:
 
-- [Early UNIX (Caldera)](Caldera-license.pdf)
+- [Early UNIX (Caldera)](../Caldera-license.pdf)
 - [TOPS-10/20 Hobbyist (DEC)](../dec_36bit_license)
-- VMS (DEC): [Hobbyist, discontinued](../dec_vms_license) Also, see [Current status](/../dec_vms_licensing)
+- VMS (DEC): [Hobbyist, discontinued](../dec_vms_license) Also, see [Current status](../dec_vms_licensing)
 - [PDP-11 RT-11, RSX-11, RSTS-11 (Mentec)](../mentec_license)
 - [HP1000 & HP21XX (HP/HPE)](../HP1000-21XX_CHM_Source_Code_License_final.pdf)
 - [MCP Mark XIII (Burroughs/Unisys)](../Unisys-B5500-Software-License.pdf)
