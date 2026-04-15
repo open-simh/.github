@@ -52,8 +52,8 @@ At this point, all licenses issued under this program have expired and are no lo
 
 ## Other DEC-related "hobbyist" licenses
  - DEC issued its first hobbyist [license for TOPS-10/20](../dec_36bit_license).
- - A [Personal use licence](../mentec_license) was issued by Mentec for DEC's RT-11, RSTS/E, RSX-11M, and RSX-11M Plus operating systems and their layered prodcuts.
- - Caldera issued a free [licence for PDP-11 UNIX V1-7 and 32V UNIX](../Caldera-license.pdf)
+ - A [personal use licence](../mentec_license) was issued by Mentec for DEC's RT-11, RSTS/E, RSX-11M, and RSX-11M Plus operating systems and their layered prodcuts.
+ - Caldera issued a free [licence for PDP-11 UNIX V1-7 and 32V UNIX](../Caldera-license.pdf).
 
 # Current status
 There is currently no legal means of obtaining a valid license for VAX/VMS, OpenVMS, or their layered products in support of OpenSIMH's mission of *preserving the knowledge contained in and the ability to experience old/historic software.*
