@@ -8,7 +8,7 @@ permalink: /tutorials/
 
 ---
 
-Some tutorials are associated with sofware on the [software](software) page.
+Some tutorials are associated with software on the [software](../software) page.
 
 This page contains hyperlinks to tutorials that have been generated, tested
 and are maintained by the Open SIMH community.
